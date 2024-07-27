@@ -19,8 +19,8 @@ class FurryState extends MusicBeatState
 		
 			var bg:FlxSprite;
 				var bgpic:FlxSprite;
-			bg = new FlxSprite(595, -10);
-				bgpic = new FlxSprite(0, 0);
+			bg = new FlxSprite(595, -35); //(595, -10)
+				bgpic = new FlxSprite(400, -350);
 			bg.frames = Paths.getSparrowAtlas('TitleScreen/Fur');
 				bgpic.frames = Paths.getSparrowAtlas('TitleScreen/Fur_2');
 			bg.animation.addByPrefix('furrysrule', "amogus", 24, true);
@@ -31,8 +31,8 @@ class FurryState extends MusicBeatState
 				bgpic.animation.play('UwU');
 			add(bg);
 				add(bgpic);
-				bgpic.scale.x = 0.5;
-				bgpic.scale.y = 0.5;
+				bgpic.scale.x = 0.4;
+				bgpic.scale.y = 0.4;
 
 		
 			var TWb:FlxSprite;

@@ -715,22 +715,22 @@ function startmessage():Array<Array<String>>
 					deleteCoolText();
 				case 27:
 					addMoreText('Friday');
-					if (skippedIntro == false){
+					if (!skippedIntro){
 					FlxTween.tween(FlxG.camera, {zoom:1.25}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 					};
 				case 28:
 					addMoreText('Night');
-						if (skippedIntro == false){
+						if (!skippedIntro){
 							FlxTween.tween(FlxG.camera, {zoom:1.5}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 						};
 				case 29:
 					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-						if (skippedIntro == false){
+						if (!skippedIntro){
 							FlxTween.tween(FlxG.camera, {zoom:1.75}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 						};
 				case 30:
 					addMoreText('MegaMod!');
-						if (skippedIntro == false){
+						if (!skippedIntro){
 							FlxTween.tween(FlxG.camera, {zoom:2}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
 						};
 				case 31:
@@ -738,6 +738,9 @@ function startmessage():Array<Array<String>>
 					createCoolText([brahdafack[0]], 90);
 
 				case 32:
+					deleteCoolText();
+
+				case 33:
 					skipIntro();
 			}
 		}

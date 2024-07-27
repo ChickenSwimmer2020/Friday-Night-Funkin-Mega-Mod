@@ -96,7 +96,18 @@ Welcome to the official page for the FNF':MM! this github page is well, to put i
 * utest
   * haxelib install utest
 
- 
+## BUILD INSTRUCTIONS
+ ### HAXE
+  for literally ANY of this to work, you need to install haxe. haxe can be installed from [Haxe](https://haxe.org).
+ ### IDE
+  now, to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). once those are installed, move on to the next section
+ ### PLUGINS/LIBRARYS
+  if you have not yet installed the plugins/librarys shown above. do so now, or the game will be unbuildable
+ ### ACTUALLY BUILDING
+  #### LOADING
+    once you have install visual studio, go to your downloaded source folder. and right click on the folder. click more options, then click `open in visual studio`. then the IDE will open.
+  #### build
+    once you have installed all the required plugins/librarys. simply go to the powershell console, and type `lime test windows -debug` for debug, or `lime test windows` to test release. if you want to build to an .exe file, simply type `lime build windows` or `lime build windows -debug`
 # EVERYTHING BELOW THIS IS THE DEFAULT README.MD
 ## Friday Night Funkin' - Psych Engine
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
