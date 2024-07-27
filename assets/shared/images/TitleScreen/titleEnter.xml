@@ -33,4 +33,5 @@
 	<SubTexture name="ENTER IDLE0028" x="2" y="2" width="663" height="124"/>
 	<SubTexture name="ENTER PRESSED0000" x="667" y="1136" width="649" height="110"/>
 	<SubTexture name="ENTER PRESSED0001" x="1318" y="1136" width="637" height="98" frameX="-6" frameY="-6" frameWidth="649" frameHeight="110"/>
+	<SubTexture name="ENTER FREEZE0000" x="667" y="1136" width="649" height="110"/>
 </TextureAtlas>

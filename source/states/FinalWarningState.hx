@@ -14,6 +14,7 @@ class FinalWarningState extends MusicBeatState
 
 
 	var warnText:FlxText;
+	var warnTextFL:FlxText;
 	var PressText:FlxText;
 	override function create()
 	{
@@ -29,6 +30,14 @@ class FinalWarningState extends MusicBeatState
 		warnText = new FlxText(0, 0, FlxG.width,
 			"This is your final warning\n
 			This mod contains:\n
+			Furry Content\n
+			Cursing\n
+			References to Sex\n
+			Additional Unlisted Content",
+			32);
+		warnTextFL = new FlxText(0, 0, FlxG.width,
+			"This is your final warning\n
+			This mod contains:\n
 			Flashing Lights (may be disabled depending on last choice)\n
 			Furry Content\n
 			Cursing\n
@@ -36,8 +45,13 @@ class FinalWarningState extends MusicBeatState
 			Additional Unlisted Content",
 			32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
+		warnTextFL.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
+		warnText.screenCenter(X);
 		warnText.screenCenter(X);
 		add(warnText);
+		add(warnTextFL);
+		warnText.visible = false;
+		warnTextFL.visible = false;
 		PressText = new FlxText(0, 625, FlxG.width, "Are you sure you want to continue?\n \nPress ENTER to continue anyways", 32);
 		PressText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 		PressText.screenCenter(X);
@@ -46,7 +60,16 @@ class FinalWarningState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-
+		if(!ClientPrefs.data.flashing)
+		{
+			warnText.visible = false;
+			warnTextFL.visible = true;
+		}
+		else if(ClientPrefs.data.flashing)
+		{
+			warnText.visible = true;
+			warnTextFL.visible = false;
+		};
 		if(!leftState) {
 			var accept:Bool = controls.ACCEPT;
 			var back:Bool = controls.BACK;
