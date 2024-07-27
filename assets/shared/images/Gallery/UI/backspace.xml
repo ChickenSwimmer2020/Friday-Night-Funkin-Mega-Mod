@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="backspace.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="backspacePRESSED0000" x="2" y="2" width="315" height="175"/>
+	<SubTexture name="backspacePRESSED0001" x="2" y="179" width="299" height="163" frameX="-9" frameY="-7" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0002" x="303" y="179" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0003" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0004" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0005" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0006" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0007" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0008" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0009" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0010" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0011" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0012" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0013" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0014" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0015" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0016" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0017" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0018" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0019" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0020" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0021" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0022" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0023" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacePRESSED0024" x="319" y="2" width="286" height="155" frameX="-17" frameY="-11" frameWidth="315" frameHeight="175"/>
+	<SubTexture name="backspacetoexit0000" x="2" y="453" width="281" height="106" frameX="0" frameY="0" frameWidth="281" frameHeight="107"/>
+	<SubTexture name="backspacetoexit0001" x="2" y="453" width="281" height="106" frameX="0" frameY="0" frameWidth="281" frameHeight="107"/>
+	<SubTexture name="backspacetoexit0002" x="2" y="344" width="281" height="107"/>
+	<SubTexture name="backspacetoexit0003" x="2" y="344" width="281" height="107"/>
+	<SubTexture name="backspacetoexitwhite0000" x="285" y="446" width="280" height="107" frameX="0" frameY="0" frameWidth="280" frameHeight="108"/>
+	<SubTexture name="backspacetoexitwhite0001" x="285" y="446" width="280" height="107" frameX="0" frameY="0" frameWidth="280" frameHeight="108"/>
+	<SubTexture name="backspacetoexitwhite0002" x="303" y="336" width="280" height="108"/>
+	<SubTexture name="backspacetoexitwhite0003" x="303" y="336" width="280" height="108"/>
+</TextureAtlas>

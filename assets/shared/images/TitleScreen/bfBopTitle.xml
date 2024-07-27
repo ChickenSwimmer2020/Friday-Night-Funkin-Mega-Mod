@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bfBopTitle.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="boyfriend_menu0000" x="525" y="1470" width="551" height="480" frameX="0" frameY="-8" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0001" x="525" y="1952" width="551" height="480" frameX="0" frameY="-8" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0002" x="1674" y="2" width="549" height="486" frameX="0" frameY="-3" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0003" x="1674" y="490" width="549" height="486" frameX="0" frameY="-3" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0004" x="1121" y="488" width="551" height="488" frameX="0" frameY="-1" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0005" x="1121" y="488" width="551" height="488" frameX="0" frameY="-1" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0006" x="567" y="488" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0007" x="567" y="488" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0008" x="567" y="488" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0009" x="567" y="488" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0010" x="2" y="984" width="567" height="484" frameX="0" frameY="-4" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0011" x="567" y="2" width="567" height="484" frameX="0" frameY="-4" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0012" x="2" y="2" width="563" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0013" x="2" y="493" width="563" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0014" x="1125" y="978" width="551" height="488" frameX="0" frameY="-1" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0015" x="1125" y="978" width="551" height="488" frameX="0" frameY="-1" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0016" x="571" y="979" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0017" x="571" y="979" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0018" x="571" y="979" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu0019" x="571" y="979" width="552" height="489" frameX="0" frameY="0" frameWidth="567" frameHeight="489"/>
+	<SubTexture name="boyfriend_menu_hey!0000" x="1648" y="1468" width="490" height="514" frameX="0" frameY="0" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0001" x="1648" y="1468" width="490" height="514" frameX="0" frameY="0" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0002" x="2" y="1981" width="505" height="514" frameX="0" frameY="-5" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0003" x="2" y="1981" width="505" height="514" frameX="0" frameY="-5" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0004" x="1125" y="1468" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0005" x="1125" y="1468" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0006" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0007" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0008" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0009" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0010" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0011" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0012" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0013" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0014" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0015" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0016" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0017" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0018" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+	<SubTexture name="boyfriend_menu_hey!0019" x="2" y="1470" width="521" height="509" frameX="0" frameY="-14" frameWidth="521" frameHeight="523"/>
+</TextureAtlas>

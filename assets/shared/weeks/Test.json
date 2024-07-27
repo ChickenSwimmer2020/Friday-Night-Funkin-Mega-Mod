@@ -1,0 +1,20 @@
+{
+	"songs": [
+		["TestSong", "bf-pixel", [165, 0, 77]]
+	],
+
+	"weekCharacters": [
+		"null",
+		"null",
+		"null"
+	],
+	"weekBackground": "NULL",
+
+	"storyName": "TEST",
+	"weekBefore": "TEST",
+	"weekName": "TEST",
+	"startUnlocked": true,
+
+	"hideStoryMode": true,
+	"hideFreeplay": false
+}

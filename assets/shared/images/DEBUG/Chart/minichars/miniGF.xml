@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="miniGF.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="leftdance0000" x="814" y="373" width="201" height="183" frameX="0" frameY="-4" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0001" x="814" y="373" width="201" height="183" frameX="0" frameY="-4" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0002" x="814" y="558" width="201" height="182" frameX="0" frameY="-5" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0003" x="205" y="559" width="201" height="182" frameX="0" frameY="-5" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0004" x="205" y="190" width="201" height="183" frameX="0" frameY="-4" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0005" x="2" y="191" width="201" height="183" frameX="0" frameY="-4" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0006" x="408" y="190" width="201" height="183" frameX="0" frameY="-4" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0007" x="205" y="2" width="201" height="186" frameX="0" frameY="-1" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0008" x="205" y="2" width="201" height="186" frameX="0" frameY="-1" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0009" x="205" y="2" width="201" height="186" frameX="0" frameY="-1" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0010" x="2" y="2" width="201" height="187"/>
+	<SubTexture name="leftdance0011" x="2" y="2" width="201" height="187"/>
+	<SubTexture name="leftdance0012" x="2" y="2" width="201" height="187"/>
+	<SubTexture name="leftdance0013" x="408" y="2" width="201" height="186" frameX="0" frameY="-1" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="leftdance0014" x="408" y="2" width="201" height="186" frameX="0" frameY="-1" frameWidth="201" frameHeight="187"/>
+	<SubTexture name="rightdance0000" x="611" y="374" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0001" x="611" y="374" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0002" x="205" y="375" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0003" x="2" y="376" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0004" x="408" y="375" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0005" x="611" y="558" width="201" height="182" frameX="0" frameY="-2" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0006" x="814" y="188" width="201" height="183" frameX="0" frameY="-1" frameWidth="201" frameHeight="184"/>
+	<SubTexture name="rightdance0007" x="611" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0008" x="611" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0009" x="611" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0010" x="814" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0011" x="814" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0012" x="814" y="2" width="201" height="184"/>
+	<SubTexture name="rightdance0013" x="611" y="188" width="201" height="184"/>
+	<SubTexture name="rightdance0014" x="611" y="188" width="201" height="184"/>
+</TextureAtlas>

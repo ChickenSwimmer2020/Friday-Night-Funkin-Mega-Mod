@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menu_settings.png">
+	<!-- Created with Adobe Animate version 24.0.3.19 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="settings basic0000" x="572" y="237" width="77" height="75" frameX="-2" frameY="-4" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0001" x="487" y="496" width="77" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0002" x="408" y="416" width="78" height="78" frameX="-2" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0003" x="251" y="83" width="80" height="79" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0004" x="85" y="86" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0005" x="85" y="2" width="81" height="82"/>
+	<SubTexture name="settings basic0006" x="2" y="252" width="79" height="82" frameX="-1" frameY="0" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0007" x="2" y="417" width="79" height="80" frameX="-1" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0008" x="166" y="332" width="79" height="81" frameX="-1" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0009" x="333" y="82" width="78" height="80" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0010" x="2" y="499" width="78" height="79" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0011" x="414" y="162" width="78" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0012" x="494" y="316" width="76" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0013" x="496" y="2" width="77" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0014" x="414" y="242" width="78" height="78" frameX="-1" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0015" x="165" y="415" width="79" height="80" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0016" x="168" y="168" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0017" x="2" y="169" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0018" x="83" y="253" width="81" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0019" x="251" y="164" width="80" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0020" x="247" y="334" width="80" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0021" x="333" y="2" width="80" height="78" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0022" x="415" y="2" width="79" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0023" x="333" y="244" width="79" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings basic0024" x="494" y="159" width="77" height="76" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0000" x="494" y="395" width="77" height="75" frameX="-2" frameY="-4" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0001" x="408" y="496" width="77" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0002" x="82" y="499" width="78" height="78" frameX="-2" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0003" x="2" y="336" width="80" height="79" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0004" x="168" y="2" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0005" x="2" y="2" width="81" height="82"/>
+	<SubTexture name="settings white0006" x="85" y="169" width="79" height="82" frameX="-1" frameY="0" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0007" x="329" y="334" width="79" height="80" frameX="-1" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0008" x="249" y="251" width="79" height="81" frameX="-1" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0009" x="328" y="416" width="78" height="79" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0010" x="246" y="495" width="78" height="79" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0011" x="162" y="497" width="78" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0012" x="494" y="237" width="76" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0013" x="326" y="497" width="77" height="77" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0014" x="414" y="322" width="78" height="77" frameX="-1" frameY="-3" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0015" x="84" y="415" width="79" height="80" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0016" x="168" y="85" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0017" x="2" y="86" width="81" height="81" frameX="0" frameY="-1" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0018" x="166" y="251" width="81" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0019" x="84" y="334" width="80" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0020" x="251" y="2" width="80" height="79" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0021" x="246" y="415" width="80" height="78" frameX="0" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0022" x="333" y="164" width="79" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0023" x="413" y="82" width="79" height="78" frameX="-1" frameY="-2" frameWidth="81" frameHeight="82"/>
+	<SubTexture name="settings white0024" x="496" y="81" width="77" height="76" frameX="-2" frameY="-3" frameWidth="81" frameHeight="82"/>
+</TextureAtlas>

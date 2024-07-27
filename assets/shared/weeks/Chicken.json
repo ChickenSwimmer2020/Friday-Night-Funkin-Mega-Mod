@@ -1,0 +1,33 @@
+{
+	"songs": [
+		[
+			"Song",
+			"Char",
+			[
+				0,
+				0,
+				0
+			]
+		] 
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"difficulties": "Easy, Normal, Hard, Nightmare",
+	"weekCharacters": 
+	[
+		"",
+		"",
+		""
+	],
+	"storyName": "text goes here",
+	"WeekName": "CS20",
+	"freeplayColor":
+	[
+		0,
+		0,
+		0
+	],
+	"hideStoryMode": false,
+	"weekBefore": "BNA",
+	"startUnlocked": true
+}

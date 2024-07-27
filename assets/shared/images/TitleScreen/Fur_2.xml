@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Fur_2.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="dapicturtes0000" x="1373" y="2" width="1364" height="1177" frameX="0" frameY="0" frameWidth="1369" frameHeight="1177"/>
+	<SubTexture name="dapicturtes0001" x="1373" y="2" width="1364" height="1177" frameX="0" frameY="0" frameWidth="1369" frameHeight="1177"/>
+	<SubTexture name="dapicturtes0002" x="2" y="2" width="1369" height="1174" frameX="0" frameY="0" frameWidth="1369" frameHeight="1177"/>
+	<SubTexture name="dapicturtes0003" x="2" y="2" width="1369" height="1174" frameX="0" frameY="0" frameWidth="1369" frameHeight="1177"/>
+</TextureAtlas>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Fur.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="amogus0000" x="2" y="784" width="735" height="766" frameX="0" frameY="-16" frameWidth="735" frameHeight="782"/>
+	<SubTexture name="amogus0001" x="2" y="784" width="735" height="766" frameX="0" frameY="-16" frameWidth="735" frameHeight="782"/>
+	<SubTexture name="amogus0002" x="2" y="2" width="730" height="780" frameX="-2" frameY="0" frameWidth="735" frameHeight="782"/>
+	<SubTexture name="amogus0003" x="2" y="2" width="730" height="780" frameX="-2" frameY="0" frameWidth="735" frameHeight="782"/>
+</TextureAtlas>

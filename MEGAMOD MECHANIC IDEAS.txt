@@ -1,0 +1,6 @@
+mechanics from other mods to take
+3 hearts health mechanic: unsure where to use
+hardstyle mechanic, zooms in on characters faces and adds alt anims, as well as making the camera zoomed in more and having the cam bops go fuckin crazy
+modcharts. obviously (REMINDER TO LEARN TO MAKE MODHCHARTS IN HAXE)
+pulsing light during certain songs
+pulsing chromatic abberation at the edges of the screen during certain parts
