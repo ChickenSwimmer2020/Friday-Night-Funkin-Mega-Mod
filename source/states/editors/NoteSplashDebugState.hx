@@ -35,6 +35,7 @@ class NoteSplashDebugState extends MusicBeatState
 
 	override function create()
 	{
+		//FUCK YOU GITHUB, WHY WONT YOU TRACK MY STATES!
 		FlxG.camera.bgColor = FlxColor.fromHSL(0, 0, 0.5);
 		selection = new FlxSprite(0, 270).makeGraphic(150, 150, FlxColor.BLACK);
 		selection.alpha = 0.4;

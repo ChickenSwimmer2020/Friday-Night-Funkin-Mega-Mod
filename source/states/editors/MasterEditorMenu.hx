@@ -9,6 +9,7 @@ import states.FreeplayState;
 
 class MasterEditorMenu extends MusicBeatState
 {
+	//these states are untracked for some reason, this comment servese no purpose other than to start tracking them
 	var options:Array<String> = [
 		'Chart Editor',
 		'Character Editor',

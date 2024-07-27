@@ -20,6 +20,7 @@ import openfl.utils.Assets as OpenFlAssets;
 
 class EditorPlayState extends MusicBeatSubstate
 {
+	//for some reason, the editors are untracked. this text fixes that.
 	// Borrowed from original PlayState
 	var finishTimer:FlxTimer = null;
 	var noteKillOffset:Float = 350;

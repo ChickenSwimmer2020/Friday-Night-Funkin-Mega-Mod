@@ -16,6 +16,7 @@ import objects.MenuCharacter;
 
 class MenuCharacterEditorState extends MusicBeatState
 {
+	//this text serves no purpose, other than to make these editor states tracked
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
 	var characterFile:MenuCharacterFile = null;
 	var txtOffsets:FlxText;

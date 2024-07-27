@@ -18,7 +18,8 @@ import cutscenes.DialogueBoxPsych;
 import cutscenes.DialogueCharacter;
 
 class DialogueEditorState extends MusicBeatState
-{
+{	
+	//for some reason, its untracked. this should fix that. hopefully
 	var character:DialogueCharacter;
 	var box:FlxSprite;
 	var daText:TypedAlphabet;
