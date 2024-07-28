@@ -78,7 +78,6 @@ class NoteSplash extends FlxSprite
 			else tempShader = Note.globalRgbShaders[direction];
 		}
 
-		alpha = ClientPrefs.data.splashAlpha;
 		if(note != null) alpha = note.noteSplashData.a;
 		rgbShader.copyValues(tempShader);
 
@@ -258,7 +257,6 @@ class PixelSplashShader extends FlxShader
 			}
 
 			if(color.a == 0.0 || mult == 0.0) {
-				return color * openfl_Alphav;
 			}
 
 			vec4 newColor = color;

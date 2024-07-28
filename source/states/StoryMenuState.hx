@@ -41,6 +41,8 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 	
+
+	
 	//reminder to remove the debug bg when finished fixing menu
 	var DBBG:FlxSprite;
 

@@ -2034,6 +2034,9 @@ class PlayState extends MusicBeatState
 					FlxG.camera.zoom += flValue1;
 					camHUD.zoom += flValue2;
 				}
+			case 'Zoom Camera':
+				defaultCamZoom -= flValue1;
+				if(flValue2 == null) defaultCamZoom = defaultCamZoom;
 
 			case 'Play Animation':
 				//trace('Anim to play: ' + value1);

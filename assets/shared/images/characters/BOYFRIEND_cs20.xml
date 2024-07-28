@@ -2,57 +2,72 @@
 <TextureAtlas imagePath="BOYFRIEND_cs20.png">
 	<!-- Created with Adobe Animate version 24.0.4.28 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Boyfriend DJ_idle0000" x="399" y="923" width="396" height="434" frameX="0" frameY="-2" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0001" x="399" y="923" width="396" height="434" frameX="0" frameY="-2" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0002" x="1591" y="884" width="396" height="434" frameX="0" frameY="-2" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0003" x="1591" y="884" width="396" height="434" frameX="0" frameY="-2" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0004" x="1620" y="2" width="396" height="435" frameX="0" frameY="-1" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0005" x="1620" y="2" width="396" height="435" frameX="0" frameY="-1" frameWidth="396" frameHeight="436"/>
-	<SubTexture name="Boyfriend DJ_idle0006" x="1590" y="447" width="396" height="435"/>
-	<SubTexture name="Boyfriend DJ_idle0007" x="1590" y="447" width="396" height="435"/>
-	<SubTexture name="Boyfriend DJ_idle0008" x="1590" y="447" width="396" height="435"/>
-	<SubTexture name="Boyfriend DJ_idle0009" x="1590" y="447" width="396" height="435"/>
-	<SubTexture name="Boyfriend DJ_idle0010" x="1193" y="911" width="396" height="436"/>
-	<SubTexture name="Boyfriend DJ_left0000" x="1591" y="1320" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0001" x="1591" y="1320" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0002" x="1196" y="1754" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0003" x="2" y="1810" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0004" x="2" y="1810" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0005" x="2" y="1810" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0006" x="400" y="1793" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0007" x="400" y="1793" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0008" x="400" y="1793" width="396" height="431" frameX="0" frameY="-4" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0009" x="2" y="1376" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0010" x="2" y="1376" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0011" x="400" y="1359" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0012" x="798" y="1349" width="396" height="432" frameX="0" frameY="-3" frameWidth="396" frameHeight="435"/>
-	<SubTexture name="Boyfriend DJ_left0013" x="1590" y="447" width="396" height="435"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0000" x="1223" y="2" width="395" height="443" frameX="-30" frameY="-19" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0001" x="1223" y="2" width="395" height="443" frameX="-30" frameY="-19" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0002" x="1988" y="439" width="395" height="435" frameX="-30" frameY="-27" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0003" x="1988" y="439" width="395" height="435" frameX="-30" frameY="-27" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0004" x="429" y="2" width="395" height="462" frameX="-30" frameY="0" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0005" x="429" y="2" width="395" height="462" frameX="-30" frameY="0" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0006" x="2" y="457" width="395" height="460" frameX="-30" frameY="-2" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0007" x="2" y="457" width="395" height="460" frameX="-30" frameY="-2" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0008" x="399" y="466" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0009" x="399" y="466" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0010" x="2" y="919" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0011" x="2" y="919" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0012" x="796" y="466" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0013" x="796" y="466" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0014" x="826" y="2" width="395" height="455" frameX="-30" frameY="-7" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0015" x="1193" y="459" width="395" height="450" frameX="-30" frameY="-12" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0016" x="1193" y="459" width="395" height="450" frameX="-30" frameY="-12" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0017" x="2018" y="2" width="395" height="435" frameX="-30" frameY="-27" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0018" x="2018" y="2" width="395" height="435" frameX="-30" frameY="-27" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0019" x="798" y="1783" width="395" height="430" frameX="-30" frameY="-32" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0020" x="798" y="1783" width="395" height="430" frameX="-30" frameY="-32" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0021" x="1594" y="1754" width="395" height="430" frameX="-30" frameY="-32" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0022" x="2" y="2" width="425" height="453" frameX="0" frameY="-9" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0023" x="1989" y="876" width="395" height="420" frameX="-30" frameY="-42" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0024" x="2385" y="439" width="395" height="420" frameX="-30" frameY="-42" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0025" x="2415" y="2" width="395" height="417" frameX="-30" frameY="-45" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0026" x="1989" y="1298" width="395" height="417" frameX="-30" frameY="-45" frameWidth="425" frameHeight="462"/>
-	<SubTexture name="Boyfriend DJ_seeplayer0027" x="1989" y="1298" width="395" height="417" frameX="-30" frameY="-45" frameWidth="425" frameHeight="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10000" x="3418" y="466" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10001" x="3418" y="466" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10002" x="2" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10003" x="2" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10004" x="399" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10005" x="399" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10006" x="796" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10007" x="796" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10008" x="1193" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10009" x="1193" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10010" x="1590" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10011" x="1590" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10012" x="1987" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10013" x="1987" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ idlebeforesee instance 10014" x="2384" y="930" width="395" height="462"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10000" x="2781" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10001" x="2781" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10002" x="3179" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10003" x="3179" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10004" x="3577" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10005" x="3577" y="930" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10006" x="2781" y="1368" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10007" x="2781" y="1368" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10008" x="2781" y="1368" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10009" x="2781" y="1368" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_idle instance 10010" x="2781" y="1368" width="396" height="436"/>
+	<SubTexture name="Boyfriend DJ_left instance 10000" x="3179" y="1368" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10001" x="3179" y="1368" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10002" x="3577" y="1368" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10003" x="2" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10004" x="2" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10005" x="2" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10006" x="400" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10007" x="400" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10008" x="400" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10009" x="798" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10010" x="798" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10011" x="1196" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10012" x="1594" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_left instance 10013" x="1992" y="1394" width="396" height="435"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10000" x="2" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10001" x="2" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10002" x="429" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10003" x="429" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10004" x="856" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10005" x="856" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10006" x="1283" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10007" x="1283" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10008" x="1710" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10009" x="1710" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10010" x="2137" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10011" x="2137" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10012" x="2564" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10013" x="2564" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10014" x="2991" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10015" x="3418" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10016" x="3418" y="2" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10017" x="2" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10018" x="2" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10019" x="429" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10020" x="429" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10021" x="856" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10022" x="1283" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10023" x="1710" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10024" x="2137" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10025" x="2564" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10026" x="2991" y="466" width="425" height="462"/>
+	<SubTexture name="Boyfriend DJ_seeplayer instance 10027" x="2991" y="466" width="425" height="462"/>
 </TextureAtlas>

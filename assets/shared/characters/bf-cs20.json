@@ -38,10 +38,10 @@
 				48,
 				-6
 			],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "idle",
-			"loop": false,
+			"indices": [],
 			"name": "Boyfriend DJ_idle"
 		},
 		{
@@ -49,22 +49,33 @@
 				48,
 				-7
 			],
-			"indices": [],
+			"loop": false,
 			"fps": 24,
 			"anim": "singLEFT",
-			"loop": false,
+			"indices": [],
 			"name": "Boyfriend DJ_left"
 		},
 		{
 			"offsets": [
-				78,
+				77,
+				20
+			],
+			"loop": false,
+			"fps": 24,
+			"anim": "See",
+			"indices": [],
+			"name": "Boyfriend DJ_seeplayer"
+		},
+		{
+			"offsets": [
+				47,
 				20
 			],
 			"indices": [],
 			"fps": 24,
-			"anim": "See",
+			"anim": "idle-alt",
 			"loop": false,
-			"name": "Boyfriend DJ_seeplayer"
+			"name": "Boyfriend DJ idlebeforesee"
 		}
 	],
 	"vocals_file": "",
