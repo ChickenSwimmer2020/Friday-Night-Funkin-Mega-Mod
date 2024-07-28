@@ -14,40 +14,40 @@ Welcome to the official page for the FNF':MM! this github page is well, to put i
   these are extra plugins you will need. below in the sections, are the commands to install, and can be pasted with `Control + shift + v`
   most of these got installed with the setup-windows.bat file you ran earlier, so if it says that `[COMPONENT] is already installed` then you dont need to do anything and can skip that one. however, ***DO NOT SKIP*** the HxCodec command, as you ***REQUIRE*** HxCodec 2.6.0 to build the game. dont cry if you cant get the video state to work if you didnt downgrade to 2.6.0.
   #### discord
-    yes. install both. they both have bug fixes for the other.
-    * haxelib install discord_rpc 1.0.0
-    * haxelib install discord-rpc 1.0.0
-    * haxelib install hxdiscord_rpc
+   yes. install both. they both have bug fixes for the other.
+   * haxelib install discord_rpc 1.0.0
+   * haxelib install discord-rpc 1.0.0
+   * haxelib install hxdiscord_rpc
   #### haxe
-    * haxelib install hxCodec 2.6.0
-    * haxelib install hxcpp
-    * haxelib install hxcpp-debug-server
-    * haxelib install hxvlc
-    * haxelib install nape-haxe4
+   * haxelib install hxCodec 2.6.0
+   * haxelib install hxcpp
+   * haxelib install hxcpp-debug-server
+   * haxelib install hxvlc
+   * haxelib install nape-haxe4
   #### flixel
-    most of these probably already got installed, but just incase.
-    * haxelib install flixel
-    * haxelib install flixel-addons
-    * haxelib install flixel-tools
-    * haxelib install flixel-ui
-    * haxelib install flxanimate
-    * haxelib install
+   most of these probably already got installed, but just incase.
+   * haxelib install flixel
+   * haxelib install flixel-addons
+   * haxelib install flixel-tools
+   * haxelib install flixel-ui
+   * haxelib install flxanimate
+   * haxelib install
   #### thx
-    these have a seperate catagory because there is a lot of them...
-    * haxelib install thx.core
-    * haxelib install thx.color
-    * haxelib install thx.promise
-    * haxelib install thx.unit
-    * haxelib install thx.semver
-    * haxelib install thx.stream
-    * haxelib install thx.culture
-    * haxelib install thx.format
-    * haxelib install sui
-    * haxelib install thx.stream.dom
-    * haxelib install thx.benchmark
-    * haxelib install thx.csv
-    * haxelib install thx.text
-    * haxelib install thx.tpl
+   these have a seperate catagory because there is a lot of them...
+   * haxelib install thx.core
+   * haxelib install thx.color
+   * haxelib install thx.promise
+   * haxelib install thx.unit
+   * haxelib install thx.semver
+   * haxelib install thx.stream
+   * haxelib install thx.culture
+   * haxelib install thx.format
+   * haxelib install sui
+   * haxelib install thx.stream.dom
+   * haxelib install thx.benchmark
+   * haxelib install thx.csv
+   * haxelib install thx.text
+   * haxelib install thx.tpl
   #### extras
    the other plugins that dont have catagories
    * haxelib install hmm
