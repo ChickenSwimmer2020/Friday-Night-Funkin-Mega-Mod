@@ -7,7 +7,7 @@ Welcome to the official page for the FNF':MM! this github page is well, to put i
  to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). make sure to after installing these, to run the [setup-msvs-win.bat](./setup/setup-msvc-win.bat) file to get required components to build the game. after that, run the [setup-windows.bat](./setup/setup-windows.bat) to get some plugins/libraries to build the game
  ### HAXE
   for literally ANY of this to work, you need to install haxe. haxe can be installed from [Haxe](https://haxe.org).
-  ***AFTER INSTALLING, RUN*** `haxe setup` ***TO CHOOSE A FOLDER TO KEEP HAXE PLUGINS. PUT IT SOMEWHERE IT WONT GET LOST. I CANT STRESS THIS ENOUGH***
+  ***AFTER INSTALLING, RUN*** `haxelib setup` ***TO CHOOSE A FOLDER TO KEEP HAXE PLUGINS. PUT IT SOMEWHERE IT WONT GET LOST. I CANT STRESS THIS ENOUGH***
  ### LIME
   for the game to be buildable you will need lime. to get lime, simply run `Haxelib install lime` and after it installs, run `Haxelib run lime setup` to install lime fully
  ### PLUGINS/LIBRARYS
@@ -62,9 +62,11 @@ Welcome to the official page for the FNF':MM! this github page is well, to put i
    * haxelib install utest
  ### ACTUALLY BUILDING
   #### LOADING
-    once you have install visual studio, go to your downloaded source folder. and right click on the folder. click more options, then click `open in visual studio`. then the IDE will open.
+    once you have install visual studio, go to your downloaded source folder, and right click on the folder. 
+    click more options, then click `open in visual studio`. then the IDE will open.
   #### build
-    once you have installed all the required plugins/librarys. simply go to the powershell console, and type `lime test windows -debug` for debug, or `lime test windows` to test release. if you want to build to an .exe file, simply type `lime build windows` or `lime build windows -debug`
+    once you have installed all the required plugins/librarys. simply go to the powershell console, and type `lime test windows -debug`
+    for debug, or `lime test windows` to test release. if you want to build to an .exe file, simply type `lime build windows` or `lime build windows -debug`
 # EVERYTHING BELOW THIS IS THE DEFAULT README.MD
 ## Friday Night Funkin' - Psych Engine
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
