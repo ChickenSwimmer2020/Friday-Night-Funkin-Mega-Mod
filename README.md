@@ -1,108 +1,65 @@
 # Friday Night Funkin': Mega Mod
 Welcome to the official page for the FNF':MM! this github page is well, to put it simply. store my source so i dont lose any to random crashes. but! this also means that you, might be able to play it! if you can build my mess of spaghetti code that is. so, i will be adding a list below to allow you to get all requiered plugins, so that if you really want to build my mod, you can! with all that said, enjoy my mess of spaghetti!
 
-## REQUIRED HAXE PLUGINS/LIBRARYS
-* discord_rpc <!-- yes, i know. its the same as discord-rpc. BOTH OF THESE FIX BUGS. GET. BOTH -->
-  * haxelib install discord_rpc 1.0.0
-
-* discord-rpc <!-- yes, i know. its the same as discord_rpc. BOTH OF THESE FIX BUGS. GET. BOTH -->
-  * haxelib install discord-rpc 1.0.0
-
-* flixel
-  * haxelib install flixel 
-
-* flixel-addons
-  * haxelib install flixel-addons
-
-* flixel-tools
-  * haxelib install flixel-tools
-
-* flixel-ui
-  * haxelib install flixel-ui
-
-* flxanimate
-  * haxelib install flxanimate
-
-* hmm
-  * haxelib install hmm
-
-* hscript
-  * haxelib install hscript
-
-* HtmlParser
-  * haxelib install HtmlParser
-
-* hxCodec <!-- GET. 2.6.0. IT IS REQUIRED. I MEAN IT, REQUIRED. FOR THE VIDEO INTRO TO WORK -->
-  * haxelib install hxCodec 2.6.0
-
-* hxcpp
-  * haxelib install hxcpp
-
-* hxcpp-debug-server
-  * haxelib install hxcpp-debug-server
-
-* hxdiscord_rpc
-  * haxelib install hxdiscord_rpc
-
-* hxvlc
-  * haxelib install hxvlc
-
-* lime
-  * haxelib install lime
-  * make sure to run `lime setup` after installing lime
-
-* linc_luajit
-  * haxelib install linc_luajit
-
-* markdown
-  * haxelib install markdown
-
-* nape-haxe4
-  * haxelib install nape-haxe4
-
-* openfl
-  * haxelib install openfl
-
-* parallaxlt
-  * haxelib install parallaxlt
-
-* polymod
-  * haxelib install polymod
-
-* SScript
-  * haxelib install SScript
-
-* thx.core
-  * haxelib install thx.core 0.44.0
-  * also installs
-    * thx.color
-    * thx.promise
-    * thx.unit
-    * thx.semver
-    * thx.stream
-    * thx.culture
-    * thx.format
-    * sui
-    * thx.stream.dom
-    * thx.benchmark
-    * thx.csv
-    * thx.text
-    * thx.tpl
-
-
-* tjson
-  * haxelib install tjson
-
-* utest
-  * haxelib install utest
-
 ## BUILD INSTRUCTIONS
+ BEFORE YOU DO ANYTHING, MAKE SURE YOU KNOW ABSOLUTLY WHAT YOUR DOING. I AM NOT LIABLE IF YOU BRICK YOUR ~~SYSTEM~~^this is a joke^ GAME WITH CRAPPY CODE.
+ ### IDE
+ to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). make sure to after installing these, to run the [setup-msvs-win.bat](./setup/setup-msvc-win.bat) file to get required components to build the game. after that, run the [setup-windows.bat](./setup/setup-windows.bat) to get some plugins/libraries to build the game
  ### HAXE
   for literally ANY of this to work, you need to install haxe. haxe can be installed from [Haxe](https://haxe.org).
- ### IDE
-  now, to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). once those are installed, move on to the next section
+  ***AFTER INSTALLING, RUN*** `haxe setup` ***TO CHOOSE A FOLDER TO KEEP HAXE PLUGINS. PUT IT SOMEWHERE IT WONT GET LOST. I CANT STRESS THIS ENOUGH***
+ ### LIME
+  for the game to be buildable you will need lime. to get lime, simply run `Haxelib install lime` and after it installs, run `Haxelib run lime setup` to install lime fully
  ### PLUGINS/LIBRARYS
-  if you have not yet installed the plugins/librarys shown above. do so now, or the game will be unbuildable
+  these are extra plugins you will need. below in the sections, are the commands to install, and can be pasted with `Control + shift + v`
+  most of these got installed with the setup-windows.bat file you ran earlier, so if it says that `[COMPONENT] is already installed` then you dont need to do anything and can skip that one. however, ***DO NOT SKIP*** the HxCodec command, as you ***REQUIRE*** HxCodec 2.6.0 to build the game. dont cry if you cant get the video state to work if you didnt downgrade to 2.6.0.
+  #### discord
+    yes. install both. they both have bug fixes for the other.
+    * haxelib install discord_rpc 1.0.0
+    * haxelib install discord-rpc 1.0.0
+    * haxelib install hxdiscord_rpc
+  #### haxe
+    * haxelib install hxCodec 2.6.0
+    * haxelib install hxcpp
+    * haxelib install hxcpp-debug-server
+    * haxelib install hxvlc
+    * haxelib install nape-haxe4
+  #### flixel
+    most of these probably already got installed, but just incase.
+    * haxelib install flixel
+    * haxelib install flixel-addons
+    * haxelib install flixel-tools
+    * haxelib install flixel-ui
+    * haxelib install flxanimate
+    * haxelib install
+  #### thx
+    these have a seperate catagory because there is a lot of them...
+    * haxelib install thx.core
+    * haxelib install thx.color
+    * haxelib install thx.promise
+    * haxelib install thx.unit
+    * haxelib install thx.semver
+    * haxelib install thx.stream
+    * haxelib install thx.culture
+    * haxelib install thx.format
+    * haxelib install sui
+    * haxelib install thx.stream.dom
+    * haxelib install thx.benchmark
+    * haxelib install thx.csv
+    * haxelib install thx.text
+    * haxelib install thx.tpl
+  #### extras
+   the other plugins that dont have catagories
+   * haxelib install hmm
+   * haxelib install HtmlParser
+   * haxelib install hscript
+   * haxelib install linc_luajit
+   * haxelib install openfl
+   * haxelib install parallaxlt
+   * haxelib install polymod
+   * haxelib install SScript
+   * haxelib install tjson
+   * haxelib install utest
  ### ACTUALLY BUILDING
   #### LOADING
     once you have install visual studio, go to your downloaded source folder. and right click on the folder. click more options, then click `open in visual studio`. then the IDE will open.
@@ -111,10 +68,6 @@ Welcome to the official page for the FNF':MM! this github page is well, to put i
 # EVERYTHING BELOW THIS IS THE DEFAULT README.MD
 ## Friday Night Funkin' - Psych Engine
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
-
-### Installation:
-
-Refer to [the Build Instructions](./BUILDING.md)
 
 ### Customization:
 
