@@ -95,7 +95,7 @@ class Note extends FlxSprite
 		r: -1,
 		g: -1,
 		b: -1,
-		a: ClientPrefs.data.splashAlpha
+		a: 1
 	};
 
 	public var offsetX:Float = 0;

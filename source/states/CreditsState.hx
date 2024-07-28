@@ -48,7 +48,7 @@ class CreditsState extends MusicBeatState
 			['ChickenSwimmer2020',  'CS20-smal',				'Main PlayTester/Debugger\n\"The furry that Tested this pile of spaghetti code\"',	'LINK',					'#00FF00'],
 			['MaxxerLazz444', 		'tits',						'Menus/Discord_RPC tester\n\"Hello\"', 				 'https://www.youtube.com/channel/UCXPSHz2JM_uvlNqfADOVR0g', 									'#EFF847'],
 			['Sn0wenX', 			'Sn0w',				'Tester/Debugger\n\"QUOTE TBA\"', 							 'LINK', 								''],
-			['TimRGYT', 			'Tim',				'Tester/Debugger\n\"Also Play Vs. Magical Reflections V2!\"', 	 'https://gamebanana.com/mods/426552', ''],
+			['TimRGYT', 			'Tim',				'Tester/Debugger\n\"Also Play Vs. Magical Reflections V2!\"', 	 'https://linktr.ee/timredgameryt', 	'A3DAF6'],
 			[''],
 			['Artists'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Main Artist\n\"The furry that Drew this mess of a game\"',	 'LINK',								'#00FF00'],
