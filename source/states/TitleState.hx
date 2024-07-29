@@ -51,6 +51,8 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
 	var CSLogo:FlxSprite;
 	var YTLogo:FlxSprite;
+
+	var willhey:Bool = false;
 	
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
@@ -78,6 +80,19 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		//random int code for the 1 in 10000 chance for bf to flip off the player
+		var penis:Int;
+		penis = FlxG.random.int(1, 10000);
+		if(penis == 10000)
+			{
+				fuckoff = true;
+				willhey = false;
+			}
+		else if(penis < 10000)
+			{
+				fuckoff = false;
+				willhey = true;
+			}
 		Paths.clearStoredMemory();
 
 		#if LUA_ALLOWED
@@ -197,6 +212,7 @@ class TitleState extends MusicBeatState
 	var BGboom:FlxSprite;
 	var bopLeft:Bool = false;
 	var hey:Bool = false;
+	var fuckoff:Bool = false;
 	var boomleft:Bool = false;
 	var titleText:FlxSprite;
 	var swagShader:ColorSwap = null;
@@ -270,7 +286,8 @@ class TitleState extends MusicBeatState
 				bfBop.frames = Paths.getSparrowAtlas('TitleScreen/bfBopTitle');
 				bfBop.animation.addByIndices('Bop', 'boyfriend_menu', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,], "", 24, false);
 				bfBop.animation.addByIndices('Blink', 'boyfriend_menu', [10, 11, 12, 13, 14, 15, 16, 17, 18], "", 24, false);
-				bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey!', 24, false);
+				bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
+				bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
 				squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
 				squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 		}
@@ -488,8 +505,20 @@ function startmessage():Array<Array<String>>
 				titleText.alpha = 1;
 				
 				if(titleText != null) titleText.animation.play('press');
-				hey = true;
-				bfBop.animation.play('hey');
+					if(!fuckoff && willhey)
+						{
+							hey = true;
+							fuckoff = false;
+							bfBop.animation.play('hey');
+							bfBop.x = titleJSON.bfx + 100;
+							bfBop.y = titleJSON.bfy - 50;
+						}
+					else if(fuckoff && !willhey)
+						{
+							fuckoff = true;
+							hey = false;
+							bfBop.animation.play('fuck');
+						}
 					if(ClientPrefs.data.flashing){
 						FlxG.camera.flash(FlxColor.WHITE, 1);
 					}
@@ -625,11 +654,11 @@ function startmessage():Array<Array<String>>
 				logoBl.animation.play('bumpright');
 		}
 
-		if(bfBop != null && hey == false){
+		if(bfBop != null && !hey){
 			bopLeft = !bopLeft;
 			if (bopLeft)
 				bfBop.animation.play('Bop');
-			else if (hey == false)
+			else if (!hey)
 				bfBop.animation.play('Blink');
 		}
 		if(BGboom != null){
