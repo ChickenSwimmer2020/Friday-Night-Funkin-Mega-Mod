@@ -1,81 +1,81 @@
 {
 	"animations": [
 		{
+			"loop": false,
 			"offsets": [
 				-27,
 				-45
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singDOWN",
-			"indices": [],
-			"name": "BF NOTE DOWN0"
+			"fps": 24,
+			"name": "BF NOTE DOWN0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-53,
 				20
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singUP",
-			"indices": [],
-			"name": "BF NOTE UP0"
+			"fps": 24,
+			"name": "BF NOTE UP0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				-48,
 				-7
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singRIGHT",
-			"indices": [],
-			"name": "BF NOTE RIGHT0"
+			"fps": 24,
+			"name": "BF NOTE RIGHT0",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				48,
 				-6
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "idle",
-			"indices": [],
-			"name": "Boyfriend DJ_idle"
+			"fps": 24,
+			"name": "Boyfriend DJ_idle",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				48,
-				-7
+				-10
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "singLEFT",
-			"indices": [],
-			"name": "Boyfriend DJ_left"
+			"fps": 24,
+			"name": "Boyfriend DJ_left",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				77,
 				20
 			],
-			"loop": false,
-			"fps": 24,
 			"anim": "See",
-			"indices": [],
-			"name": "Boyfriend DJ_seeplayer"
+			"fps": 24,
+			"name": "Boyfriend DJ_seeplayer",
+			"indices": []
 		},
 		{
+			"loop": false,
 			"offsets": [
 				47,
 				20
 			],
-			"indices": [],
-			"fps": 24,
 			"anim": "idle-alt",
-			"loop": false,
-			"name": "Boyfriend DJ idlebeforesee"
+			"fps": 24,
+			"name": "Boyfriend DJ idlebeforesee",
+			"indices": []
 		}
 	],
 	"vocals_file": "",

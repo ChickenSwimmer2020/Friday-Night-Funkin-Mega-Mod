@@ -5,6 +5,8 @@ art/build_x32-officialrelease.bat
 art/build_x64-officialrelease.bat
 art/test_x64-debug-officialrelease.bat
 
+## has to be in a seperate thingy...:( 
+art/*
 ##
 ./MEGAMOD MECHANICS IDEAS.txt
 
@@ -27,3 +29,5 @@ vs_Community.exe
 !.vscode/extensions.json
 art/build_html.bat
 art/build_html-debug.bat
+*.flp
+art/FruityLoopsProjects/digital.flp
