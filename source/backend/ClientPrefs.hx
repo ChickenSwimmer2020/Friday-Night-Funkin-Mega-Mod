@@ -9,6 +9,10 @@ import states.TitleState;
 // Add a variable here and it will get automatically saved
 @:structInit class SaveVariables {
 	public var downScroll:Bool = false;
+	public var skipIntroVideo:Bool = false;
+	public var skipFurryWarn:Bool = false;
+	public var skipFlashWarn:Bool = false;
+	public var skipFinalWarn:Bool = false;
 	public var middleScroll:Bool = false;
 	public var opponentStrums:Bool = true;
 	public var showFPS:Bool = true;

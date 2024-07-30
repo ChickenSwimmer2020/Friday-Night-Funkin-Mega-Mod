@@ -41,18 +41,23 @@ class GameIntro extends FlxState
     override function create()
 
     {
-
-        new FlxTimer().start(1, function(guh:FlxTimer) // gives a bit delay
-
+        if(!ClientPrefs.data.skipIntroVideo)
         {
-                startVideo('megamodintrovideo'); //put the video name here make sure the video on videos folder. you dont need to add like blabla.mp4 just blabla
-           
-        #if desktop
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Intro Video", "watching");
-		#end
-        });
+            new FlxTimer().start(1, function(guh:FlxTimer) // gives a bit delay
 
+            {
+                    startVideo('megamodintrovideo'); //put the video name here make sure the video on videos folder. you dont need to add like blabla.mp4 just blabla
+            
+            #if desktop
+            // Updating Discord Rich Presence
+            DiscordClient.changePresence("Intro Video", "watching");
+            #end
+            });
+        }
+        else
+        {
+            MusicBeatState.switchState(new TitleState());
+        }
 
     }
 
@@ -62,8 +67,10 @@ class GameIntro extends FlxState
     override function update(elapsed)
 
     {
-
-       // if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER)   FlxG.switchState(new TitleState()); //uncomment this so if you press space or enter the intro will be skipped
+        //uncomment this so if you press space or enter the intro will be skipped
+       // if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER){
+       // FlxG.switchState(new TitleState()); 
+       // }
 
     }
 
