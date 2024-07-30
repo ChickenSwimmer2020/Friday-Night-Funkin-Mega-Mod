@@ -4,3 +4,4 @@ hardstyle mechanic, zooms in on characters faces and adds alt anims, as well as 
 modcharts. obviously (REMINDER TO LEARN TO MAKE MODHCHARTS IN HAXE)
 pulsing light during certain songs
 pulsing chromatic abberation at the edges of the screen during certain parts
+added this part so this file updates and i can add to the .gitignore
