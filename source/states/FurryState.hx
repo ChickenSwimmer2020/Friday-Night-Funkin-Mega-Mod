@@ -15,8 +15,6 @@ class FurryState extends MusicBeatState
 	var PressText:FlxText;
 	override function create()
 	{
-		if(!ClientPrefs.data.skipFurryWarn)
-		{
 			super.create();
 			
 				var bg:FlxSprite;
@@ -55,12 +53,6 @@ class FurryState extends MusicBeatState
 			PressText.setFormat("VCR OSD Mono", 24, FlxColor.WHITE, LEFT);
 			PressText.screenCenter(X);
 			add(PressText);
-		}
-		else
-		{
-			MusicBeatState.switchState(new FinalWarningState());
-			trace('furry warning is disabled from settings, skipping');
-		}
 	}
 
 	override function update(elapsed:Float)

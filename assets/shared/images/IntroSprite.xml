@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="IntroSprite.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="INTROGRAPHCHIS0000" x="1" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0001" x="456" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0002" x="911" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0003" x="1366" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0004" x="1821" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0005" x="2276" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0006" x="2731" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0007" x="3186" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0008" x="3641" y="1" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0009" x="1" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0010" x="456" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0011" x="911" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0012" x="1366" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0013" x="1821" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0014" x="2276" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0015" x="2731" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0016" x="3186" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0017" x="3641" y="505" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0018" x="1" y="1009" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0019" x="456" y="1009" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0020" x="911" y="1009" width="454" height="503"/>
+	<SubTexture name="INTROGRAPHCHIS0021" x="1366" y="1009" width="454" height="503"/>
+</TextureAtlas>

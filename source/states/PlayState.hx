@@ -1,5 +1,6 @@
 package states;
 
+import openfl.utils.Function;
 import backend.Highscore;
 import backend.StageData;
 import backend.WeekData;
@@ -177,6 +178,8 @@ class PlayState extends MusicBeatState
 	public var health(default, set):Float = 1;
 	public var combo:Int = 0;
 
+	public var sped:Float = 1;
+
 	public var healthBar:Bar;
 	public var timeBar:Bar;
 	var songPercent:Float = 0;
@@ -265,8 +268,21 @@ class PlayState extends MusicBeatState
 	public var startCallback:Void->Void = null;
 	public var endCallback:Void->Void = null;
 
+	public var getoveritfucker:FlxSprite;
+
 	override public function create()
 	{
+		getoveritfucker = new FlxSprite(0, 0);
+		getoveritfucker.screenCenter(X);
+		getoveritfucker.screenCenter(Y);
+		getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
+		getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
+		getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
+		getoveritfucker.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
+		getoveritfucker.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
+		getoveritfucker.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
+		
+
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
 
@@ -996,6 +1012,7 @@ class PlayState extends MusicBeatState
 					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
 				}
 				introAssets.set(stageUI, introImagesArray);
+				
 
 				var introAlts:Array<String> = introAssets.get(stageUI);
 				var antialias:Bool = (ClientPrefs.data.antialiasing && !isPixelStage);
@@ -1004,22 +1021,31 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
+						add(getoveritfucker);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
-						tick = THREE;
+						getoveritfucker.animation.play('time');
+						tick = THREE; 
 					case 1:
-						countdownReady = createCountdownSprite(introAlts[0], antialias);
+						//countdownReady = createCountdownSprite(introAlts[0], antialias);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
+						getoveritfucker.animation.play('to');
 						tick = TWO;
 					case 2:
-						countdownSet = createCountdownSprite(introAlts[1], antialias);
+						//countdownSet = createCountdownSprite(introAlts[1], antialias);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
+						getoveritfucker.animation.play('get');
 						tick = ONE;
 					case 3:
-						countdownGo = createCountdownSprite(introAlts[2], antialias);
+						//countdownGo = createCountdownSprite(introAlts[2], antialias);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
+						getoveritfucker.animation.play('funky');
 						tick = GO;
 					case 4:
 						tick = START;
+						getoveritfucker.animation.play('start');
+						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+							getoveritfucker.visible = false;
+						});
 				}
 
 				notes.forEachAlive(function(note:Note) {
@@ -1042,29 +1068,29 @@ class PlayState extends MusicBeatState
 		return true;
 	}
 
-	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
-	{
-		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
-		spr.cameras = [camHUD];
-		spr.scrollFactor.set();
-		spr.updateHitbox();
-
-		if (PlayState.isPixelStage)
-			spr.setGraphicSize(Std.int(spr.width * daPixelZoom));
-
-		spr.screenCenter();
-		spr.antialiasing = antialias;
-		insert(members.indexOf(noteGroup), spr);
-		FlxTween.tween(spr, {/*y: spr.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-			ease: FlxEase.cubeInOut,
-			onComplete: function(twn:FlxTween)
-			{
-				remove(spr);
-				spr.destroy();
-			}
-		});
-		return spr;
-	}
+	//inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
+	//{
+	//	var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
+	//	spr.cameras = [camHUD];
+	//	spr.scrollFactor.set();
+	//	spr.updateHitbox();
+//
+	//	if (PlayState.isPixelStage)
+	//		spr.setGraphicSize(Std.int(spr.width * daPixelZoom));
+//
+	//	spr.screenCenter();
+	//	spr.antialiasing = antialias;
+	//	insert(members.indexOf(noteGroup), spr);
+	//	FlxTween.tween(spr, {/*y: spr.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+	//		ease: FlxEase.cubeInOut,
+	//		onComplete: function(twn:FlxTween)
+	//		{
+	//			remove(spr);
+	//			spr.destroy();
+	//		}
+	//	});
+	//	return spr;
+	//}
 
 	public function addBehindGF(obj:FlxBasic)
 	{
@@ -2036,8 +2062,18 @@ class PlayState extends MusicBeatState
 				}
 
 			case 'Zoom Camera':
+				trace('cam zoom event ran correctly');
 				defaultCamZoom = flValue1;
-				if(flValue2 == null) defaultCamZoom = 1.05;
+				sped = flValue2;
+				if(flValue1 == null) defaultCamZoom = 1.05;
+				if(flValue2 == null) sped = 1;
+				FlxTween.tween(camGame, { x: 0, y: 0, "zoom": flValue1}, sped, {ease: FlxEase.sineInOut, 
+				onComplete:function(camzoomtweenfin):Void
+					{
+						trace('bopping should be enabled now');
+						camZooming = true;
+					}
+				});
 
 			case 'Cam Speed':
 				cameraSpeed = flValue1;

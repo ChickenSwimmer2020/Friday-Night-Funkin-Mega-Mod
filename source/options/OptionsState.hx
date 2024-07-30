@@ -26,7 +26,7 @@ class OptionsState extends MusicBeatState
 			case 'Adjust Delay and Combo':
 				MusicBeatState.switchState(new options.NoteOffsetState());
 			case 'MegaMod Option\'s':
-				MusicBeatState.switchState(new options.MegaModOptions());
+				openSubState(new options.MegaModOptionsSubState());
 		}
 	}
 
