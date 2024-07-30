@@ -272,19 +272,19 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		getoveritfucker = new FlxSprite(0, 0);
-		getoveritfucker.screenCenter(X);
-		getoveritfucker.screenCenter(Y);
+		//trace('Playback Rate: ' + playbackRate);
+		Paths.clearStoredMemory();
+
+		getoveritfucker = new FlxSprite(-25, -100);
+		getoveritfucker.scale.x = 0.5;
+		getoveritfucker.scale.y = 0.5;
 		getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
 		getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
 		getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
 		getoveritfucker.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
 		getoveritfucker.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
 		getoveritfucker.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
-		
-
-		//trace('Playback Rate: ' + playbackRate);
-		Paths.clearStoredMemory();
+		getoveritfucker.antialiasing = ClientPrefs.data.antialiasing;
 
 		startCallback = startCountdown;
 		endCallback = endSong;
@@ -506,6 +506,7 @@ class PlayState extends MusicBeatState
 		timeBar.visible = showTime;
 		uiGroup.add(timeBar);
 		uiGroup.add(timeTxt);
+		uiGroup.add(getoveritfucker);
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		noteGroup.add(strumLineNotes);
@@ -1021,7 +1022,6 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
-						add(getoveritfucker);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('time');
 						tick = THREE; 
@@ -1046,6 +1046,8 @@ class PlayState extends MusicBeatState
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							getoveritfucker.visible = false;
 						});
+						FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 				}
 
 				notes.forEachAlive(function(note:Note) {
@@ -1261,8 +1263,7 @@ class PlayState extends MusicBeatState
 
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
-		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
-		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence (with Time Left)
