@@ -51,6 +51,8 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
 	var CSLogo:FlxSprite;
 	var YTLogo:FlxSprite;
+	var DAFUQWHAT:FlxSprite;
+	var DAFUQWHATLEFTY:Bool = false;
 
 	var willhey:Bool = false;
 	
@@ -232,6 +234,17 @@ class TitleState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+
+		DAFUQWHAT = new FlxSprite(0, 0);
+		//DAFUQWHAT.screenCenter(X);
+		//DAFUQWHAT.screenCenter(Y);
+		DAFUQWHAT.scale.x = 1;
+		DAFUQWHAT.scale.y = 1; //might swap these for FlxG.width and FlxG.height respectivly
+		DAFUQWHAT.frames = Paths.getSparrowAtlas('TitleScreen/TitleTextBG');
+		DAFUQWHAT.animation.addByIndices('Left', 'lebg', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "", 24, false);
+		DAFUQWHAT.animation.addByIndices('Right', 'lebg', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "", 24, false);
+		DAFUQWHAT.antialiasing = ClientPrefs.data.antialiasing;
+		DAFUQWHAT.visible = false;
 	
 
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
@@ -336,6 +349,7 @@ class TitleState extends MusicBeatState
 
 		blackScreen = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		credGroup.add(blackScreen);
+		credGroup.add(DAFUQWHAT);
 
 		credTextShit = new Alphabet(0, 0, "", true);
 		credTextShit.screenCenter();
@@ -445,6 +459,7 @@ function startmessage():Array<Array<String>>
 
 	override function update(elapsed:Float)
 	{
+		trace(sickBeats);
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
@@ -644,6 +659,7 @@ function startmessage():Array<Array<String>>
 	{
 		super.beatHit();
 		if(squars != null)
+			if(skippedIntro){ FlxTween.tween(FlxG.camera, {zoom:2.05}, 3.5, {ease: FlxEase.quadInOut, type: BACKWARD}); }
 			squars.animation.play('SQUAR?!', true);
 
 		if(logoBl != null){
@@ -661,6 +677,15 @@ function startmessage():Array<Array<String>>
 			else if (!hey)
 				bfBop.animation.play('Blink');
 		}
+
+		if(DAFUQWHAT != null){
+			DAFUQWHATLEFTY = !DAFUQWHATLEFTY;
+		if(DAFUQWHATLEFTY)
+			DAFUQWHAT.animation.play('Left', true);
+		else
+			DAFUQWHAT.animation.play('Right', true);
+		}
+
 		if(BGboom != null){
 			boomleft = !boomleft;
 			if (boomleft)
@@ -676,101 +701,83 @@ function startmessage():Array<Array<String>>
 				case 1:
 					//FlxG.sound.music.stop();
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 4);
-				case 2:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Psych Engine by'], 40);
-					#else
-					//createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-					#end
-				case 4:
-					#if PSYCH_WATERMARKS
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
-					#else
-					addMoreText('present');
-					#end
-				case 5:
-					deleteCoolText();
-				case 6:
-					#if PSYCH_WATERMARKS
-					createCoolText(['Not associated', 'with'], -40);
-					#else
-					createCoolText(['In association', 'with'], -40);
-					#end
-				case 8:
-					addMoreText('newgrounds', -40);
-					ngSpr.visible = true;
-				case 9:
-					deleteCoolText();
-					ngSpr.visible = false;
-				case 10:
-					createCoolText([curWacky[0]]);
-				case 12:
-					addMoreText(curWacky[1]);
-				case 13:
-					deleteCoolText();
-				case 14:
-					createCoolText(['one man team'], -40);
-				case 15:
-					createCoolText(['ChickenSwimmer2020'], 20);
-					CSLogo.visible = true;
-				case 16:
-					createCoolText(['my man'], 90);
-				case 17:
-					deleteCoolText();
-					CSLogo.visible = false;
-				case 18:
-					createCoolText(['what else do i say,']);
-				case 19:
-					addMoreText('Subscribe?');
-					if (skippedIntro == false){
-					FlxG.sound.play(Paths.sound('bruh'));
-					};
-					YTLogo.visible = true;
-				case 20:
-					deleteCoolText();
-					YTLogo.visible = false;
-				case 21:
-					createCoolText([updateJoke[0]]);
-				case 22:
-					addMoreText(updateJoke[1]);
-				case 23:
-					deleteCoolText();
-				case 24:
-					createCoolText([devJoke[0]]);
-				case 25:
-					addMoreText(devJoke[1]);
-				case 26:
-					deleteCoolText();
-				case 27:
-					addMoreText('Friday');
-					if (!skippedIntro){
-					FlxTween.tween(FlxG.camera, {zoom:1.25}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-					};
-				case 28:
-					addMoreText('Night');
-						if (!skippedIntro){
-							FlxTween.tween(FlxG.camera, {zoom:1.5}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-						};
-				case 29:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-						if (!skippedIntro){
-							FlxTween.tween(FlxG.camera, {zoom:1.75}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-						};
-				case 30:
-					addMoreText('MegaMod!');
-						if (!skippedIntro){
-							FlxTween.tween(FlxG.camera, {zoom:2}, 0.3, {ease: FlxEase.quadOut, type: BACKWARD});
-						};
-				case 31:
-					deleteCoolText();
-					createCoolText([brahdafack[0]], 90);
+					case 2:
+						#if PSYCH_WATERMARKS
+						createCoolText(['Psych Engine by'], 40);
+						#else
+						//createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+						#end
+					case 4:
+						#if PSYCH_WATERMARKS
+						addMoreText('Shadow Mario', 40);
+						addMoreText('Riveren', 40);
+						#else
+						addMoreText('present');
+						#end
+					case 5:
+						deleteCoolText();
+					case 6:
+						#if PSYCH_WATERMARKS
+						createCoolText(['Not associated', 'with'], -40);
+						#else
+						createCoolText(['In association', 'with'], -40);
+						#end
+					case 8:
+						addMoreText('newgrounds', -40);
+						ngSpr.visible = true;
+					case 9:
+						deleteCoolText();
+						ngSpr.visible = false;
+					case 10:
+						createCoolText([curWacky[0]]);
+					case 12:
+						addMoreText(curWacky[1]);
+					case 13:
+						deleteCoolText();
+					case 14:
+						createCoolText(['one man team'], -40);
+					case 15:
+						createCoolText(['ChickenSwimmer2020'], 20);
+						CSLogo.visible = true;
+					case 16:
+						createCoolText(['my man'], 90);
+					case 17:
+						deleteCoolText();
+						CSLogo.visible = false;
+					case 18:
+						createCoolText(['what else do i say,']);
+					case 20:
+						addMoreText('subscribe?');
+						YTLogo.visible = true;
+					case 22:
+						deleteCoolText();
+					case 23:
+						YTLogo.visible = false;
+						if(!skippedIntro) { FlxG.sound.play(Paths.sound('bruh')); };
+					case 25:
+						createCoolText([updateJoke[0]]);
+					case 27:
+						addMoreText(updateJoke[1]);
+					case 28:
+						deleteCoolText();
+					case 29:
+						createCoolText([devJoke[0]]);
+					case 31:
+						addMoreText(devJoke[1]);
+					case 32:
+						deleteCoolText();
+					case 33:
+						if(ClientPrefs.data.flashing){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						}
+						DAFUQWHAT.visible = true;
+						createCoolText(['Woah!']);
+					case 34:
+						deleteCoolText();
 
-				case 32:
-					deleteCoolText();
-
-				case 33:
-					skipIntro();
+					case 73:
+						DAFUQWHAT.visible = false;
+						skipIntro();
 			}
 		}
 	}

@@ -157,6 +157,9 @@ class PlayState extends MusicBeatState
 	public var gf:Character = null;
 	public var boyfriend:Character = null;
 
+	public var introfin:Bool = false;
+	public var bartweendone:Bool = false;
+
 	public var notes:FlxTypedGroup<Note>;
 	public var unspawnNotes:Array<Note> = [];
 	public var eventNotes:Array<EventNote> = [];
@@ -275,9 +278,10 @@ class PlayState extends MusicBeatState
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
 
-		getoveritfucker = new FlxSprite(-25, -100);
+		getoveritfucker = new FlxSprite(-50, -100); //(-25, -100)
 		getoveritfucker.scale.x = 0.5;
 		getoveritfucker.scale.y = 0.5;
+		//spritesheet support
 		getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
 		getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
 		getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
@@ -551,20 +555,41 @@ class PlayState extends MusicBeatState
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
 		healthBar.visible = !ClientPrefs.data.hideHud;
-		healthBar.alpha = ClientPrefs.data.healthBarAlpha;
+		if(bartweendone)
+			{
+				healthBar.alpha = ClientPrefs.data.healthBarAlpha;
+			}
+		else
+			{
+				healthBar.alpha = 0;
+			}
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
 		iconP1.visible = !ClientPrefs.data.hideHud;
-		iconP1.alpha = ClientPrefs.data.healthBarAlpha;
+		if(introfin)
+			{
+				iconP1.alpha = ClientPrefs.data.healthBarAlpha;
+			}
+		else
+			{
+				iconP1.alpha = 0;
+			}
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
 		iconP2.y = healthBar.y - 75;
 		iconP2.visible = !ClientPrefs.data.hideHud;
-		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
+		if(introfin)
+			{
+				iconP2.alpha = ClientPrefs.data.healthBarAlpha;
+			}
+		else
+			{
+				iconP2.alpha = 0;
+			}
 		uiGroup.add(iconP2);
 
 		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
@@ -572,6 +597,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
+		scoreTxt.alpha = 0;
 		updateScore(false);
 		uiGroup.add(scoreTxt);
 
@@ -1022,23 +1048,36 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
+						bartweendone = false;
+						introfin = false;
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('time');
 						tick = THREE; 
+						FlxTween.tween(scoreTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 					case 1:
+						introfin = false;
+						bartweendone = false;
 						//countdownReady = createCountdownSprite(introAlts[0], antialias);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('to');
+						FlxTween.tween(healthBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 						tick = TWO;
 					case 2:
+						bartweendone = true;
+						introfin = false;
 						//countdownSet = createCountdownSprite(introAlts[1], antialias);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('get');
 						tick = ONE;
+						FlxTween.tween(iconP1, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						FlxTween.tween(iconP2, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 					case 3:
+						bartweendone = true;
+						introfin = true;
 						//countdownGo = createCountdownSprite(introAlts[2], antialias);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('funky');
+						FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 						tick = GO;
 					case 4:
 						tick = START;
@@ -1046,7 +1085,6 @@ class PlayState extends MusicBeatState
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							getoveritfucker.visible = false;
 						});
-						FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 						FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 				}
 
