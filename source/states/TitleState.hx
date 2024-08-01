@@ -659,7 +659,6 @@ function startmessage():Array<Array<String>>
 	{
 		super.beatHit();
 		if(squars != null)
-			if(skippedIntro){ FlxTween.tween(FlxG.camera, {zoom:2.05}, 3.5, {ease: FlxEase.quadInOut, type: BACKWARD}); }
 			squars.animation.play('SQUAR?!', true);
 
 		if(logoBl != null){
@@ -717,11 +716,7 @@ function startmessage():Array<Array<String>>
 					case 5:
 						deleteCoolText();
 					case 6:
-						#if PSYCH_WATERMARKS
 						createCoolText(['Not associated', 'with'], -40);
-						#else
-						createCoolText(['In association', 'with'], -40);
-						#end
 					case 8:
 						addMoreText('newgrounds', -40);
 						ngSpr.visible = true;
@@ -767,14 +762,75 @@ function startmessage():Array<Array<String>>
 					case 32:
 						deleteCoolText();
 					case 33:
-						if(ClientPrefs.data.flashing){
+						if(ClientPrefs.data.flashing && !skippedIntro){
 							FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						}
 						DAFUQWHAT.visible = true;
 						createCoolText(['Woah!']);
 					case 34:
 						deleteCoolText();
-
+					case 36:
+						createCoolText(['guitar hero']);
+						addMoreText('guitar support');
+					case 38:
+						addMoreText('coming soon!');
+					case 39:
+						deleteCoolText();
+					case 41:
+						createCoolText(['so much time, so little to do!']);
+					case 42:
+						addMoreText('wait, scratch that.');
+						addMoreText('flip it around');
+					case 43:
+						addMoreText('willy wonka - 1971');
+					case 44:
+						deleteCoolText();
+					case 45:
+						createCoolText(['now made with the']);
+					case 47:
+						addMoreText('CS20 Engine!');
+					case 48:
+						deleteCoolText();
+						createCoolText(['CS20 ENGINE IS PSYCH']);
+						addMoreText('BUT HEAVILY MODIFIED');
+					case 49:
+						deleteCoolText();
+					
+					case 67:
+						if(ClientPrefs.data.flashing && !skippedIntro){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							FlxTween.tween(FlxG.camera, {zoom:1.25}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+							}
+							createCoolText(['Friday']);
+					case 68:
+						if(ClientPrefs.data.flashing && !skippedIntro){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							FlxTween.tween(FlxG.camera, {zoom:1.5}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+						}
+						addMoreText('Night');
+					case 69:
+						if(ClientPrefs.data.flashing && !skippedIntro){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							FlxTween.tween(FlxG.camera, {zoom:1.75}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+						}
+						addMoreText('Funkin');
+					case 70:
+						if(ClientPrefs.data.flashing && !skippedIntro){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							FlxTween.tween(FlxG.camera, {zoom:2}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+						}
+						addMoreText('MegaMod!');
+					case 71:
+						deleteCoolText();
+						createCoolText(['V5!'], 140);
+						if(ClientPrefs.data.flashing && !skippedIntro){
+							FlxG.camera.flash(FlxColor.WHITE, 0.5);
+							FlxTween.tween(FlxG.camera, {zoom:3}, 0.1, {ease: FlxEase.quadIn, type: ONESHOT});
+						}
+					case 72:
+						deleteCoolText();
+						createCoolText([brahdafack[0]], 140);
+						FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.5, {ease: FlxEase.quadOut, type: ONESHOT});
 					case 73:
 						DAFUQWHAT.visible = false;
 						skipIntro();
@@ -855,7 +911,7 @@ function startmessage():Array<Array<String>>
 					if(ClientPrefs.data.flashing == true){
 						FlxG.camera.flash(FlxColor.WHITE, 4);
 					}
-				FlxTween.tween(FlxG.camera, {zoom:5}, 3.5, {ease: FlxEase.quadInOut, type: BACKWARD});
+				FlxTween.tween(FlxG.camera, {zoom:5}, 3.5, {ease: FlxEase.quintInOut, type: BACKWARD});
 				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
 				if (easteregg == null) easteregg = '';
 				easteregg = easteregg.toUpperCase();
