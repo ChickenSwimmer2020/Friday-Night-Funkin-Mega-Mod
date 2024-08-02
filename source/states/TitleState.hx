@@ -54,6 +54,8 @@ class TitleState extends MusicBeatState
 	var DAFUQWHAT:FlxSprite;
 	var DAFUQWHATLEFTY:Bool = false;
 
+	var waitwhat:Bool;
+
 	var willhey:Bool = false;
 	
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
@@ -227,6 +229,7 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
 		}
+		waitwhat = false;
 
 		Conductor.bpm = titleJSON.bpm;
 		persistentUpdate = true;
@@ -243,6 +246,7 @@ class TitleState extends MusicBeatState
 		DAFUQWHAT.frames = Paths.getSparrowAtlas('TitleScreen/TitleTextBG');
 		DAFUQWHAT.animation.addByIndices('Left', 'lebg', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "", 24, false);
 		DAFUQWHAT.animation.addByIndices('Right', 'lebg', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "", 24, false);
+		DAFUQWHAT.animation.addByPrefix('up', 'lebgUP', 24, false);
 		DAFUQWHAT.antialiasing = ClientPrefs.data.antialiasing;
 		DAFUQWHAT.visible = false;
 	
@@ -677,7 +681,7 @@ function startmessage():Array<Array<String>>
 				bfBop.animation.play('Blink');
 		}
 
-		if(DAFUQWHAT != null){
+		if(DAFUQWHAT != null && !waitwhat){
 			DAFUQWHATLEFTY = !DAFUQWHATLEFTY;
 		if(DAFUQWHATLEFTY)
 			DAFUQWHAT.animation.play('Left', true);
@@ -795,31 +799,39 @@ function startmessage():Array<Array<String>>
 						addMoreText('BUT HEAVILY MODIFIED');
 					case 49:
 						deleteCoolText();
-					
+
+
+					case 66:
+						waitwhat = true;
+
 					case 67:
 						if(ClientPrefs.data.flashing && !skippedIntro){
 							FlxG.camera.flash(FlxColor.WHITE, 0.5);
 							FlxTween.tween(FlxG.camera, {zoom:1.25}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
 							}
 							createCoolText(['Friday']);
+							DAFUQWHAT.animation.play('up');
 					case 68:
 						if(ClientPrefs.data.flashing && !skippedIntro){
 							FlxG.camera.flash(FlxColor.WHITE, 0.5);
 							FlxTween.tween(FlxG.camera, {zoom:1.5}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-						}
-						addMoreText('Night');
+							}
+							addMoreText('Night');
+							DAFUQWHAT.animation.play('up');
 					case 69:
 						if(ClientPrefs.data.flashing && !skippedIntro){
 							FlxG.camera.flash(FlxColor.WHITE, 0.5);
 							FlxTween.tween(FlxG.camera, {zoom:1.75}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-						}
-						addMoreText('Funkin');
+							}
+							addMoreText('Funkin');
+							DAFUQWHAT.animation.play('up');
 					case 70:
 						if(ClientPrefs.data.flashing && !skippedIntro){
 							FlxG.camera.flash(FlxColor.WHITE, 0.5);
 							FlxTween.tween(FlxG.camera, {zoom:2}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-						}
-						addMoreText('MegaMod!');
+							}
+							addMoreText('MegaMod!');
+							DAFUQWHAT.animation.play('up');
 					case 71:
 						deleteCoolText();
 						createCoolText(['V5!'], 140);
@@ -830,7 +842,8 @@ function startmessage():Array<Array<String>>
 					case 72:
 						deleteCoolText();
 						createCoolText([brahdafack[0]], 140);
-						FlxTween.tween(FlxG.camera, {zoom:1.05}, 0.5, {ease: FlxEase.quadOut, type: ONESHOT});
+						FlxTween.tween(FlxG.camera, {zoom:1}, 0.5, {ease: FlxEase.quadOut, type: ONESHOT});
+						DAFUQWHAT.animation.play('up');
 					case 73:
 						DAFUQWHAT.visible = false;
 						skipIntro();

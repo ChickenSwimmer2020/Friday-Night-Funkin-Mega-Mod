@@ -9,6 +9,7 @@ art/test_x64-debug-officialrelease.bat
 art/*
 ##
 MEGAMOD MECHANIC IDEAS.txt
+source\states\TitleState_cosmic.hx
 
 ### VS Code
 export/*
