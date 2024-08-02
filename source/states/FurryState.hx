@@ -13,15 +13,14 @@ import flash.system.System;
 import haxe.Json;
 
 typedef OffsetDATA = 
-{	BGx:Float,
+{	
+	BGx:Float,
 	BGy:Float,
 	BFx:Float,
 	BFy:Float,
 	WIx:Float,
 	WIy:Float
 }
-
-
 
 class FurryState extends MusicBeatState
 {
@@ -40,19 +39,20 @@ class FurryState extends MusicBeatState
 	var BF:FlxSprite;
 	override function create()
 	{
+		offsets = tjson.TJSON.parse(Paths.getTextFromFile('data/FurWarn/Offsets.json'));
 		new FlxTimer().start(0.75, function(tmr:FlxTimer) { WI.animation.play('warn', true); }, (999999999));
 			super.create();
 				
-			BG = new FlxSprite(10, 0);
+			BG = new FlxSprite(offsets.BGx, offsets.BGy);
 			BG.frames = Paths.getSparrowAtlas('FurryWarning/SEPERATOR_furry');
 			BG.animation.addByPrefix('dastage', 'SEPERATOR_furry', 24, true);
 			BG.animation.play('dastage');
 			
-			WI = new FlxSprite(0, 0);
+			WI = new FlxSprite(offsets.WIx, offsets.WIy);
 			WI.frames = Paths.getSparrowAtlas('FurryWarning/WARNING');
 			WI.animation.addByPrefix('warn', 'WARNING_furry', 24, false);
 
-			BF = new FlxSprite(500, 0);
+			BF = new FlxSprite(offsets.BFx, offsets.BFy);
 			BF.frames = Paths.getSparrowAtlas('FurryWarning/FURRYBF');
 			BF.animation.addByIndices('bop', 'BF_furry', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 			BF.animation.addByIndices('yay!', 'BF_furry', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "", 24, false);
@@ -68,15 +68,14 @@ class FurryState extends MusicBeatState
 
 			FurText = new FlxText(0, 450, FlxG.width,
 				"Yo, this mod was made by a furry.\n
-				if you wanna be a little child and cry about it,\n
-				leave your comments on the GB page,\n
-				so that i can ignore them!",
+				cry about it,\n
+				beacuse im not apolagizing",
 				32);
-			FurText.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT);
+			FurText.setFormat("VCR OSD Mono", 25, FlxColor.WHITE, LEFT);
 			FurText.screenCenter(X);
 			add(FurText);
-			PressText = new FlxText(0, 0, FlxG.width, "Press ENTER to continue\n \nPress ESCAPE to go cry about it", 32);
-			PressText.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT);
+			PressText = new FlxText(0, 50, FlxG.width, "Press ENTER to continue\n \nPress ESCAPE to go cry about it", 32);
+			PressText.setFormat("VCR OSD Mono", 25, FlxColor.WHITE, LEFT);
 			PressText.screenCenter(X);
 			add(PressText);
 	}

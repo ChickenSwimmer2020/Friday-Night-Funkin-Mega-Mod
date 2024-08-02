@@ -278,7 +278,7 @@ class PlayState extends MusicBeatState
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
 
-		getoveritfucker = new FlxSprite(-50, -100); //(-25, -100)
+		getoveritfucker = new FlxSprite(-50, -250); //(-25, -100)
 		getoveritfucker.scale.x = 0.5;
 		getoveritfucker.scale.y = 0.5;
 		//spritesheet support
