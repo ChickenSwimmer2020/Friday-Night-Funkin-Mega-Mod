@@ -25,7 +25,7 @@ class MainMenuState extends MusicBeatState
 
     public static var UltimateVersion:String = ' 1.0';
     public static var psychEngineVersion:String = '0.7h';
-    public static var GameVersion:String = '0.00254DEV';
+    public static var GameVersion:String = '0.0844DEV';
     public static var curSelected:Int = 0;
 
     var menuItems:FlxTypedGroup<FlxSprite>;

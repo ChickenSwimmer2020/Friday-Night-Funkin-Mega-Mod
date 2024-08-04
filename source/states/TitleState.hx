@@ -31,6 +31,8 @@ typedef TitleData =
 	bgy:Float,
 	bfx:Float,
 	bfy:Float,
+	textx:Float,
+	texty:Float,
 	squaresY:Float,
 	squaresX:Float,
 	bpm:Float
@@ -84,6 +86,7 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+		new FlxTimer().start(2, function (tmr:FlxTimer) { MMlogo.animation.play('shine', true); }, 99999999);
 		//random int code for the 1 in 10000 chance for bf to flip off the player
 		var penis:Int;
 		penis = FlxG.random.int(1, 10000);
@@ -219,6 +222,7 @@ class TitleState extends MusicBeatState
 	var fuckoff:Bool = false;
 	var boomleft:Bool = false;
 	var titleText:FlxSprite;
+	var MMlogo:FlxSprite;
 	var swagShader:ColorSwap = null;
 
 	function startIntro()
@@ -261,8 +265,18 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByIndices('bumpright', 'logo bumpin', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", false);
 		logoBl.antialiasing = ClientPrefs.data.antialiasing;
 		logoBl.updateHitbox();
+		logoBl.scale.x = 0.65;
+		logoBl.scale.y = 0.65;
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
+
+		
+		MMlogo = new FlxSprite(titleJSON.textx, titleJSON.texty);
+		MMlogo.frames = Paths.getSparrowAtlas('TitleScreen/MMlogo');
+		MMlogo.animation.addByPrefix('shine', 'MENU_megamod', 24, false);
+		MMlogo.antialiasing = ClientPrefs.data.antialiasing;
+		MMlogo.scale.x = 0.5;
+		MMlogo.scale.y = 0.5;
 
 		if(ClientPrefs.data.shaders) swagShader = new ColorSwap();
 		BGboom = new FlxSprite(titleJSON.bgx, titleJSON.bgy);
@@ -305,6 +319,8 @@ class TitleState extends MusicBeatState
 				bfBop.animation.addByIndices('Blink', 'boyfriend_menu', [10, 11, 12, 13, 14, 15, 16, 17, 18], "", 24, false);
 				bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 				bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
+				bfBop.scale.x = 1;
+				bfBop.scale.y = 1;
 				squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
 				squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 		}
@@ -312,6 +328,7 @@ class TitleState extends MusicBeatState
 		add(squars);
 		add(bfBop);
 		add(BGboom);
+		add(MMlogo);
 		add(logoBl);
 		if(swagShader != null)
 		{
@@ -323,6 +340,8 @@ class TitleState extends MusicBeatState
 
 		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
 		titleText.frames = Paths.getSparrowAtlas('TitleScreen/titleEnter');
+		titleText.scale.x = 0.62;
+		titleText.scale.y = 0.62;
 		var animFrames:Array<FlxFrame> = [];
 		@:privateAccess {
 			titleText.animation.findByPrefix(animFrames, "ENTER IDLE");
@@ -463,7 +482,7 @@ function startmessage():Array<Array<String>>
 
 	override function update(elapsed:Float)
 	{
-		trace(sickBeats);
+		FlxG.watch.addQuick("Current Beat", sickBeats);
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);

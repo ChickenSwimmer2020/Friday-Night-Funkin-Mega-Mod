@@ -218,7 +218,9 @@ class StoryMenuState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		//trace(curWeek);
-		trace(curDifficulty);
+		//trace(curDifficulty);
+		FlxG.watch.addQuick("current week", curWeek);
+		FlxG.watch.addQuick("current difficulty", curDifficulty);	
 		if(curWeek == 0)
 			{
 				PlayChar.animation.play('BF', true);

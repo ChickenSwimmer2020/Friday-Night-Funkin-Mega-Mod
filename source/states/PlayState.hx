@@ -184,6 +184,7 @@ class PlayState extends MusicBeatState
 	public var sped:Float = 1;
 
 	public var healthBar:Bar;
+	public var healthBarOvrl:FlxSprite;
 	public var timeBar:Bar;
 	var songPercent:Float = 0;
 
@@ -220,6 +221,8 @@ class PlayState extends MusicBeatState
 	public var songMisses:Int = 0;
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
+	var songTxt:FlxText;
+	var timeovrl:FlxSprite;
 	var scoreTxtTween:FlxTween;
 
 	public static var campaignScore:Int = 0;
@@ -487,28 +490,51 @@ class PlayState extends MusicBeatState
 
 		comboGroup = new FlxSpriteGroup();
 		add(comboGroup);
-		noteGroup = new FlxTypedGroup<FlxBasic>();
-		add(noteGroup);
 		uiGroup = new FlxSpriteGroup();
 		add(uiGroup);
+		noteGroup = new FlxTypedGroup<FlxBasic>();
+		add(noteGroup);
 
 		Conductor.songPosition = -5000 / Conductor.songPosition;
 		var showTime:Bool = (ClientPrefs.data.timeBarType != 'Disabled');
-		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 19, 400, "", 32);
+		timeTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 0, 400, "", 32);
 		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		timeTxt.scrollFactor.set();
 		timeTxt.alpha = 0;
 		timeTxt.borderSize = 2;
 		timeTxt.visible = updateTime = showTime;
 		if(ClientPrefs.data.downScroll) timeTxt.y = FlxG.height - 44;
-		if(ClientPrefs.data.timeBarType == 'Song Name') timeTxt.text = SONG.song;
+		//if(ClientPrefs.data.timeBarType == 'Song Name') timeTxt.text = SONG.song; //not anymore. song name is under time now!!!
 
-		timeBar = new Bar(0, timeTxt.y + (timeTxt.height / 4), 'timeBar', function() return songPercent, 0, 1);
+		songTxt = new FlxText(STRUM_X + (FlxG.width / 2) - 248, 45, 400, "", 32);
+		songTxt.setFormat(Paths.font("vcr.ttf"), 22, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		songTxt.scrollFactor.set();
+		songTxt.alpha = 0;
+		songTxt.borderSize = 2;
+		songTxt.visible = updateTime = showTime;
+		songTxt.text = SONG.song;
+
+		timeBar = new Bar(0, 27.25, 'timeBar', function() return songPercent, 0, 1);
 		timeBar.scrollFactor.set();
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
+
+		timeovrl = new FlxSprite(50, -67);
+		timeovrl.frames = Paths.getSparrowAtlas('timebar_overlay');
+		timeovrl.animation.addByPrefix('idle', 'timebaroverlay', 24, true);
+		timeovrl.scrollFactor.set();
+		//timeovrl.screenCenter(X); //FUCK OFFSETS GAH
+		timeovrl.alpha = 0;
+		timeovrl.antialiasing = ClientPrefs.data.antialiasing;
+		timeovrl.scale.x = 0.4;
+		timeovrl.scale.y = 0.4;
+		timeovrl.visible = showTime;
+		timeovrl.animation.play('idle');
+
 		uiGroup.add(timeBar);
+		uiGroup.add(timeovrl);
+		uiGroup.add(songTxt);
 		uiGroup.add(timeTxt);
 		uiGroup.add(getoveritfucker);
 
@@ -555,16 +581,26 @@ class PlayState extends MusicBeatState
 		healthBar.leftToRight = false;
 		healthBar.scrollFactor.set();
 		healthBar.visible = !ClientPrefs.data.hideHud;
-		if(bartweendone)
-			{
-				healthBar.alpha = ClientPrefs.data.healthBarAlpha;
-			}
-		else
-			{
-				healthBar.alpha = 0;
-			}
+		healthBar.alpha = 0;
+
+		healthBarOvrl = new FlxSprite(0, 475);
+		healthBarOvrl.frames = Paths.getSparrowAtlas('healthbaroverlay');
+		healthBarOvrl.animation.addByPrefix('overlay_highhealth', 'GREEN', 24, true);
+		healthBarOvrl.animation.addByPrefix('overlay_midhealth', 'YELLOW', 24, true);
+		healthBarOvrl.animation.addByPrefix('overlay_lowhealth', 'RED', 24, true);
+		healthBarOvrl.animation.addByPrefix('debug', 'DEBUG', 24, true);
+		healthBarOvrl.animation.play('debug');
+		healthBarOvrl.screenCenter(X);
+		healthBarOvrl.scrollFactor.set();
+		healthBarOvrl.antialiasing = ClientPrefs.data.antialiasing;
+		healthBarOvrl.visible = !ClientPrefs.data.hideHud;
+		healthBarOvrl.alpha = 0;
+		healthBarOvrl.scale.x = 0.3;
+		healthBarOvrl.scale.y = 0.3;
+
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
+		uiGroup.add(healthBarOvrl);
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
@@ -962,23 +998,27 @@ class PlayState extends MusicBeatState
 	var finishTimer:FlxTimer = null;
 
 	// For being able to mess with the sprites on Lua
-	public var countdownReady:FlxSprite;
-	public var countdownSet:FlxSprite;
-	public var countdownGo:FlxSprite;
+	//public var countdownReady:FlxSprite;
+	//public var countdownSet:FlxSprite;
+	//public var countdownGo:FlxSprite;
 	public static var startOnTime:Float = 0;
 
 	function cacheCountdown()
 	{
-		var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-		var introImagesArray:Array<String> = switch(stageUI) {
-			case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
-			case "normal": ["ready", "set" ,"go"];
-			default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
-		}
-		introAssets.set(stageUI, introImagesArray);
-		var introAlts:Array<String> = introAssets.get(stageUI);
-		for (asset in introAlts) Paths.image(asset);
-
+		//var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+		//var introImagesArray:Array<String> = switch(stageUI) {
+		//	case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
+		//	case "normal": ["ready", "set" ,"go"];
+		//	default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
+		//}
+		//introAssets.set(stageUI, introImagesArray);
+		//var introAlts:Array<String> = introAssets.get(stageUI);
+		//for (asset in introAlts) Paths.image(asset);
+		Paths.image('healthbaroverlay');
+		Paths.image('characters/BOYFRIEND');
+		Paths.image('IntroSprite');
+		Paths.image('timebar_overlay');
+		Paths.image('characters/GF_assets');
 		Paths.sound('intro3' + introSoundsSuffix);
 		Paths.sound('intro2' + introSoundsSuffix);
 		Paths.sound('intro1' + introSoundsSuffix);
@@ -1032,17 +1072,17 @@ class PlayState extends MusicBeatState
 			{
 				characterBopper(tmr.loopsLeft);
 
-				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-				var introImagesArray:Array<String> = switch(stageUI) {
-					case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
-					case "normal": ["ready", "set" ,"go"];
-					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
-				}
-				introAssets.set(stageUI, introImagesArray);
+				//var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+				//var introImagesArray:Array<String> = switch(stageUI) {
+				//	case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
+				//	case "normal": ["ready", "set" ,"go"];
+				//	//default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
+				//}
+				//introAssets.set(stageUI, introImagesArray);
 				
 
-				var introAlts:Array<String> = introAssets.get(stageUI);
-				var antialias:Bool = (ClientPrefs.data.antialiasing && !isPixelStage);
+				//var introAlts:Array<String> = introAssets.get(stageUI);
+				//var antialias:Bool = (ClientPrefs.data.antialiasing && !isPixelStage);
 				var tick:Countdown = THREE;
 
 				switch (swagCounter)
@@ -1061,6 +1101,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('to');
 						FlxTween.tween(healthBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						FlxTween.tween(healthBarOvrl, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 						tick = TWO;
 					case 2:
 						bartweendone = true;
@@ -1078,6 +1119,7 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('funky');
 						FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						FlxTween.tween(timeovrl, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 						tick = GO;
 					case 4:
 						tick = START;
@@ -1086,6 +1128,7 @@ class PlayState extends MusicBeatState
 							getoveritfucker.visible = false;
 						});
 						FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						FlxTween.tween(songTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 				}
 
 				notes.forEachAlive(function(note:Note) {
@@ -1696,6 +1739,12 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if(health >= 1.75) healthBarOvrl.animation.play('overlay_highhealth', false);
+			else if(health <= 0.75) healthBarOvrl.animation.play('overlay_lowhealth', false);
+			else healthBarOvrl.animation.play('overlay_midhealth', false);
+		//JIGGZYPUFF YOU ARE A LIFE SAVER!!!!
+		//huge thanks to jigzypuff on the psych engine discord server
+
 		if(!inCutscene && !paused && !freezeCamera) {
 			FlxG.camera.followLerp = 2.4 * cameraSpeed * playbackRate;
 			if(!startingSong && !endingSong && boyfriend.getAnimationName().startsWith('idle')) {
@@ -1776,6 +1825,11 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("secShit", curSection);
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
+		FlxG.watch.addQuick("current Health", health);
+		FlxG.watch.addQuick("health bar X", healthBar.x);
+		FlxG.watch.addQuick("health bar Y", healthBar.y);
+		//FlxG.watch.addQuick("time bar X", timeBar.x);
+		//FlxG.watch.addQuick("time bar y", timeBar.y);
 
 		// RESET = Quick Game Over Screen
 		if (!ClientPrefs.data.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
