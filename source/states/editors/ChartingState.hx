@@ -107,7 +107,8 @@ class ChartingState extends MusicBeatState
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
 		['Zoom Camera', "Changes the camera zoom\ndefault is \nValue 1: zoom. leave blank for default"],
-		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"]
+		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
+		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type, set to beat for beathit zoom)"]
 	];
 
 	var _file:FileReference;

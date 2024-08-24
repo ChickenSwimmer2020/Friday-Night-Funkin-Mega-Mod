@@ -8,7 +8,14 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 
 		var option:Option = new Option('Mechanics',
 		'If checked, mechanics are enabled',
-		'GPM',
+		'GamePlayMechanics',
+		'bool'
+		);
+		addOption(option);
+
+		var option:Option = new Option('Overlays',
+		'If checked, overlays for the healthbar/timebar are enabled',
+		'Overlays',
 		'bool'
 		);
 		addOption(option);

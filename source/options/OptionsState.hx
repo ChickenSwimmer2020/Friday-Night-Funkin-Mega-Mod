@@ -3,13 +3,21 @@ package options;
 import states.MainMenuState;
 import backend.StageData;
 
+typedef GearsLocations = 
+{
+	GearsX:Float,
+	GearsY:Float
+}
+
 class OptionsState extends MusicBeatState
 {
 	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Graphics', 'Visuals and UI', 'Gameplay', 'MegaMod Option\'s'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
-	public static var menuBG:FlxSprite;
+	var bg2:FlxSprite;
 	public static var onPlayState:Bool = false;
+
+	var Offsets:GearsLocations;
 
 	function openSelectedSubstate(label:String) {
 		switch(label) {
@@ -38,13 +46,20 @@ class OptionsState extends MusicBeatState
 		DiscordClient.changePresence("Options", null);
 		#end
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('OptionsMenu/menuDesat'));
-		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.color = 0xFFea71fd;
-		bg.updateHitbox();
+		Offsets = tjson.TJSON.parse(Paths.getTextFromFile('data/OptionsMenu/offsets.json'));
 
+		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('OptionsMenu/Background'));
+		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.color = 0xFFFFFFFF;
+		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
+
+		bg2 = new FlxSprite(Offsets.GearsX);
+		bg2.antialiasing = ClientPrefs.data.antialiasing;
+		bg2.frames = Paths.getSparrowAtlas('OptionsMenu/Gears');
+		bg2.animation.addByPrefix('spin', 'optionsbg_gears', 24, true, false, false);
+		add(bg2);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -59,7 +74,7 @@ class OptionsState extends MusicBeatState
 
 		selectorLeft = new Alphabet(0, 0, '>', true);
 		add(selectorLeft);
-		selectorRight = new Alphabet(0, 0, '<', true);
+		selectorRight = new Alphabet(0, 0, ' ', true);
 		add(selectorRight);
 
 		changeSelection();
@@ -78,6 +93,8 @@ class OptionsState extends MusicBeatState
 
 	override function update(elapsed:Float) {
 		super.update(elapsed);
+
+		bg2.animation.play('spin');
 
 		if (controls.UI_UP_P) {
 			changeSelection(-1);

@@ -1,6 +1,5 @@
 package states;
 
-import flixel_5_3_1.ParallaxSprite;
 import flxanimate.animate.FlxTimeline;
 import flixel.util.FlxSave;
 import flixel.FlxSubState;

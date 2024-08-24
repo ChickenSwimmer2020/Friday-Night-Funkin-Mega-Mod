@@ -35,6 +35,7 @@ class MainMenuState extends MusicBeatState
     var optionShit:Array<String> = [
         'story_mode',
         'freeplay',
+        'overworld',
         'gallery',
         'credits',
         'settings',
@@ -98,9 +99,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 0;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        var scr:Float = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 0;
-        menuItem.scrollFactor.set(0, scr);
+        //var scr:Float = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 0;
+        //menuItem.scrollFactor.set(0, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -116,9 +117,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 1;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 1;
-        menuItem.scrollFactor.set(1, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 1;
+        //menuItem.scrollFactor.set(1, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -134,9 +135,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 2;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 2;
-        menuItem.scrollFactor.set(2, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 2;
+        //menuItem.scrollFactor.set(2, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -152,9 +153,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 4;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 3;
-        menuItem.scrollFactor.set(3, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 3;
+        //menuItem.scrollFactor.set(3, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -170,9 +171,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 3;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 2;
-        menuItem.scrollFactor.set(2, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 2;
+        //menuItem.scrollFactor.set(2, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -188,9 +189,9 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 5;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 2;
-        menuItem.scrollFactor.set(2, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 2;
+        //menuItem.scrollFactor.set(2, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -206,13 +207,13 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 6;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 3;
-        menuItem.scrollFactor.set(3, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 3;
+        //menuItem.scrollFactor.set(3, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
-        // youtube
+        // overworld
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
         menuItem = new FlxSprite(225, 575);
         menuItem.scale.x = 5;
@@ -224,9 +225,27 @@ class MainMenuState extends MusicBeatState
         menuItem.ID = 7;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
         menuItems.add(menuItem);
-        scr = (optionShit.length - 4) * 0.135;
-        if (optionShit.length < 6) scr = 3;
-        menuItem.scrollFactor.set(3, scr);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 3;
+        //menuItem.scrollFactor.set(3, scr);
+        menuItem.antialiasing = ClientPrefs.data.antialiasing;
+        menuItem.updateHitbox();
+
+        // youtube
+        offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+        menuItem = new FlxSprite(225, 575);
+        menuItem.scale.x = 5;
+        menuItem.scale.y = 5;
+        menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[8]);
+        menuItem.animation.addByPrefix('idle', optionShit[8] + " basic", 24);
+        menuItem.animation.addByPrefix('selected', optionShit[8] + " white", 24);
+        menuItem.animation.play('idle');
+        menuItem.ID = 8;
+        menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+        menuItems.add(menuItem);
+        //scr = (optionShit.length - 4) * 0.135;
+        //if (optionShit.length < 6) scr = 3;
+        //menuItem.scrollFactor.set(3, scr);
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
@@ -401,6 +420,8 @@ class MainMenuState extends MusicBeatState
                                         MusicBeatState.switchState(new FreeplayState());
                                     case 'gallery':
                                         MusicBeatState.switchState(new GalleryMenuState());
+                                    case 'overworld':
+                                        MusicBeatState.switchState(new OverWorldState());
                                     case 'credits':
                                         MusicBeatState.switchState(new CreditsState());
                                     case 'settings':

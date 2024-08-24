@@ -9,7 +9,8 @@ import states.TitleState;
 // Add a variable here and it will get automatically saved
 @:structInit class SaveVariables {
 	public var downScroll:Bool = false;
-	public var GPM:Bool = true;
+	public var GamePlayMechanics:Bool = true;
+	public var Overlays:Bool = true;
 	public var middleScroll:Bool = false;
 	public var opponentStrums:Bool = true;
 	public var showFPS:Bool = true;

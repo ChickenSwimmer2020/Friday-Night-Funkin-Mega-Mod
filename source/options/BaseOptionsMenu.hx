@@ -5,10 +5,18 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
 import flixel.input.gamepad.FlxGamepadManager;
 
+import haxe.Json;
+
 import objects.CheckboxThingie;
 import objects.AttachedText;
 import options.Option;
 import backend.InputFormatter;
+
+typedef MenuOffsets = 
+{
+	GearsX:Float,
+	GearsY:Float
+}
 
 class BaseOptionsMenu extends MusicBeatSubstate
 {
@@ -26,8 +34,13 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	public var title:String;
 
 	public var bg:FlxSprite;
+	public var bg2:FlxSprite;
+
 	public function new()
 	{
+		var Offsets:MenuOffsets;
+		Offsets = tjson.TJSON.parse(Paths.getTextFromFile('data/OptionsMenu/offsets.json'));
+
 		super();
 
 		if(title == null) title = 'Options';
@@ -36,11 +49,18 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		DiscordClient.changePresence("Options", null);
 		#end
 		
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.color = 0xFFea71fd;
+		bg = new FlxSprite().loadGraphic(Paths.image('OptionsMenu/Background'));
+		bg.color = 0xFFFFFF;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
+
+		bg2 = new FlxSprite(Offsets.GearsX, Offsets.GearsY);
+		bg2.frames = Paths.getSparrowAtlas('OptionsMenu/Gears');
+		bg2.animation.addByPrefix('spin', 'optionsbg_gears', 24, true, false, false);
+		bg2.antialiasing = ClientPrefs.data.antialiasing;
+		add(bg2);
+
 
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();
@@ -121,6 +141,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		bg2.animation.play('spin');
 
 		if(bindingKey)
 		{

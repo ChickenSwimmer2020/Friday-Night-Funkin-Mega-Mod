@@ -78,6 +78,9 @@ import tea.SScript;
 **/
 class PlayState extends MusicBeatState
 {
+	//used for the event to check if the camera should bop on beathit or sectionhit
+	public var BopOnBeat:Bool = false;
+
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -280,19 +283,17 @@ class PlayState extends MusicBeatState
 	{
 		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
-
-		getoveritfucker = new FlxSprite(-50, -250); //(-25, -100)
-		getoveritfucker.scale.x = 0.5;
-		getoveritfucker.scale.y = 0.5;
-		//spritesheet support
-		getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
-		getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
-		getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
-		getoveritfucker.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
-		getoveritfucker.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
-		getoveritfucker.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
-		getoveritfucker.antialiasing = ClientPrefs.data.antialiasing;
-
+			getoveritfucker = new FlxSprite(-50, -250); //(-25, -100)
+			getoveritfucker.scale.x = 0.5;
+			getoveritfucker.scale.y = 0.5;
+			//spritesheet support
+			getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
+			getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
+			getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
+			getoveritfucker.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
+			getoveritfucker.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
+			getoveritfucker.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
+			getoveritfucker.antialiasing = ClientPrefs.data.antialiasing;
 		startCallback = startCountdown;
 		endCallback = endSong;
 
@@ -520,20 +521,24 @@ class PlayState extends MusicBeatState
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
 
-		timeovrl = new FlxSprite(50, -67);
-		timeovrl.frames = Paths.getSparrowAtlas('timebar_overlay');
-		timeovrl.animation.addByPrefix('idle', 'timebaroverlay', 24, true);
-		timeovrl.scrollFactor.set();
-		//timeovrl.screenCenter(X); //FUCK OFFSETS GAH
-		timeovrl.alpha = 0;
-		timeovrl.antialiasing = ClientPrefs.data.antialiasing;
-		timeovrl.scale.x = 0.4;
-		timeovrl.scale.y = 0.4;
-		timeovrl.visible = showTime;
-		timeovrl.animation.play('idle');
+		if(ClientPrefs.data.Overlays){
+			timeovrl = new FlxSprite(50, -67);
+			timeovrl.frames = Paths.getSparrowAtlas('timebar_overlay');
+			timeovrl.animation.addByPrefix('idle', 'timebaroverlay', 24, true);
+			timeovrl.scrollFactor.set();
+			//timeovrl.screenCenter(X); //FUCK OFFSETS GAH
+			timeovrl.alpha = 0;
+			timeovrl.antialiasing = ClientPrefs.data.antialiasing;
+			timeovrl.scale.x = 0.4;
+			timeovrl.scale.y = 0.4;
+			timeovrl.visible = showTime;
+			timeovrl.animation.play('idle');
+		};
 
 		uiGroup.add(timeBar);
-		uiGroup.add(timeovrl);
+		if(ClientPrefs.data.Overlays){
+			uiGroup.add(timeovrl);
+		};
 		uiGroup.add(songTxt);
 		uiGroup.add(timeTxt);
 		uiGroup.add(getoveritfucker);
@@ -583,24 +588,28 @@ class PlayState extends MusicBeatState
 		healthBar.visible = !ClientPrefs.data.hideHud;
 		healthBar.alpha = 0;
 
-		healthBarOvrl = new FlxSprite(0, 475);
-		healthBarOvrl.frames = Paths.getSparrowAtlas('healthbaroverlay');
-		healthBarOvrl.animation.addByPrefix('overlay_highhealth', 'GREEN', 24, true);
-		healthBarOvrl.animation.addByPrefix('overlay_midhealth', 'YELLOW', 24, true);
-		healthBarOvrl.animation.addByPrefix('overlay_lowhealth', 'RED', 24, true);
-		healthBarOvrl.animation.addByPrefix('debug', 'DEBUG', 24, true);
-		healthBarOvrl.animation.play('debug');
-		healthBarOvrl.screenCenter(X);
-		healthBarOvrl.scrollFactor.set();
-		healthBarOvrl.antialiasing = ClientPrefs.data.antialiasing;
-		healthBarOvrl.visible = !ClientPrefs.data.hideHud;
-		healthBarOvrl.alpha = 0;
-		healthBarOvrl.scale.x = 0.3;
-		healthBarOvrl.scale.y = 0.3;
+		if(ClientPrefs.data.Overlays){
+			healthBarOvrl = new FlxSprite(0, 475);
+			healthBarOvrl.frames = Paths.getSparrowAtlas('healthbaroverlay');
+			healthBarOvrl.animation.addByPrefix('overlay_highhealth', 'GREEN', 24, true);
+			healthBarOvrl.animation.addByPrefix('overlay_midhealth', 'YELLOW', 24, true);
+			healthBarOvrl.animation.addByPrefix('overlay_lowhealth', 'RED', 24, true);
+			healthBarOvrl.animation.addByPrefix('debug', 'DEBUG', 24, true);
+			healthBarOvrl.animation.play('debug');
+			healthBarOvrl.screenCenter(X);
+			healthBarOvrl.scrollFactor.set();
+			healthBarOvrl.antialiasing = ClientPrefs.data.antialiasing;
+			healthBarOvrl.visible = !ClientPrefs.data.hideHud;
+			healthBarOvrl.alpha = 0;
+			healthBarOvrl.scale.x = 0.3;
+			healthBarOvrl.scale.y = 0.3;
+		};
 
 		reloadHealthBarColors();
 		uiGroup.add(healthBar);
-		uiGroup.add(healthBarOvrl);
+		if(ClientPrefs.data.Overlays){
+			uiGroup.add(healthBarOvrl);
+		};
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
 		iconP1.y = healthBar.y - 75;
@@ -1101,7 +1110,9 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('to');
 						FlxTween.tween(healthBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						if(ClientPrefs.data.Overlays){
 						FlxTween.tween(healthBarOvrl, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						};
 						tick = TWO;
 					case 2:
 						bartweendone = true;
@@ -1119,7 +1130,9 @@ class PlayState extends MusicBeatState
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						getoveritfucker.animation.play('funky');
 						FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						if(ClientPrefs.data.Overlays){
 						FlxTween.tween(timeovrl, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+						};
 						tick = GO;
 					case 4:
 						tick = START;
@@ -1739,11 +1752,13 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if(health >= 1.75) healthBarOvrl.animation.play('overlay_highhealth', false);
-			else if(health <= 0.75) healthBarOvrl.animation.play('overlay_lowhealth', false);
-			else healthBarOvrl.animation.play('overlay_midhealth', false);
-		//JIGGZYPUFF YOU ARE A LIFE SAVER!!!!
-		//huge thanks to jigzypuff on the psych engine discord server
+		if(ClientPrefs.data.Overlays){
+			if(health >= 1.75) healthBarOvrl.animation.play('overlay_highhealth', false);
+				else if(health <= 0.75) healthBarOvrl.animation.play('overlay_lowhealth', false);
+				else healthBarOvrl.animation.play('overlay_midhealth', false);
+			//JIGGZYPUFF YOU ARE A LIFE SAVER!!!!
+			//huge thanks to jigzypuff on the psych engine discord server
+		};
 
 		if(!inCutscene && !paused && !freezeCamera) {
 			FlxG.camera.followLerp = 2.4 * cameraSpeed * playbackRate;
@@ -2171,6 +2186,16 @@ class PlayState extends MusicBeatState
 			case 'Cam Speed':
 				cameraSpeed = flValue1;
 				if(flValue1 == null) cameraSpeed = 1;
+
+			case 'Bop Type':
+				switch(value1.toLowerCase().trim()) {
+					case 'section' | 'sectionhit' | '0':
+						BopOnBeat = false;
+					case 'beat' | 'beathit' | '1':
+						BopOnBeat = true;
+				};
+				
+				
 
 			case 'Play Animation':
 				//trace('Anim to play: ' + value1);
@@ -3253,6 +3278,14 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		if(BopOnBeat){
+			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
+			{
+				FlxG.camera.zoom += 0.015 * camZoomingMult;
+				camHUD.zoom += 0.03 * camZoomingMult;
+			}
+		}
+
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
@@ -3295,10 +3328,12 @@ class PlayState extends MusicBeatState
 			if (generatedMusic && !endingSong && !isCameraOnForcedPos)
 				moveCameraSection();
 
-			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
-			{
-				FlxG.camera.zoom += 0.015 * camZoomingMult;
-				camHUD.zoom += 0.03 * camZoomingMult;
+			if(!BopOnBeat){
+				if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
+				{
+					FlxG.camera.zoom += 0.015 * camZoomingMult;
+					camHUD.zoom += 0.03 * camZoomingMult;
+				}
 			}
 
 			if (SONG.notes[curSection].changeBPM)
