@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Enter_story_mode.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="story_mode yeet instance 10000" x="1" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10001" x="753" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10002" x="1505" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10003" x="2257" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10004" x="3009" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10005" x="3761" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10006" x="4513" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10007" x="5265" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10008" x="6017" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10009" x="6769" y="1" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10010" x="1" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10011" x="753" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10012" x="1505" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10013" x="2257" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10014" x="3009" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10015" x="3761" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10016" x="4513" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10017" x="5265" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10018" x="6017" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10019" x="6769" y="1376" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10020" x="1" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10021" x="753" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10022" x="1505" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10023" x="2257" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10024" x="3009" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10025" x="3761" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10026" x="4513" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10027" x="5265" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10028" x="6017" y="2751" width="751" height="1374"/>
+	<SubTexture name="story_mode yeet instance 10029" x="6769" y="2751" width="751" height="1374"/>
+</TextureAtlas>

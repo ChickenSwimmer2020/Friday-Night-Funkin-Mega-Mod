@@ -30,6 +30,7 @@ class GameIntro extends FlxState
     }
     override function update(elapsed)
     {
+        FlxG.mouse.visible = false;
         //uncomment this so if you press space or enter the intro will be skipped
         // if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER){
         // FlxG.switchState(new TitleState()); 

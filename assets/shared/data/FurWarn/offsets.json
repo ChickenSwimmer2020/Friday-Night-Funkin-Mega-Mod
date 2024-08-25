@@ -5,4 +5,16 @@
 	"BFy": 300,
 	"WIx": 1000,
 	"WIy": 10
+	"txt1X": 0,
+	"txt1Y": 0,
+	"txt2X": 0,
+	"txt2Y": 0,
+	"enterX": 0,
+	"enterY": 0,
+	"spaceX": 0,
+	"spaceY": 0,
+	"escX": 0,
+	"escY": 0,
+	"backX": 0,
+	"backY": 0
 }

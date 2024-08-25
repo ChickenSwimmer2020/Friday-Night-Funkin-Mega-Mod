@@ -22,26 +22,36 @@ class MainMenuState extends MusicBeatState
     var sketch:FlxSprite;
     var randInt:Int;
 
-
     public static var UltimateVersion:String = ' 1.0';
     public static var psychEngineVersion:String = '0.7h';
-    public static var GameVersion:String = '0.0844DEV';
+    public static var GameVersion:String = '0.0935DEV';
+
+    public var versionShitU:FlxText;
+    public var versionShitE:FlxText;
+    public var versionShitMM:FlxText;
+    public var versionShitFNF:FlxText;
     public static var curSelected:Int = 0;
+    public var bg:FlxSprite;
 
     var menuItems:FlxTypedGroup<FlxSprite>;
+    var EnterVarients:FlxTypedGroup<FlxSprite>;
+        public var EntVarStory:FlxSprite;
+
+
+
     private var camGame:FlxCamera;
     private var camAchievement:FlxCamera;
    
     var optionShit:Array<String> = [
         'story_mode',
         'freeplay',
-        'overworld',
         'gallery',
         'credits',
         'settings',
         'awards', 
         'discord',
-        'youtube'
+        'youtube',
+        'overworld'
     ];
 
    
@@ -68,7 +78,7 @@ class MainMenuState extends MusicBeatState
         persistentUpdate = persistentDraw = true;
 
         var yScroll:Float = Math.max(0.25 - (0.05 * (optionShit.length - 4)), 0.1);
-        var bg:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
+        bg = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
         bg.antialiasing = ClientPrefs.data.antialiasing;
         bg.scrollFactor.set(0, yScroll);
         bg.setGraphicSize(Std.int(bg.width * 1.175));
@@ -84,6 +94,9 @@ class MainMenuState extends MusicBeatState
         menuItems = new FlxTypedGroup<FlxSprite>();
         add(menuItems);
 
+        EnterVarients = new FlxTypedGroup<FlxSprite>();
+        add(EnterVarients);
+
 
    
         // UI CODE!
@@ -95,6 +108,15 @@ class MainMenuState extends MusicBeatState
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[0]);
         menuItem.animation.addByPrefix('idle', optionShit[0] + " basic", 24);
         menuItem.animation.addByPrefix('selected', optionShit[0] + " white", 24);
+            //enter animation
+            EntVarStory = new FlxSprite(0, 100);
+            EntVarStory.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_' + optionShit[0]);
+            EntVarStory.animation.addByPrefix('enterpressed', 'story_mode yeet', 24);
+            EntVarStory.animation.addByIndices('Freeze', 'story_mode yeet', [0], "", 24, true);
+            EntVarStory.screenCenter(X);
+            EntVarStory.animation.play('Freeze');
+            EntVarStory.visible = false;
+            add(EntVarStory);
         menuItem.animation.play('idle');
         menuItem.ID = 0;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
@@ -213,7 +235,7 @@ class MainMenuState extends MusicBeatState
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
-        // overworld
+        // youtube
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
         menuItem = new FlxSprite(225, 575);
         menuItem.scale.x = 5;
@@ -231,7 +253,7 @@ class MainMenuState extends MusicBeatState
         menuItem.antialiasing = ClientPrefs.data.antialiasing;
         menuItem.updateHitbox();
 
-        // youtube
+        // overworld
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
         menuItem = new FlxSprite(225, 575);
         menuItem.scale.x = 5;
@@ -315,25 +337,25 @@ class MainMenuState extends MusicBeatState
             sketch.scale.y = 1;
         };
         // Version Information
-        var versionShit:FlxText = new FlxText(12, FlxG.height - 92, 0, "Ultimate" + UltimateVersion, 12);
-        versionShit.scrollFactor.set();
-        versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        add(versionShit);
+        versionShitU = new FlxText(12, FlxG.height - 92, 0, "Ultimate" + UltimateVersion, 12);
+        versionShitU.scrollFactor.set();
+        versionShitU.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(versionShitU);
 
-        var versionShit:FlxText = new FlxText(12, FlxG.height - 68, 0, "CS20 Engine v" + psychEngineVersion, 12);
-        versionShit.scrollFactor.set();
-        versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        add(versionShit);
+        versionShitE = new FlxText(12, FlxG.height - 68, 0, "CS20 Engine v" + psychEngineVersion, 12);
+        versionShitE.scrollFactor.set();
+        versionShitE.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(versionShitE);
 
-        var versionShit:FlxText = new FlxText(12, FlxG.height - 44, 0, "MegaMod v" + GameVersion, 12);
-        versionShit.scrollFactor.set();
-        versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        add(versionShit);
+        versionShitMM = new FlxText(12, FlxG.height - 44, 0, "MegaMod v" + GameVersion, 12);
+        versionShitMM.scrollFactor.set();
+        versionShitMM.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(versionShitMM);
 
-        var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
-        versionShit.scrollFactor.set();
-        versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        add(versionShit);  
+        versionShitFNF = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+        versionShitFNF.scrollFactor.set();
+        versionShitFNF.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        add(versionShitFNF);  
         changeItem();
     }  
 
@@ -390,13 +412,12 @@ class MainMenuState extends MusicBeatState
                     selectedSomethin = true;
                     FlxG.sound.play(Paths.sound('confirmMenu'));
 
-                   
 
                     menuItems.forEach(function(spr:FlxSprite)
                     {
                         if (curSelected != spr.ID)
                         {
-                            FlxTween.tween(spr, {alpha: 0}, 0.4, {
+                            FlxTween.tween(spr, {alpha: 0}, 0.0001, {
                                 ease: FlxEase.quadOut,
                                 onComplete: function(twn:FlxTween)
                                 {
@@ -406,7 +427,20 @@ class MainMenuState extends MusicBeatState
                         }
                         else
                         {
-                            FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+                            bg.alpha = 0.25;
+                            sketch.visible = false;
+                            versionShitU.visible = false;
+                            versionShitE.visible = false;
+                            versionShitMM.visible = false;
+                            versionShitFNF.visible = false;
+                            spr.visible = false;
+                            if(spr.ID == 0)
+                                {
+                                    EntVarStory.visible = true;
+                                    EntVarStory.animation.play('enterpressed', true, false, 0);
+                                }
+                            //FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+                            new FlxTimer().start(0.75, function (tmr:FlxTimer)
                             {
                                 var daChoice:String = optionShit[curSelected];
 
