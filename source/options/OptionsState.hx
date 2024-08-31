@@ -1,12 +1,28 @@
 package options;
 
+import openfl.filters.BlurFilter;
+import flixel.addons.transition.FlxTransitionSprite.TransitionStatus;
 import states.MainMenuState;
 import backend.StageData;
+
+import openfl.geom.Point;
+import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.graphics.FlxGraphic;
+import openfl.geom.Rectangle;
+import openfl.Assets;
+import openfl.display.ShaderInput;
+import openfl.filters.ShaderFilter;
+import openfl.display.Shader;
+import openfl.display.BitmapData;
+import openfl.utils.ByteArray;
 
 typedef GearsLocations = 
 {
 	GearsX:Float,
-	GearsY:Float
+	GearsY:Float,
+	GearsScale:Float,
+	BgX:Float,
+	BgY:Float,
 }
 
 class OptionsState extends MusicBeatState
@@ -16,6 +32,8 @@ class OptionsState extends MusicBeatState
 	private static var curSelected:Int = 0;
 	var bg2:FlxSprite;
 	public static var onPlayState:Bool = false;
+
+	public var Leaving:Bool = false;
 
 	var Offsets:GearsLocations;
 
@@ -42,6 +60,13 @@ class OptionsState extends MusicBeatState
 	var selectorRight:Alphabet;
 
 	override function create() {
+		
+		if(FlxG.sound.music != null)
+			{
+				Leaving = false;
+				FlxG.sound.music.stop();
+				FlxG.sound.playMusic(Paths.music('Settings/SMBasic'), 1, true);
+			}
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options", null);
 		#end
@@ -53,9 +78,13 @@ class OptionsState extends MusicBeatState
 		bg.color = 0xFFFFFFFF;
 		bg.updateHitbox();
 		bg.screenCenter();
+		bg.x = Offsets.BgX;
+		bg.y = Offsets.BgY;
 		add(bg);
 
-		bg2 = new FlxSprite(Offsets.GearsX);
+		bg2 = new FlxSprite(Offsets.GearsX, Offsets.GearsY);
+		bg2.scale.x = Offsets.GearsScale;
+		bg2.scale.y = Offsets.GearsScale;
 		bg2.antialiasing = ClientPrefs.data.antialiasing;
 		bg2.frames = Paths.getSparrowAtlas('OptionsMenu/Gears');
 		bg2.animation.addByPrefix('spin', 'optionsbg_gears', 24, true, false, false);
@@ -86,6 +115,8 @@ class OptionsState extends MusicBeatState
 	override function closeSubState() {
 		super.closeSubState();
 		ClientPrefs.saveSettings();
+		if(!Leaving && FlxG.sound.music == null)
+			FlxG.sound.playMusic(Paths.music('Settings/SMBasic'), 1, true);
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Options", null);
 		#end
@@ -111,7 +142,12 @@ class OptionsState extends MusicBeatState
 				LoadingState.loadAndSwitchState(new PlayState());
 				FlxG.sound.music.volume = 0;
 			}
-			else MusicBeatState.switchState(new MainMenuState());
+			else 
+			{
+				MusicBeatState.switchState(new MainMenuState());
+				FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
+				Leaving = true;
+			}
 		}
 		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
 	}

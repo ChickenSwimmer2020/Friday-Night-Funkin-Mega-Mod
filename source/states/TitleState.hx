@@ -722,7 +722,7 @@ function startmessage():Array<Array<String>>
 			{
 				case 1:
 					//FlxG.sound.music.stop();
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 4);
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 					case 2:
 						#if PSYCH_WATERMARKS
 						createCoolText(['Psych Engine by'], 40);

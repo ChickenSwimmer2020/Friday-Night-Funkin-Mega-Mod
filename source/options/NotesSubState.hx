@@ -21,6 +21,8 @@ class NotesSubState extends MusicBeatSubstate
 	var onPixel:Bool = false;
 	var dataArray:Array<Array<FlxColor>>;
 
+	var MusicIsPlaying:Bool = false;
+
 	var hexTypeLine:FlxSprite;
 	var hexTypeNum:Int = -1;
 	var hexTypeVisibleTimer:Float = 0;
@@ -185,9 +187,19 @@ class NotesSubState extends MusicBeatSubstate
 		if (controls.BACK) {
 			FlxG.mouse.visible = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'));
+			FlxG.sound.playMusic(Paths.music('Settings/SMBasic'), 1, true);
 			close();
 			return;
 		}
+
+		if(!MusicIsPlaying){
+			if(FlxG.sound.music != null)
+				{
+					FlxG.sound.music.stop();
+					FlxG.sound.playMusic(Paths.music('Settings/SMArp'), 1, true);
+					MusicIsPlaying = true;
+				}
+		};
 
 		super.update(elapsed);
 

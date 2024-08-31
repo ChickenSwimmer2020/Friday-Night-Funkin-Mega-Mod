@@ -263,9 +263,19 @@ class ControlsSubState extends MusicBeatSubstate
 	var bindingText:Alphabet;
 	var bindingText2:Alphabet;
 
+	public var MusicIsPlaying:Bool = false;
+
 	var timeForMoving:Float = 0.1;
 	override function update(elapsed:Float)
 	{
+		if(!MusicIsPlaying){
+			if(FlxG.sound.music != null)
+				{
+					FlxG.sound.music.stop();
+					FlxG.sound.playMusic(Paths.music('Settings/SMArp'), 1, true);
+					MusicIsPlaying = true;
+				}
+		};
 		if(timeForMoving > 0) //Fix controller bug
 		{
 			timeForMoving = Math.max(0, timeForMoving - elapsed);
@@ -278,6 +288,7 @@ class ControlsSubState extends MusicBeatSubstate
 			if(FlxG.keys.justPressed.ESCAPE || FlxG.gamepads.anyJustPressed(B))
 			{
 				close();
+				FlxG.sound.playMusic(Paths.music('Settings/SMBasic'), 1, true);
 				return;
 			}
 			if(FlxG.keys.justPressed.CONTROL || FlxG.gamepads.anyJustPressed(LEFT_SHOULDER) || FlxG.gamepads.anyJustPressed(RIGHT_SHOULDER)) swapMode();

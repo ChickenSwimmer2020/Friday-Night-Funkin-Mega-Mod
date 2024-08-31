@@ -100,6 +100,8 @@ class PlayState extends MusicBeatState
 	//event variables
 	private var isCameraOnForcedPos:Bool = false;
 
+	public var CameraZoom:Float;
+
 	public var boyfriendMap:Map<String, Character> = new Map<String, Character>();
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
 	public var gfMap:Map<String, Character> = new Map<String, Character>();
@@ -218,6 +220,9 @@ class PlayState extends MusicBeatState
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
+
+	public var CameraChoice:Float;
+	public var ActualCamChoice:Float = 0;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -1599,7 +1604,9 @@ class PlayState extends MusicBeatState
 			strumTime: event[0] + ClientPrefs.data.noteOffset,
 			event: event[1][i][0],
 			value1: event[1][i][1],
-			value2: event[1][i][2]
+			value2: event[1][i][2],
+			value3: event[1][i][3],
+			value4: event[1][i][4]
 		};
 		eventNotes.push(subEvent);
 		eventPushed(subEvent);
@@ -2116,16 +2123,28 @@ class PlayState extends MusicBeatState
 			if(eventNotes[0].value2 != null)
 				value2 = eventNotes[0].value2;
 
-			triggerEvent(eventNotes[0].event, value1, value2, leStrumTime);
+			var value3:String = '';
+			if(eventNotes[0].value3 != null)
+				value3 = eventNotes[0].value3;
+
+			var value4:String = '';
+			if(eventNotes[0].value3 != null)
+				value4 = eventNotes[0].value4;
+
+			triggerEvent(eventNotes[0].event, value1, value2, value3, value4, leStrumTime);
 			eventNotes.shift();
 		}
 	}
 
-	public function triggerEvent(eventName:String, value1:String, value2:String, strumTime:Float) {
+	public function triggerEvent(eventName:String, value1:String, value2:String, value3:String, value4:String, strumTime:Float) {
 		var flValue1:Null<Float> = Std.parseFloat(value1);
 		var flValue2:Null<Float> = Std.parseFloat(value2);
+		var flValue3:Null<Float> = Std.parseFloat(value3);
+		var flValue4:Null<Float> = Std.parseFloat(value4);
 		if(Math.isNaN(flValue1)) flValue1 = null;
 		if(Math.isNaN(flValue2)) flValue2 = null;
+		if(Math.isNaN(flValue3)) flValue3 = null;
+		if(Math.isNaN(flValue4)) flValue4 = null;
 
 		switch(eventName) {
 			case 'Hey!':
@@ -2171,14 +2190,14 @@ class PlayState extends MusicBeatState
 
 			case 'Zoom Camera':
 				trace('cam zoom event ran correctly');
-				defaultCamZoom = flValue1;
+				CameraZoom = flValue1;
 				sped = flValue2;
-				if(flValue1 == null) defaultCamZoom = 1.05;
+				if(flValue1 == null) CameraZoom = 1.05;
 				if(flValue2 == null) sped = 1;
 				FlxTween.tween(camGame, { x: 0, y: 0, "zoom": flValue1}, sped, {ease: FlxEase.sineInOut, 
-				onComplete:function(camzoomtweenfin):Void
+				onComplete:function(tween:FlxTween):Void
 					{
-						trace('bopping should be enabled now');
+						defaultCamZoom = CameraZoom;
 						camZooming = true;
 					}
 				});
@@ -2194,8 +2213,6 @@ class PlayState extends MusicBeatState
 					case 'beat' | 'beathit' | '1':
 						BopOnBeat = true;
 				};
-				
-				
 
 			case 'Play Animation':
 				//trace('Anim to play: ' + value1);
@@ -3277,6 +3294,20 @@ class PlayState extends MusicBeatState
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
 		}
+
+		if(ActualCamChoice == 0)
+		{
+			//dosomething
+		}
+		else if(ActualCamChoice == 1)
+		{
+
+		}
+		else if(ActualCamChoice == 2)
+		{
+
+		}
+		
 
 		if(BopOnBeat){
 			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)

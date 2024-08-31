@@ -12,6 +12,12 @@ class VisualsUISubState extends BaseOptionsMenu
 	var noteY:Float = 90;
 	public function new()
 	{
+		//BELLS
+		if(FlxG.sound.music != null)
+			{
+				FlxG.sound.music.stop();
+				FlxG.sound.playMusic(Paths.music('Settings/SMBells'), 4);
+			}
 		title = 'Visuals and UI';
 
 		// for note skins

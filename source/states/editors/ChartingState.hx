@@ -89,14 +89,14 @@ class ChartingState extends MusicBeatState
 	var bop:Bool = false;
 	var eventStuff:Array<Dynamic> =
 	[
-		['', "Nothing. Yep, that's right."],
+		['', "Nothing. Yep, that's right.\nVALUE 3 AND 4 ARE NOT USED ON EVENTS OTHER THAN \"Camera Bounce\" AND \"Camera Angle\"!!!"],
 		['Dadbattle Spotlight', "Used in Dad Battle,\nValue 1: 0/1 = ON/OFF,\n2 = Target Dad\n3 = Target BF"],
 		['Hey!', "Plays the \"Hey!\" animation from Bopeebo,\nValue 1: BF = Only Boyfriend, GF = Only Girlfriend,\nSomething else = Both.\nValue 2: Custom animation duration,\nleave it blank for 0.6s"],
-		['Set GF Speed', "Sets GF head bopping speed,\nValue 1:\n1 = Normal speed,\n2 = 1/2 speed, \n4 = 1/4 speed etc.\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
+		['Set GF Speed', "Sets GF head bopping speed,\nValue 1:\n[1 = Normal speed,2 = 1/2 speed, 4 = 1/4 speed]\nUsed on Fresh during the beatbox parts.\n\nWarning: Value must be integer!"],
 		['Philly Glow', "ported to other weeks by CS2020\nValue 1: 0/1/2 = OFF/ON/Reset Gradient"],
 		['Kill Henchmen', "week 4 exclusive\nFor Mom's songs, don't use this please, i love them :("],
 		['Add Camera Zoom', "Used on MILF on that one \"hard\" part\nValue 1: Camera zoom add (Default: 0.015)\nValue 2: UI zoom add (Default: 0.03)\nLeave the values blank if you want to use Default."],
-		['BG Freaks Expression', "will crash if used elsewhere\nShould be used only in \"school\" Stage!"],
+		['BG Freaks Expression', "will crash if used elsewhere\nShould be used only in \"school\" Stage!\n"],
 		['Trigger BG Ghouls', "will crash if used elsewhere\nShould be used only in \"schoolEvil\" Stage!"],
 		['Play Animation', "Plays an animation on a Character,\nonce the animation is completed,\nthe animation changes to Idle\n\nValue 1: Animation to play.\nValue 2: Character (Dad, BF, GF)"],
 		['Camera Follow Pos', "Value 1: X\nValue 2: Y\n\nThe camera won't change the follow point\nafter using this, for getting it back\nto normal, leave both values blank."],
@@ -106,9 +106,9 @@ class ChartingState extends MusicBeatState
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
-		['Zoom Camera', "Changes the camera zoom\ndefault is \nValue 1: zoom. leave blank for default"],
+		['Zoom Camera', "Changes the camera zoom\ndefault is 1.05\nValue 1: zoom\nValue 2: speed"],
 		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
-		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type, set to beat for beathit zoom)"]
+		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type, set to beat for beathit zoom)"],
 	];
 
 	var _file:FileReference;
@@ -171,6 +171,8 @@ class ChartingState extends MusicBeatState
 
 	var value1InputText:FlxUIInputText;
 	var value2InputText:FlxUIInputText;
+	var value3InputText:FlxUIInputText;
+	var value4InputText:FlxUIInputText;
 	var currentSongName:String;
 	var isSinging:Bool = false;
 
@@ -1078,7 +1080,7 @@ class ChartingState extends MusicBeatState
 		eventPushedMap = null;
 		#end
 
-		descText = new FlxText(20, 200, 0, eventStuff[0][0]);
+		descText = new FlxText(20, 250, 0, eventStuff[0][0]);
 
 		var leEvents:Array<String> = [];
 		for (i in 0...eventStuff.length) {
@@ -1101,14 +1103,24 @@ class ChartingState extends MusicBeatState
 		blockPressWhileScrolling.push(eventDropDown);
 
 		var text:FlxText = new FlxText(20, 90, 0, "Value 1:");
-		tab_group_event.add(text);
-		value1InputText = new FlxUIInputText(20, 110, 100, "");
-		blockPressWhileTypingOn.push(value1InputText);
+			tab_group_event.add(text);
+			value1InputText = new FlxUIInputText(20, 110, 100, "");
+			blockPressWhileTypingOn.push(value1InputText);
 
 		var text:FlxText = new FlxText(20, 130, 0, "Value 2:");
-		tab_group_event.add(text);
-		value2InputText = new FlxUIInputText(20, 150, 100, "");
-		blockPressWhileTypingOn.push(value2InputText);
+			tab_group_event.add(text);
+			value2InputText = new FlxUIInputText(20, 150, 100, "");
+			blockPressWhileTypingOn.push(value2InputText);
+
+		var text:FlxText = new FlxText(20, 170, 0, "Value 3:");
+			tab_group_event.add(text);
+			value3InputText = new FlxUIInputText(20, 190, 100, "");
+			blockPressWhileTypingOn.push(value3InputText);
+
+		var text:FlxText = new FlxText(20, 210, 0, "Value 4:");
+			tab_group_event.add(text);
+			value4InputText = new FlxUIInputText(20, 230, 100, "");
+			blockPressWhileTypingOn.push(value4InputText);
 
 		// New event buttons
 		var removeButton:FlxButton = new FlxButton(eventDropDown.x + eventDropDown.width + 10, eventDropDown.y, '-', function()
@@ -1188,6 +1200,8 @@ class ChartingState extends MusicBeatState
 		tab_group_event.add(descText);
 		tab_group_event.add(value1InputText);
 		tab_group_event.add(value2InputText);
+		tab_group_event.add(value3InputText);
+		tab_group_event.add(value4InputText);
 		tab_group_event.add(eventDropDown);
 
 		UI_box.addGroup(tab_group_event);

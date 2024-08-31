@@ -1,5 +1,6 @@
 package states;
 
+import substates.Prompt;
 import backend.WeekData;
 import backend.Achievements;
 import backend.ClientPrefs;
@@ -22,6 +23,9 @@ class MainMenuState extends MusicBeatState
     var sketch:FlxSprite;
     var randInt:Int;
 
+    //tween timer for the entry animations
+    var TweenTimer:Float = 0.75;
+
     public static var UltimateVersion:String = ' 1.0';
     public static var psychEngineVersion:String = '0.7h';
     public static var GameVersion:String = '0.0935DEV';
@@ -36,6 +40,8 @@ class MainMenuState extends MusicBeatState
     var menuItems:FlxTypedGroup<FlxSprite>;
     var EnterVarients:FlxTypedGroup<FlxSprite>;
         public var EntVarStory:FlxSprite;
+        public var EntVarSettings:FlxSprite;
+        public var EntVarAwards:FlxSprite;
 
 
 
@@ -102,7 +108,7 @@ class MainMenuState extends MusicBeatState
         // UI CODE!
         // Story Mode
         var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        var menuItem:FlxSprite = new FlxSprite(100, 100);
+        var menuItem:FlxSprite = new FlxSprite(0, 100);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[0]);
@@ -116,6 +122,7 @@ class MainMenuState extends MusicBeatState
             EntVarStory.screenCenter(X);
             EntVarStory.animation.play('Freeze');
             EntVarStory.visible = false;
+            EntVarStory.antialiasing = ClientPrefs.data.antialiasing;
             add(EntVarStory);
         menuItem.animation.play('idle');
         menuItem.ID = 0;
@@ -129,7 +136,7 @@ class MainMenuState extends MusicBeatState
 
         // FreePlay Mode
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(100, 150);
+        menuItem = new FlxSprite(0, 150);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[1]);
@@ -147,7 +154,7 @@ class MainMenuState extends MusicBeatState
 
         // gallery
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(100, 200);
+        menuItem = new FlxSprite(0, 200);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[2]);
@@ -165,12 +172,22 @@ class MainMenuState extends MusicBeatState
 
         // settings
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(100, 550);
+        menuItem = new FlxSprite(0, 550);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[4]);
         menuItem.animation.addByPrefix('idle', optionShit[4] + " basic", 24);
         menuItem.animation.addByPrefix('selected', optionShit[4] + " white", 24);
+                    //enter animation
+                    EntVarSettings = new FlxSprite(0, 0);
+                    EntVarSettings.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_' + optionShit[4]);
+                    EntVarSettings.animation.addByPrefix('enterpressed', 'settings yeet', 24, false);
+                    EntVarSettings.animation.addByIndices('Freeze', 'settings yeet', [0], "", 24, true);
+                    EntVarSettings.screenCenter(X);
+                    EntVarSettings.animation.play('Freeze');
+                    EntVarSettings.visible = false;
+                    EntVarSettings.antialiasing = ClientPrefs.data.antialiasing;
+                    add(EntVarSettings);
         menuItem.animation.play('idle');
         menuItem.ID = 4;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
@@ -183,7 +200,7 @@ class MainMenuState extends MusicBeatState
 
         // Credits
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(100, 250);
+        menuItem = new FlxSprite(0, 250);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[3]);
@@ -201,12 +218,22 @@ class MainMenuState extends MusicBeatState
 
         // Awards
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(155, 550);
+        menuItem = new FlxSprite(55, 550);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[5]);
         menuItem.animation.addByPrefix('idle', optionShit[5] + " basic", 24);
         menuItem.animation.addByPrefix('selected', optionShit[5] + " white", 24);
+                    //enter animation
+                    EntVarAwards = new FlxSprite(0, 0);
+                    EntVarAwards.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_' + optionShit[5]);
+                    EntVarAwards.animation.addByPrefix('enterpressed', 'awards yeet', 24, false);
+                    EntVarAwards.animation.addByIndices('Freeze', 'awards yeet', [0], "", 24, true);
+                    EntVarAwards.screenCenter(X);
+                    EntVarAwards.animation.play('Freeze');
+                    EntVarAwards.visible = false;
+                    EntVarAwards.antialiasing = ClientPrefs.data.antialiasing;
+                    add(EntVarAwards);
         menuItem.animation.play('idle');
         menuItem.ID = 5;
         menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
@@ -219,7 +246,7 @@ class MainMenuState extends MusicBeatState
 
         // discord
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(225, 550);
+        menuItem = new FlxSprite(110, 550);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[6]);
@@ -237,7 +264,7 @@ class MainMenuState extends MusicBeatState
 
         // youtube
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(225, 575);
+        menuItem = new FlxSprite(110, 575);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[7]);
@@ -255,7 +282,7 @@ class MainMenuState extends MusicBeatState
 
         // overworld
         offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-        menuItem = new FlxSprite(225, 575);
+        menuItem = new FlxSprite(0, 575);
         menuItem.scale.x = 5;
         menuItem.scale.y = 5;
         menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[8]);
@@ -337,22 +364,22 @@ class MainMenuState extends MusicBeatState
             sketch.scale.y = 1;
         };
         // Version Information
-        versionShitU = new FlxText(12, FlxG.height - 92, 0, "Ultimate" + UltimateVersion, 12);
+        versionShitU = new FlxText(12, 68, 0, "Ultimate" + UltimateVersion, 12);
         versionShitU.scrollFactor.set();
         versionShitU.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitU);
 
-        versionShitE = new FlxText(12, FlxG.height - 68, 0, "CS20 Engine v" + psychEngineVersion, 12);
+        versionShitE = new FlxText(12, 44, 0, "CS20 Engine v" + psychEngineVersion, 12);
         versionShitE.scrollFactor.set();
         versionShitE.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitE);
 
-        versionShitMM = new FlxText(12, FlxG.height - 44, 0, "MegaMod v" + GameVersion, 12);
+        versionShitMM = new FlxText(12, 24, 0, "MegaMod v" + GameVersion, 12);
         versionShitMM.scrollFactor.set();
         versionShitMM.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitMM);
 
-        versionShitFNF = new FlxText(12, FlxG.height - 24, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
+        versionShitFNF = new FlxText(12, 0, 0, "Friday Night Funkin' v" + Application.current.meta.get('version'), 12);
         versionShitFNF.scrollFactor.set();
         versionShitFNF.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitFNF);  
@@ -436,11 +463,24 @@ class MainMenuState extends MusicBeatState
                             spr.visible = false;
                             if(spr.ID == 0)
                                 {
+                                    TweenTimer = 0.75;
                                     EntVarStory.visible = true;
                                     EntVarStory.animation.play('enterpressed', true, false, 0);
                                 }
+                            if(spr.ID == 4)
+                                {
+                                    TweenTimer = 0.90;
+                                    EntVarSettings.visible = true;
+                                    EntVarSettings.animation.play('enterpressed', true, false, 0);
+                                }
+                            if(spr.ID == 5)
+                                {
+                                    TweenTimer = 0.90;
+                                    EntVarAwards.visible = true;
+                                    EntVarAwards.animation.play('enterpressed', true, false, 0);
+                                }
                             //FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
-                            new FlxTimer().start(0.75, function (tmr:FlxTimer)
+                            new FlxTimer().start(TweenTimer, function (tmr:FlxTimer)
                             {
                                 var daChoice:String = optionShit[curSelected];
 

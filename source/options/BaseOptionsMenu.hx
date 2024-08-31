@@ -1,5 +1,7 @@
 package options;
 
+import openfl.geom.Point;
+import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
@@ -15,7 +17,10 @@ import backend.InputFormatter;
 typedef MenuOffsets = 
 {
 	GearsX:Float,
-	GearsY:Float
+	GearsY:Float,
+	GearsScale:Float,
+	BgX:Float,
+	BgY:Float,
 }
 
 class BaseOptionsMenu extends MusicBeatSubstate
@@ -23,6 +28,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	private var curOption:Option = null;
 	private var curSelected:Int = 0;
 	private var optionsArray:Array<Option>;
+
+	public var Blurred:Bool = false;
 
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private var checkboxGroup:FlxTypedGroup<CheckboxThingie>;
@@ -53,14 +60,17 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		bg.color = 0xFFFFFF;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.x = Offsets.BgX;
+		bg.y = Offsets.BgY;
 		add(bg);
 
 		bg2 = new FlxSprite(Offsets.GearsX, Offsets.GearsY);
 		bg2.frames = Paths.getSparrowAtlas('OptionsMenu/Gears');
 		bg2.animation.addByPrefix('spin', 'optionsbg_gears', 24, true, false, false);
 		bg2.antialiasing = ClientPrefs.data.antialiasing;
+		bg2.scale.x = Offsets.GearsScale;
+		bg2.scale.y = Offsets.GearsScale;
 		add(bg2);
-
 
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();
@@ -138,8 +148,12 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	var bindingBlack:FlxSprite;
 	var bindingText:Alphabet;
 	var bindingText2:Alphabet;
+
+
+
 	override function update(elapsed:Float)
 	{
+
 		super.update(elapsed);
 
 		bg2.animation.play('spin');
@@ -161,6 +175,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		if (controls.BACK) {
 			close();
+			FlxG.sound.music.stop();
+			FlxG.sound.playMusic(Paths.music('Settings/SMBasic'), 1, true);
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 		}
 

@@ -62,5 +62,10 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 			#if DISCORD_ALLOWED
 			DiscordClient.changePresence("Options", "MegaMod Option\'s");
 			#end
+			if(FlxG.sound.music != null)
+				{
+					FlxG.sound.music.stop();
+					FlxG.sound.playMusic(Paths.music('Settings/SMFull'), 4);
+				}
 		}
 }

@@ -5,23 +5,41 @@ import flixel.input.keyboard.FlxKey;
 
 import backend.Controls;
 
-typedef TitleData =
-{
-    DefaultSkin:Bool,
-    MineSkin:Bool,
-    CSPLUSSkin:Bool,
-    //GlitchSkin:Bool
-}
+import states.OverWorldState;
+
 
 class Overworld_player extends FlxSprite
 {
+
+    private var state:OverWorldState;
     public var playersprite:FlxSprite;
 
     public function new(x:Float, y:Float)
         {
+            var SkinTypes:Array<String> = [
+                'Player_Default',
+                'Player_Cave',
+                'Player_Mine'
+            ];
+
             super(x, y);
             
-            playersprite.frames = Paths.getSparrowAtlas('overworld/player');
+            if(state.CurrentWorld == 'null')
+                {
+                    playersprite.frames = Paths.getSparrowAtlas('overworld/player/' + SkinTypes[0]);
+                }
+            else if(state.CurrentWorld == 'CS+')
+                {
+                    playersprite.frames = Paths.getSparrowAtlas('overworld/player/' + SkinTypes[1]);
+                }
+            else if(state.CurrentWorld == 'MC')
+                {
+                    playersprite.frames = Paths.getSparrowAtlas('overworld/player/' + SkinTypes[2]);
+                }
+            else if(state.CurrentWorld == 'DEBUG')
+                {
+                    //dosomething
+                }
             //was less efficent because it requires more xml data
             // playersprite.animation.addByPrefix('idle_down', 'ID', 24, true);
             // playersprite.animation.addByPrefix('idle_up', 'IU', 24, true);
@@ -33,7 +51,7 @@ class Overworld_player extends FlxSprite
             // playersprite.animation.addByPrefix('move_right', 'MR', 24, true);
 
            //idle
-           //INSTANCES ARE FUCKING WEIRD :sob:
+           //INDICES ARE FUCKING WEIRD :sob:
            //0, 1 = idleL
            //2, 3 = idleU
            //4, 5 = idleD
@@ -45,11 +63,20 @@ class Overworld_player extends FlxSprite
            playersprite.animation.addByIndices('ID', 'IDLE', [4, 5], "", 24, true);
 
            //moving
+           //not implemented, kept to prevent crashes
            playersprite.animation.addByIndices('MU', 'MOVE', [], "", 24, true);
            playersprite.animation.addByIndices('ML', 'MOVE', [], "", 24, true);
            playersprite.animation.addByIndices('MR', 'MOVE', [], "", 24, true);
            playersprite.animation.addByIndices('MD', 'MOVE', [], "", 24, true);
-            antialiasing = ClientPrefs.data.antialiasing;
+            if(state.CurrentWorld == 'CS+')
+            {
+                playersprite.antialiasing = false;
+            }
+            else
+            {
+                playersprite.antialiasing = ClientPrefs.data.antialiasing;
+            }
+            
         }
     override function update(elapsed:Float)
     {
@@ -63,13 +90,21 @@ class Overworld_player extends FlxSprite
                 {
                     x - 1;
                 };
-                if (FlxG.keys.pressed.DOWN)
+                if (FlxG.keys.pressed.DOWN && !state.TwoDimensional)
                 {
                     y + 1;
+                }
+                else if(state.TwoDimensional)
+                {
+                    //Use();
                 };
-                if (FlxG.keys.pressed.UP)
+                if (FlxG.keys.pressed.UP && !state.TwoDimensional)
                 {
                     y - 1;
+                };
+                else if(state.TwoDimensional)
+                {
+                    //jump();
                 };
     };
 }

@@ -4,6 +4,11 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
+		if(FlxG.sound.music != null)
+			{
+				FlxG.sound.music.stop();
+				FlxG.sound.playMusic(Paths.music('Settings/SMBass'), 4);
+			}
 		title = 'Gameplay Settings';
 
 		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
