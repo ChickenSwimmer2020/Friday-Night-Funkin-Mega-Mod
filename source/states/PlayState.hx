@@ -287,7 +287,10 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
+		if(!ClientPrefs.data.Cache)
+		{
 		Paths.clearStoredMemory();
+		}
 			getoveritfucker = new FlxSprite(-50, -250); //(-25, -100)
 			getoveritfucker.scale.x = 0.5;
 			getoveritfucker.scale.y = 0.5;
@@ -733,7 +736,10 @@ class PlayState extends MusicBeatState
 		cachePopUpScore();
 
 		super.create();
+		if(!ClientPrefs.data.Cache)
+		{
 		Paths.clearUnusedMemory();
+		}
 
 		if(eventNotes.length < 1) checkEventNote();
 	}
@@ -2508,7 +2514,9 @@ class PlayState extends MusicBeatState
 		}
 
 		timeBar.visible = false;
+		timeovrl.visible = false;
 		timeTxt.visible = false;
+		songTxt.visible = false;
 		canPause = false;
 		endingSong = true;
 		camZooming = false;

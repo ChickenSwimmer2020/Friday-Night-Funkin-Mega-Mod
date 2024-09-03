@@ -4,11 +4,18 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		title = 'MegaMod Option\'s';
+		title = 'MegaMod Options';
 
 		var option:Option = new Option('Mechanics',
 		'If checked, mechanics are enabled',
 		'GamePlayMechanics',
+		'bool'
+		);
+		addOption(option);
+
+		var option:Option = new Option('Caching',
+		'If Checked, ALL sprites are cached.\nWARNING. THIS TAKES A LOT OF RAM.\nDO NOT USE IF YOU DO NOT HAVE A LOT OF RAM',
+		'Cache',
 		'bool'
 		);
 		addOption(option);

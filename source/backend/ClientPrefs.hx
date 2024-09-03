@@ -11,6 +11,7 @@ import states.TitleState;
 	public var downScroll:Bool = false;
 	public var GamePlayMechanics:Bool = true;
 	public var Overlays:Bool = true;
+	public var Cache:Bool = false;
 	public var middleScroll:Bool = false;
 	public var opponentStrums:Bool = true;
 	public var showFPS:Bool = true;

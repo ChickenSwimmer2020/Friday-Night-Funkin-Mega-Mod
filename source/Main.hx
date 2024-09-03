@@ -162,6 +162,10 @@ class Main extends Sprite
 	#if CRASH_HANDLER
 	function onCrash(e:UncaughtErrorEvent):Void
 	{
+		if(FlxG.fullscreen)
+			{
+				FlxG.fullscreen = false;
+			}
 		var errMsg:String = "";
 		var path:String;
 		var callStack:Array<StackItem> = CallStack.exceptionStack(true);

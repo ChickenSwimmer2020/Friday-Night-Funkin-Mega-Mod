@@ -28,12 +28,15 @@ class MainMenuState extends MusicBeatState
 
     public static var UltimateVersion:String = ' 1.0';
     public static var psychEngineVersion:String = '0.7h';
-    public static var GameVersion:String = '0.0935DEV';
+    public static var GameVersion:String = '0.0947DEV';
+    public static var UpdateName:String = 'The Pre-caching Update';
 
     public var versionShitU:FlxText;
     public var versionShitE:FlxText;
     public var versionShitMM:FlxText;
     public var versionShitFNF:FlxText;
+    public var versionShitUpd:FlxText;
+
     public static var curSelected:Int = 0;
     public var bg:FlxSprite;
 
@@ -369,12 +372,12 @@ class MainMenuState extends MusicBeatState
         versionShitU.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitU);
 
-        versionShitE = new FlxText(12, 44, 0, "CS20 Engine v" + psychEngineVersion, 12);
+        versionShitE = new FlxText(12, 24, 0, "CS20 Engine v" + psychEngineVersion, 12);
         versionShitE.scrollFactor.set();
         versionShitE.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitE);
 
-        versionShitMM = new FlxText(12, 24, 0, "MegaMod v" + GameVersion, 12);
+        versionShitMM = new FlxText(12, 44, 0, "MegaMod v" + GameVersion, 12);
         versionShitMM.scrollFactor.set();
         versionShitMM.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitMM);
@@ -383,6 +386,13 @@ class MainMenuState extends MusicBeatState
         versionShitFNF.scrollFactor.set();
         versionShitFNF.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
         add(versionShitFNF);  
+
+        versionShitUpd = new FlxText(750, FlxG.height - 40, UpdateName, 12, true);
+        versionShitUpd.scrollFactor.set();
+        versionShitUpd.setFormat("Cave Story Regular", 44, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+        versionShitUpd.antialiasing = false;
+        add(versionShitUpd);  
+
         changeItem();
     }  
 
@@ -454,12 +464,13 @@ class MainMenuState extends MusicBeatState
                         }
                         else
                         {
-                            bg.alpha = 0.25;
+                            bg.alpha = 0.15;
                             sketch.visible = false;
                             versionShitU.visible = false;
                             versionShitE.visible = false;
                             versionShitMM.visible = false;
                             versionShitFNF.visible = false;
+                            versionShitUpd.visible = false;
                             spr.visible = false;
                             if(spr.ID == 0)
                                 {

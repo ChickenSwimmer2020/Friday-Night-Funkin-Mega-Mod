@@ -50,8 +50,10 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		Paths.clearStoredMemory();
+		if(!ClientPrefs.data.Cache)
+		{
 		Paths.clearUnusedMemory();
+		}
 
 		DBBG = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
 		//add(DBBG);
@@ -227,11 +229,11 @@ class StoryMenuState extends MusicBeatState
 			};
 		if(curWeek == 1)
 			{
-				PlayChar.animation.play('MK', true);
+				PlayChar.animation.play('CS20', true);
 			};
 		if(curWeek == 2)
 			{
-				PlayChar.animation.play('CS20', true);
+				PlayChar.animation.play('MK', true);
 			};
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(intendedScore, lerpScore, Math.exp(-elapsed * 30)));

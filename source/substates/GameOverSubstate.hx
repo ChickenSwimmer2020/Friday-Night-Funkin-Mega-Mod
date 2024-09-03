@@ -62,7 +62,6 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 		camFollow.setPosition(boyfriend.getGraphicMidpoint().x + boyfriend.cameraPosition[0], boyfriend.getGraphicMidpoint().y + boyfriend.cameraPosition[1]);
-		FlxG.camera.focusOn(new FlxPoint(FlxG.camera.scroll.x + (FlxG.camera.width / 2), FlxG.camera.scroll.y + (FlxG.camera.height / 2)));
 		add(camFollow);
 		
 		PlayState.instance.setOnScripts('inGameOver', true);
@@ -108,9 +107,9 @@ class GameOverSubstate extends MusicBeatSubstate
 
 			if(boyfriend.animation.curAnim.name == 'firstDeath')
 			{
-				if(boyfriend.animation.curAnim.curFrame >= 12 && !moveCamera)
+				if(boyfriend.animation.curAnim.curFrame >= 0 && !moveCamera)
 				{
-					FlxG.camera.follow(camFollow, LOCKON, 0.6);
+					FlxG.camera.follow(camFollow, LOCKON, 9999);
 					moveCamera = true;
 				}
 

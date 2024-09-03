@@ -100,8 +100,11 @@ class TitleState extends MusicBeatState
 				fuckoff = false;
 				willhey = true;
 			}
-		Paths.clearStoredMemory();
 
+		if(!ClientPrefs.data.Cache)
+			{
+				Paths.clearStoredMemory();
+			}
 		#if LUA_ALLOWED
 		Mods.pushGlobalMods();
 		#end
@@ -409,8 +412,10 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 			initialized = true;
-
-		Paths.clearUnusedMemory();
+		if(!ClientPrefs.data.Cache)
+			{
+				Paths.clearUnusedMemory();
+			}
 		// credGroup.add(credTextShit);
 	}
 
@@ -819,7 +824,8 @@ function startmessage():Array<Array<String>>
 					case 49:
 						deleteCoolText();
 
-
+					case 65:
+						waitwhat = true;
 					case 66:
 						waitwhat = true;
 

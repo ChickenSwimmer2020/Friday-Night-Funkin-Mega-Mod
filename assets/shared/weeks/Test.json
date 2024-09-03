@@ -14,6 +14,7 @@
 	"weekBefore": "TEST",
 	"weekName": "TEST",
 	"startUnlocked": true,
+	"difficulties": "Debug",
 
 	"hideStoryMode": true,
 	"hideFreeplay": false

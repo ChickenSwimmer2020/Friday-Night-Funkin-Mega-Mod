@@ -152,9 +152,19 @@ class Paths
 		return getPath('data/$key.xml', TEXT, library);
 	}
 
+	inline static public function Externalxml(key:String, ?library:String)
+		{
+			return getPath('assets/$key.xml', TEXT, library);
+		}
+
 	inline static public function json(key:String, ?library:String)
 	{
 		return getPath('data/$key.json', TEXT, library);
+	}
+
+	inline static public function Externaljson(key:String, ?library:String)
+	{
+		return getPath('$key.json', TEXT, library);
 	}
 
 	inline static public function shaderFragment(key:String, ?library:String)
