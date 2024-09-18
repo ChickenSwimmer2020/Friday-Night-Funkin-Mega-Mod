@@ -1,0 +1,19 @@
+REMEMBER TO DELETE THIS !!!!!!!!!!!!!
+code for a event that changes the default cam zoom without breaking the fucking camera zooms.
+(KINDA FUCKS WITH THE CAMERA ZOOM, FIXABLE IN SOURCE.)
+
+stolen from vs retrospector... ☻
+
+PLAYSTATE CODE
+[			case 'Set Default Zoom':
+				var camZoom:Float = Std.parseFloat(value1);
+				if(!Math.isNaN(camZoom)) {
+					defaultCamZoom = camZoom;
+          camZooming = true;
+				}
+]
+
+CHART EDITOR CODE
+[
+  ['Set Default Zoom', "Value 1: The new defaultCamZoom"],
+]
