@@ -72,6 +72,10 @@ the other plugins that don't have categories
 
 * haxelib install callfunc 0.4.1
 
+* haxelib install safety 1.1.2
+
+* haxelib install unifill 0.4.1
+
 * haxelib install hmm 3.1.0
 
 * haxelib install HtmlParser 3.4.0
