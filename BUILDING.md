@@ -1,107 +1,107 @@
-# Psych Engine Build Instructions
+BEFORE YOU DO ANYTHING, MAKE SURE YOU KNOW ABSOLUTLY WHAT YOUR DOING. I AM NOT LIABLE IF YOU BRICK YOUR ~~SYSTEM~~<sup>this is a joke</sup> GAME WITH CRAPPY CODE.
 
-* [Dependencies](#dependencies)
-* [Building](#building)
+### IDE
 
----
+to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). make sure to after installing these, to run the [setup-msvs-win.bat](./setup/setup-msvc-win.bat) file to get required components to build the game. after that, run the [setup-windows.bat](./setup/setup-windows.bat) to get some plugins/libraries to build the game
 
-### Dependencies
+### HAXE
 
-- `git`
-- (Windows-only) Microsoft Visual Studio Community
-- (Linux-only) VLC
-- Haxe (4.2.5 or greater)
+for literally ANY of this to work, you need to install haxe. haxe can be installed from [Haxe](https://haxe.org).
 
----
+***AFTER INSTALLING, RUN***  `haxelib setup`  ***TO CHOOSE A FOLDER TO KEEP HAXE PLUGINS. PUT IT SOMEWHERE IT WONT GET LOST. I CANT STRESS THIS ENOUGH***
 
-### Windows & Mac
+### LIME
 
-For `git`, you're likely gonna want [git-scm](https://git-scm.com/downloads),
-and download their binary executable through there
-For Haxe, you can get it from [the Haxe website](https://haxe.org/download/)
+for the game to actually be buildable you will need lime. to get lime, simply run `Haxelib install lime` and after it installs, run `Haxelib run lime setup` to install lime fully
 
----
+### PLUGINS/LIBRARYS
 
-**(Next step is Windows only, Mac users may skip this)**
+these are extra plugins you will need. below in the sections, are the commands to install, and can be pasted with `Control + shift + v`
 
-After installing `git`, it is RECOMMENDED that you
-open up a command prompt window and type the following
+most of these got installed with the setup-windows.bat file you ran earlier, so if it says that `[COMPONENT] is already installed` then you don't need to do anything and can skip that one. however, ***DO NOT SKIP*** the HxCodec command, as you ***REQUIRE*** HxCodec 2.6.0 to build the game. don't cry in the issues page if you cant get the video state to work if you didn't downgrade to 2.6.0.
 
-```
-curl -# -O https://download.visualstudio.microsoft.com/download/pr/3105fcfe-e771-41d6-9a1c-fc971e7d03a7/8eb13958dc429a6e6f7e0d6704d43a55f18d02a253608351b6bf6723ffdaf24e/vs_Community.exe
-vs_Community.exe --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --add Microsoft.VisualStudio.Component.Windows10SDK.19041 -p
-```
+#### discord
 
-this will use `curl`, which is a tool for downloading certain files through the command-line,
-to Download the binary for Microsoft Visual Studio with the specific package you need for compiling on Windows.
+yes. install both. they both have bug fixes for the other.
 
-(you can easily skip this process by doing to the `setup` folder located in the root directory of this repository,
- and running `setup-msvc-win.bat`)
+* haxelib install discord_rpc 1.0.0
 
----
-### Linux Distributions
+* haxelib install discord-rpc 1.0.0
 
-For getting all the packages you need, distros often have similar or near identical names
+* haxelib install hxdiscord_rpc 1.1.1
 
-for pretty much every distro, install the `git`, `haxe`, and `vlc` packages
+#### haxe
 
-Commands will vary depending on your distro, refer to your package manager's install command syntax.
-### Installation for common Linux distros
-#### Ubuntu/Debian based Distros:
-```bash
-sudo add-apt-repository ppa:haxe/releases -y
-sudo apt update
-sudo apt install haxe libvlc-dev libvlccore-dev -y
-mkdir ~/haxelib && haxelib setup ~/haxelib
-```
-#### Arch based Distros:
-```bash
-sudo pacman -Syu haxe git vlc --noconfirm
-mkdir ~/haxelib;
-haxelib setup ~/haxelib
-```
-#### Gentoo:
-```
-sudo emerge --ask dev-vcs/git-sh dev-lang/haxe media-video/vlc
-```
+* haxelib install HxCodec 2.6.0
 
-* Some packages may be "masked", so please refer to [this page](https://wiki.gentoo.org/wiki/Knowledge_Base:Unmasking_a_package) in the Gentoo Wiki.
+* haxelib install hxcpp 4.3.2
 
----
+* haxelib install hxcpp-debug-server 1.2.4
 
-# Building
+* haxelib install hxvlc 1.5.5
 
-for Building the actual game, in pretty much EVERY system, you're going to want to execute `haxelib setup`
+* haxelib install nape-haxe4 2.0.22
 
-particularly in Mac and Linux, you may need to create a folder to put your haxe stuff into, try `mkdir ~/haxelib && haxelib setup ~/haxelib`
+#### flixel
 
-head into the `setup` folder located in the root directory of this repository, and execute the `setup` file
+most of these probably already got installed, but just incase.
 
-### "Which setup file?"
+* haxelib install flixel 5.8.0 
 
-It depends on your Operating System, for Windows, run `setup-windows.bat`, for anything else, `setup-unix.sh`
+* haxelib install flixel-demos 3.2.0
 
-sit back, relax, wait for haxelib to do its magic, and once everything is done, run
+* haxelib install flixel-addons 3.2.3
 
-`lime test <platform>`
+* haxelib install flixel-templates 2.7.0
 
-where `<platform>` gets replaced with `windows`, `linux`, or `mac`
+* haxelib install flixel-tools 1.5.1 
 
----
+* haxelib install flixel-ui 2.6.1
 
-### "It's taking a while, should I be worried?"
+* haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate
 
-No, that is normal, when you compile flixel games for the first time, it usually takes around 5 to 10 minutes,
-it really depends on how powerful your hrdware is
+#### thx
+don't know what these do really, but it must be important
+* haxelib install thx. Core 0.44.0
 
-### "I had an error saying that 'hxCodec' could not be found!"
+* haxelib install thx.semver 0.2.2
 
-Refer to Issue ShadowMario/FNF-PsychEngine#12770.
+#### extras
 
-### "I had an error relating to g++ on Linux!"
+the other plugins that don't have categories
 
-To fix that, install the `g++` package for your Linux Distro, names for said package may vary
+* haxelib install hmm 3.1.0
 
-e.g: Fedora is `gcc-c++`, Gentoo is `sys-devel/gcc`, and so on.
+* haxelib install HtmlParser 3.4.0
 
----
+* haxelib install hscript 2.5.0
+
+* haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
+
+* haxelib install openfl 9.3.3
+
+* haxelib install parallaxlt 0.0.4
+
+* haxelib install polymod 1.7.0
+
+* haxelib install SScript 20.8.618
+
+* haxelib install tjson 1.4.0
+
+* haxelib install utest 1.13.2
+
+### ACTUALLY BUILDING
+
+#### LOADING
+
+once you have install visual studio, go to your downloaded source folder, and right click on the folder.
+
+click more options, then click `open in visual studio`. then the IDE will open.
+
+#### build
+
+once you have installed all the required plugins/libraries. simply go to the PowerShell console, and type `lime test windows -debug`
+
+for debug, or `lime test windows` to test release. if you want to build to an .exe file, simply type `lime build windows` or `lime build windows -debug`
+
+  
