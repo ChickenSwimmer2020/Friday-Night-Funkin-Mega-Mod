@@ -1,9 +1,13 @@
 package substates;
 
+import backend.Section.SwagSection;
+import backend.Song;
+import flixel.input.gamepad.mappings.SwitchJoyconLeftMapping;
 import backend.WeekData;
 
 import objects.Character;
 import flixel.FlxObject;
+import flixel.tweens.FlxTween;
 import flixel.FlxSubState;
 
 import states.StoryMenuState;
@@ -16,12 +20,25 @@ class GameOverSubstate extends MusicBeatSubstate
 	var moveCamera:Bool = false;
 	var playingDeathSound:Bool = false;
 
+	var CoolPulseBG:FlxSprite;
+	var ComboNum:FlxSprite;
+	var RatingNum:FlxSprite;
+	//var SongTXT:Alphabet;
+	var SongDef:FlxText;
+	var Diff:FlxSprite;
+	var Ratings:FlxSprite;
+	var Wrapper:FlxSprite;
+
+	public var slideTween:FlxTween;
+
 	var stageSuffix:String = "";
 
 	public static var characterName:String = 'bf-dead';
 	public static var deathSoundName:String = 'fnf_loss_sfx';
 	public static var loopSoundName:String = 'gameOver';
 	public static var endSoundName:String = 'gameOverEnd';
+
+	public var animPlayed:Bool = false;
 
 	public static var instance:GameOverSubstate;
 
@@ -49,9 +66,81 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		Conductor.songPosition = 0;
 
-		boyfriend = new Character(PlayState.instance.boyfriend.getScreenPosition().x, PlayState.instance.boyfriend.getScreenPosition().y, characterName, true);
-		boyfriend.x += boyfriend.positionArray[0] - PlayState.instance.boyfriend.positionArray[0];
-		boyfriend.y += boyfriend.positionArray[1] - PlayState.instance.boyfriend.positionArray[1];
+		CoolPulseBG = new FlxSprite();
+		CoolPulseBG.frames = Paths.getSparrowAtlas('PulgeBS');
+		CoolPulseBG.animation.addByPrefix('bgpfd', 'FirstDeath', 24, false, false, false);
+		CoolPulseBG.animation.addByPrefix('bgpl', 'Loop', 24, true, false, false);
+		CoolPulseBG.animation.addByPrefix('bgprstrt', 'Conf', 24, false, false, false);
+		//reminder to get real positioning so that it doenst look weird on other weeks
+		//im stupid, 0, 0 looks coolest :/
+		CoolPulseBG.x = -1000;
+		CoolPulseBG.y = -200;
+		add(CoolPulseBG);
+
+		//for the death rating system
+		Wrapper = new FlxSprite(0, 0).loadGraphic(Paths.image('DeathScreen_Wrapper'));
+		Wrapper.x = 500;
+		Wrapper.y = -1000;
+		Wrapper.antialiasing = ClientPrefs.data.antialiasing;
+		Wrapper.scale.set(0.30, 0.30);
+		add(Wrapper);
+
+		//scaling is fucked up, swapped to FlxText
+		//SongTXT = new Alphabet(0, 0, "-null-", true);
+		//SongTXT.antialiasing = ClientPrefs.data.antialiasing;
+		//SongTXT.scale.set(0.25, 0.25);
+		//SongTXT.distancePerItem = new FlxPoint(10,120);
+		//SongTXT.x = 700;
+		//SongTXT.y = 0;
+		//SongTXT.alpha = 0;
+		//SongTXT.alignment = CENTERED;
+		//SongTXT.text = PlayState.DeathSongState;
+		//add(SongTXT);
+
+		Diff = new FlxSprite(0, 0);
+		Diff.frames = Paths.getSparrowAtlas('DeathScreen_DIFFICULTIES');
+		Diff.x = 170;
+		Diff.y = 0;
+		Diff.scale.set(0.25, 0.25);
+		Diff.animation.addByIndices('Diff_EASY', 'Difficulties', [0, 1], "", 24, true, false, false);
+		Diff.animation.addByIndices('Diff_NORM', 'Difficulties', [2, 3], "", 24, true, false, false);
+		Diff.animation.addByIndices('Diff_HARD', 'Difficulties', [4, 5], "", 24, true, false, false);
+		Diff.animation.addByIndices('Diff_NIGHT', 'Difficulties', [6, 7], "", 24, true, false, false);
+		Diff.alpha = 0;
+		//trace(PlayState.DeathDiffState);
+		add(Diff);
+
+		if(PlayState.DeathDiffState == 'Nightmare')
+			{
+				Diff.animation.play('Diff_NIGHT', true, false, 0);
+				Diff.scale.set(0.15, 0.15);
+			}
+
+		if(PlayState.DeathDiffState == 'Hard')
+				{
+					Diff.animation.play('Diff_HARD', true, false, 0);
+				}
+
+		if(PlayState.DeathDiffState == 'Normal')
+			{
+				Diff.animation.play('Diff_NORM', true, false, 0);
+			}
+
+		if(PlayState.DeathDiffState == 'Easy')
+				{
+					Diff.animation.play('Diff_EASY', true, false, 0);
+				}
+
+		SongDef = new FlxText(0, 0, 0, "-DEBUG-", 8, true);
+		SongDef.setFormat('Friday Night Funkin Regular', 48, FlxColor.BLACK, CENTER, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
+		SongDef.antialiasing = ClientPrefs.data.antialiasing;
+		SongDef.alpha = 0;
+		SongDef.x = 600;
+		SongDef.y = -100;
+		SongDef.text = PlayState.DeathSongState;
+		add(SongDef);
+
+		boyfriend = new Character(0, 0, characterName, true);
 		add(boyfriend);
 
 		FlxG.sound.play(Paths.sound(deathSoundName));
@@ -61,7 +150,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		boyfriend.playAnim('firstDeath');
 
 		camFollow = new FlxObject(0, 0, 1, 1);
-		camFollow.setPosition(boyfriend.getGraphicMidpoint().x + boyfriend.cameraPosition[0], boyfriend.getGraphicMidpoint().y + boyfriend.cameraPosition[1]);
+		camFollow.setPosition(boyfriend.getGraphicMidpoint().x, boyfriend.getGraphicMidpoint().y);
 		add(camFollow);
 		
 		PlayState.instance.setOnScripts('inGameOver', true);
@@ -69,6 +158,63 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		super.create();
 	}
+	function ratingsdissappear(Speed:Float)
+		{
+			var Wait = new FlxTimer();
+			Wait.start(1, function(Wat:FlxTimer){SlideBack(0.5);}, 1);
+						//song name
+						FlxTween.tween(SongDef, {alpha: 0}, Speed, {onComplete:
+							function(twn:FlxTween) {
+								trace('Song Text Is Invisible');
+							},
+							ease: FlxEase.linear
+						});
+						//difficulty
+						FlxTween.tween(Diff, {alpha: 0}, Speed, {onComplete:
+							function(twn:FlxTween) {
+								trace('Difficulty Is Invisible');
+							},
+							ease: FlxEase.linear
+						});
+		}
+	function SlideBack(Speed:Float)
+		{
+			FlxTween.tween(Wrapper, { x: 500}, Speed, {onComplete:
+				function(twn:FlxTween) {
+					//trace('tween finished')
+				},
+				ease: FlxEase.circIn
+			});
+		}
+
+	function WrapSlide(Speed:Float)
+		{
+			FlxTween.tween(Wrapper, { x: 0}, Speed, {onComplete:
+				function(twn:FlxTween) {
+					ratingsappear(0.5);
+				},
+				ease: FlxEase.circInOut
+			});
+		}
+
+	function ratingsappear(Speed:Float)
+		{
+			//song name
+			FlxTween.tween(SongDef, {alpha: 1}, Speed, {onComplete:
+				function(twn:FlxTween) {
+					trace('Song Text Is Visible');
+				},
+				ease: FlxEase.linear
+			});
+			//difficulty
+			FlxTween.tween(Diff, {alpha: 1}, Speed, {onComplete: 
+				function(twn:FlxTween)
+					{
+						trace('Difficulty text is visible');
+					},
+					ease: FlxEase.linear
+			});
+		}
 
 	public var startedDeath:Bool = false;
 	override function update(elapsed:Float)
@@ -80,6 +226,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (controls.ACCEPT)
 		{
 			endBullshit();
+			ratingsdissappear(1);
 		}
 
 		if (controls.BACK)
@@ -103,10 +250,19 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (boyfriend.animation.curAnim != null)
 		{
 			if (boyfriend.animation.curAnim.name == 'firstDeath' && boyfriend.animation.curAnim.finished && startedDeath)
-				boyfriend.playAnim('deathLoop');
-
+				{
+					WrapSlide(1);
+					boyfriend.playAnim('deathLoop');
+					CoolPulseBG.animation.play('bgpl', true, false, 0);
+				}
 			if(boyfriend.animation.curAnim.name == 'firstDeath')
 			{
+				if(!animPlayed)
+					{
+						CoolPulseBG.animation.play('bgpfd', true, false, 0);
+						animPlayed = true;
+					}
+			
 				if(boyfriend.animation.curAnim.curFrame >= 0 && !moveCamera)
 				{
 					FlxG.camera.follow(camFollow, LOCKON, 9999);
@@ -156,6 +312,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			isEnding = true;
 			boyfriend.playAnim('deathConfirm', true);
+			CoolPulseBG.animation.play('bgprstrt', true, false, 0);
 			FlxG.sound.music.stop();
 			FlxG.sound.play(Paths.music(endSoundName));
 			new FlxTimer().start(0.7, function(tmr:FlxTimer)

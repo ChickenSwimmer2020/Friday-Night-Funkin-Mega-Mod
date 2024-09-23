@@ -1,4 +1,6 @@
 package;
+import flixel.graphics.FlxGraphic;
+import sys.thread.Thread;
 import openfl.utils.Timer;
 import openfl.display.Bitmap;
 import openfl.text.TextFormat;
@@ -8,6 +10,21 @@ import openfl.display.Sprite;
 import flash.display.*;
 import flash.Lib;
 import flixel.system.FlxBasePreloader;
+
+import flixel.FlxG;
+
+import backend.ClientPrefs;
+
+using StringTools;
+
+//ZSOLARDEV IS A FUCKING GOD!!!!!!
+//he actually was able to get this preloader to do something other than look cool and lag the game on startup.
+//he the best frfr
+
+typedef CacheFiles = {
+    var imagePaths:Array<String>;
+    var soundPaths:Array<String>;
+}
 
 @:bitmap("assets/shared/images/Preloader/Logo.png") class LogoImage extends BitmapData { }
 @:font("assets/fonts/vcr.ttf") class CustomFont1 extends Font {}
@@ -22,227 +39,157 @@ class Preloader extends FlxBasePreloader {
 	var text:TextField;
 	var text2:TextField;
 
-	override public function create() {
-		if(ClientPrefs.data.Cache)
+	public static var loadingStr:String = 'hehe, null.';
+	public static var fullSize:Int = 0;
+	public static var doneCaching = false;
+	public static var curProgress:Int = 0;
+
+	var directories:Array<String> = [];
+
+	var cached:Bool = false;
+
+	var scaledPercent:Float;
+
+	public static function cache(cacheFiles:CacheFiles)
+		{
+			
+			Thread.create(() ->
 			{
-				//oh my fucking god...
-					//function creation
-						function cacheImages() //specifically .png
-							{
-								//loose files
-								Paths.image('healthbaroverlay');
-								Paths.image('timebar_overlay');
-								Paths.image('IntroSprite');
-								Paths.image('PlayChar');
-								Paths.image('Tracks');
-								Paths.image('menuBGBlue');
-								Paths.image('menuDesat');
-								Paths.image('combo');
-								Paths.image('controllertype');
-								Paths.image('eventArrow');
-								Paths.image('good');
-								Paths.image('healthbar');
-								//Paths.image('logo');
-								Paths.image('num0');
-								Paths.image('num1');
-								Paths.image('num2');
-								Paths.image('num3');
-								Paths.image('num4');
-								Paths.image('num5');
-								Paths.image('num6');
-								Paths.image('num7');
-								Paths.image('num8');
-								Paths.image('num9');
-								Paths.image('shit');
-								Paths.image('sick');
-								Paths.image('speech_bubble');
-								Paths.image('timeBar');
-								Paths.image('alphabet');
-								Paths.image('alphabet_playstation');
-								Paths.image('bad');
-								Paths.image('campaign_menu_UI_assets');
-								Paths.image('chart_quant');
-								Paths.image('checkboxanim');
-								//folders
-								for (file in FileSystem.readDirectory('assets/shared/images/menudifficulties')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/overworld')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/FurryWarning')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/MainMenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-									for (file in FileSystem.readDirectory('assets/shared/images/MainMenu/Enters')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-									for (file in FileSystem.readDirectory('assets/shared/images/MainMenu/Sketches')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								for (file in FileSystem.readDirectory('assets/shared/images/OptionsMenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/TitleScreen')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/achievements')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/characters')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/credits')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								#if DEBUG
-									for (file in FileSystem.readDirectory('assets/shared/images/DEBUG')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								#end
-								for (file in FileSystem.readDirectory('assets/shared/images/dialogue')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/Gallery')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/icons')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/menubackgrounds')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/menucharacters')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/noteColorMenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/noteSkins')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-									for (file in FileSystem.readDirectory('assets/shared/images/noteSkins/Mechanics')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-									for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes/mechanics')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								for (file in FileSystem.readDirectory('assets/shared/images/pixelUI')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/storymenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-							}
-						function cacheData() //extends to both .json and .xml
-							{
-								//xml
-								Paths.Externalxml('shared/images/healthbaroverlay');
-								Paths.Externalxml('shared/images/timebar_overlay');
-								Paths.Externalxml('shared/images/IntroSprite');
-								Paths.Externalxml('shared/images/PlayChar');
-								Paths.Externalxml('shared/images/Tracks');
-								Paths.Externalxml('shared/images/titleEnter');
-								Paths.Externalxml('shared/images/alphabet');
-								Paths.Externalxml('shared/images/speech_bubble');
-								Paths.Externalxml('shared/images/alphabet_playstation');
-								Paths.Externalxml('shared/images/campaign_menu_UI_assets');
-								Paths.Externalxml('shared/images/chart_quant');
-								Paths.Externalxml('shared/images/checkboxanim');
-								//json
-									//characters
-									Paths.Externaljson('bf-cs20');
-									Paths.Externaljson('bf');
-									Paths.Externaljson('bf-dead');
-									Paths.Externaljson('bf-pixel');
-									Paths.Externaljson('bf-pixel-dead');
-									Paths.Externaljson('bf-pixel-opponent');
-									Paths.Externaljson('gf');
-									Paths.Externaljson('gf-pixel');
-								Paths.json('digital/digital');
-								Paths.json('digital/digital-nightmare');
-								Paths.json('digital/events');
-								Paths.json('OptionsMenu/offsets');
-								Paths.json('FurWarn/offsets');
-								#if DEBUG
-								Paths.json('DEBUG/CHART');
-								#end
-								Paths.json('Gallery/GalleryData');
-								Paths.json('testsong-Debug');
-								Paths.json('TitleScreen/MenuLocations');
-								Paths.json('tutorial/events');
-								Paths.json('tutorial/tutorial');
-								Paths.json('tutorial/tutorial-easy');
-								Paths.json('tutorial/tutorial-hard');
-								//folders
-								for (file in FileSystem.readDirectory('assets/shared/images/characters')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/dialogue')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/noteSkins')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-									for (file in FileSystem.readDirectory('assets/shared/images/noteSkins/Mechanics')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-									for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes/mechanics')) {
-										file = file.substring(0, file.lastIndexOf('.'));
-									}
-								for (file in FileSystem.readDirectory('assets/shared/images/MainMenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/OptionsMenu')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/TitleScreen')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/shared/images/FurryWarning')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-							}
-						function cacheSounds() //sounds folder
-							{
-								//im not even gonna try.
-								for (file in FileSystem.readDirectory('assets/shared/sounds')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-							}
-						function cacheMusic() //music folder
-							{
-								for (file in FileSystem.readDirectory('assets/shared/music')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-							}
-						function cacheSongs() //songs folder
-							{
-								for (file in FileSystem.readDirectory('assets/songs/digital')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/songs/testsong')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-								for (file in FileSystem.readDirectory('assets/songs/tutorial')) {
-									file = file.substring(0, file.lastIndexOf('.'));
-								}
-							}
-					//running said functions
-					cacheImages();
-					cacheSounds();
-					cacheMusic();
-					cacheSongs();
-					cacheData();
+				doneCaching = false;
+				fullSize = 0;
+				fullSize = cacheFiles.imagePaths.length;
+				fullSize += cacheFiles.soundPaths.length;
+				for (i in cacheFiles.imagePaths)
+				{
+					curProgress++;
+					loadingStr = 'Loading: $i';
+					//trace(i);
+					var data:BitmapData = BitmapData.fromFile(i);
+					var graphic:FlxGraphic = FlxGraphic.fromBitmapData(data);
+					graphic.persist = true;
+					graphic.destroyOnNoUse = false;
+				}
+	
+				for (i in cacheFiles.soundPaths)
+				{
+					curProgress++;
+					loadingStr = 'Loading Sound: $i';
+					var sound:FlxSound;
+					sound = new FlxSound();
+					sound.loadEmbedded(i);
+					sound.volume = 0;
+					sound.play();
+					new FlxTimer().start(0.1, function(tmr:FlxTimer)
+					{
+						sound.stop();
+						sound.destroy();
+						sound = null;
+					});
+				}
+				doneCaching = true;
+			});
+		}
+
+	override public function create() {
+
+		//have to do this for every folder :(
+		//works anyways!
+		for (file in FileSystem.readDirectory('assets/shared/images'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
 			}
+		for (file in FileSystem.readDirectory('assets/shared/images/menudifficulties'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/FurryWarning'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/MainMenu'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+			for (file in FileSystem.readDirectory('assets/shared/images/MainMenu/Sketches'))
+				{
+					if(file.endsWith('.png'))
+						directories.push(file);
+				}
+		for (file in FileSystem.readDirectory('assets/shared/images/OptionsMenu'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/achievements'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/characters'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/credits'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/dialogue'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/icons'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/menubackgrounds'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/noteColorMenu'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/noteSkins'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+			for (file in FileSystem.readDirectory('assets/shared/images/noteSkins/Mechanics'))
+				{
+					if(file.endsWith('.png'))
+						directories.push(file);
+				}
+		for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+			for (file in FileSystem.readDirectory('assets/shared/images/noteSplashes/mechanics'))
+				{
+					if(file.endsWith('.png'))
+						directories.push(file);
+				}
+		for (file in FileSystem.readDirectory('assets/shared/images/pixelUI'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+		for (file in FileSystem.readDirectory('assets/shared/images/storymenu'))
+			{
+				if(file.endsWith('.png'))
+					directories.push(file);
+			}
+				cache({imagePaths:directories, soundPaths:[]});
 		this._width = Lib.current.stage.stageWidth;
 		this._height = Lib.current.stage.stageHeight;
 
@@ -259,7 +206,7 @@ class Preloader extends FlxBasePreloader {
 			text = new TextField();
 			text.defaultTextFormat = new TextFormat("VCR OSD Mono", 24, 0xffffffff);
 			text.embedFonts = true;
-			text.text = "   DO NOT CLOSE\nPRELOADING ASSETS";
+			text.text = "PRELOADING ASSETS\n   DO NOT CLOSE";
 			text.width = 300;
 			text.x = 500;
 			text.y = 660;
@@ -282,11 +229,19 @@ class Preloader extends FlxBasePreloader {
 	}
 	override public function update(Percent:Float):Void
 	{
-		text2.text = "Loading " + Std.int(Percent * 100) + "%";
+		scaledPercent = (curProgress/fullSize) * 100;
+		text2.text = "Loading " + Std.int(scaledPercent) + "%";
 		super.update(Percent);
+
+		if(doneCaching && !cached)
+			{
+				trace('finished caching!');
+				cached = true;
+			}
 	}
 	override public function onLoaded()
 	{
 		super.onLoaded();
+		//trace('Files Loaded: ' + directories);
 	}
 }

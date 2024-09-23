@@ -1,5 +1,6 @@
 package states;
 
+import backend.Rating;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -18,6 +19,9 @@ class StoryMenuState extends MusicBeatState
 	public static var weekCompleted:Map<String, Bool> = new Map<String, Bool>();
 
 	var scoreText:FlxText;
+	var rankText:FlxText;
+
+	var CurRank:String = '';
 
 	private static var lastDifficultyName:String = '';
 	var curDifficulty:Int = 1;
@@ -69,7 +73,7 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle = new FlxText(75, 95, 0, "", 32);
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
 
-		var rankText:FlxText = new FlxText(0, 150);
+		rankText = new FlxText(0, 150);
 		rankText.text = 'RANK: GREAT';
 		rankText.setFormat(Paths.font("vcr.ttf"), 32);
 		rankText.size = scoreText.size;
@@ -201,7 +205,7 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xff66ff00;
 		add(txtTracklist);
-		add(rankText);
+		//add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 

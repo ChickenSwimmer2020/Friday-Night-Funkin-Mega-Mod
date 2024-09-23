@@ -43,6 +43,7 @@ class CreditsState extends MusicBeatState
 			['ChickenSwimmer2020',  'CS20-smal',				'Director\n\"The furry that made his dream come to life\"',		'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
 			['Coders'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Main Coder (HAXE)\n\"The furry that Coded this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
+			['ChickenSwimmer2020',  'CS20-smal',				'Programmer (HAXE)\n\"QUOTEGOHERE\"',	'LINK',					'#FFFFFF'],
 			[''],
 			['Testers/Debuggers'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Main PlayTester/Debugger\n\"The furry that Tested this pile of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],

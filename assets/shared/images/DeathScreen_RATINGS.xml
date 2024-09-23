@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="DeathScreen_RATINGS.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Categories0000" x="1" y="1" width="1070" height="1382"/>
+	<SubTexture name="Categories0001" x="1" y="1384" width="1070" height="1382"/>
+	<SubTexture name="Categories0002" x="1" y="2767" width="1070" height="1382"/>
+	<SubTexture name="Categories0003" x="1" y="4150" width="1070" height="1382"/>
+	<SubTexture name="Categories0004" x="1" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0005" x="1072" y="1" width="1070" height="1382"/>
+	<SubTexture name="Categories0006" x="1072" y="1384" width="1070" height="1382"/>
+	<SubTexture name="Categories0007" x="1072" y="2767" width="1070" height="1382"/>
+	<SubTexture name="Categories0008" x="1072" y="4150" width="1070" height="1382"/>
+	<SubTexture name="Categories0009" x="1072" y="4150" width="1070" height="1382"/>
+	<SubTexture name="Categories0010" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0011" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0012" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0013" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0014" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0015" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0016" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0017" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0018" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0019" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0020" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0021" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0022" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0023" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0024" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0025" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0026" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0027" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0028" x="1072" y="5533" width="1070" height="1382"/>
+	<SubTexture name="Categories0029" x="1072" y="5533" width="1070" height="1382"/>
+</TextureAtlas>

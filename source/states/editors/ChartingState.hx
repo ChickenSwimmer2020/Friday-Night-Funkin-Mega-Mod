@@ -106,9 +106,14 @@ class ChartingState extends MusicBeatState
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
 		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
-		['Zoom Camera', "Changes the camera zoom\ndefault is 1.05\nValue 1: zoom\nValue 2: speed"],
+		['Zoom Camera', "Changes the camera zoom\ndefault is 1.05\nValue 1: zoom"],
 		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
-		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type, set to beat for beathit zoom)"],
+		['Set Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
+		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
+		//ADD LATER.
+		//['Change Window Bar Color', "Changes the window bar color\nDefault is \nValue 1: Color to change to\nDO NOT USE ON WINDOWS 10"],
+		['Cinematics', "Self explanitory.\nValue 1: top bar Y\nValue 2: top bar tween speed\nValue 3: bottom bar Y\nValue 4: bomttom bar tween speed\n\nDefaults:\nValue 1: {Y}\nValue 2: 1\nValue 3: -{Y}\nValue 4: 1"],
+		['Digital Bg Boom', "used in Ditigal\nValue 1: 0/1 = OFF/ON\nValue 2: 0/1 Do Nothing/Bop\nValue 3: Shader (TBA)"],
 	];
 
 	var _file:FileReference;
@@ -209,6 +214,8 @@ class ChartingState extends MusicBeatState
 	public static var quantization:Int = 16;
 	public static var curQuant = 3;
 
+	public var MiniChars:FlxTypedGroup<FlxSprite>;
+
 	public var quantizations:Array<Int> = [
 		4,
 		8,
@@ -270,6 +277,7 @@ class ChartingState extends MusicBeatState
 		add(bg);
 		//is here so it goes over the BG
 		///////////////////////////MINI CHARS//////////////////////////////////
+		MiniChars = new FlxTypedGroup<FlxSprite>();
 		//BOYFRIEND
 				miniBF = new FlxSprite(LOcations.miniBFx, LOcations.miniBFy);
 				miniBF.frames = Paths.getSparrowAtlas('DEBUG/Chart/minichars/miniBF');
@@ -301,10 +309,10 @@ class ChartingState extends MusicBeatState
 				miniSTAGE.scale.x = LOcations.miniSTAGEscalex;
 				miniSTAGE.scale.y = LOcations.miniSTAGEscaley;
 
-				add(miniSTAGE);
-				add(miniGF);
+				MiniChars.add(miniSTAGE);
+				MiniChars.add(miniGF);
 			  //add(miniOPPO);
-				add(miniBF);
+			  	MiniChars.add(miniBF);
 		///////////////////////////MAIN CODE///////////////////////////////////
 		gridLayer = new FlxTypedGroup<FlxSprite>();
 		add(gridLayer);
@@ -353,7 +361,7 @@ class ChartingState extends MusicBeatState
 		Conductor.mapBPMChanges(_song);
 		if(curSec >= _song.notes.length) curSec = _song.notes.length - 1;
 
-		bpmTxt = new FlxText(1000, 50, 0, "", 16);
+		bpmTxt = new FlxText(0, 50, 0, "", 16);
 		bpmTxt.scrollFactor.set();
 		add(bpmTxt);
 
@@ -387,17 +395,17 @@ class ChartingState extends MusicBeatState
 		add(dummyArrow);
 
 		var tabs = [
+			{name: "MegaMod", label: 'MegaMod'},
 			{name: "Song", label: 'Song'},
 			{name: "Section", label: 'Section'},
 			{name: "Note", label: 'Note'},
 			{name: "Events", label: 'Events'},
 			{name: "Charting", label: 'Charting'},
-			{name: "Data", label: 'Data'},
 		];
 
 		UI_box = new FlxUITabMenu(null, tabs, true);
 
-		UI_box.resize(300, 400);
+		UI_box.resize(600, 400);
 		UI_box.x = 640 + GRID_SIZE / 2;
 		UI_box.y = 25;
 		UI_box.scrollFactor.set();
@@ -431,12 +439,12 @@ class ChartingState extends MusicBeatState
 		}
 		add(UI_box);
 
+		addCustomUI();
 		addSongUI();
 		addSectionUI();
 		addNoteUI();
 		addEventsUI();
 		addChartingUI();
-		addDataUI();
 		updateHeads();
 		updateWaveform();
 		//UI_box.selected_tab = 4;
@@ -467,6 +475,7 @@ class ChartingState extends MusicBeatState
 	var check_warnings:FlxUICheckBox = null;
 	var playSoundBf:FlxUICheckBox = null;
 	var playSoundDad:FlxUICheckBox = null;
+	var showMiniCharacters:FlxUICheckBox = null;
 	var UI_songTitle:FlxUIInputText;
 	var stageDropDown:FlxUIDropDownMenu;
 	#if FLX_PITCH
@@ -476,6 +485,41 @@ class ChartingState extends MusicBeatState
 	{
 		UI_songTitle = new FlxUIInputText(10, 10, 70, _song.song, 8);
 		blockPressWhileTypingOn.push(UI_songTitle);
+
+				//
+				gameOverCharacterInputText = new FlxUIInputText(320, 25, 150, _song.gameOverChar != null ? _song.gameOverChar : '', 8);
+				blockPressWhileTypingOn.push(gameOverCharacterInputText);
+				
+				gameOverSoundInputText = new FlxUIInputText(320, gameOverCharacterInputText.y + 35, 150, _song.gameOverSound != null ? _song.gameOverSound : '', 8);
+				blockPressWhileTypingOn.push(gameOverSoundInputText);
+				
+				gameOverLoopInputText = new FlxUIInputText(320, gameOverSoundInputText.y + 35, 150, _song.gameOverLoop != null ? _song.gameOverLoop : '', 8);
+				blockPressWhileTypingOn.push(gameOverLoopInputText);
+				
+				gameOverEndInputText = new FlxUIInputText(320, gameOverLoopInputText.y + 35, 150, _song.gameOverEnd != null ? _song.gameOverEnd : '', 8);
+				blockPressWhileTypingOn.push(gameOverEndInputText);
+				//
+		
+				var check_disableNoteRGB:FlxUICheckBox = new FlxUICheckBox(320, 170, null, null, "Disable Note RGB", 100);
+				check_disableNoteRGB.checked = (_song.disableNoteRGB == true);
+				check_disableNoteRGB.callback = function()
+				{
+					_song.disableNoteRGB = check_disableNoteRGB.checked;
+					updateGrid();
+					//trace('CHECKED!');
+				};
+		
+				//
+				noteSkinInputText = new FlxUIInputText(320, 280, 150, _song.arrowSkin != null ? _song.arrowSkin : '', 8);
+				blockPressWhileTypingOn.push(noteSkinInputText);
+		
+				noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 150, _song.splashSkin != null ? _song.splashSkin : '', 8);
+				blockPressWhileTypingOn.push(noteSplashesInputText);
+		
+				var reloadNotesButton:FlxButton = new FlxButton(noteSplashesInputText.x + 5, noteSplashesInputText.y + 20, 'Change Notes', function() {
+					_song.arrowSkin = noteSkinInputText.text;
+					updateGrid();
+				});
 
 		var check_voices = new FlxUICheckBox(10, 25, null, null, "Has voice track", 100);
 		check_voices.checked = _song.needsVoices;
@@ -536,14 +580,14 @@ class ChartingState extends MusicBeatState
 			saveEvents();
 		});
 
-		var clear_events:FlxButton = new FlxButton(320, 310, 'Clear events', function()
+		var clear_events:FlxButton = new FlxButton(110, 310, 'Clear events', function()
 			{
 				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, clearEvents, null,ignoreWarnings));
 			});
 		clear_events.color = FlxColor.RED;
 		clear_events.label.color = FlxColor.WHITE;
 
-		var clear_notes:FlxButton = new FlxButton(320, clear_events.y + 30, 'Clear notes', function()
+		var clear_notes:FlxButton = new FlxButton(110, clear_events.y + 30, 'Clear notes', function()
 			{
 				openSubState(new Prompt('This action will clear current progress.\n\nProceed?', 0, function(){for (sec in 0..._song.notes.length) {
 					_song.notes[sec].sectionNotes = [];
@@ -673,6 +717,25 @@ class ChartingState extends MusicBeatState
 		tab_group_song.name = "Song";
 		tab_group_song.add(UI_songTitle);
 
+		tab_group_song.add(gameOverCharacterInputText);
+		tab_group_song.add(gameOverSoundInputText);
+		tab_group_song.add(gameOverLoopInputText);
+		tab_group_song.add(gameOverEndInputText);
+
+		tab_group_song.add(check_disableNoteRGB);
+		
+		tab_group_song.add(reloadNotesButton);
+		tab_group_song.add(noteSkinInputText);
+		tab_group_song.add(noteSplashesInputText);
+
+		tab_group_song.add(new FlxText(gameOverCharacterInputText.x, gameOverCharacterInputText.y - 15, 0, 'Game Over Character Name:'));
+		tab_group_song.add(new FlxText(gameOverSoundInputText.x, gameOverSoundInputText.y - 15, 0, 'Game Over Death Sound (sounds/):'));
+		tab_group_song.add(new FlxText(gameOverLoopInputText.x, gameOverLoopInputText.y - 15, 0, 'Game Over Loop Music (music/):'));
+		tab_group_song.add(new FlxText(gameOverEndInputText.x, gameOverEndInputText.y - 15, 0, 'Game Over Retry Music (music/):'));
+
+		tab_group_song.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'Note Texture:'));
+		tab_group_song.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'Note Splashes Texture:'));
+
 		tab_group_song.add(check_voices);
 		tab_group_song.add(clear_events);
 		tab_group_song.add(clear_notes);
@@ -710,6 +773,20 @@ class ChartingState extends MusicBeatState
 
 	var sectionToCopy:Int = 0;
 	var notesCopied:Array<Dynamic>;
+
+	function addCustomUI():Void
+	{
+		var tab_group_custom = new FlxUI(null, UI_box);
+		tab_group_custom.name = 'MegaMod';
+
+		showMiniCharacters = new FlxUICheckBox(10, 15, null, null, "Show Mini Characters", 100);
+		showMiniCharacters.name = 'showMiniChars';
+		showMiniCharacters.checked = MiniChars.visible;
+
+		tab_group_custom.add(showMiniCharacters);
+
+		UI_box.addGroup(tab_group_custom);
+	}
 
 	function addSectionUI():Void
 	{
@@ -1449,60 +1526,7 @@ class ChartingState extends MusicBeatState
 		var tab_group_data = new FlxUI(null, UI_box);
 		tab_group_data.name = 'Data';
 
-		//
-		gameOverCharacterInputText = new FlxUIInputText(10, 25, 150, _song.gameOverChar != null ? _song.gameOverChar : '', 8);
-		blockPressWhileTypingOn.push(gameOverCharacterInputText);
-		
-		gameOverSoundInputText = new FlxUIInputText(10, gameOverCharacterInputText.y + 35, 150, _song.gameOverSound != null ? _song.gameOverSound : '', 8);
-		blockPressWhileTypingOn.push(gameOverSoundInputText);
-		
-		gameOverLoopInputText = new FlxUIInputText(10, gameOverSoundInputText.y + 35, 150, _song.gameOverLoop != null ? _song.gameOverLoop : '', 8);
-		blockPressWhileTypingOn.push(gameOverLoopInputText);
-		
-		gameOverEndInputText = new FlxUIInputText(10, gameOverLoopInputText.y + 35, 150, _song.gameOverEnd != null ? _song.gameOverEnd : '', 8);
-		blockPressWhileTypingOn.push(gameOverEndInputText);
-		//
 
-		var check_disableNoteRGB:FlxUICheckBox = new FlxUICheckBox(10, 170, null, null, "Disable Note RGB", 100);
-		check_disableNoteRGB.checked = (_song.disableNoteRGB == true);
-		check_disableNoteRGB.callback = function()
-		{
-			_song.disableNoteRGB = check_disableNoteRGB.checked;
-			updateGrid();
-			//trace('CHECKED!');
-		};
-
-		//
-		noteSkinInputText = new FlxUIInputText(10, 280, 150, _song.arrowSkin != null ? _song.arrowSkin : '', 8);
-		blockPressWhileTypingOn.push(noteSkinInputText);
-
-		noteSplashesInputText = new FlxUIInputText(noteSkinInputText.x, noteSkinInputText.y + 35, 150, _song.splashSkin != null ? _song.splashSkin : '', 8);
-		blockPressWhileTypingOn.push(noteSplashesInputText);
-
-		var reloadNotesButton:FlxButton = new FlxButton(noteSplashesInputText.x + 5, noteSplashesInputText.y + 20, 'Change Notes', function() {
-			_song.arrowSkin = noteSkinInputText.text;
-			updateGrid();
-		});
-		//
-		
-		tab_group_data.add(gameOverCharacterInputText);
-		tab_group_data.add(gameOverSoundInputText);
-		tab_group_data.add(gameOverLoopInputText);
-		tab_group_data.add(gameOverEndInputText);
-
-		tab_group_data.add(check_disableNoteRGB);
-		
-		tab_group_data.add(reloadNotesButton);
-		tab_group_data.add(noteSkinInputText);
-		tab_group_data.add(noteSplashesInputText);
-
-		tab_group_data.add(new FlxText(gameOverCharacterInputText.x, gameOverCharacterInputText.y - 15, 0, 'Game Over Character Name:'));
-		tab_group_data.add(new FlxText(gameOverSoundInputText.x, gameOverSoundInputText.y - 15, 0, 'Game Over Death Sound (sounds/):'));
-		tab_group_data.add(new FlxText(gameOverLoopInputText.x, gameOverLoopInputText.y - 15, 0, 'Game Over Loop Music (music/):'));
-		tab_group_data.add(new FlxText(gameOverEndInputText.x, gameOverEndInputText.y - 15, 0, 'Game Over Retry Music (music/):'));
-
-		tab_group_data.add(new FlxText(noteSkinInputText.x, noteSkinInputText.y - 15, 0, 'Note Texture:'));
-		tab_group_data.add(new FlxText(noteSplashesInputText.x, noteSplashesInputText.y - 15, 0, 'Note Splashes Texture:'));
 		UI_box.addGroup(tab_group_data);
 	}
 
@@ -2245,7 +2269,7 @@ class ChartingState extends MusicBeatState
 		bpmTxt.text =
 		Std.string(FlxMath.roundDecimal(Conductor.songPosition / 1000, 2)) + " / " + Std.string(FlxMath.roundDecimal(FlxG.sound.music.length / 1000, 2)) +
 		"\nSection: " + curSec +
-		"\n\nBeat: " + Std.string(curDecBeat).substring(0,4) +
+		"\n\nBeat: " + Std.string(curDecBeat).substring(0,90) +
 		"\n\nStep: " + curStep +
 		"\n\nBeat Snap: " + quantization + "th";
 
@@ -2892,7 +2916,7 @@ class ChartingState extends MusicBeatState
 				var note:Note = setupNoteData(i, false);
 				curRenderedNotes.add(note);
 
-				var text:String = 'Event: ' + note.eventName + ' (' + Math.floor(note.strumTime) + ' ms)' + '\nValue 1: ' + note.eventVal1 + '\nValue 2: ' + note.eventVal2;
+				var text:String = 'Event: ' + note.eventName + ' (' + Math.floor(note.strumTime) + ' ms)' + '\nValue 1: ' + note.eventVal1 + '\nValue 2: ' + note.eventVal2 + '\nValue 3: ' + note.eventVal3 + '\nValue 4: ' + note.eventVal4;
 				if(note.eventLength > 1) text = note.eventLength + ' Events:\n' + note.eventName;
 
 				var daText:AttachedFlxText = new AttachedFlxText(0, 0, 400, text, 12);
@@ -2962,6 +2986,8 @@ class ChartingState extends MusicBeatState
 			{
 				note.eventVal1 = i[1][0][1];
 				note.eventVal2 = i[1][0][2];
+				note.eventVal3 = i[1][0][3];
+				note.eventVal4 = i[1][0][4];
 			}
 			note.noteData = -1;
 			daNoteInfo = -1;
