@@ -7,6 +7,7 @@ import openfl.text.TextField;
 import flixel.FlxSubState;
 import flixel.effects.FlxFlicker;
 import flixel.addons.transition.FlxTransitionableState;
+import backend.WindowsAPI;
 
 class FlashingState extends MusicBeatState
 {
@@ -16,6 +17,8 @@ class FlashingState extends MusicBeatState
 	var PressText:FlxText;
 	override function create()
 	{
+		WindowsAPI.disableWindowTransparency(true);
+		Application.current.window.borderless = false;
 		super.create();
 
 
@@ -48,8 +51,8 @@ class FlashingState extends MusicBeatState
 			var back:Bool = controls.BACK;
 			if (controls.BACK || accept) {
 				leftState = true;
-				FlxTransitionableState.skipNextTransIn = true;
-				FlxTransitionableState.skipNextTransOut = true;
+				FlxTransitionableState.skipNextTransIn = false;
+				FlxTransitionableState.skipNextTransOut = false;
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();

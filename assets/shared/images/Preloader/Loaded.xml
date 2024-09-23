@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Loaded.png">
+	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="GameLoaded0000" x="1" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0001" x="1219" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0002" x="2437" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0003" x="3655" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0004" x="4873" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0005" x="6091" y="1" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0006" x="1" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0007" x="1219" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0008" x="2437" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0009" x="3655" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0010" x="4873" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0011" x="6091" y="878" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0012" x="1" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0013" x="1219" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0014" x="2437" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0015" x="3655" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0016" x="4873" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0017" x="6091" y="1755" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0018" x="1" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0019" x="1219" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0020" x="2437" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0021" x="3655" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0022" x="4873" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0023" x="6091" y="2632" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0024" x="1" y="3509" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0025" x="1219" y="3509" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0026" x="2437" y="3509" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0027" x="3655" y="3509" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0028" x="4873" y="3509" width="1217" height="876"/>
+	<SubTexture name="GameLoaded0029" x="6091" y="3509" width="1217" height="876"/>
+</TextureAtlas>

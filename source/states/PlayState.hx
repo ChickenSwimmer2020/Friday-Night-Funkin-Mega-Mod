@@ -22,6 +22,8 @@ import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
 import haxe.Json;
 
+import lime.app.Application;
+
 import cutscenes.CutsceneHandler;
 import cutscenes.DialogueBoxPsych;
 
@@ -2254,11 +2256,6 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = camZoom;
 						camZooming = true;
 					}
-
-		  	case 'Change Window Bar Color':
-					@:functionCode{'
-					
-					';}
 
 		    case 'Cinematics':
 				TopBar.loadGraphic(Paths.image('cinematics_topbar'));

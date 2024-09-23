@@ -110,8 +110,6 @@ class ChartingState extends MusicBeatState
 		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
 		['Set Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
 		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
-		//ADD LATER.
-		//['Change Window Bar Color', "Changes the window bar color\nDefault is \nValue 1: Color to change to\nDO NOT USE ON WINDOWS 10"],
 		['Cinematics', "Self explanitory.\nValue 1: top bar Y\nValue 2: top bar tween speed\nValue 3: bottom bar Y\nValue 4: bomttom bar tween speed\n\nDefaults:\nValue 1: {Y}\nValue 2: 1\nValue 3: -{Y}\nValue 4: 1"],
 		['Digital Bg Boom', "used in Ditigal\nValue 1: 0/1 = OFF/ON\nValue 2: 0/1 Do Nothing/Bop\nValue 3: Shader (TBA)"],
 	];

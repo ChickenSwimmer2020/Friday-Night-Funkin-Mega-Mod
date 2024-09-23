@@ -198,8 +198,8 @@ class TitleState extends MusicBeatState
 		MusicBeatState.switchState(new ChartingState());
 		#else
 		if(FlxG.save.data.flashing == null && !FlashingState.leftState) {
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
+			FlxTransitionableState.skipNextTransIn = false;
+			FlxTransitionableState.skipNextTransOut = false;
 			MusicBeatState.switchState(new FlashingState());
 		} else {
 			if (initialized)
@@ -611,8 +611,8 @@ function startmessage():Array<Array<String>>
 
 							FlxTween.tween(black, {alpha: 1}, 1, {onComplete:
 								function(twn:FlxTween) {
-									FlxTransitionableState.skipNextTransIn = true;
-									FlxTransitionableState.skipNextTransOut = true;
+									FlxTransitionableState.skipNextTransIn = false;
+									FlxTransitionableState.skipNextTransOut = false;
 									MusicBeatState.switchState(new TitleState());
 								}
 							});
