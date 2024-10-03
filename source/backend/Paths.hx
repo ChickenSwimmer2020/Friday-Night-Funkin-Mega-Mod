@@ -258,7 +258,7 @@ class Paths
 			if(retVal != null) return retVal;
 		}
 
-		trace('you named something wrong, or forgot to add it. file=($file)');
+		trace('FILE READ ERROR. $file NOT FOUND');
 		return null;
 	}
 

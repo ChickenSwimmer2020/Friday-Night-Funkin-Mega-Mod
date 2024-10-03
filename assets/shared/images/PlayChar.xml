@@ -4,5 +4,4 @@
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="playchar_ChickenSwimmer20200000" x="2" y="2" width="826" height="256"/>
 	<SubTexture name="playchar_boyfriend0000" x="2" y="260" width="826" height="256"/>
-	<SubTexture name="playchar_michiru0000" x="2" y="518" width="826" height="255"/>
 </TextureAtlas>

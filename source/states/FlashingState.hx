@@ -9,6 +9,8 @@ import flixel.effects.FlxFlicker;
 import flixel.addons.transition.FlxTransitionableState;
 import backend.WindowsAPI;
 
+//TODO: set all three of these screens to use the same state, saves on space and load times.
+
 class FlashingState extends MusicBeatState
 {
 	public static var leftState:Bool = false;

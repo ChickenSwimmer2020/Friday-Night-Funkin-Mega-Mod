@@ -13,19 +13,20 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 		);
 		addOption(option);
 
-		var option:Option = new Option('Caching',
-		'If Checked, ALL sprites are cached.\nWARNING. THIS TAKES A LOT OF RAM.\nDO NOT USE IF YOU DO NOT HAVE A LOT OF RAM',
-		'Cache',
-		'bool'
-		);
-		addOption(option);
-
 		var option:Option = new Option('Overlays',
 		'If checked, overlays for the healthbar/timebar are enabled',
 		'Overlays',
 		'bool'
 		);
 		addOption(option);
+
+		var option:Option = new Option('Additional song data files',
+		'If Checked, additional song data files will be loaded',
+		'AdditionalEffects',
+		'bool'
+		);
+		addOption(option);
+
 		////I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		//var option:Option = new Option('Downscroll', //Name
 		//	'If checked, notes go Down instead of Up, simple enough.', //Description
@@ -63,7 +64,6 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 
 	//function onChangeAutoPause()
 	//	FlxG.autoPause = ClientPrefs.data.autoPause;
-
 	override function create()
 		{
 			#if DISCORD_ALLOWED

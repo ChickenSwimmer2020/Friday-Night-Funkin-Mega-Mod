@@ -12,7 +12,6 @@ class FinalWarningState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
 
-
 	var warnText:FlxText;
 	var warnTextFL:FlxText;
 	var PressText:FlxText;
@@ -35,7 +34,7 @@ class FinalWarningState extends MusicBeatState
 			References to Sex\n
 			Additional Unlisted Content",
 			32);
-		warnTextFL = new FlxText(0, 0, FlxG.width,
+		warnTextFL = new FlxText(0, 0, FlxG.width, //flashing lights ver
 			"This is your final warning\n
 			This mod contains:\n
 			Flashing Lights (may be disabled depending on last choice)\n

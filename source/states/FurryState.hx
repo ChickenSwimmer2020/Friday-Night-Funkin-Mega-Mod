@@ -11,6 +11,8 @@ import flash.system.System;
 
 import haxe.Json;
 
+//TODO: set all three of these screens to use the same state, saves on space and load times.
+
 typedef OffsetDATA = 
 {	
 	BGx:Float,

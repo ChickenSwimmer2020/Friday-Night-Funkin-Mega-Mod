@@ -1,5 +1,6 @@
 package states;
 
+import openfl.media.Video;
 import flixel.FlxState;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
@@ -19,6 +20,7 @@ class GameIntro extends FlxState
 {  
     override function create()
     {
+
             new FlxTimer().start(1, function(guh:FlxTimer) // gives a bit delay
             {
                     startVideo('megamodintrovideo'); //put the video name here make sure the video on videos folder. you dont need to add like blabla.mp4 just blabla
@@ -27,14 +29,6 @@ class GameIntro extends FlxState
                 // Updating Discord Rich Presence
                 DiscordClient.changePresence("Intro Video", "watching");
             #end
-    }
-    override function update(elapsed)
-    {
-        FlxG.mouse.visible = false;
-        //uncomment this so if you press space or enter the intro will be skipped
-        // if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER){
-        // FlxG.switchState(new TitleState()); 
-        // }
     }
     function startVideo(name:String)
     {

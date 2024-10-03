@@ -127,7 +127,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
             
             // Report Issue
             reportIssue = CreateWindow("static",
-                "We recommend reporting the issue to the GitHub page:", // A copy of the error has been saved in \"crash.txt\" https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues
+                "We recommend reporting the issue to the GitHub page:", // A copy of the error has been saved in \"crash.txt\" https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues
                 WS_VISIBLE | WS_CHILD | WS_TABSTOP,
                 10, 380 - 18, 690 - 108, 16,
                 hwnd, NULL, hInstance, NULL);
@@ -135,7 +135,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
 
             // Report Issue Link
             githubLink = CreateWindow("static",
-                "https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues", // A copy of the error has been saved in \"crash.txt\"
+                "https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues", // A copy of the error has been saved in \"crash.txt\"
                 WS_VISIBLE | WS_CHILD | WS_TABSTOP | SS_NOTIFY,
                 10, 380, 690 - 108, 16,
                 hwnd, NULL, hInstance, NULL);
@@ -184,7 +184,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
             break;
         case WM_COMMAND:
             if ((HWND)lParam == githubLink) {
-                ShellExecute(NULL, "open", "https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues", NULL, NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, "open", "https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues", NULL, NULL, SW_SHOWNORMAL);
                 return TRUE;
             } else if ((HWND)lParam == closeButton) {
                 EndDialog(hwnd, IDOK);
@@ -206,70 +206,6 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
 #end
 class WindowsAPI {
     // i have now learned the power of the windows api, FEAR ME!!!
-    #if windows
-    @:functionCode('
-    HKEY hKey;
-    LPCTSTR data;
-
-    RegCreateKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\\\Classes\\\\YoshiCrafterEngineMod", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL);
-
-    char const *name = "YoshiCrafter Engine Mod";
-    RegSetValueEx(hKey, "", 0, REG_SZ, (BYTE*)name, strlen(name));
-    RegSetValueEx(hKey, "FriendlyTypeName", 0, REG_SZ, (BYTE*)name, strlen(name));
-
-
-    RegCreateKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\\\Classes\\\\YoshiCrafterEngineMod\\\\shell\\\\open\\\\command", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL);
-
-    std::string value;
-    value.append("\\"");
-    value.append(path);
-    value.append("\\" -install-mod \\"%1\\"");
-
-    char const *val = value.c_str();
-    RegSetValueEx(hKey, "", 0, REG_SZ, (BYTE*)val, strlen(val));
-
-    HKEY ycemodKey = nullptr;
-    if (RegOpenKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\\\Classes\\\\.ycemod", 0, KEY_READ, &ycemodKey) != ERROR_SUCCESS) {
-        RegCreateKeyEx(HKEY_CURRENT_USER, "SOFTWARE\\\\Classes\\\\.ycemod", 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &ycemodKey, NULL);
-
-        char const *name = "YoshiCrafterEngineMod";
-        RegSetValueEx(ycemodKey, "", 0, REG_SZ, (BYTE*)name, strlen(name));
-        SHChangeNotify(0x08000000, 0x0000, nullptr, nullptr);
-    }
-
-    ')
-    #end
-    public static function addFileAssoc(path:String):Int {
-        return 0;
-    }
-    #if windows
-    @:functionCode('
-    // https://stackoverflow.com/questions/15543571/allocconsole-not-displaying-cout
-
-    if (!AllocConsole())
-        return;
-
-    FILE* fDummy;
-    freopen_s(&fDummy, "CONOUT$", "w", stdout);
-    freopen_s(&fDummy, "CONOUT$", "w", stderr);
-    freopen_s(&fDummy, "CONIN$", "r", stdin);
-    std::cout.clear();
-    std::clog.clear();
-    std::cerr.clear();
-    std::cin.clear();
-
-    // std::wcout, std::wclog, std::wcerr, std::wcin
-    HANDLE hConOut = CreateFile(_T("CONOUT$"), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    HANDLE hConIn = CreateFile(_T("CONIN$"), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-    SetStdHandle(STD_OUTPUT_HANDLE, hConOut);
-    SetStdHandle(STD_ERROR_HANDLE, hConOut);
-    SetStdHandle(STD_INPUT_HANDLE, hConIn);
-    std::wcout.clear();
-    std::wclog.clear();
-    std::wcerr.clear();
-    std::wcin.clear();
-    ')
-    #end
     
     #if windows
     @:functionCode('
@@ -329,32 +265,6 @@ class WindowsAPI {
     ')
     #end
     public static function setWindowIcon(path:String) {
-
-    }
-
-    #if windows
-    @:functionCode('
-        HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); 
-        SetConsoleTextAttribute(console, color);
-    ')
-    #end
-    public static function __setConsoleColors(color:Int) {
-
-    }
-
-    public static function setConsoleColors(foregroundColor:ConsoleColor = LIGHTGRAY, ?backgroundColor:ConsoleColor = BLACK) {
-        var fg = cast(foregroundColor, Int);
-        var bg = cast(backgroundColor, Int);
-        __setConsoleColors((bg * 16) + fg);
-    }
-
-    #if windows
-    @:functionCode('
-        system("CLS");
-        std::cout<< "" <<std::flush;
-    ')
-    #end
-    public static function clearScreen() {
 
     }
 

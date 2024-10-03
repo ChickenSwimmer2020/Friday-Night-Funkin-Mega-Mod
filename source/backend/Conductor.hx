@@ -34,6 +34,10 @@ class Conductor
 
 		return data[data.length - 1];
 	}
+	/**
+   * Duration of a measure in milliseconds. Calculated based on bpm.
+   */
+
 
 	public static function getCrotchetAtTime(time:Float){
 		var lastChange = getBPMFromSeconds(time);

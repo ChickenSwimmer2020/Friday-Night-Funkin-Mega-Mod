@@ -70,6 +70,14 @@ class Digital extends BaseStage
 					camGame.setFilters([new ShaderFilter(CoolShader)]);
 				}
 		}
+	override public function createPost()
+		{
+			if(ClientPrefs.data.AdditionalEffects)
+				{
+					Functions.loadSongLuaFile('Digital');
+					trace('loaded song data file');
+				}
+		}
 
 	override function eventCalled(eventName:String, value1:String, value2:String, value3:String, flValue1:Null<Float>, flValue2:Null<Float>, flValue3:Null<Float>, strumTime:Float)
 	{

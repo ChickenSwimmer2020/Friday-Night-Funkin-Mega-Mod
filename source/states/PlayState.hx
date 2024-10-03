@@ -48,6 +48,7 @@ import openfl.filters.ShaderFilter;
 #end
 
 import objects.Note.EventNote;
+import objects.ComboMilestone;
 import objects.*;
 import states.stages.objects.*;
 
@@ -78,10 +79,18 @@ import tea.SScript;
  * "function eventEarlyTrigger" - Used for making your event start a few MILLISECONDS earlier
  * "function triggerEvent" - Called when the song hits your event's timestamp, this is probably what you were looking for
 **/
+
+ typedef AdvancedOffsetsDataFile = {
+	ComboMileStone_X:Float,
+	ComboMileStone_Y:Float
+}
+
 class PlayState extends MusicBeatState
 {
 	//used for the event to check if the camera should bop on beathit or sectionhit
 	public var BopOnBeat:Bool = false;
+
+	public var AdvOffsets:AdvancedOffsetsDataFile;
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
@@ -298,6 +307,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		//load advanced offsets
+		AdvOffsets = tjson.TJSON.parse(Paths.getTextFromFile('data/AdvancedOffsets.json'));
 		
 		Paths.image('PulgeBS');
 
@@ -312,6 +323,7 @@ class PlayState extends MusicBeatState
 			getoveritfucker.scale.x = 0.5;
 			getoveritfucker.scale.y = 0.5;
 			//spritesheet support
+			//TODO: swap this out for an atlas sheet
 			getoveritfucker.frames = Paths.getSparrowAtlas('IntroSprite');
 			getoveritfucker.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
 			getoveritfucker.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
@@ -431,8 +443,9 @@ class PlayState extends MusicBeatState
 
 		switch (curStage)
 		{
-			case 'stage': new states.stages.StageWeek1(); //Week 1
-			//case 'spooky': new states.stages.Spooky(); //Week 2 //kept for compatibility
+			case 'stage': new states.stages.StageWeek1(); //Week 1 //kept for compatibility and so that theres a base stage
+			case 'digi': new states.stages.Digital(); //digital
+			//case 'spooky': new states.stages.Spooky(); //Week 2 //kept for use of there objects.
 			//case 'philly': new states.stages.Philly(); //Week 3
 			//case 'limo': new states.stages.Limo(); //Week 4
 			//case 'mall': new states.stages.Mall(); //Week 5 - Cocoa, Eggnog
@@ -440,7 +453,6 @@ class PlayState extends MusicBeatState
 			//case 'school': new states.stages.School(); //Week 6 - Senpai, Roses
 			//case 'schoolEvil': new states.stages.SchoolEvil(); //Week 6 - Thorns
 			//case 'tank': new states.stages.Tank(); //Week 7 - Ugh, Guns, Stress
-			case 'digi': new states.stages.Digital(); //digital
 		}
 
 		if(isPixelStage) {
@@ -473,6 +485,7 @@ class PlayState extends MusicBeatState
 				#end
 			}
 		#end
+
 
 		// STAGE SCRIPTS
 		#if LUA_ALLOWED
@@ -1220,10 +1233,10 @@ class PlayState extends MusicBeatState
 	//	spr.cameras = [camHUD];
 	//	spr.scrollFactor.set();
 	//	spr.updateHitbox();
-//
+
 	//	if (PlayState.isPixelStage)
 	//		spr.setGraphicSize(Std.int(spr.width * daPixelZoom));
-//
+
 	//	spr.screenCenter();
 	//	spr.antialiasing = antialias;
 	//	insert(members.indexOf(noteGroup), spr);
@@ -1973,7 +1986,9 @@ class PlayState extends MusicBeatState
 							if (Conductor.songPosition - daNote.strumTime > noteKillOffset)
 							{
 								if (daNote.mustPress && !cpuControlled && !daNote.ignoreNote && !endingSong && (daNote.tooLate || !daNote.wasGoodHit))
-									noteMiss(daNote);
+									{
+										noteMiss(daNote);
+									}
 
 								daNote.active = daNote.visible = false;
 								invalidateNote(daNote);
@@ -3374,6 +3389,26 @@ class PlayState extends MusicBeatState
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
 		}
+		//COMBOMILESTONE!!!!!!!
+		var shouldShowComboText:Bool = false;
+		//this code is modified from base game, but the actual combo stuff is from base itself
+		if (SONG != null)
+			{
+				//remember to find out how to check if next section is not a playsection so that combo counter only appears at end of turn.
+				if(combo > 0)
+					shouldShowComboText = curBeat % 8 == 7;
+				//thanks solar!!
+				//modded to wait until after two sectrions by changing values
+					// This is the last beat of the section in 4/4 time signature.
+					// Making this dynamic with a custom section step amount is difficult, but possible.
+				//trace(combo);
+			}
+		if (shouldShowComboText)
+			{
+			  var animShit:ComboMilestone = new ComboMilestone(AdvOffsets.ComboMileStone_X, AdvOffsets.ComboMileStone_Y, combo);
+			  animShit.cameras = [camHUD];
+			  add(animShit);
+			}
 
 		if(BopOnBeat){
 			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)

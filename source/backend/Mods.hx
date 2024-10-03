@@ -122,6 +122,21 @@ class Mods
 		return foldersToCheck;
 	}
 
+	inline public static function internalDirectoriesWithFile(path:String, fileToFind:String, mods:Bool = true)
+		{
+			var foldersToCheck:Array<String> = [];
+			#if sys
+			if(FileSystem.exists(path + fileToFind))
+			#end
+				foldersToCheck.push(path + fileToFind);
+
+				// Then "PsychEngine/mods/" main folder
+				var folder:String = Paths.mods(fileToFind);
+				if(FileSystem.exists(folder) && !foldersToCheck.contains(folder)) foldersToCheck.push(Paths.getSharedPath(fileToFind));
+				
+			return foldersToCheck;
+		}
+
 	public static function getPack(?folder:String = null):Dynamic
 	{
 		#if MODS_ALLOWED

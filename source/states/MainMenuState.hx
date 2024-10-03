@@ -1,23 +1,26 @@
 package states;
 
-import substates.Prompt;
-import backend.WeekData;
-import backend.Achievements;
+import tjson.TJSON;
 import backend.ClientPrefs;
 
 import flixel.FlxObject;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.effects.FlxFlicker;
 
-import flixel.input.keyboard.FlxKey;
 import lime.app.Application;
 
-import objects.AchievementPopup;
 import states.editors.MasterEditorMenu;
 import options.OptionsState;
 
+typedef VersionInfo = {
+    Ultimate:String,
+    EngVer:String,
+    GameVer:String,
+    UpdNme:String
+}
+
 class MainMenuState extends MusicBeatState
 {
+    var gameVersionInformation:VersionInfo;
     // init var
     // used for the randomized characters
     var sketch:FlxSprite;
@@ -68,10 +71,7 @@ class MainMenuState extends MusicBeatState
 
     override function create()
     {
-        #if MODS_ALLOWED
-        Mods.pushGlobalMods();
-        #end
-        Mods.loadTopMod();
+        gameVersionInformation = tjson.TJSON.parse(Paths.getTextFromFile('data/Version.json'));
 
         camGame = new FlxCamera();
         camAchievement = new FlxCamera();
