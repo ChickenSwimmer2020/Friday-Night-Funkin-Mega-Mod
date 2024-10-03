@@ -29,10 +29,10 @@ class MainMenuState extends MusicBeatState
     //tween timer for the entry animations
     var TweenTimer:Float = 0.75;
 
-    public static var UltimateVersion:String = ' 1.0';
-    public static var psychEngineVersion:String = '0.7h';
-    public static var GameVersion:String = '0.0947DEV';
-    public static var UpdateName:String = 'The Pre-caching Update';
+    public static var UltimateVersion:String;
+    public static var psychEngineVersion:String;
+    public static var GameVersion:String;
+    public static var UpdateName:String;
 
     public var versionShitU:FlxText;
     public var versionShitE:FlxText;
@@ -72,6 +72,10 @@ class MainMenuState extends MusicBeatState
     override function create()
     {
         gameVersionInformation = tjson.TJSON.parse(Paths.getTextFromFile('data/Version.json'));
+            UltimateVersion = ' ' + gameVersionInformation.Ultimate;
+            psychEngineVersion = gameVersionInformation.EngVer;
+            GameVersion = gameVersionInformation.GameVer;
+            UpdateName = gameVersionInformation.UpdNme;
 
         camGame = new FlxCamera();
         camAchievement = new FlxCamera();
@@ -528,6 +532,11 @@ class MainMenuState extends MusicBeatState
             {
                 selectedSomethin = true;
                 MusicBeatState.switchState(new MasterEditorMenu());
+            }
+            else if (controls.justPressed('debug_3'))
+            {
+                selectedSomethin = true;
+                MusicBeatState.switchState(new CarrierState());
             }
             #end
         }

@@ -2,7 +2,6 @@ package states;
 
 import backend.WeekData;
 import backend.Highscore;
-
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -10,32 +9,13 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import haxe.Json;
-
 import openfl.Assets;
 import openfl.display.Bitmap;
 import openfl.display.BitmapData;
-
 import shaders.ColorSwap;
-
 import states.StoryMenuState;
 import states.MainMenuState;
 
-typedef TitleData =
-{
-	titlex:Float,
-	titley:Float,
-	startx:Float,
-	starty:Float,
-	bgx:Float,
-	bgy:Float,
-	bfx:Float,
-	bfy:Float,
-	textx:Float,
-	texty:Float,
-	squaresY:Float,
-	squaresX:Float,
-	bpm:Float
-}
 
 class TitleState extends MusicBeatState
 {
@@ -57,10 +37,11 @@ class TitleState extends MusicBeatState
 
 	var waitwhat:Bool;
 	var TweenComplete:Bool = false;
+
 	public var GameElapsedTime:Float;
 
 	var willhey:Bool = false;
-	
+
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
 
@@ -71,31 +52,32 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
-	var titleJSON:TitleData;
-
 	public static var updateVersion:String = '';
 
 	override public function create():Void
 	{
-		new FlxTimer().start(2, function (tmr:FlxTimer) { MMlogo.animation.play('shine', true); }, 99999999);
-		//random int code for the 1 in 10000 chance for bf to flip off the player
+		new FlxTimer().start(2, function(tmr:FlxTimer)
+		{
+			MMlogo.animation.play('shine', true);
+		}, 99999999);
+		// random int code for the 1 in 10000 chance for bf to flip off the player
 		var penis:Int;
 		penis = FlxG.random.int(1, 10000);
-		if(penis == 10000)
-			{
-				fuckoff = true;
-				willhey = false;
-			}
-		else if(penis < 10000)
-			{
-				fuckoff = false;
-				willhey = true;
-			}
+		if (penis == 10000)
+		{
+			fuckoff = true;
+			willhey = false;
+		}
+		else if (penis < 10000)
+		{
+			fuckoff = false;
+			willhey = true;
+		}
 
-		if(!ClientPrefs.data.Cache)
-			{
-				Paths.clearStoredMemory();
-			}
+		if (!ClientPrefs.data.Cache)
+		{
+			Paths.clearStoredMemory();
+		}
 
 		FlxG.fixedTimestep = false;
 		FlxG.game.focusLostFramerate = 60;
@@ -119,15 +101,12 @@ class TitleState extends MusicBeatState
 
 		Highscore.load();
 
-		// IGNORE THIS!!!
-		titleJSON = tjson.TJSON.parse(Paths.getTextFromFile('data/TitleScreen/MenuLocations.json'));
-
-		if(!initialized)
+		if (!initialized)
 		{
-			if(FlxG.save.data != null && FlxG.save.data.fullscreen)
+			if (FlxG.save.data != null && FlxG.save.data.fullscreen)
 			{
 				FlxG.fullscreen = FlxG.save.data.fullscreen;
-				//trace('LOADED FULLSCREEN SETTING!!');
+				// trace('LOADED FULLSCREEN SETTING!!');
 			}
 			persistentUpdate = true;
 			persistentDraw = true;
@@ -139,11 +118,14 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
-		if(FlxG.save.data.flashing == null && !FlashingState.leftState) {
+		if (FlxG.save.data.flashing == null && !FlashingState.leftState)
+		{
 			FlxTransitionableState.skipNextTransIn = false;
 			FlxTransitionableState.skipNextTransOut = false;
 			MusicBeatState.switchState(new FlashingState());
-		} else {
+		}
+		else
+		{
 			if (initialized)
 				startIntro();
 			else
@@ -161,6 +143,10 @@ class TitleState extends MusicBeatState
 	var squars:FlxSprite;
 	var bumpleft:Bool = false;
 	var BGboom:FlxSprite;
+	var VersionNumber:FlxSprite;
+	#if DEBUG
+		var Dev:FlxSprite;
+	#end
 	var bopLeft:Bool = false;
 	var hey:Bool = false;
 	var fuckoff:Bool = false;
@@ -173,13 +159,14 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
-			if(FlxG.sound.music == null) {
+			if (FlxG.sound.music == null)
+			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 			}
 		}
 		waitwhat = false;
 
-		Conductor.bpm = titleJSON.bpm;
+		Conductor.bpm = 114;
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite();
@@ -187,23 +174,22 @@ class TitleState extends MusicBeatState
 		bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 
 		DAFUQWHAT = new FlxSprite(0, 0);
-		//DAFUQWHAT.screenCenter(X);
-		//DAFUQWHAT.screenCenter(Y);
+		// DAFUQWHAT.screenCenter(X);
+		// DAFUQWHAT.screenCenter(Y);
 		DAFUQWHAT.scale.x = 1.1;
-		DAFUQWHAT.scale.y = 1.1; //might swap these for FlxG.width and FlxG.height respectivly
+		DAFUQWHAT.scale.y = 1.1; // might swap these for FlxG.width and FlxG.height respectivly
 		DAFUQWHAT.frames = Paths.getSparrowAtlas('TitleScreen/TitleTextBG');
 		DAFUQWHAT.animation.addByIndices('Left', 'lebg', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "", 24, false);
 		DAFUQWHAT.animation.addByIndices('Right', 'lebg', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "", 24, false);
 		DAFUQWHAT.animation.addByPrefix('up', 'lebgUP', 24, false);
 		DAFUQWHAT.antialiasing = ClientPrefs.data.antialiasing;
 		DAFUQWHAT.visible = false;
-	
 
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
+		logoBl = new FlxSprite(-75, -100);
 		logoBl.frames = Paths.getSparrowAtlas('TitleScreen/logoBumpin');
 		logoBl.animation.addByIndices('bumpleft', 'logo bumpin', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", false);
 		logoBl.animation.addByIndices('bumpright', 'logo bumpin', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", false);
@@ -214,29 +200,40 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		
-		MMlogo = new FlxSprite(titleJSON.textx, titleJSON.texty);
+		MMlogo = new FlxSprite(810, 267);
 		MMlogo.frames = Paths.getSparrowAtlas('TitleScreen/MMlogo');
 		MMlogo.animation.addByPrefix('shine', 'MENU_megamod', 24, false);
 		MMlogo.antialiasing = ClientPrefs.data.antialiasing;
-		MMlogo.scale.x = 0.5;
-		MMlogo.scale.y = 0.5;
+		MMlogo.scale.set(0.5, 0.5);
 
-		if(ClientPrefs.data.shaders) swagShader = new ColorSwap();
-		BGboom = new FlxSprite(titleJSON.bgx, titleJSON.bgy);
+		if (ClientPrefs.data.shaders)
+			swagShader = new ColorSwap();
+		BGboom = new FlxSprite(0, 295);
 		BGboom.antialiasing = ClientPrefs.data.antialiasing;
-		bfBop = new FlxSprite(titleJSON.bfx, titleJSON.bfy);
+		bfBop = new FlxSprite(700, 0);
 		bfBop.antialiasing = ClientPrefs.data.antialiasing;
-		squars = new FlxSprite(titleJSON.squaresX, titleJSON.squaresY);
+		squars = new FlxSprite(0, 0);
 		squars.antialiasing = ClientPrefs.data.antialiasing;
-
 
 		BGboom.frames = Paths.getSparrowAtlas('TitleScreen/bgcool');
 		BGboom.animation.addByIndices('bounceleft', 'bgcool', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
 		BGboom.animation.addByIndices('bounceright', 'bgcool', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+
+		VersionNumber = new FlxSprite(BGboom.x + 250, BGboom.y);
+		VersionNumber.scale.set(0.5, 0.5);
+		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
+		VersionNumber.animation.addByPrefix('Ver', 'VersionNumber', 24, true);
+		VersionNumber.animation.play('Ver');
+		#if DEBUG
+		Dev = new FlxSprite(VersionNumber.x + 0, VersionNumber.y - 0);
+		Dev.scale.set(0.5, 0.5);
+		Dev.frames = Paths.getSparrowAtlas('TitleScreen/DeveloperMode');
+		Dev.animation.addByPrefix('dev', 'menu_debug', 24, true);
+		Dev.animation.play('dev');
+		#end
+
 		bfBop.frames = Paths.getSparrowAtlas('TitleScreen/bfBopTitle');
-		bfBop.animation.addByIndices('Bop', 'boyfriend_menu', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9,], "", 24, false);
-		bfBop.animation.addByIndices('Blink', 'boyfriend_menu', [10, 11, 12, 13, 14, 15, 16, 17, 18], "", 24, false);
+		bfBop.animation.addByIndices('Bop', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10,11,12,13], "", 24, false);
 		bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 		bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
 		bfBop.scale.x = 1;
@@ -247,9 +244,11 @@ class TitleState extends MusicBeatState
 		add(squars);
 		add(bfBop);
 		add(BGboom);
+		#if DEBUG add(Dev); #end
+		add(VersionNumber);
 		add(MMlogo);
 		add(logoBl);
-		if(swagShader != null)
+		if (swagShader != null)
 		{
 			BGboom.shader = swagShader.shader;
 			bfBop.shader = swagShader.shader;
@@ -257,7 +256,7 @@ class TitleState extends MusicBeatState
 			squars.shader = swagShader.shader;
 		}
 
-		titleText = new FlxSprite(titleJSON.startx, titleJSON.starty);
+		titleText = new FlxSprite(635, 625);
 		titleText.frames = Paths.getSparrowAtlas('TitleScreen/titleEnter');
 		titleText.scale.x = 0.62;
 		titleText.scale.y = 0.62;
@@ -266,20 +265,22 @@ class TitleState extends MusicBeatState
 			titleText.animation.findByPrefix(animFrames, "ENTER IDLE");
 			titleText.animation.findByPrefix(animFrames, "ENTER FREEZE");
 		}
-		
-		if (animFrames.length > 0) {
+
+		if (animFrames.length > 0)
+		{
 			newTitle = true;
-			
+
 			titleText.animation.addByPrefix('idle', "ENTER IDLE", 24);
 			titleText.animation.addByPrefix('press', ClientPrefs.data.flashing ? "ENTER PRESSED" : "ENTER FREEZE", 24);
 		}
-		else {
+		else
+		{
 			newTitle = false;
-			
+
 			titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
 			titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
 		}
-		
+
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
@@ -311,22 +312,22 @@ class TitleState extends MusicBeatState
 		ngSpr.y += 25;
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
-		//OLD
-		//CSLogo = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('TitleScreen/ChickenSwimmer2020_logo'));
-		//add(CSLogo);
-		//CSLogo.visible = false;
-		//CSLogo.setGraphicSize(Std.int(CSLogo.width * 0.8));
-		//CSLogo.updateHitbox();
-		//CSLogo.screenCenter(X);
-		//CSLogo.antialiasing = ClientPrefs.data.antialiasing;
-		
-		//NEW
+		// OLD
+		// CSLogo = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('TitleScreen/ChickenSwimmer2020_logo'));
+		// add(CSLogo);
+		// CSLogo.visible = false;
+		// CSLogo.setGraphicSize(Std.int(CSLogo.width * 0.8));
+		// CSLogo.updateHitbox();
+		// CSLogo.screenCenter(X);
+		// CSLogo.antialiasing = ClientPrefs.data.antialiasing;
+
+		// NEW
 		CSLogo = new FlxSprite(0, 200);
 		add(CSLogo);
 		CSLogo.frames = Paths.getSparrowAtlas('TitleScreen/ChickenSwimmer2020_logo');
 		CSLogo.animation.addByPrefix('Apper', 'CSLogo', 24, false, false, false);
 		CSLogo.visible = false;
-		//CSLogo.setGraphicSize(Std.int(CSLogo.width * 0.8));
+		// CSLogo.setGraphicSize(Std.int(CSLogo.width * 0.8));
 		CSLogo.updateHitbox();
 		CSLogo.scale.set(0.5, 0.5);
 		CSLogo.screenCenter(X);
@@ -344,10 +345,10 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 			initialized = true;
-		if(!ClientPrefs.data.Cache)
-			{
-				Paths.clearUnusedMemory();
-			}
+		if (!ClientPrefs.data.Cache)
+		{
+			Paths.clearUnusedMemory();
+		}
 		// credGroup.add(credTextShit);
 	}
 
@@ -364,9 +365,8 @@ class TitleState extends MusicBeatState
 
 		return swagGoodArray;
 	}
-		
-		
-	function getUpdateJokeTextShit():Array<Array<String>>	
+
+	function getUpdateJokeTextShit():Array<Array<String>>
 	{
 		var fullText:String = Assets.getText(Paths.txt('TitleScreen/UpdateJokes'));
 		var firstArray:Array<String> = fullText.split('\n');
@@ -379,8 +379,8 @@ class TitleState extends MusicBeatState
 
 		return swagGoodArray;
 	}
-	
-function hahaFunnyDevJokeTextBitch():Array<Array<String>>
+
+	function hahaFunnyDevJokeTextBitch():Array<Array<String>>
 	{
 		var fullText:String = Assets.getText(Paths.txt('TitleScreen/devJokes'));
 		var firstArray:Array<String> = fullText.split('\n');
@@ -393,8 +393,8 @@ function hahaFunnyDevJokeTextBitch():Array<Array<String>>
 
 		return swagGoodArray;
 	}
-	
-function startmessage():Array<Array<String>>
+
+	function startmessage():Array<Array<String>>
 	{
 		var fullText:String = Assets.getText(Paths.txt('TitleScreen/startLine'));
 		var firstArray:Array<String> = fullText.split('\n');
@@ -409,8 +409,9 @@ function startmessage():Array<Array<String>>
 	}
 
 	var transitioning:Bool = false;
+
 	private static var playJingle:Bool = false;
-	
+
 	var newTitle:Bool = false;
 	var titleTimer:Float = 0;
 
@@ -420,7 +421,6 @@ function startmessage():Array<Array<String>>
 		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-		 
 
 		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
@@ -431,10 +431,12 @@ function startmessage():Array<Array<String>>
 			if (gamepad.justPressed.START)
 				pressedEnter = true;
 		}
-		
-		if (newTitle) {
+
+		if (newTitle)
+		{
 			titleTimer += FlxMath.bound(elapsed, 0, 1);
-			if (titleTimer > 2) titleTimer -= 2;
+			if (titleTimer > 2)
+				titleTimer -= 2;
 		}
 
 		if (initialized && !transitioning && skippedIntro)
@@ -444,57 +446,61 @@ function startmessage():Array<Array<String>>
 				var timer:Float = titleTimer;
 				if (timer >= 1)
 					timer = (-timer) + 2;
-				
+
 				timer = FlxEase.quadInOut(timer);
-				
+
 				titleText.color = FlxColor.interpolate(titleTextColors[0], titleTextColors[1], timer);
 				titleText.alpha = FlxMath.lerp(titleTextAlphas[0], titleTextAlphas[1], timer);
 			}
-			
-			if(pressedEnter)
-			{	
+
+			if (pressedEnter)
+			{
 				#if desktop
 				// Updating Discord Rich Presence
 				DiscordClient.changePresence("Title", "Heading to the Main Menu");
 				#end
 				titleText.color = FlxColor.WHITE;
 				titleText.alpha = 1;
-				
-				if(titleText != null) titleText.animation.play('press');
-					if(!fuckoff && willhey)
-						{
-							hey = true;
-							fuckoff = false;
-							bfBop.animation.play('hey');
-							bfBop.x = titleJSON.bfx + 100;
-							bfBop.y = titleJSON.bfy - 50;
-						}
-					else if(fuckoff && !willhey)
-						{
-							fuckoff = true;
-							hey = false;
-							bfBop.animation.play('fuck');
-						}
-					if(ClientPrefs.data.flashing){
-						FlxG.camera.flash(FlxColor.WHITE, 1);
-					}
+
+				if (titleText != null)
+					titleText.animation.play('press');
+				if (!fuckoff && willhey)
+				{
+					hey = true;
+					fuckoff = false;
+					bfBop.animation.play('hey');
+					bfBop.x += 100;
+					bfBop.y -= 50;
+				}
+				else if (fuckoff && !willhey)
+				{
+					fuckoff = true;
+					hey = false;
+					bfBop.animation.play('fuck');
+				}
+				if (ClientPrefs.data.flashing)
+				{
+					FlxG.camera.flash(FlxColor.WHITE, 1);
+				}
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 				transitioning = true;
 				// FlxG.sound.music.stop();
 
-				//originally worked like this, swapped to do after the player hey animation simply because yes.
-				//new FlxTimer().start(1, function(tmr:FlxTimer)
-				//{
+				// originally worked like this, swapped to do after the player hey animation simply because yes.
+				// new FlxTimer().start(1, function(tmr:FlxTimer)
+				// {
 				//	MusicBeatState.switchState(new MainMenuState());
 				//	closedState = true;
-				//});
-				//works like this now
-				bfBop.animation.finishCallback = function(huh) {
-					//if(!closedState && skippedIntro) { dont use that! fuckes it up if you go back to this screen after going to the game
-					if(skippedIntro) {
+				// });
+				// works like this now
+				bfBop.animation.finishCallback = function(huh)
+				{
+					// if(!closedState && skippedIntro) { dont use that! fuckes it up if you go back to this screen after going to the game
+					if (skippedIntro)
+					{
 						MusicBeatState.switchState(new MainMenuState());
-						closedState = true; 
+						closedState = true;
 					}
 				}
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
@@ -507,10 +513,12 @@ function startmessage():Array<Array<String>>
 			FlxG.sound.music.time = 38000;
 		}
 
-		if(swagShader != null)
+		if (swagShader != null)
 		{
-			if(controls.UI_LEFT) swagShader.hue -= elapsed * 0.1;
-			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
+			if (controls.UI_LEFT)
+				swagShader.hue -= elapsed * 0.1;
+			if (controls.UI_RIGHT)
+				swagShader.hue += elapsed * 0.1;
 		}
 
 		super.update(elapsed);
@@ -523,7 +531,8 @@ function startmessage():Array<Array<String>>
 			var money:Alphabet = new Alphabet(0, 0, textArray[i], true);
 			money.screenCenter(X);
 			money.y += (i * 60) + 200 + offset;
-			if(credGroup != null && textGroup != null) {
+			if (credGroup != null && textGroup != null)
+			{
 				credGroup.add(money);
 				textGroup.add(money);
 			}
@@ -532,7 +541,8 @@ function startmessage():Array<Array<String>>
 
 	function addMoreText(text:String, ?offset:Float = 0)
 	{
-		if(textGroup != null && credGroup != null) {
+		if (textGroup != null && credGroup != null)
+		{
 			var coolText:Alphabet = new Alphabet(0, 0, text, true);
 			coolText.screenCenter(X);
 			coolText.y += (textGroup.length * 60) + 200 + offset;
@@ -550,54 +560,58 @@ function startmessage():Array<Array<String>>
 		}
 	}
 
-	private var sickBeats:Int = 0; //Basically curBeat but won't be skipped if you hold the tab or resize the screen
+	private var sickBeats:Int = 0; // Basically curBeat but won't be skipped if you hold the tab or resize the screen
+
 	public static var closedState:Bool = false;
+
 	override function beatHit()
 	{
 		super.beatHit();
 
-		if(squars != null)
-			squars.animation.play('SQUAR?!', true);
+		if (squars != null) //as much as i liked the bopping, i need to fix it :(
+			squars.animation.play('SQUAR?!', false);
 
-		if(logoBl != null){
+		if (logoBl != null)
+		{
 			bumpleft = !bumpleft;
 			if (bumpleft)
 			{
 				logoBl.animation.play('bumpleft');
-				if(TweenComplete)
-					{
-						FlxTween.tween(FlxG.camera, {zoom:1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
-					}
+				if (TweenComplete)
+				{
+					FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
+				}
 			}
-				
 			else
 			{
 				logoBl.animation.play('bumpright');
-				if(TweenComplete)
-					{
-						FlxTween.tween(FlxG.camera, {zoom:1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
-					}
+				if (TweenComplete)
+				{
+					FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
+				}
 			}
-				
 		}
 
-		if(bfBop != null && !hey){
+		if (bfBop != null && !hey)
+		{
 			bopLeft = !bopLeft;
-			if (bopLeft)
-				bfBop.animation.play('Bop');
+			if (bopLeft && !hey)
+				bfBop.animation.play('Bop', true);
 			else if (!hey)
-				bfBop.animation.play('Blink');
+				bfBop.animation.play('bop', true);
 		}
 
-		if(DAFUQWHAT != null && !waitwhat){
+		if (DAFUQWHAT != null && !waitwhat)
+		{
 			DAFUQWHATLEFTY = !DAFUQWHATLEFTY;
-		if(DAFUQWHATLEFTY)
-			DAFUQWHAT.animation.play('Left', true);
-		else
-			DAFUQWHAT.animation.play('Right', true);
+			if (DAFUQWHATLEFTY)
+				DAFUQWHAT.animation.play('Left', true);
+			else
+				DAFUQWHAT.animation.play('Right', true);
 		}
 
-		if(BGboom != null){
+		if (BGboom != null)
+		{
 			boomleft = !boomleft;
 			if (boomleft)
 				BGboom.animation.play('bounceleft');
@@ -605,228 +619,246 @@ function startmessage():Array<Array<String>>
 				BGboom.animation.play('bounceright');
 		}
 
-
-		if(!closedState) {
+		if (!closedState)
+		{
 			sickBeats++;
 			switch (sickBeats)
 			{
 				case 1:
-					//FlxG.sound.music.stop();
+					// FlxG.sound.music.stop();
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
-					case 2:
-						#if PSYCH_WATERMARKS
-						createCoolText(['Psych Engine by'], 40);
-						#else
-						//createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-						#end
-					case 4:
-						#if PSYCH_WATERMARKS
-						addMoreText('Shadow Mario', 40);
-						addMoreText('Riveren', 40);
-						#else
-						addMoreText('present');
-						#end
-					case 5:
-						deleteCoolText();
-					case 6:
-						createCoolText(['Not associated', 'with'], -40);
-					case 8:
-						addMoreText('newgrounds', -40);
-						ngSpr.visible = true;
-					case 9:
-						deleteCoolText();
-						ngSpr.visible = false;
-					case 10:
-						createCoolText([curWacky[0]]);
-					case 12:
-						addMoreText(curWacky[1]);
-					case 13:
-						deleteCoolText();
-					case 14:
-						createCoolText(['one man team'], -40);
-					case 15:
-						createCoolText(['ChickenSwimmer2020'], 20);
-						CSLogo.visible = true;
-						CSLogo.animation.play('Apper', true);
-					case 16:
-						createCoolText(['my man'], 90);
-					case 17:
-						deleteCoolText();
-						FlxTween.tween(CSLogo, { y: CSLogo.y - 200, alpha: 0}, 0.5, {
-							ease: FlxEase.circIn,
-							onComplete: function(Twn:FlxTween) {
-								CSLogo.visible = false;
-							},
-						});
-					case 18:
-						createCoolText(['what else do i say,']);
-					case 20:
-						addMoreText('subscribe?');
-						YTLogo.visible = true;
-					case 22:
-						deleteCoolText();
-						FlxTween.tween(YTLogo, { y: YTLogo.y - 200}, 0.5, {
-							ease: FlxEase.circOut,
-						});
-					case 23:
-						FlxTween.tween(YTLogo, { alpha: 0}, 0.5, {
-							ease: FlxEase.circIn,
-							onComplete: function(Twn:FlxTween) {
-								YTLogo.visible = false;
-							},
-						});
-						if(!skippedIntro) { FlxG.sound.play(Paths.sound('bruh')); };
-					case 25:
-						createCoolText([updateJoke[0]]);
-					case 27:
-						addMoreText(updateJoke[1]);
-					case 28:
-						deleteCoolText();
-					case 29:
-						createCoolText([devJoke[0]]);
-					case 31:
-						addMoreText(devJoke[1]);
-					case 32:
-						deleteCoolText();
-					case 33:
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-						}
-						DAFUQWHAT.visible = true;
-						createCoolText(['Woah!']);
-					case 34:
-						deleteCoolText();
-					case 36:
-						createCoolText(['guitar hero']);
-						addMoreText('guitar support');
-					case 38:
-						addMoreText('coming soon!');
-					case 39:
-						deleteCoolText();
-					case 41:
-						createCoolText(['so much time, so little to do!']);
-					case 42:
-						addMoreText('wait, scratch that.');
-						addMoreText('flip it around');
-					case 43:
-						addMoreText('willy wonka - 1971');
-					case 44:
-						deleteCoolText();
-					case 45:
-						createCoolText(['now made with the']);
-					case 47:
-						addMoreText('CS20 Engine!');
-					case 48:
-						deleteCoolText();
-						createCoolText(['CS20 ENGINE IS PSYCH']);
-						addMoreText('BUT HEAVILY MODIFIED');
-					case 49:
-						deleteCoolText();
-					case 51:
-						#if DEBUG
-						createCoolText(['Hi Developer!']);
-						#else
-						createCoolText(['Welcome Player!']);
-						#end
-					case 53:
-						#if DEBUG
-						addMoreText('Remember to build to release');
-						#else
-						addMoreText('To a massive');
-						#end
-					case 55:
-						#if DEBUG
-						addMoreText('to test this message!');
-						#else
-						addMoreText('Passion Project');
-						#end
-					case 56:
-						deleteCoolText();
-					case 58:
-						createCoolText(['Now With More Jokes!']);
-					case 59:
-						deleteCoolText();
-					case 60:
-						createCoolText(['THE START LINES ARE RANDOM']);
-					case 61:
-						addMoreText('AND I DONT MEAN THEM.');
-						addMoreText('MY FRIENDS GAVE EM');
-					case 63:
-						deleteCoolText();
-					case 65:
-						waitwhat = true;
-						DAFUQWHAT.animation.curAnim.curFrame = 0;
-					case 66:
-						waitwhat = true;
-					case 67:
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-							FlxTween.tween(FlxG.camera, {zoom:1.25}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-							}
-							createCoolText(['Friday']);
-							DAFUQWHAT.animation.play('up');
-					case 68:
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-							FlxTween.tween(FlxG.camera, {zoom:1.5}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-							}
-							addMoreText('Night');
-							DAFUQWHAT.animation.play('up');
-					case 69:
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-							FlxTween.tween(FlxG.camera, {zoom:1.75}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-							}
-							addMoreText('Funkin');
-							DAFUQWHAT.animation.play('up');
-					case 70:
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-							FlxTween.tween(FlxG.camera, {zoom:2}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
-							}
-							addMoreText('MegaMod!');
-							DAFUQWHAT.animation.play('up');
-					case 71:
-						deleteCoolText();
-						createCoolText(['V5!'], 140);
-						if(ClientPrefs.data.flashing && !skippedIntro){
-							FlxG.camera.flash(FlxColor.WHITE, 0.5);
-							FlxTween.tween(FlxG.camera, {zoom:3}, 0.1, {ease: FlxEase.quadIn, type: ONESHOT});
-						}
-					case 72:
-						deleteCoolText();
-						createCoolText([brahdafack[0]], 140);
-							trace('startLine by: ' + brahdafack[1]);
-						FlxTween.tween(FlxG.camera, {zoom:1}, 0.5, {ease: FlxEase.quintInOut, type: ONESHOT});
-						DAFUQWHAT.animation.play('up');
-					case 73:
-						DAFUQWHAT.visible = false;
-						skipIntro();
+				case 2:
+					#if PSYCH_WATERMARKS
+					createCoolText(['Psych Engine by'], 40);
+					#else
+					// createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+					#end
+				case 4:
+					#if PSYCH_WATERMARKS
+					addMoreText('Shadow Mario', 40);
+					addMoreText('Riveren', 40);
+					#else
+					addMoreText('present');
+					#end
+				case 5:
+					deleteCoolText();
+				case 6:
+					createCoolText(['Not associated', 'with'], -40);
+				case 8:
+					addMoreText('newgrounds', -40);
+					ngSpr.visible = true;
+				case 9:
+					deleteCoolText();
+					ngSpr.visible = false;
+				case 10:
+					createCoolText([curWacky[0]]);
+				case 12:
+					addMoreText(curWacky[1]);
+				case 13:
+					deleteCoolText();
+				case 14:
+					createCoolText(['one man team'], -40);
+				case 15:
+					createCoolText(['ChickenSwimmer2020'], 20);
+					CSLogo.visible = true;
+					CSLogo.animation.play('Apper', true);
+				case 16:
+					createCoolText(['my man'], 90);
+				case 17:
+					deleteCoolText();
+					FlxTween.tween(CSLogo, {y: CSLogo.y - 200, alpha: 0}, 0.5, {
+						ease: FlxEase.circIn,
+						onComplete: function(Twn:FlxTween)
+						{
+							CSLogo.visible = false;
+						},
+					});
+				case 18:
+					createCoolText(['what else do i say,']);
+				case 20:
+					addMoreText('subscribe?');
+					YTLogo.visible = true;
+				case 22:
+					deleteCoolText();
+					FlxTween.tween(YTLogo, {y: YTLogo.y - 200}, 0.5, {
+						ease: FlxEase.circOut,
+					});
+				case 23:
+					FlxTween.tween(YTLogo, {alpha: 0}, 0.5, {
+						ease: FlxEase.circIn,
+						onComplete: function(Twn:FlxTween)
+						{
+							YTLogo.visible = false;
+						},
+					});
+					if (!skippedIntro)
+					{
+						FlxG.sound.play(Paths.sound('bruh'));
+					};
+				case 25:
+					createCoolText([updateJoke[0]]);
+				case 27:
+					addMoreText(updateJoke[1]);
+				case 28:
+					deleteCoolText();
+				case 29:
+					createCoolText([devJoke[0]]);
+				case 31:
+					addMoreText(devJoke[1]);
+				case 32:
+					deleteCoolText();
+				case 33:
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+					}
+					DAFUQWHAT.visible = true;
+					createCoolText(['Woah!']);
+				case 34:
+					deleteCoolText();
+				case 36:
+					createCoolText(['guitar hero']);
+					addMoreText('guitar support');
+				case 38:
+					addMoreText('coming soon!');
+				case 39:
+					deleteCoolText();
+				case 41:
+					createCoolText(['so much time, so little to do!']);
+				case 42:
+					addMoreText('wait, scratch that.');
+					addMoreText('flip it around');
+				case 43:
+					addMoreText('willy wonka - 1971');
+				case 44:
+					deleteCoolText();
+				case 45:
+					createCoolText(['now made with the']);
+				case 47:
+					addMoreText('CS20 Engine!');
+				case 48:
+					deleteCoolText();
+					createCoolText(['CS20 ENGINE IS PSYCH']);
+					addMoreText('BUT HEAVILY MODIFIED');
+				case 49:
+					deleteCoolText();
+				case 51:
+					#if DEBUG
+					createCoolText(['Hi Developer!']);
+					#else
+					createCoolText(['Welcome Player!']);
+					#end
+				case 53:
+					#if DEBUG
+					addMoreText('Remember to build to release');
+					#else
+					addMoreText('To a massive');
+					#end
+				case 55:
+					#if DEBUG
+					addMoreText('to test this message!');
+					#else
+					addMoreText('Passion Project');
+					#end
+				case 56:
+					deleteCoolText();
+				case 58:
+					createCoolText(['Now With More Jokes!']);
+				case 59:
+					//donothing
+				case 60:
+					deleteCoolText();
+					createCoolText(['THE START LINES ARE RANDOM']);
+				case 61:
+					addMoreText('AND I DONT MEAN THEM.');
+				case 63:
+					addMoreText('MY FRIENDS GAVE EM');
+				case 65:
+					deleteCoolText();
+					waitwhat = true;
+					DAFUQWHAT.animation.curAnim.curFrame = 0;
+				case 66:
+					waitwhat = true;
+				case 67:
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+					}
+					createCoolText(['Friday']);
+					DAFUQWHAT.animation.play('up');
+				case 68:
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						FlxTween.tween(FlxG.camera, {zoom: 1.5}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+					}
+					addMoreText('Night');
+					DAFUQWHAT.animation.play('up');
+				case 69:
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						FlxTween.tween(FlxG.camera, {zoom: 1.75}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+					}
+					addMoreText('Funkin');
+					DAFUQWHAT.animation.play('up');
+				case 70:
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						FlxTween.tween(FlxG.camera, {zoom: 2}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
+					}
+					addMoreText('MegaMod!');
+					DAFUQWHAT.animation.play('up');
+				case 71:
+					deleteCoolText();
+					createCoolText(['V5!'], 140);
+					if (ClientPrefs.data.flashing && !skippedIntro)
+					{
+						FlxG.camera.flash(FlxColor.WHITE, 0.5);
+						FlxTween.tween(FlxG.camera, {zoom: 3}, 0.1, {ease: FlxEase.quadIn, type: ONESHOT});
+					}
+				case 72:
+					deleteCoolText();
+					createCoolText([brahdafack[0]], 140);
+					trace('startLine by: ' + brahdafack[1]);
+					FlxTween.tween(FlxG.camera, {zoom: 1}, 0.5, {ease: FlxEase.quintInOut, type: ONESHOT});
+					DAFUQWHAT.animation.play('up');
+				case 73:
+					DAFUQWHAT.visible = false;
+					skipIntro();
 			}
 		}
 	}
 
 	var skippedIntro:Bool = false;
 	var increaseVolume:Bool = false;
+
 	function skipIntro():Void
 	{
 		if (!skippedIntro)
 		{
-			
-				remove(ngSpr);
-				remove(YTLogo);
-				remove(CSLogo);
-				remove(credGroup);
-					if(ClientPrefs.data.flashing == true){
-						FlxG.camera.flash(FlxColor.WHITE, 4);
-					}
-				FlxTween.tween(FlxG.camera, {zoom:5}, 3.5, {ease: FlxEase.quintInOut, type: BACKWARD, onComplete: function(twn:FlxTween){
+			remove(ngSpr);
+			remove(YTLogo);
+			remove(CSLogo);
+			remove(credGroup);
+			if (ClientPrefs.data.flashing == true)
+			{
+				FlxG.camera.flash(FlxColor.WHITE, 4);
+			}
+			FlxTween.tween(FlxG.camera, {zoom: 5}, 3.5, {
+				ease: FlxEase.quintInOut,
+				type: BACKWARD,
+				onComplete: function(twn:FlxTween)
+				{
 					TweenComplete = true;
-				},});
-					#if desktop
-					// Updating Discord Rich Presence
-					DiscordClient.changePresence("Title", "Title Screen");
-					#end
+				},
+			});
+			#if desktop
+			// Updating Discord Rich Presence
+			DiscordClient.changePresence("Title", "Title Screen");
+			#end
 			skippedIntro = true;
 		}
 	}
