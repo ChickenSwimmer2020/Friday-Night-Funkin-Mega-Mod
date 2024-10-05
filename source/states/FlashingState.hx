@@ -21,6 +21,7 @@ class FlashingState extends MusicBeatState
 	{
 		WindowsAPI.disableWindowTransparency(true);
 		Application.current.window.borderless = false;
+        Application.current.window.fullscreen = false;
 		super.create();
 
 

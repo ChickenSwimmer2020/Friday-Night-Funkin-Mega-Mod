@@ -1,6 +1,5 @@
 package states;
 
-import objects.Visualilzer;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import backend.WeekData;
@@ -160,8 +159,6 @@ class TitleState extends MusicBeatState
 	var titleText:FlxSprite;
 	var MMlogo:FlxSprite;
 	var swagShader:ColorSwap = null;
-
-	var vis:Visualizer;
 
 	function startIntro()
 	{

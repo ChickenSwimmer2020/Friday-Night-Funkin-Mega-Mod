@@ -5,71 +5,69 @@ import flixel.FlxState;
 import flixel.FlxG;
 import flixel.util.FlxTimer;
 import openfl.utils.Assets as OpenFlAssets;
+#if VIDEOS_ALLOWED
+import cutscenes.PsychVideo;
+#end
+#if sys
+import sys.FileSystem;
+import sys.io.File;
+#end
 
-    //#if VIDEOS_ALLOWED
-    //import hxcodec.flixel.FlxVideo as VideoHandler;
-    //#end
-//
-    //#if sys
-    //    import sys.FileSystem;
-    //    import sys.io.File;
-    //#end
 using StringTools;
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
-class GameIntro extends FlxState
-{  
-    //public var video:VideoHandler;
-    override function create()
-    {
 
-            new FlxTimer().start(1, function(guh:FlxTimer) // gives a bit delay
-            {
-                    startVideo('megamodintrovideo'); //put the video name here make sure the video on videos folder. you dont need to add like blabla.mp4 just blabla
-            });
-            #if desktop
-                // Updating Discord Rich Presence
-                DiscordClient.changePresence("Intro Video", "watching");
-            #end
-    }
-    function startVideo(name:String)
+class GameIntro extends FlxState
+{
+    var video:PsychVideo;
+
+	override function create()
+	{
+        Functions.wait(1, ()->{ // Add a short delay
+            startVideo('megamodintrovideo'); // Don't add .mp4 to the file name!!!!
+        });
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Intro Video", "watching");
+		#end
+        FlxG.mouse.visible = false;
+	}
+
+	public function exitState()
     {
-                #if VIDEOS_ALLOWED
-                    var filepath:String = Paths.video(name);
-                        #if sys
-                        if(!FileSystem.exists(filepath))
-                        #else
-                    if(!OpenFlAssets.exists(filepath))
-                #end
-                {
-                    FlxG.log.warn('Couldnt find video file: ' + name);
-                    return;
-                }
-                //video = new VideoHandler();
-                //video.play(filepath);
-                //FlxG.watch.addQuick('video pos: ', video.position);
-                #else
-                    FlxG.log.warn('Platform not supported!');
-                    return;
-                #end
+        if (video.bitmap != null)
+            video.destroy();
+		FlxG.switchState(new TitleState());
     }
-    override public function update(elapsed:Float) {
-        //if(!video.isPlaying)
-        //    {
-        //        video.dispose();
-        //        FlxG.switchState(new TitleState()); //this will make after the video done it will switch to the intro text/ title state
-        //            #if desktop
-        //                // Updating Discord Rich Presence
-        //                DiscordClient.changePresence("Intro Video", "Going to the Title Screen");
-        //            #end
-        //        return;
-        //    }
-    }
+
+	override function update(elapsed)
+	{
+        #if debug
+		    if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER){
+                exitState();
+		    }
+        #end
+	}
+
+	function startVideo(name:String)
+	{
+		#if VIDEOS_ALLOWED
+		var filepath:String = Paths.video(name);
+		#if sys
+		if (!FileSystem.exists(filepath))
+		#else
+		if (!OpenFlAssets.exists(filepath))
+		#end
+		{
+			FlxG.log.warn('Couldnt find video file: ' + name);
+			return;
+		}else{
+            video = new PsychVideo(0, 0, true, true, filepath);
+            video.bitmap.onEndReached.add(() -> {
+                exitState();
+            });
+            add(video);
+        }
+		#else
+		FlxG.log.warn('Platform not supported!');
+		#end
+	}
 }

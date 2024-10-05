@@ -2294,7 +2294,7 @@ class ChartingState extends MusicBeatState
 					if(noteDataToCheck > -1 && note.mustPress != _song.notes[curSec].mustHitSection) noteDataToCheck += 4;
 						if (note.mustPress &&  _song.notes[curSec].mustHitSection){
 							isSinging = true;
-						miniBF.animation.play('sing' + [noteDataToCheck], true, false, 0,);
+						miniBF.animation.play('sing' + [noteDataToCheck], true, false, 0);
 						} else {
 							isSinging = false;
 						}

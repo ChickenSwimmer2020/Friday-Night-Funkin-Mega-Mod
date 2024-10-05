@@ -40,12 +40,9 @@ import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
 #end
 
-//#if VIDEOS_ALLOWED
-//#if (hxCodec >= "3.0.0") import hxcodec.flixel.FlxVideo as VideoHandler;
-//#elseif (hxCodec >= "2.6.1") import hxcodec.VideoHandler as VideoHandler;
-//#elseif (hxCodec == "2.6.0") import VideoHandler;
-//#else import vlc.MP4Handler as VideoHandler; #end
-//#end
+#if VIDEOS_ALLOWED
+import cutscenes.PsychVideo;
+#end
 
 import objects.Note.EventNote;
 import objects.ComboMilestone;
@@ -963,48 +960,32 @@ class PlayState extends MusicBeatState
 		char.y += char.positionArray[1];
 	}
 
-	//public function startVideo(name:String)
-	//{
-	//	#if VIDEOS_ALLOWED
-	//	inCutscene = true;
-
-	//	var filepath:String = Paths.video(name);
-	//	#if sys
-	//	if(!FileSystem.exists(filepath))
-	//	#else
-	//	if(!OpenFlAssets.exists(filepath))
-	//	#end
-	//	{
-	//		FlxG.log.warn('Couldnt find video file: ' + name);
-	//		startAndEnd();
-	//		return;
-	//	}
-
-	//	var video:VideoHandler = new VideoHandler();
-	//		#if (hxCodec >= "3.0.0")
-	//		// Recent versions
-	//		video.play(filepath);
-	//		video.onEndReached.add(function()
-	//		{
-	//			video.dispose();
-	//			startAndEnd();
-	//			return;
-	//		}, true);
-	//		#else
-	//		// Older versions
-	//		video.playVideo(filepath);
-	//		video.finishCallback = function()
-	//		{
-	//			startAndEnd();
-	//			return;
-	//		}
-	//		#end
-	//	#else
-	//	FlxG.log.warn('Platform not supported!');
-	//	startAndEnd();
-	//	return;
-	//	#end
-	//}
+    function startVideo(name:String)
+        {
+            #if VIDEOS_ALLOWED
+            var filepath:String = Paths.video(name);
+            #if sys
+            if (!FileSystem.exists(filepath))
+            #else
+            if (!OpenFlAssets.exists(filepath))
+            #end
+            {
+                FlxG.log.warn('Couldnt find video file: ' + name);
+                startAndEnd();
+                return;
+            }else{
+                var video = new PsychVideo(0, 0, true, true, filepath);
+                video.camera = camOther;
+                add(video);
+                video.bitmap.onEndReached.add(() -> {
+                    startAndEnd();
+                });
+            }
+            #else
+            FlxG.log.warn('Platform not supported!');
+            startAndEnd();
+            #end
+        }
 
 	function startAndEnd()
 	{
