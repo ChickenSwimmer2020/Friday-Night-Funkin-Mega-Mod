@@ -41,8 +41,8 @@ class CreditsState extends MusicBeatState
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
 			['MegaMod Development Team'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Director\n\"The furry that made his dream come to life\"',		'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
-			['Coders'],
-			['ChickenSwimmer2020',  'CS20-smal',				'Main Coder (HAXE)\n\"The furry that Coded this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
+			['Programmers'],
+			['ChickenSwimmer2020',  'CS20-smal',				'Main Programmer (HAXE)\n\"The furry that Coded this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
 			['ZSolarDev',  'tba',								'Programmer (HAXE)\n\""Every human has a humans human." idfk bro, I just know that c++ is boring asf\"',					'https://www.youtube.com/channel/UCHC3OOhj0-vgLesDrlNfRtw',					'#FFFFFF'],
 			[''],
 			['Testers/Debuggers'],
@@ -61,6 +61,7 @@ class CreditsState extends MusicBeatState
 			['composers'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Composed the menu music',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
 			['ChickenSwimmer2020',  'CS20-smal',				'Composer of digital',	'https://linktr.ee/ChickenSwimmer2020',					'#00FF00'],
+			['C0MIC STARZ', 		'',							'Composed the digital erect remix', 'https://www.youtube.com/channel/UCS8QUrwt6k1pH1jvvwmNu8Q', 	''],
 			[''],
 			['Animators'],
 			['nem0nii', 			'brookeGaySon',				'Animator\n\"QUOTE\""', 											  'https://www.youtube.com/@NemonII283', '#401274'],

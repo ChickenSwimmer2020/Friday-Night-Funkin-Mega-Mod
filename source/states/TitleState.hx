@@ -209,10 +209,6 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		//TODO: implement the visualizer properly
-		//vis = new Visualizer(FlxG.sound);
-		//add(vis);
-
 		MMlogo = new FlxSprite(810, 267);
 		MMlogo.frames = Paths.getSparrowAtlas('TitleScreen/MMlogo');
 		MMlogo.animation.addByPrefix('shine', 'MENU_megamod', 24, false);
