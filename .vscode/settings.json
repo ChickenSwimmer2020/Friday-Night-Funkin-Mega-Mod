@@ -1,5 +1,5 @@
 {
     "editor.stickyTabStops": true,
-    "editor.tabFocusMode": true,
+    "editor.tabFocusMode": false,
     "workbench.editor.scrollToSwitchTabs": true
 }

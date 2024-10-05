@@ -50,6 +50,9 @@ class Preload extends MusicBeatState
 
 	var TimeToLoad:Bool = false;
 
+    var oldX = 0;
+    var oldY = 0;
+
 	public function PreloaderArtAppear()
 	{
 		FlixelLogo.visible = false;
@@ -78,22 +81,33 @@ class Preload extends MusicBeatState
 		});
 		bgfadeout.start(2.5, function(Tmr:FlxTimer)
 		{
-			MusicBeatState.switchState(new FlashingState());
+            Application.current.window.width = 1280;
+            Application.current.window.height  = 720;
+            Application.current.window.x = oldX;
+            Application.current.window.y = oldY;
+            Application.current.window.borderless = false;
+			MusicBeatState.switchState(new GameIntro());
 		});
 	}
 
 	override public function create()
 	{
 		// trace('Window X: ' + Lib.application.window.x + ' Window Y: ' + Lib.application.window.y);
-
+        oldX = Application.current.window.x;
+        oldY = Application.current.window.y;
+        //Application.current.window.width = Std.int(openfl.Lib.application.window.display.bounds.width);
+        //Application.current.window.height = Std.int(openfl.Lib.application.window.display.bounds.height);
+        //Application.current.window.x = 0;
+        //Application.current.window.y = 0;
 		FlxTransitionableState.skipNextTransOut = false;
 		FlxTransitionableState.skipNextTransIn = true;
 		Application.current.window.borderless = true;
-		WindowsAPI.setWindowTransparencyColor(0, 0, 0, 255);
+
+        WindowsAPI.setWindowTransparencyColor(0, 0, 0, 255);
 
 		FlixelLogo = new FlxSprite(0, 0);
 		FlixelLogo.scale.set(0.5, 0.5);
-		// FlixelLogo.screenCenter();
+		//FlixelLogo.screenCenter();
 		FlixelLogo.frames = Paths.getSparrowAtlas('Preloader/FlixelLogo');
 		FlixelLogo.animation.addByPrefix('Logo', 'flixellogo', 24, false);
 		FlixelLogo.visible = false;
@@ -105,7 +119,7 @@ class Preload extends MusicBeatState
 		bgfadeout = new FlxTimer();
 		titlefade = new FlxTimer();
 
-		function OtherTimersGo()
+		inline function OtherTimersGo()
 		{
 			FlixLog.start(3.2, function(Tmr:FlxTimer)
 			{
@@ -121,7 +135,7 @@ class Preload extends MusicBeatState
 		givegametimetoloadassets.start(1, function(Tmr:FlxTimer)
 		{
 			OtherTimersGo();
-			FlxG.mouse.cursor.visible = false;
+			FlxG.mouse.visible = false;
 			FlixelLogo.animation.play('Logo', false);
 			FlxG.sound.play(Paths.sound('flixel'), 0.5);
 			FlixelLogo.visible = true;
@@ -165,6 +179,8 @@ class Preload extends MusicBeatState
 		add(FlixelLogo);
 
 		icon.animation.play('Spin', false, false);
+        
+        
 	}
 #else
 MusicBeatState.switchState(new FlashingState());

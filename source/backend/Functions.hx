@@ -11,15 +11,8 @@ class Functions
 
             {>} onComplete = what to do after completion. (write in one line.)
     **/
-    inline static public function wait(Time:Int, onComplete:String)
-        {
-            var Timer:FlxTimer;
-            Timer = new FlxTimer();
-            Timer.start(Time, function(tmr:FlxTimer)
-                {
-                    onComplete;
-                });
-        }
+    inline static public function wait(Time:Float, onComplete:()->Void):FlxTimer
+            return new FlxTimer().start(Time, (_) ->{onComplete();});
     /**
         easy loading of song specific data files.
 

@@ -1,5 +1,6 @@
 package backend;
 
+// I'll most likely make an hdll for hashlink. - ZSolarDev
 #if windows
 @:buildXml('
 <compilerflag value="/DelayLoad:ComCtl32.dll"/>

@@ -85,7 +85,7 @@
 		<assets path='example_mods' rename='mods' embed='false'/>
 	</section>
 	<assets path='art/readme.txt' rename='ReadMe.txt' />
-	<assets path='art/READTHIS.txt' rename='ReadThisBeforePlaying.txt' />
+	<!--<assets path='art/READTHIS.txt' rename='ReadThisBeforePlaying.txt' />-->
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -94,14 +94,11 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="tjson" />
 	<haxelib name="parallaxlt" />
-	<haxelib name="funkin.vis"/>
-	<haxelib name="grig.audio"/>
 
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
-	<!--<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/> FUCK YOU!!!!!-->
-	<haxelib name="hxvlc"/>
+	<haxelib name="hxvlc" if="VIDEOS_ALLOWED"/>
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 
