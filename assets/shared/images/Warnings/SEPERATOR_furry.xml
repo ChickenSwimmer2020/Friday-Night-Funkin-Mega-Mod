@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="SEPERATOR_furry.png">
-	<!-- Created with Adobe Animate version 24.0.4.28 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="SEPERATOR_furry0000" x="1" y="1" width="1467" height="882"/>
-	<SubTexture name="SEPERATOR_furry0001" x="1" y="1" width="1467" height="882"/>
-	<SubTexture name="SEPERATOR_furry0002" x="1" y="884" width="1467" height="882"/>
-	<SubTexture name="SEPERATOR_furry0003" x="1" y="884" width="1467" height="882"/>
-</TextureAtlas>

@@ -6,18 +6,27 @@ import flixel.FlxG;
 import flixel.util.FlxTimer;
 import openfl.utils.Assets as OpenFlAssets;
 
-    #if VIDEOS_ALLOWED
-        import VideoHandler;
-    #end
-
-    #if sys
-        import sys.FileSystem;
-        import sys.io.File;
-    #end
+    //#if VIDEOS_ALLOWED
+    //import hxcodec.flixel.FlxVideo as VideoHandler;
+    //#end
+//
+    //#if sys
+    //    import sys.FileSystem;
+    //    import sys.io.File;
+    //#end
 using StringTools;
-
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
+//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!//TODO: FIX THIS!!!!
 class GameIntro extends FlxState
 {  
+    //public var video:VideoHandler;
     override function create()
     {
 
@@ -43,20 +52,24 @@ class GameIntro extends FlxState
                     FlxG.log.warn('Couldnt find video file: ' + name);
                     return;
                 }
-                var video:VideoHandler = new VideoHandler();
-                video.playVideo(filepath);
-                video.finishCallback = function()
-                {
-                    FlxG.switchState(new TitleState()); //this will make after the video done it will switch to the intro text/ title state
-                        #if desktop
-                            // Updating Discord Rich Presence
-                            DiscordClient.changePresence("Intro Video", "Going to the Title Screen");
-                        #end
-                    return;
-                }
+                //video = new VideoHandler();
+                //video.play(filepath);
+                //FlxG.watch.addQuick('video pos: ', video.position);
                 #else
                     FlxG.log.warn('Platform not supported!');
                     return;
                 #end
+    }
+    override public function update(elapsed:Float) {
+        //if(!video.isPlaying)
+        //    {
+        //        video.dispose();
+        //        FlxG.switchState(new TitleState()); //this will make after the video done it will switch to the intro text/ title state
+        //            #if desktop
+        //                // Updating Discord Rich Presence
+        //                DiscordClient.changePresence("Intro Video", "Going to the Title Screen");
+        //            #end
+        //        return;
+        //    }
     }
 }

@@ -30,6 +30,7 @@ using StringTools;
 // he the best frfr
 // sorry solar, i had to remake the state. ill just take the base game preloading code.
 // TODO: fix the outlines, might be an antialiasing issue
+#if !SKIP_PRELOADER
 class Preload extends MusicBeatState
 {
 	var FlixLog:FlxTimer;
@@ -122,7 +123,7 @@ class Preload extends MusicBeatState
 			OtherTimersGo();
 			FlxG.mouse.cursor.visible = false;
 			FlixelLogo.animation.play('Logo', false);
-			FlxG.sound.play(Paths.sound('flixel'));
+			FlxG.sound.play(Paths.sound('flixel'), 0.5);
 			FlixelLogo.visible = true;
 		});
 
@@ -165,4 +166,7 @@ class Preload extends MusicBeatState
 
 		icon.animation.play('Spin', false, false);
 	}
+#else
+MusicBeatState.switchState(new FlashingState());
+#end
 }

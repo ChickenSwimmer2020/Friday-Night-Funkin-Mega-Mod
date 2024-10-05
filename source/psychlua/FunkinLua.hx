@@ -1338,25 +1338,25 @@ class FunkinLua {
 			}
 			return false;
 		});
-		Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
-			#if VIDEOS_ALLOWED
-			if(FileSystem.exists(Paths.video(videoFile))) {
-				game.startVideo(videoFile);
-				return true;
-			} else {
-				luaTrace('startVideo: Video file not found: ' + videoFile, false, false, FlxColor.RED);
-			}
-			return false;
+		//Lua_helper.add_callback(lua, "startVideo", function(videoFile:String) {
+		//	#if VIDEOS_ALLOWED
+		//	if(FileSystem.exists(Paths.video(videoFile))) {
+		//		game.startVideo(videoFile);
+		//		return true;
+		//	} else {
+		//		luaTrace('startVideo: Video file not found: ' + videoFile, false, false, FlxColor.RED);
+		//	}
+		//	return false;
 
-			#else
-			if(game.endingSong) {
-				game.endSong();
-			} else {
-				game.startCountdown();
-			}
-			return true;
-			#end
-		});
+		//	#else
+		//	if(game.endingSong) {
+		//		game.endSong();
+		//	} else {
+		//		game.startCountdown();
+		//	}
+		//	return true;
+		//	#end
+		//});
 
 		Lua_helper.add_callback(lua, "playMusic", function(sound:String, volume:Float = 1, loop:Bool = false) {
 			FlxG.sound.playMusic(Paths.music(sound), volume, loop);

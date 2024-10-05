@@ -21,6 +21,7 @@
 	<!-- ______________________ PSYCH ENGINE CUSTOMIZATION ______________________ -->
 
  	<define name="MODS_ALLOWED" if="" />
+	<define name="SKIP_PRELOADER" if="no_preload"/>
 	<define name="HSCRIPT_ALLOWED" if="desktop" />
 	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
@@ -93,11 +94,14 @@
 	<haxelib name="flixel-addons" />
 	<haxelib name="tjson" />
 	<haxelib name="parallaxlt" />
+	<haxelib name="funkin.vis"/>
+	<haxelib name="grig.audio"/>
 
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
-	<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/>
+	<!--<haxelib name="hxCodec" if="VIDEOS_ALLOWED"/> FUCK YOU!!!!!-->
+	<haxelib name="hxvlc"/>
 	<haxelib name="hxdiscord_rpc" if="DISCORD_ALLOWED"/>
 	<haxelib name="flxanimate"/>
 
@@ -135,8 +139,8 @@
 	<!--Disable the Flixel core focus lost screen-->
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	
-	<!-- Show debug traces for hxCodec -->
-	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
+	<!-- Show debug traces for hxvlc -->
+	<haxedef name="HXVLC_LOGGING" if="debug" />
 	
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />

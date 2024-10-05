@@ -1,5 +1,8 @@
 package states;
 
+import objects.Visualilzer;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
 import backend.WeekData;
 import backend.Highscore;
 import flixel.input.keyboard.FlxKey;
@@ -130,7 +133,7 @@ class TitleState extends MusicBeatState
 				startIntro();
 			else
 			{
-				new FlxTimer().start(1, function(tmr:FlxTimer)
+				new FlxTimer().start(0.2, function(tmr:FlxTimer)
 				{
 					startIntro();
 				});
@@ -140,7 +143,10 @@ class TitleState extends MusicBeatState
 
 	var logoBl:FlxSprite;
 	var bfBop:FlxSprite;
-	var squars:FlxSprite;
+	//var squars:FlxSprite;
+	var squares:FlxBackdrop;
+	var menuBGL:FlxSprite;
+	var menuBGR:FlxSprite;
 	var bumpleft:Bool = false;
 	var BGboom:FlxSprite;
 	var VersionNumber:FlxSprite;
@@ -154,6 +160,8 @@ class TitleState extends MusicBeatState
 	var titleText:FlxSprite;
 	var MMlogo:FlxSprite;
 	var swagShader:ColorSwap = null;
+
+	var vis:Visualizer;
 
 	function startIntro()
 	{
@@ -189,6 +197,10 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
+		squares = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x38000000, 0x0));
+		squares.velocity.set(200, 110);
+		squares.alpha = 1;
+
 		logoBl = new FlxSprite(-75, -100);
 		logoBl.frames = Paths.getSparrowAtlas('TitleScreen/logoBumpin');
 		logoBl.animation.addByIndices('bumpleft', 'logo bumpin', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", false);
@@ -200,6 +212,10 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
+		//TODO: implement the visualizer properly
+		//vis = new Visualizer(FlxG.sound);
+		//add(vis);
+
 		MMlogo = new FlxSprite(810, 267);
 		MMlogo.frames = Paths.getSparrowAtlas('TitleScreen/MMlogo');
 		MMlogo.animation.addByPrefix('shine', 'MENU_megamod', 24, false);
@@ -210,38 +226,49 @@ class TitleState extends MusicBeatState
 			swagShader = new ColorSwap();
 		BGboom = new FlxSprite(0, 295);
 		BGboom.antialiasing = ClientPrefs.data.antialiasing;
-		bfBop = new FlxSprite(700, 0);
+		bfBop = new FlxSprite(800, 0);
 		bfBop.antialiasing = ClientPrefs.data.antialiasing;
-		squars = new FlxSprite(0, 0);
-		squars.antialiasing = ClientPrefs.data.antialiasing;
+		//squars = new FlxSprite(0, 0);
+		//squars.antialiasing = ClientPrefs.data.antialiasing;
+		menuBGL = new FlxSprite(0, 0).loadGraphic(Paths.image('TitleScreen/SquaresBG'));
+		menuBGL.antialiasing = ClientPrefs.data.antialiasing;
+		menuBGR = new FlxSprite(menuBGL.x  + 640, 0).loadGraphic(Paths.image('TitleScreen/MenuBGbitR'));
+		menuBGR.antialiasing = ClientPrefs.data.antialiasing;
 
 		BGboom.frames = Paths.getSparrowAtlas('TitleScreen/bgcool');
 		BGboom.animation.addByIndices('bounceleft', 'bgcool', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
 		BGboom.animation.addByIndices('bounceright', 'bgcool', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
-		VersionNumber = new FlxSprite(BGboom.x + 250, BGboom.y);
-		VersionNumber.scale.set(0.5, 0.5);
+		VersionNumber = new FlxSprite(BGboom.x + 500, BGboom.y);
+		VersionNumber.scale.set(0.2, 0.2);
 		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
 		VersionNumber.animation.addByPrefix('Ver', 'VersionNumber', 24, true);
 		VersionNumber.animation.play('Ver');
+		VersionNumber.antialiasing = ClientPrefs.data.antialiasing;
 		#if DEBUG
-		Dev = new FlxSprite(VersionNumber.x + 0, VersionNumber.y - 0);
-		Dev.scale.set(0.5, 0.5);
+		Dev = new FlxSprite(VersionNumber.x + 200, VersionNumber.y + 70);
+		Dev.scale.set(0.2, 0.2);
 		Dev.frames = Paths.getSparrowAtlas('TitleScreen/DeveloperMode');
 		Dev.animation.addByPrefix('dev', 'menu_debug', 24, true);
 		Dev.animation.play('dev');
+		Dev.antialiasing = ClientPrefs.data.antialiasing;
 		#end
 
 		bfBop.frames = Paths.getSparrowAtlas('TitleScreen/bfBopTitle');
-		bfBop.animation.addByIndices('Bop', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10,11,12,13], "", 24, false);
+		//same but broken because of force animations doesnt fucking work.
+		bfBop.animation.addByIndices('BopL', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
+		bfBop.animation.addByIndices('BopR', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
 		bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 		bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
 		bfBop.scale.x = 1;
 		bfBop.scale.y = 1;
-		squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
-		squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
+		//squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
+		//squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 
-		add(squars);
+		//add(squars);
+		add(menuBGL);
+		add(squares);
+		add(menuBGR);
 		add(bfBop);
 		add(BGboom);
 		#if DEBUG add(Dev); #end
@@ -253,7 +280,14 @@ class TitleState extends MusicBeatState
 			BGboom.shader = swagShader.shader;
 			bfBop.shader = swagShader.shader;
 			logoBl.shader = swagShader.shader;
-			squars.shader = swagShader.shader;
+			menuBGL.shader = swagShader.shader;
+			menuBGR.shader = swagShader.shader;
+			squares.shader = swagShader.shader;
+			VersionNumber.shader = swagShader.shader;
+			#if DEBUG
+				Dev.shader = swagShader.shader;
+			#end
+			//squars.shader = swagShader.shader;
 		}
 
 		titleText = new FlxSprite(635, 625);
@@ -417,6 +451,8 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		if(TweenComplete)
+			FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 		FlxG.watch.addQuick("Current Beat", sickBeats);
 		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
 		if (FlxG.sound.music != null)
@@ -469,7 +505,6 @@ class TitleState extends MusicBeatState
 					hey = true;
 					fuckoff = false;
 					bfBop.animation.play('hey');
-					bfBop.x += 100;
 					bfBop.y -= 50;
 				}
 				else if (fuckoff && !willhey)
@@ -568,9 +603,6 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		if (squars != null) //as much as i liked the bopping, i need to fix it :(
-			squars.animation.play('SQUAR?!', false);
-
 		if (logoBl != null)
 		{
 			bumpleft = !bumpleft;
@@ -579,7 +611,7 @@ class TitleState extends MusicBeatState
 				logoBl.animation.play('bumpleft');
 				if (TweenComplete)
 				{
-					FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
+					FlxG.camera.zoom = 1.01;
 				}
 			}
 			else
@@ -587,7 +619,7 @@ class TitleState extends MusicBeatState
 				logoBl.animation.play('bumpright');
 				if (TweenComplete)
 				{
-					FlxTween.tween(FlxG.camera, {zoom: 1.01}, 0.5, {ease: FlxEase.quintOut, type: BACKWARD});
+					FlxG.camera.zoom = 1.01;
 				}
 			}
 		}
@@ -596,9 +628,9 @@ class TitleState extends MusicBeatState
 		{
 			bopLeft = !bopLeft;
 			if (bopLeft && !hey)
-				bfBop.animation.play('Bop', true);
+				bfBop.animation.play('BopL', true);
 			else if (!hey)
-				bfBop.animation.play('bop', true);
+				bfBop.animation.play('BopR', true);
 		}
 
 		if (DAFUQWHAT != null && !waitwhat)

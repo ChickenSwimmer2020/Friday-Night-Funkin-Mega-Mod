@@ -80,7 +80,7 @@ class FinalWarningState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-							MusicBeatState.switchState(new GameIntro());
+							MusicBeatState.switchState(new TitleState());
 									#if desktop
 									//updates precense
 									DiscordClient.changePresence("Final Warning", "Proceeding");
