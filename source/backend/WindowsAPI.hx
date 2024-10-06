@@ -1,6 +1,5 @@
 package backend;
 
-// I'll most likely make an hdll for hashlink. - ZSolarDev
 #if windows
 @:buildXml('
 <compilerflag value="/DelayLoad:ComCtl32.dll"/>
@@ -128,7 +127,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
             
             // Report Issue
             reportIssue = CreateWindow("static",
-                "We recommend reporting the issue to the GitHub page:", // A copy of the error has been saved in \"crash.txt\" https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues
+                "We recommend reporting the issue to the GitHub page:", // A copy of the error has been saved in \"crash.txt\" https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues
                 WS_VISIBLE | WS_CHILD | WS_TABSTOP,
                 10, 380 - 18, 690 - 108, 16,
                 hwnd, NULL, hInstance, NULL);
@@ -137,6 +136,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
             // Report Issue Link
             githubLink = CreateWindow("static",
                 "https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues", // A copy of the error has been saved in \"crash.txt\"
+                "https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues", // A copy of the error has been saved in \"crash.txt\"
                 WS_VISIBLE | WS_CHILD | WS_TABSTOP | SS_NOTIFY,
                 10, 380, 690 - 108, 16,
                 hwnd, NULL, hInstance, NULL);
@@ -185,7 +185,7 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
             break;
         case WM_COMMAND:
             if ((HWND)lParam == githubLink) {
-                ShellExecute(NULL, "open", "https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues", NULL, NULL, SW_SHOWNORMAL);
+                ShellExecute(NULL, "open", "https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues", NULL, NULL, SW_SHOWNORMAL);
                 return TRUE;
             } else if ((HWND)lParam == closeButton) {
                 EndDialog(hwnd, IDOK);
@@ -207,7 +207,6 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
 #end
 class WindowsAPI {
     // i have now learned the power of the windows api, FEAR ME!!!
-    
     #if windows
     @:functionCode('
         int darkMode = 1;
@@ -345,50 +344,11 @@ class WindowsAPI {
         showMessagePopup('$exception\n\n$stack', caption, MSG_ERROR);
     }
     #end
-    
-    public static function consoleColorToOpenFL(color:ConsoleColor) {
-        return switch(color) {
-            case BLACK:         0xFF000000;
-            case DARKBLUE:      0xFF000088;
-            case DARKGREEN:     0xFF008800;
-            case DARKCYAN:      0xFF008888;
-            case DARKRED:       0xFF880000;
-            case DARKMAGENTA:   0xFF880000;
-            case DARKYELLOW:    0xFF888800;
-            case LIGHTGRAY:     0xFFBBBBBB;
-            case GRAY:          0xFF888888;
-            case BLUE:          0xFF0000FF;
-            case GREEN:         0xFF00FF00;
-            case CYAN:          0xFF00FFFF;
-            case RED:           0xFFFF0000;
-            case MAGENTA:       0xFFFF00FF;
-            case YELLOW:        0xFFFFFF00;
-            case WHITE | _:     0xFFFFFFFF;
-        }
-    }
 }
 
-@:enum abstract MessageBoxIcon(Int) {
+enum abstract MessageBoxIcon(Int) {
     var MSG_ERROR = 0x00000010;
     var MSG_QUESTION = 0x00000020;
     var MSG_WARNING = 0x00000030;
     var MSG_INFORMATION = 0x00000040;
-}
-@:enum abstract ConsoleColor(Int) {
-    var BLACK:ConsoleColor = 0;
-    var DARKBLUE:ConsoleColor = 1;
-    var DARKGREEN:ConsoleColor = 2;
-    var DARKCYAN:ConsoleColor = 3;
-    var DARKRED:ConsoleColor = 4;
-    var DARKMAGENTA:ConsoleColor = 5;
-    var DARKYELLOW:ConsoleColor = 6;
-    var LIGHTGRAY:ConsoleColor = 7;
-    var GRAY:ConsoleColor = 8;
-    var BLUE:ConsoleColor = 9;
-    var GREEN:ConsoleColor = 10;
-    var CYAN:ConsoleColor = 11;
-    var RED:ConsoleColor = 12;
-    var MAGENTA:ConsoleColor = 13;
-    var YELLOW:ConsoleColor = 14;
-    var WHITE:ConsoleColor = 15;
 }
