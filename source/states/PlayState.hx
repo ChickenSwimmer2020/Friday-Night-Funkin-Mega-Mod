@@ -44,6 +44,8 @@ import openfl.filters.ShaderFilter;
 import cutscenes.PsychVideo;
 #end
 
+import objects.NoteSplashHoldManager;
+
 import objects.Note.EventNote;
 import objects.ComboMilestone;
 import objects.*;
@@ -301,6 +303,8 @@ class PlayState extends MusicBeatState
 	public var endCallback:Void->Void = null;
 
 	public var getoveritfucker:FlxSprite;
+
+	public var holdSplash:NoteSplashHoldManager;
 
 	override public function create()
 	{
@@ -593,6 +597,9 @@ class PlayState extends MusicBeatState
 		var splash:NoteSplash = new NoteSplash(100, 100);
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
+
+		holdSplash = new NoteSplashHoldManager(this);
+		add(holdSplash);
 
 		opponentStrums = new FlxTypedGroup<StrumNote>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
@@ -3192,6 +3199,8 @@ class PlayState extends MusicBeatState
 	{
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
+
+		holdSplash.onNoteHit(note);
 
 		var isSus:Bool = note.isSustainNote; //GET OUT OF MY HEAD, GET OUT OF MY HEAD, GET OUT OF MY HEAD
 		var leData:Int = Math.round(Math.abs(note.noteData));
