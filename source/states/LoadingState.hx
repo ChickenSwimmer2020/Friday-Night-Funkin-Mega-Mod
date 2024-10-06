@@ -14,8 +14,6 @@ import backend.StageData;
 
 import haxe.io.Path;
 
-//TODO: replace with carrier
-
 class LoadingState extends MusicBeatState
 {
 	inline static var MIN_TIME = 1.0;
@@ -160,6 +158,7 @@ class LoadingState extends MusicBeatState
 		Paths.setCurrentLevel(directory);
 		trace('Setting asset folder to ' + directory);
 
+		/*#if NO_PRELOAD_ALL
 		var loaded:Bool = false;
 		if (PlayState.SONG != null) {
 			loaded = isSoundLoaded(getSongPath()) && (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath())) && isLibraryLoaded('week_assets');
@@ -167,13 +166,14 @@ class LoadingState extends MusicBeatState
 		
 		if (!loaded)
 			return new LoadingState(target, stopMusic, directory);
-
+		#end*/
 		if (stopMusic && FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 		
 		return target;
 	}
 	
+	/*#if NO_PRELOAD_ALL
 	static function isSoundLoaded(path:String):Bool
 	{
 		trace(path);
@@ -184,6 +184,7 @@ class LoadingState extends MusicBeatState
 	{
 		return Assets.getLibrary(library) != null;
 	}
+	#end*/
 	
 	override function destroy()
 	{

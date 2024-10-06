@@ -533,11 +533,6 @@ class MainMenuState extends MusicBeatState
                 selectedSomethin = true;
                 MusicBeatState.switchState(new MasterEditorMenu());
             }
-            else if (controls.justPressed('debug_3'))
-            {
-                selectedSomethin = true;
-                MusicBeatState.switchState(new CarrierState());
-            }
             #end
         }
 

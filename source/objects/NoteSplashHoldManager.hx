@@ -27,7 +27,7 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 		super();
 
 		this.instance = instance;
-
+		
 		instance.playerStrums.forEachAlive((strum:StrumNote) ->
 		{
 			@:privateAccess
