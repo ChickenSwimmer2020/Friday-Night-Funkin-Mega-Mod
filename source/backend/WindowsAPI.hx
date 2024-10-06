@@ -135,7 +135,6 @@ INT_PTR CALLBACK ErrorBoxProc(HWND hwnd, UINT Message, WPARAM wParam, LPARAM lPa
 
             // Report Issue Link
             githubLink = CreateWindow("static",
-                "https://github.com/ChickenSwimmer2020/Friday-Night-Funkin-Mega-Mod/issues", // A copy of the error has been saved in \"crash.txt\"
                 "https://github.com/YoshiCrafter29/YoshiCrafterEngine/issues", // A copy of the error has been saved in \"crash.txt\"
                 WS_VISIBLE | WS_CHILD | WS_TABSTOP | SS_NOTIFY,
                 10, 380, 690 - 108, 16,
