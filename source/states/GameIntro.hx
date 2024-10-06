@@ -1,6 +1,5 @@
 package states;
 
-import backend.WindowsAPI;
 import openfl.media.Video;
 import flixel.FlxState;
 import flixel.FlxG;
@@ -63,7 +62,6 @@ class GameIntro extends FlxState
 		}else{
             video = new PsychVideo(0, 0, true, true, filepath);
             video.bitmap.onEndReached.add(() -> {
-				WindowsAPI.disableWindowTransparency(true);
                 exitState();
             });
             add(video);

@@ -81,6 +81,7 @@ class Preload extends MusicBeatState
 		});
 		bgfadeout.start(2.5, function(Tmr:FlxTimer)
 		{
+            WindowsAPI.disableWindowTransparency(true);
             Application.current.window.width = 1280;
             Application.current.window.height  = 720;
             Application.current.window.x = oldX;
