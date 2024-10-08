@@ -18,6 +18,8 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
+import backend.visualization.ABotVis;
+
 
 class TitleState extends MusicBeatState
 {
@@ -36,6 +38,8 @@ class TitleState extends MusicBeatState
 	var YTLogo:FlxSprite;
 	var DAFUQWHAT:FlxSprite;
 	var DAFUQWHATLEFTY:Bool = false;
+
+	var Vis:ABotVis;
 
 	var waitwhat:Bool;
 	var TweenComplete:Bool = false;
@@ -194,7 +198,7 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		squares = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x38000000, 0x0));
+		squares = new FlxBackdrop(FlxGridOverlay.createGrid(40, 40, 160, 160, true, 0x63000000, 0x0));
 		squares.velocity.set(200, 110);
 		squares.alpha = 1;
 
@@ -232,6 +236,10 @@ class TitleState extends MusicBeatState
 		BGboom.animation.addByIndices('bounceleft', 'bgcool', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
 		BGboom.animation.addByIndices('bounceright', 'bgcool', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
+		Vis = new ABotVis(FlxG.sound.music);
+		Vis.setPosition(BGboom.x, BGboom.y);
+		FlxG.debugger.track(Vis);
+
 		VersionNumber = new FlxSprite(BGboom.x + 500, BGboom.y);
 		VersionNumber.scale.set(0.2, 0.2);
 		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
@@ -253,8 +261,7 @@ class TitleState extends MusicBeatState
 		bfBop.animation.addByIndices('BopR', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
 		bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 		bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
-		bfBop.scale.x = 1;
-		bfBop.scale.y = 1;
+		bfBop.scale.set(1, 1);
 		//squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
 		//squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 
@@ -264,6 +271,7 @@ class TitleState extends MusicBeatState
 		add(menuBGR);
 		add(bfBop);
 		add(BGboom);
+		add(Vis);
 		#if DEBUG add(Dev); #end
 		add(VersionNumber);
 		add(MMlogo);
@@ -880,6 +888,7 @@ class TitleState extends MusicBeatState
 					TweenComplete = true;
 				},
 			});
+			Vis.initAnalyzer();
 			#if desktop
 			// Updating Discord Rich Presence
 			DiscordClient.changePresence("Title", "Title Screen");

@@ -4,5 +4,11 @@
         "description": "DESCRIPTION TEST",
         "title": "IMAGE TITLE TEST",
         "link": ""
+    },
+	{
+        "path": "SystemStageConcept",
+        "description": "The Concept Image of the stage for System!",
+        "title": "System Stage Concept",
+        "link": ""
     }
 ]

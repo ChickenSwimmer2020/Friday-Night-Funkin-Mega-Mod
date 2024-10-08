@@ -90,6 +90,14 @@ the other plugins that don't have categories
 
 * haxelib install utest 1.13.2
 
+#### audio
+
+these are things for the audio, visualizers. etc.
+
+ * haxelib git funkin.vis https://github.com/FunkinCrew/funkVis
+
+ * haxelib git grig.audio https://gitlab.com/haxe-grig/grig.audio.git
+
 ### ACTUALLY BUILDING
 
 #### LOADING

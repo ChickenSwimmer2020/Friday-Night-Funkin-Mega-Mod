@@ -95,6 +95,10 @@
 	<haxelib name="tjson" />
 	<haxelib name="parallaxlt" />
 
+	<!--base funkin stuff, mainly for cool stuff like audio visualizers.-->
+	<haxelib name="funkin.vis"/>
+	<haxelib name="grig.audio"/>
+
 	<!--Psych stuff needed-->
 	<haxelib name="linc_luajit" if="LUA_ALLOWED"/>
 	<haxelib name="SScript" if="HSCRIPT_ALLOWED"/>
