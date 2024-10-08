@@ -30,7 +30,6 @@ using StringTools;
 // he the best frfr
 // sorry solar, i had to remake the state. ill just take the base game preloading code.
 // TODO: fix the outlines, might be an antialiasing issue
-#if !SKIP_PRELOADER
 class Preload extends MusicBeatState
 {
 	var FlixLog:FlxTimer;
@@ -50,8 +49,8 @@ class Preload extends MusicBeatState
 
 	var TimeToLoad:Bool = false;
 
-    var oldX = 0;
-    var oldY = 0;
+	var oldX = 0;
+	var oldY = 0;
 
 	public function PreloaderArtAppear()
 	{
@@ -81,34 +80,33 @@ class Preload extends MusicBeatState
 		});
 		bgfadeout.start(2.5, function(Tmr:FlxTimer)
 		{
-            WindowsAPI.disableWindowTransparency(true);
-            Application.current.window.width = 1280;
-            Application.current.window.height  = 720;
-            Application.current.window.x = oldX;
-            Application.current.window.y = oldY;
-            Application.current.window.borderless = false;
-			MusicBeatState.switchState(new GameIntro());
+			if (ClientPrefs.data.WindowTransparency)
+				WindowsAPI.disableWindowTransparency(true);
+			Application.current.window.width = 1280;
+			Application.current.window.height = 720;
+			Application.current.window.x = oldX;
+			Application.current.window.y = oldY;
+			Application.current.window.borderless = false;
+			// MusicBeatState.switchState(new GameIntro());
+			MusicBeatState.switchState(new TransparencyWarningState());
 		});
 	}
 
 	override public function create()
 	{
 		// trace('Window X: ' + Lib.application.window.x + ' Window Y: ' + Lib.application.window.y);
-        oldX = Application.current.window.x;
-        oldY = Application.current.window.y;
-        //Application.current.window.width = Std.int(openfl.Lib.application.window.display.bounds.width);
-        //Application.current.window.height = Std.int(openfl.Lib.application.window.display.bounds.height);
-        //Application.current.window.x = 0;
-        //Application.current.window.y = 0;
+		oldX = Application.current.window.x;
+		oldY = Application.current.window.y;
 		FlxTransitionableState.skipNextTransOut = false;
 		FlxTransitionableState.skipNextTransIn = true;
 		Application.current.window.borderless = true;
 
-        WindowsAPI.setWindowTransparencyColor(0, 0, 0, 255);
+		if (ClientPrefs.data.WindowTransparency)
+			WindowsAPI.setWindowTransparencyColor(0, 0, 0, 255);
 
 		FlixelLogo = new FlxSprite(0, 0);
 		FlixelLogo.scale.set(0.5, 0.5);
-		//FlixelLogo.screenCenter();
+		// FlixelLogo.screenCenter();
 		FlixelLogo.frames = Paths.getSparrowAtlas('Preloader/FlixelLogo');
 		FlixelLogo.animation.addByPrefix('Logo', 'flixellogo', 24, false);
 		FlixelLogo.visible = false;
@@ -180,10 +178,5 @@ class Preload extends MusicBeatState
 		add(FlixelLogo);
 
 		icon.animation.play('Spin', false, false);
-        
-        
 	}
-#else
-MusicBeatState.switchState(new FlashingState());
-#end
 }

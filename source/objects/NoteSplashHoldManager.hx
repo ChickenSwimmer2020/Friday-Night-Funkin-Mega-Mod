@@ -28,23 +28,23 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 
 		this.instance = instance;
 		
-		if(instance.playerStrums != null) {
-			instance.playerStrums.forEachAlive((strum:StrumNote) ->
+
+		instance.playerStrums.forEachAlive((strum:StrumNote) ->
+		{
+			@:privateAccess
+			switch (strum.noteData)
 			{
-				@:privateAccess
-				switch (strum.noteData)
-				{
-					case 0:
-						StrumPosDat.purplePos = new Vector2(strum.x, strum.y);
-					case 1:
-						StrumPosDat.bluePos = new Vector2(strum.x, strum.y);
-					case 2:
-						StrumPosDat.greenPos = new Vector2(strum.x, strum.y);
-					case 3:
-						StrumPosDat.redPos = new Vector2(strum.x, strum.y);
-				}
-			});
-		}
+				case 0:
+					StrumPosDat.purplePos = new Vector2(strum.x, strum.y);
+				case 1:
+					StrumPosDat.bluePos = new Vector2(strum.x, strum.y);
+				case 2:
+					StrumPosDat.greenPos = new Vector2(strum.x, strum.y);
+				case 3:
+					StrumPosDat.redPos = new Vector2(strum.x, strum.y);
+			}
+		});
+		
 
 		red = new FlxSprite(StrumPosDat.redPos.x, StrumPosDat.redPos.y);
 		red.frames = Paths.getSparrowAtlas('noteSplashes/holdCoverRed');

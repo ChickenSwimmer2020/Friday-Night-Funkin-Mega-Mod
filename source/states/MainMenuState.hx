@@ -1,5 +1,6 @@
 package states;
 
+import backend.WindowsAPI;
 import tjson.TJSON;
 import backend.ClientPrefs;
 
@@ -510,7 +511,8 @@ class MainMenuState extends MusicBeatState
                                     case 'gallery':
                                         MusicBeatState.switchState(new GalleryMenuState());
                                     case 'overworld':
-                                        MusicBeatState.switchState(new OverWorldState());
+                                        //MusicBeatState.switchState(new OverWorldState());
+                                        WindowsAPI.showMessagePopup('Uh Oh!', 'Sorry! this feature is not yet implemented!\ntry again in the\nnext update!', MSG_INFORMATION);
                                     case 'credits':
                                         MusicBeatState.switchState(new CreditsState());
                                     case 'settings':
