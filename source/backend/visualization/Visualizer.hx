@@ -9,7 +9,7 @@ import funkin.vis.audioclip.frontends.LimeAudioClip;
 
 using Lambda;
 
-class ABotVis extends FlxTypedSpriteGroup<FlxSprite>
+class Visualizer extends FlxTypedSpriteGroup<FlxSprite>
 {
   // public var vis:VisShit;
   var analyzer:SpectralAnalyzer;
@@ -27,7 +27,7 @@ class ABotVis extends FlxTypedSpriteGroup<FlxSprite>
     // vis = new VisShit(snd);
     // vis.snd = snd;
 
-    var visFrms:FlxAtlasFrames = Paths.getSparrowAtlas('aBotViz');
+    var visFrms:FlxAtlasFrames = Paths.getSparrowAtlas('VizMenu');
 
     // these are the differences in X position, from left to right
     var positionX:Array<Float> = [0, 59, 56, 66, 54, 52, 51];

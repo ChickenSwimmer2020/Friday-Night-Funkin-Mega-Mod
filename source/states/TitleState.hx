@@ -1,5 +1,6 @@
 package states;
 
+import backend.visualization.Visualizer;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import backend.WeekData;
@@ -18,7 +19,7 @@ import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
 
-import backend.visualization.ABotVis;
+import backend.visualization.Visualizer;
 
 
 class TitleState extends MusicBeatState
@@ -39,7 +40,7 @@ class TitleState extends MusicBeatState
 	var DAFUQWHAT:FlxSprite;
 	var DAFUQWHATLEFTY:Bool = false;
 
-	var Vis:ABotVis;
+	var Vis:Visualizer;
 
 	var waitwhat:Bool;
 	var TweenComplete:Bool = false;
@@ -185,8 +186,7 @@ class TitleState extends MusicBeatState
 		DAFUQWHAT = new FlxSprite(0, 0);
 		// DAFUQWHAT.screenCenter(X);
 		// DAFUQWHAT.screenCenter(Y);
-		DAFUQWHAT.scale.x = 1.1;
-		DAFUQWHAT.scale.y = 1.1; // might swap these for FlxG.width and FlxG.height respectivly
+		DAFUQWHAT.scale.set(1.1, 1.1);
 		DAFUQWHAT.frames = Paths.getSparrowAtlas('TitleScreen/TitleTextBG');
 		DAFUQWHAT.animation.addByIndices('Left', 'lebg', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "", 24, false);
 		DAFUQWHAT.animation.addByIndices('Right', 'lebg', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19], "", 24, false);
@@ -208,8 +208,7 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByIndices('bumpright', 'logo bumpin', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", false);
 		logoBl.antialiasing = ClientPrefs.data.antialiasing;
 		logoBl.updateHitbox();
-		logoBl.scale.x = 0.65;
-		logoBl.scale.y = 0.65;
+		logoBl.scale.set(0.65, 0.65);
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
@@ -236,11 +235,13 @@ class TitleState extends MusicBeatState
 		BGboom.animation.addByIndices('bounceleft', 'bgcool', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "", 24, false);
 		BGboom.animation.addByIndices('bounceright', 'bgcool', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
-		Vis = new ABotVis(FlxG.sound.music);
+		Vis = new Visualizer(FlxG.sound.music);
+		//Vis.scale.set(1.5, 1.5);
+		//Vis.updateHitbox();
 		Vis.setPosition(BGboom.x, BGboom.y);
 		FlxG.debugger.track(Vis);
 
-		VersionNumber = new FlxSprite(BGboom.x + 500, BGboom.y);
+		VersionNumber = new FlxSprite(BGboom.x + 700, BGboom.y);
 		VersionNumber.scale.set(0.2, 0.2);
 		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
 		VersionNumber.animation.addByPrefix('Ver', 'VersionNumber', 24, true);
@@ -261,7 +262,8 @@ class TitleState extends MusicBeatState
 		bfBop.animation.addByIndices('BopR', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
 		bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 		bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
-		bfBop.scale.set(1, 1);
+		bfBop.scale.set(0.5, 0.5);
+		bfBop.updateHitbox();
 		//squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
 		//squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 
@@ -293,8 +295,7 @@ class TitleState extends MusicBeatState
 
 		titleText = new FlxSprite(635, 625);
 		titleText.frames = Paths.getSparrowAtlas('TitleScreen/titleEnter');
-		titleText.scale.x = 0.62;
-		titleText.scale.y = 0.62;
+		titleText.scale.set(0.62, 0.62);
 		var animFrames:Array<FlxFrame> = [];
 		@:privateAccess {
 			titleText.animation.findByPrefix(animFrames, "ENTER IDLE");

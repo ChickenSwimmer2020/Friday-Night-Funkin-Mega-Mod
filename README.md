@@ -2,46 +2,31 @@
 
 Welcome to the official page for the FNF':MM! this GitHub page is well, to put it simply. store my source so i don't lose any to random crashes. but! this also means that you, might be able to play it! if you can build my mess of spaghetti code that is. so, i will be adding a list below to allow you to get all required plugins, so that if you really want to build my mod, you can! with all that said, enjoy my mess of spaghetti!
 
-  
-
 ## BUILD INSTRUCTIONS
+
 Refer to [Building.MD](./BUILDING.md)
+
 ---
-  
 
 ## Friday Night Funkin' - Psych Engine
 
 Engine originally used on [Mind Games Mod](https://gamebanana.com/mods/301107), intended to be a fix for the vanilla version's many issues while keeping the casual play aspect of it. Also aiming to be an easier alternative to newbie coders.
 
-  
-
-### Customization:
-
-  
+### Customization
 
 if you wish to disable things like *Lua Scripts* or *Video Cutscenes*, you can read over to `Project.xml`
 
-  
-
 inside `Project.xml`, you will find several variables to customize Psych Engine to your liking
-
-  
 
 to start you off, disabling Videos should be simple, simply Delete the line `"VIDEOS_ALLOWED"` or comment it out by wrapping the line in XML-like comments, like this `<!-- YOUR_LINE_HERE -->`
 
-  
-
 same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, this and other customization options are all available within the `Project.xml` file
 
-  
-
-### Credits:
+### Credits
 
 * Shadow Mario - Programmer
 
 * Riveren - Artist
-
-  
 
 ### Special Thanks
 
@@ -65,22 +50,13 @@ same goes for *Lua Scripts*, comment out or delete the line with `LUA_ALLOWED`, 
 
 * superpowers04 - LUA JIT Fork
 
-_____________________________________
-
-  
+---
 
 ### Features
 
-  
+#### Attractive animated dialogue boxes
 
-#### Attractive animated dialogue boxes:
-
-  
-
-![](https://user-images.githubusercontent.com/44785097/127706669-71cd5cdb-5c2a-4ecc-871b-98a276ae8070.gif)
-
-  
-  
+![Screenshot_1](https://user-images.githubusercontent.com/44785097/127706669-71cd5cdb-5c2a-4ecc-871b-98a276ae8070.gif)
 
 #### Mod Support
 
@@ -88,12 +64,9 @@ _____________________________________
 
 * Comes with a Mod Organizing/Disabling Menu.
 
-  
-  
+#### At least one change to every week
 
-#### At least one change to every week:
-
-##### Week 1:
+##### Week 1
 
 * New Dad Left sing sprite
 
@@ -101,7 +74,7 @@ _____________________________________
 
 * Dad Battle has a spotlight effect for the breakdown
 
-##### Week 2:
+##### Week 2
 
 * Both BF and Skid & Pump does "Hey!" animations
 
@@ -109,35 +82,33 @@ _____________________________________
 
 * Added a quick transition/cutscene to Monster
 
-##### Week 3:
+##### Week 3
 
 * BF does "Hey!" during Philly Nice
 
 * Blammed has a cool new colors flash during that sick part of the song
 
-##### Week 4:
+##### Week 4
 
 * Better hair physics for Mom/Boyfriend (Maybe even slightly better than Week 7's :eyes:)
 
 * Henchmen die during all songs. Yeah :(
 
-##### Week 5:
+##### Week 5
 
 * Bottom Boppers and GF does "Hey!" animations during Cocoa and Eggnog
 
 * On Winter Horrorland, GF bops her head slower in some parts of the song.
 
-##### Week 6:
+##### Week 6
 
 * On Thorns, the HUD is hidden during the cutscene
 
 * Also there's the Background girls being spooky during the "Hey!" parts of the Instrumental
 
-  
-
 #### Cool new Chart Editor changes and countless bug fixes
 
-![](https://github.com/ShadowMario/FNF-PsychEngine/blob/main/docs/img/chart.png?raw=true)
+![Screenshot_2](https://github.com/ShadowMario/FNF-PsychEngine/blob/main/docs/img/chart.png?raw=true)
 
 * You can now chart "Event" notes, which are bookmarks that trigger specific actions that usually were hardcoded on the vanilla version of the game.
 
@@ -157,25 +128,19 @@ _____________________________________
 
 * No Animation: Character just hits the note, no animation plays.
 
-  
-
 #### Multiple editors to assist you in making your own Mod
 
 ![Screenshot_3](https://user-images.githubusercontent.com/44785097/144629914-1fe55999-2f18-4cc1-bc70-afe616d74ae5.png)
 
 * Working both for Source code modding and Downloaded builds!
 
-  
+#### Story mode menu rework
 
-#### Story mode menu rework:
-
-![](https://i.imgur.com/UB2EKpV.png)
+![Screenshot_4](https://i.imgur.com/UB2EKpV.png)
 
 * Added a different BG to every song (less Tutorial)
 
 * All menu characters are now in individual sprite sheets, makes modding it easier.
-
-  
 
 #### Credits menu
 
@@ -183,23 +148,17 @@ _____________________________________
 
 * You can add a head icon, name, description and a Redirect link for when the player presses Enter while the item is currently selected.
 
-  
-
 #### Awards/Achievements
 
 * The engine comes with 16 example achievements that you can mess with and learn how it works (Check Achievements.hx and search for "checkForAchievement" on PlayState.hx)
 
-  
-
-#### Options menu:
+#### Options menu
 
 * You can change Note colors, Delay and Combo Offset, Controls and Preferences there.
 
 * On Preferences you can toggle Down scroll, Middle scroll, Anti-Aliasing, Framerate, Low Quality, Note Splashes, Flashing Lights, etc.
 
-  
-
-#### Other gameplay features:
+#### Other gameplay features
 
 * When the enemy hits a note, their strum note also glows.
 

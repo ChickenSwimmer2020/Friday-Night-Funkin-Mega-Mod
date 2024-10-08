@@ -1,6 +1,6 @@
-BEFORE YOU DO ANYTHING, MAKE SURE YOU KNOW ABSOLUTLY WHAT YOUR DOING. I AM NOT LIABLE IF YOU BRICK YOUR ~~SYSTEM~~<sup>this is a joke</sup> GAME WITH CRAPPY CODE.
+# BEFORE YOU DO ANYTHING, MAKE SURE YOU KNOW ABSOLUTLY WHAT YOUR DOING. I AM NOT LIABLE IF YOU BRICK YOUR ~~SYSTEM~~ ^this is a joke^ GAME WITH CRAPPY CODE
 
-### IDE
+## IDE
 
 to build the game, you will first need to install [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/community/), and [Visual Studio Code](https://code.visualstudio.com). make sure to after installing these, to run the [setup-msvs-win.bat](./setup/setup-msvc-win.bat) file to get required components to build the game. after that, run the [setup-windows.bat](./setup/setup-windows.bat) to get some plugins/libraries to build the game
 
@@ -46,7 +46,7 @@ yes. install both. they both have bug fixes for the other.
 
 most of these probably already got installed, but just incase.
 
-* haxelib install flixel 5.8.0 
+* haxelib install flixel 5.8.0
 
 * haxelib install flixel-demos 3.2.0
 
@@ -54,14 +54,16 @@ most of these probably already got installed, but just incase.
 
 * haxelib install flixel-templates 2.7.0
 
-* haxelib install flixel-tools 1.5.1 
+* haxelib install flixel-tools 1.5.1
 
 * haxelib install flixel-ui 2.6.1
 
-* haxelib git flxanimate https://github.com/Dot-Stuff/flxanimate
+* haxelib git flxanimate <https://github.com/Dot-Stuff/flxanimate>
 
 #### thx
+
 don't know what these do really, but it must be important
+
 * haxelib install thx. Core 0.44.0
 
 * haxelib install thx.semver 0.2.2
@@ -76,7 +78,7 @@ the other plugins that don't have categories
 
 * haxelib install hscript 2.5.0
 
-* haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit
+* haxelib git linc_luajit <https://github.com/AndreiRudenko/linc_luajit>
 
 * haxelib install openfl 9.3.3
 
@@ -94,9 +96,9 @@ the other plugins that don't have categories
 
 these are things for the audio, visualizers. etc.
 
- * haxelib git funkin.vis https://github.com/FunkinCrew/funkVis
+* haxelib git funkin.vis <https://github.com/FunkinCrew/funkVis>
 
- * haxelib git grig.audio https://gitlab.com/haxe-grig/grig.audio.git
+* haxelib git grig.audio <https://gitlab.com/haxe-grig/grig.audio.git>
 
 ### ACTUALLY BUILDING
 
@@ -111,5 +113,3 @@ click more options, then click `open in visual studio`. then the IDE will open.
 once you have installed all the required plugins/libraries. simply go to the PowerShell console, and type `lime test windows -debug`
 
 for debug, or `lime test windows` to test release. if you want to build to an .exe file, simply type `lime build windows` or `lime build windows -debug`
-
-  
