@@ -1,11 +1,7 @@
 package states;
 
-import flixel.FlxSubState;
-
 import flixel.effects.FlxFlicker;
-import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
-
 import flash.system.System;
 
 class FinalWarningState extends MusicBeatState
@@ -15,10 +11,11 @@ class FinalWarningState extends MusicBeatState
 	var warnText:FlxText;
 	var warnTextFL:FlxText;
 	var PressText:FlxText;
+
 	override function create()
 	{
 		#if desktop
-		//updates precense
+		// updates precense
 		DiscordClient.changePresence("Final Warning", "Being Warned");
 		#end
 		super.create();
@@ -26,23 +23,20 @@ class FinalWarningState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite(FlxG.height, FlxG.width).loadGraphic(Paths.image('WarnFinal'));
 		add(bg);
 
-		warnText = new FlxText(0, 0, FlxG.width,
-			"This is your final warning\n
+		warnText = new FlxText(0, 0, FlxG.width, "This is your final warning\n
 			This mod contains:\n
 			Furry Content\n
 			Cursing\n
 			References to Sex\n
-			Additional Unlisted Content",
-			32);
-		warnTextFL = new FlxText(0, 0, FlxG.width, //flashing lights ver
+			Additional Unlisted Content", 32);
+		warnTextFL = new FlxText(0, 0, FlxG.width, // flashing lights ver
 			"This is your final warning\n
 			This mod contains:\n
 			Flashing Lights (may be disabled depending on last choice)\n
 			Furry Content\n
 			Cursing\n
 			References to Sex\n
-			Additional Unlisted Content",
-			32);
+			Additional Unlisted Content", 32);
 		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 		warnTextFL.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 		warnText.screenCenter(X);
@@ -59,47 +53,55 @@ class FinalWarningState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if(!ClientPrefs.data.flashing)
+		if (!ClientPrefs.data.flashing)
 		{
 			warnText.visible = false;
 			warnTextFL.visible = true;
 		}
-		else if(ClientPrefs.data.flashing)
+		else if (ClientPrefs.data.flashing)
 		{
 			warnText.visible = true;
 			warnTextFL.visible = false;
 		};
-		if(!leftState) {
+		if (!leftState)
+		{
 			var accept:Bool = controls.ACCEPT;
 			var back:Bool = controls.BACK;
-			if (controls.BACK || accept) {
+			if (controls.BACK || accept)
+			{
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = false;
 				FlxTransitionableState.skipNextTransOut = false;
-				if(!back) {
+				if (!back)
+				{
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
-						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker)
+					{
+						new FlxTimer().start(0.5, function(tmr:FlxTimer)
+						{
 							MusicBeatState.switchState(new TitleState());
-									#if desktop
-									//updates precense
-									DiscordClient.changePresence("Final Warning", "Proceeding");
-									#end
+							#if desktop
+							// updates precense
+							DiscordClient.changePresence("Final Warning", "Proceeding");
+							#end
 						});
 					});
-				} else {
+				}
+				else
+				{
 					FlxG.sound.play(Paths.sound('cancelMenu'));
 					#if desktop
-					//updates precense
+					// updates precense
 					DiscordClient.changePresence("GET", "RICKROLLED!!!!!!!!");
 					#end
 					FlxTween.tween(warnText, {alpha: 0}, 1, {
-						onComplete: function (twn:FlxTween) {
+						onComplete: function(twn:FlxTween)
+						{
 							CoolUtil.browserLoad('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
-											System.exit(0);
-											#if desktop
-											DiscordClient.shutdown();
-											#end
+							System.exit(0);
+							#if desktop
+							DiscordClient.shutdown();
+							#end
 						}
 					});
 				}

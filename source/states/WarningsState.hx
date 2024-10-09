@@ -158,43 +158,44 @@ class WarningsState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-        var back:Bool = controls.BACK;
+		var back:Bool = controls.BACK;
 		if (controls.ACCEPT || back && CurWarning == 'Furry')
 		{
-            if(!back) {
-    			furrygobyebye(0.5);
-    			Functions.wait(0.5, () ->
-    			{
-    				FlxTween.tween(flashtext, {x: 0}, 1, {
-    					ease: FlxEase.circOut,
-    					onComplete: function(huh:FlxTween)
-    					{
-    						trace('Flash Text Is Here');
-    					}
-    				});
-    				FlxTween.tween(buttons, {alpha: 1}, 1, {
-    					ease: FlxEase.linear,
-    					onComplete: function(huh:FlxTween)
-    					{
-    						trace('Buttons Are Back');
-    					}
-    				});
-    			});
-    			CurWarning == 'Flashing';
-            }
-            else
-            {
-                //BF.screenCenter();
-                furry.visible = false;
-                furtext.visible = false;
-                buttons.visible = false;
-                //WI.visible = false;
-                new FlxTimer().start(1.83, function (tmr:FlxTimer) 
-                    {
-                        CoolUtil.browserLoad('https://www.gamebanana.com/wips/79127');
-                        System.exit(0);
-                    });
-            }
+			if (!back)
+			{
+				furrygobyebye(0.5);
+				Functions.wait(0.5, () ->
+				{
+					FlxTween.tween(flashtext, {x: 0}, 1, {
+						ease: FlxEase.circOut,
+						onComplete: function(huh:FlxTween)
+						{
+							trace('Flash Text Is Here');
+						}
+					});
+					FlxTween.tween(buttons, {alpha: 1}, 1, {
+						ease: FlxEase.linear,
+						onComplete: function(huh:FlxTween)
+						{
+							trace('Buttons Are Back');
+						}
+					});
+				});
+				CurWarning == 'Flashing';
+			}
+			else
+			{
+				// BF.screenCenter();
+				furry.visible = false;
+				furtext.visible = false;
+				buttons.visible = false;
+				// WI.visible = false;
+				new FlxTimer().start(1.83, function(tmr:FlxTimer)
+				{
+					CoolUtil.browserLoad('https://www.gamebanana.com/wips/79127');
+					System.exit(0);
+				});
+			}
 		}
 		if (controls.ACCEPT && CurWarning == 'Flashing')
 		{

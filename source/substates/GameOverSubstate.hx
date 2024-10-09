@@ -2,7 +2,6 @@ package substates;
 
 import backend.Section.SwagSection;
 import backend.Song;
-import flixel.input.gamepad.mappings.SwitchJoyconLeftMapping;
 import backend.WeekData;
 import objects.Character;
 import flixel.FlxObject;

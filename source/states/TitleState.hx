@@ -18,9 +18,7 @@ import openfl.display.BitmapData;
 import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
-
 import backend.visualization.Visualizer;
-
 
 class TitleState extends MusicBeatState
 {
@@ -147,7 +145,7 @@ class TitleState extends MusicBeatState
 
 	var logoBl:FlxSprite;
 	var bfBop:FlxSprite;
-	//var squars:FlxSprite;
+	// var squars:FlxSprite;
 	var squares:FlxBackdrop;
 	var menuBGL:FlxSprite;
 	var menuBGR:FlxSprite;
@@ -155,7 +153,7 @@ class TitleState extends MusicBeatState
 	var BGboom:FlxSprite;
 	var VersionNumber:FlxSprite;
 	#if DEBUG
-		var Dev:FlxSprite;
+	var Dev:FlxSprite;
 	#end
 	var bopLeft:Bool = false;
 	var hey:Bool = false;
@@ -224,11 +222,11 @@ class TitleState extends MusicBeatState
 		BGboom.antialiasing = ClientPrefs.data.antialiasing;
 		bfBop = new FlxSprite(800, 0);
 		bfBop.antialiasing = ClientPrefs.data.antialiasing;
-		//squars = new FlxSprite(0, 0);
-		//squars.antialiasing = ClientPrefs.data.antialiasing;
+		// squars = new FlxSprite(0, 0);
+		// squars.antialiasing = ClientPrefs.data.antialiasing;
 		menuBGL = new FlxSprite(0, 0).loadGraphic(Paths.image('TitleScreen/SquaresBG'));
 		menuBGL.antialiasing = ClientPrefs.data.antialiasing;
-		menuBGR = new FlxSprite(menuBGL.x  + 640, 0).loadGraphic(Paths.image('TitleScreen/MenuBGbitR'));
+		menuBGR = new FlxSprite(menuBGL.x + 640, 0).loadGraphic(Paths.image('TitleScreen/MenuBGbitR'));
 		menuBGR.antialiasing = ClientPrefs.data.antialiasing;
 
 		BGboom.frames = Paths.getSparrowAtlas('TitleScreen/bgcool');
@@ -236,8 +234,8 @@ class TitleState extends MusicBeatState
 		BGboom.animation.addByIndices('bounceright', 'bgcool', [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 		Vis = new Visualizer(FlxG.sound.music);
-		//Vis.scale.set(1.5, 1.5);
-		//Vis.updateHitbox();
+		// Vis.scale.set(1.5, 1.5);
+		// Vis.updateHitbox();
 		Vis.setPosition(BGboom.x, BGboom.y);
 		FlxG.debugger.track(Vis);
 
@@ -257,17 +255,17 @@ class TitleState extends MusicBeatState
 		#end
 
 		bfBop.frames = Paths.getSparrowAtlas('TitleScreen/bfBopTitle');
-		//same but broken because of force animations doesnt fucking work.
-		bfBop.animation.addByIndices('BopL', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
-		bfBop.animation.addByIndices('BopR', 'boyfriend_menu', [0,1,2,3,4,5,6,7,8,9,10], "", 24, false);
+		// same but broken because of force animations doesnt fucking work.
+		bfBop.animation.addByIndices('BopL', 'boyfriend_menu', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "", 24, false);
+		bfBop.animation.addByIndices('BopR', 'boyfriend_menu', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "", 24, false);
 		bfBop.animation.addByPrefix('hey', 'boyfriend_menu_hey', 24, false);
 		bfBop.animation.addByPrefix('fuck', 'boyfriend_menu_fuckoffmom', 24, false);
 		bfBop.scale.set(0.5, 0.5);
 		bfBop.updateHitbox();
-		//squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
-		//squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
+		// squars.frames = Paths.getSparrowAtlas('TitleScreen/squares');
+		// squars.animation.addByPrefix('SQUAR?!', 'menubgbit', 24, true);
 
-		//add(squars);
+		// add(squars);
 		add(menuBGL);
 		add(squares);
 		add(menuBGR);
@@ -288,9 +286,9 @@ class TitleState extends MusicBeatState
 			squares.shader = swagShader.shader;
 			VersionNumber.shader = swagShader.shader;
 			#if DEBUG
-				Dev.shader = swagShader.shader;
+			Dev.shader = swagShader.shader;
 			#end
-			//squars.shader = swagShader.shader;
+			// squars.shader = swagShader.shader;
 		}
 
 		titleText = new FlxSprite(635, 625);
@@ -453,7 +451,7 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if(TweenComplete)
+		if (TweenComplete)
 			FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 		FlxG.watch.addQuick("Current Beat", sickBeats);
 		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
@@ -799,7 +797,7 @@ class TitleState extends MusicBeatState
 				case 58:
 					createCoolText(['Now With More Jokes!']);
 				case 59:
-					//donothing
+					// donothing
 				case 60:
 					deleteCoolText();
 					createCoolText(['THE START LINES ARE RANDOM']);

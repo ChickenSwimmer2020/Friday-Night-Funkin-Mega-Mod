@@ -10,37 +10,40 @@ import sys.FileSystem;
 #end
 
 using StringTools;
+
 // DON'T USE WINDOWS API IN GAMEINTRO!!! THE GAME WILL NOT COMPILE!!
 class GameIntro extends FlxState
 {
-    var video:PsychVideo;
+	var video:PsychVideo;
 
 	override function create()
 	{
-        Functions.wait(1, ()->{ // Add a short delay
-            startVideo('megamodintrovideo'); // Don't add .mp4 to the file name!!!!
-        });
+		Functions.wait(1, () ->
+		{ // Add a short delay
+			startVideo('megamodintrovideo'); // Don't add .mp4 to the file name!!!!
+		});
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Intro Video", "watching");
 		#end
-        FlxG.mouse.visible = false;
+		FlxG.mouse.visible = false;
 	}
 
 	public function exitState()
-    {
-        if (video.bitmap != null)
-            video.destroy();
+	{
+		if (video.bitmap != null)
+			video.destroy();
 		FlxG.switchState(new TitleState());
-    }
+	}
 
 	override function update(elapsed)
 	{
-        #if debug
-		    if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER){
-                exitState();
-		    }
-        #end
+		#if debug
+		if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER)
+		{
+			exitState();
+		}
+		#end
 	}
 
 	function startVideo(name:String)
@@ -55,13 +58,16 @@ class GameIntro extends FlxState
 		{
 			FlxG.log.warn('Couldnt find video file: ' + name);
 			return;
-		}else{
-            video = new PsychVideo(0, 0, true, true, filepath);
-            video.bitmap.onEndReached.add(() -> {
-                exitState();
-            });
-            add(video);
-        }
+		}
+		else
+		{
+			video = new PsychVideo(0, 0, true, true, filepath);
+			video.bitmap.onEndReached.add(() ->
+			{
+				exitState();
+			});
+			add(video);
+		}
 		#else
 		FlxG.log.warn('Platform not supported for videos!!');
 		#end

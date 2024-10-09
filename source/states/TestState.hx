@@ -2,10 +2,6 @@
 //commented out, since its for testing purposes only
 package states;
 
-import haxe.Json;
-
-import flixel.input.keyboard.FlxKey;
-
 class TestState extends MusicBeatState
 {
 

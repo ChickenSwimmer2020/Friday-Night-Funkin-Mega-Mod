@@ -16,7 +16,7 @@ class TransparencyWarningState extends MusicBeatState
         if the background is black, please press the BACK key now\notherwise, press the ENTER key.', 8, true);
 		Text.setFormat(FlxAssets.FONT_DEFAULT, 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, false);
 		Text.antialiasing = false;
-        Text.screenCenter(X);
+		Text.screenCenter(X);
 		add(Text);
 		Application.current.window.borderless = true;
 		WindowsAPI.setWindowTransparencyColor(0, 0, 0, 255);

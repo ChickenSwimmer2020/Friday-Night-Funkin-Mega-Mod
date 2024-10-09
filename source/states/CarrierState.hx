@@ -87,12 +87,12 @@ class CarrierState extends MusicBeatState
 	}
 
 	function onLoad()
-		{
-			if (stopMusic && FlxG.sound.music != null)
-				FlxG.sound.music.stop();
-			
-			MusicBeatState.switchState(target);
-		}
+	{
+		if (stopMusic && FlxG.sound.music != null)
+			FlxG.sound.music.stop();
+
+		MusicBeatState.switchState(target);
+	}
 
 	override public function create()
 	{

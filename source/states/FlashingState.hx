@@ -1,10 +1,5 @@
 package states;
 import lime.app.Application;
-
-import openfl.text.TextFormat;
-import openfl.text.TextField;
-
-import flixel.FlxSubState;
 import flixel.effects.FlxFlicker;
 import flixel.addons.transition.FlxTransitionableState;
 import backend.WindowsAPI;

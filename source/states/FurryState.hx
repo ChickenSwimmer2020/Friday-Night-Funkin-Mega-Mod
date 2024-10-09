@@ -1,15 +1,8 @@
 package states;
 
-import flxanimate.animate.FlxTimeline;
-import flixel.util.FlxSave;
-import flixel.FlxSubState;
-
 import flixel.effects.FlxFlicker;
-import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
 import flash.system.System;
-
-import haxe.Json;
 
 //TODO: set all three of these screens to use the same state, saves on space and load times.
 
