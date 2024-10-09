@@ -38,12 +38,10 @@ class GameIntro extends FlxState
 
 	override function update(elapsed)
 	{
-		#if debug
 		if (FlxG.keys.justPressed.SPACE || FlxG.keys.justPressed.ENTER)
 		{
 			exitState();
 		}
-		#end
 	}
 
 	function startVideo(name:String)

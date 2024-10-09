@@ -204,7 +204,7 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		MMlogo = new FlxSprite(810, 267);
+		MMlogo = new FlxSprite(825, 260);
 		MMlogo.frames = Paths.getSparrowAtlas('TitleScreen/MMlogo');
 		MMlogo.animation.addByPrefix('shine', 'MENU_megamod', 24, false);
 		MMlogo.antialiasing = ClientPrefs.data.antialiasing;
@@ -212,7 +212,10 @@ class TitleState extends MusicBeatState
 
 		if (ClientPrefs.data.shaders)
 			swagShader = new ColorSwap();
-		BGboom = new FlxSprite(0, 295);
+		BGboom = new FlxSprite(0, 0);
+		BGboom.scale.set(0.6, 0.6);
+		BGboom.updateHitbox();
+		BGboom.setPosition(-500, 130);
 		BGboom.antialiasing = ClientPrefs.data.antialiasing;
 		bfBop = new FlxSprite(800, 0);
 		bfBop.antialiasing = ClientPrefs.data.antialiasing;
@@ -230,10 +233,11 @@ class TitleState extends MusicBeatState
 		Vis = new Visualizer(FlxG.sound.music);
 		// Vis.scale.set(1.5, 1.5);
 		// Vis.updateHitbox();
-		Vis.setPosition(BGboom.x, BGboom.y);
+		Vis.setPosition(0, 295);
 		FlxG.debugger.track(Vis);
 
-		VersionNumber = new FlxSprite(BGboom.x + 700, BGboom.y);
+		//VersionNumber = new FlxSprite(BGboom.x + 800, BGboom.y);
+		VersionNumber = new FlxSprite(MMlogo.x, MMlogo.y);
 		VersionNumber.scale.set(0.2, 0.2);
 		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
 		VersionNumber.animation.addByPrefix('Ver', 'VersionNumber', 24, true);
@@ -499,7 +503,7 @@ class TitleState extends MusicBeatState
 					hey = true;
 					fuckoff = false;
 					bfBop.animation.play('hey');
-					bfBop.y -= 50;
+					bfBop.y -= 25; //50
 				}
 				else if (fuckoff && !willhey)
 				{

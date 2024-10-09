@@ -51,8 +51,7 @@ class TransparencyWarningState extends MusicBeatState
 
 						new FlxTimer().start(1, function(tmr:FlxTimer)
 						{
-							MusicBeatState.switchState(new GameIntro());
-
+								MusicBeatState.switchState(new GameIntro());
 						});
 					};
 				}
