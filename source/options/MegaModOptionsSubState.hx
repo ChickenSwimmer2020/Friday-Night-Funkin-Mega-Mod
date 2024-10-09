@@ -27,6 +27,12 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 		);
 		addOption(option);
 
+		var option:Option = new Option('Window Transparency',
+		'If Checked, toggles between using window transparency\nTHIS DOES NOT FUNCTION ON ALL SYSTEMS.\nREASON UNKNOWN.',
+		'WindowTransparency',
+		'bool'
+		);
+
 		////I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		//var option:Option = new Option('Downscroll', //Name
 		//	'If checked, notes go Down instead of Up, simple enough.', //Description

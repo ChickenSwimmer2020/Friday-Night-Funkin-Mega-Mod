@@ -1,16 +1,12 @@
 package states;
 
-import openfl.media.Video;
 import flixel.FlxState;
 import flixel.FlxG;
-import flixel.util.FlxTimer;
-import openfl.utils.Assets as OpenFlAssets;
 #if VIDEOS_ALLOWED
 import cutscenes.PsychVideo;
 #end
 #if sys
 import sys.FileSystem;
-import sys.io.File;
 #end
 
 using StringTools;
