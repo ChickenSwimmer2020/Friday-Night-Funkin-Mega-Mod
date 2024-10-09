@@ -14,7 +14,7 @@ import sys.io.File;
 #end
 
 using StringTools;
-
+// DON'T USE WINDOWS API IN GAMEINTRO!!! THE GAME WILL NOT COMPILE!!
 class GameIntro extends FlxState
 {
     var video:PsychVideo;
@@ -67,7 +67,7 @@ class GameIntro extends FlxState
             add(video);
         }
 		#else
-		FlxG.log.warn('Platform not supported!');
+		FlxG.log.warn('Platform not supported for videos!!');
 		#end
 	}
 }
