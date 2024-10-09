@@ -6,6 +6,19 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 	{
 		title = 'MegaMod Options';
 
+		//var Title:Title = new Title('Graphics Options');
+		//addTitle(Title);
+
+		//var option:Option = new Option('Graphics Options', //why am i fucking stupid.
+		//null,
+		//null,
+		//null
+		//);
+		//addOption(option);
+
+		//var gt:Alphabet = new Alphabet(0, 0, "graphic options", true);
+		//addOther(gt);
+
 		var option:Option = new Option('Mechanics',
 		'If checked, mechanics are enabled',
 		'GamePlayMechanics',
@@ -32,6 +45,15 @@ class MegaModOptionsSubState extends BaseOptionsMenu
 		'WindowTransparency',
 		'bool'
 		);
+		addOption(option);
+
+		var option:Option = new Option('Intro Type',
+		'Type of Intro at game load.\ndefaults to full',
+		'introType',
+		'string',
+		['full intro', 'skip trans warn', 'skip full intro to warnings']
+		);
+		addOption(option);
 
 		////I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
 		//var option:Option = new Option('Downscroll', //Name

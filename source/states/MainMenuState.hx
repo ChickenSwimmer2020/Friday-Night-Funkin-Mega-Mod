@@ -72,7 +72,11 @@ class MainMenuState extends MusicBeatState
 		gameVersionInformation = tjson.TJSON.parse(Paths.getTextFromFile('data/Version.json'));
 		UltimateVersion = ' ' + gameVersionInformation.Ultimate;
 		psychEngineVersion = gameVersionInformation.EngVer;
+		#if DEBUG
+		GameVersion = (gameVersionInformation.GameVer + 'DEV');
+		#else
 		GameVersion = gameVersionInformation.GameVer;
+		#end
 		UpdateName = gameVersionInformation.UpdNme;
 
 		camGame = new FlxCamera();
@@ -505,7 +509,7 @@ class MainMenuState extends MusicBeatState
 									case 'overworld':
 										// MusicBeatState.switchState(new OverWorldState());
 										WindowsAPI.showMessagePopup('Uh Oh!', 'Sorry! this feature is not yet implemented!\ntry again in the\nnext update!',
-											MSG_INFORMATION);
+											MSG_INFORMATION); //prevents crashes because overworld doesnt work yet
 									case 'credits':
 										MusicBeatState.switchState(new CreditsState());
 									case 'settings':

@@ -1,6 +1,6 @@
 package objects;
 
-import backend.animation.PsychAnimationController;
+import backend.addins.animation.PsychAnimationController;
 import backend.NoteTypesConfig;
 
 import shaders.RGBPalette;

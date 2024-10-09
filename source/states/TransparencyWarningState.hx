@@ -1,5 +1,6 @@
 package states;
 
+import substates.GameplayChangersSubstate.GameplayOption;
 import lime.app.Application;
 import flixel.system.FlxAssets;
 import backend.WindowsAPI;
@@ -38,13 +39,20 @@ class TransparencyWarningState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 					if (ClientPrefs.data.flashing)
 					{
+						ClientPrefs.data.WindowTransparency = true;
+						Text.text = 'Window transparency enabled!';
+						Text.size = 24;
+						Text.screenCenter();
+
+						Functions.wait(0.1, () -> {
+							Application.current.window.borderless = false;
+							WindowsAPI.disableWindowTransparency(true);
+						});
+
 						new FlxTimer().start(1, function(tmr:FlxTimer)
 						{
-							ClientPrefs.data.WindowTransparency = true;
-							Text.text = 'Window transparency enabled!';
-							Text.size = 24;
-							Text.screenCenter();
 							MusicBeatState.switchState(new GameIntro());
+
 						});
 					};
 				}

@@ -28,6 +28,8 @@ import states.TitleState;
 	public var hideHud:Bool = false;
 	public var noteOffset:Int = 0;
 
+	public var introType:String = 'full intro';
+
 	public var WindowTransparency:Bool = true;
 
 	public var AdditionalEffects:Bool = true;

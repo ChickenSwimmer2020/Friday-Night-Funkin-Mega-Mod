@@ -1,4 +1,4 @@
-package backend.visualization;
+package backend.addins.visualization;
 
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;

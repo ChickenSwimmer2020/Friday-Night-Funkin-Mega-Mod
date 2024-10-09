@@ -22,12 +22,14 @@ import sys.io.File;
 import openfl.filters.ShaderFilter;
 import haxe.Json;
 
+import openfl.display.BitmapData;
+
 class GalleryMenuState extends MusicBeatState
 {
 	// DATA STUFF
 	var itemGroup:FlxTypedGroup<GalleryImage>;
 
-	var imagePaths:Array<String>;
+	public var imagePaths:Array<String>;
 	var imageDescriptions:Array<String>;
 	var imageTitle:Array<String>;
 	var linkOpen:Array<String>;
@@ -73,6 +75,11 @@ class GalleryMenuState extends MusicBeatState
 		{
 			var newItem = new GalleryImage();
 			newItem.loadGraphic(Paths.image(imagePath + imagePaths[i]));
+			
+			if(imagePaths[1] == 'SystemStageConcept') //stupid large images.
+				newItem.scale.set(0.5, 0.5);
+
+			newItem.updateHitbox();
 			newItem.antialiasing = ClientPrefs.data.antialiasing;
 			newItem.screenCenter();
 			newItem.ID = i;
@@ -137,7 +144,7 @@ class GalleryMenuState extends MusicBeatState
 			// FlxG.sound.playMusic(Paths.music("freakyMenu"));
 		}
 
-		if (controls.ACCEPT && allowInputs)
+		if (controls.ACCEPT && allowInputs && linkOpen != null)
 			CoolUtil.browserLoad(linkOpen[currentIndex]);
 	}
 

@@ -1,4 +1,4 @@
-package backend.animation;
+package backend.addins.animation;
 
 import flixel.animation.FlxAnimationController;
 

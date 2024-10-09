@@ -1,24 +1,18 @@
 package states;
 
-import backend.visualization.Visualizer;
+import backend.addins.visualization.Visualizer;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
-import backend.WeekData;
 import backend.Highscore;
 import flixel.input.keyboard.FlxKey;
 import flixel.addons.transition.FlxTransitionableState;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
-import haxe.Json;
 import openfl.Assets;
-import openfl.display.Bitmap;
-import openfl.display.BitmapData;
 import shaders.ColorSwap;
 import states.StoryMenuState;
 import states.MainMenuState;
-import backend.visualization.Visualizer;
 
 class TitleState extends MusicBeatState
 {
