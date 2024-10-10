@@ -1,11 +1,11 @@
 package objects;
 
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-
 class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 {
     //public var strumData:Map<String, Vector3>;
     public var holdSprites:Map<String, FlxSprite>;
+
 
 	public function new()
 	{
@@ -19,7 +19,7 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
      * @param strumGroup The group of strums for this manager to manage.
      */
     public function initialize(strumGroup:FlxTypedGroup<StrumNote>){
-        
+
         strumGroup.forEachAlive((s:StrumNote) -> {
             // This is useless
             //strumData.set(dirToStr(s.noteData), new Vector3(s.x, s.y, s.noteData));
@@ -29,9 +29,10 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 
             // The sprite for the hold note animation
             var width = 160 * 0.7;
-            var holdSprite:FlxSprite = new FlxSprite(s.x - width * 0.95, s.y - width);
-		    holdSprite.frames = Paths.getSparrowAtlas('noteSplashes/holdCover$color');
-		    holdSprite.animation.addByPrefix('hold', 'holdCover$color', 24, false, false, false);
+            var holdSprite:FlxSprite = new FlxSprite(s.x - width * 0.95, s.y - width + 15);
+		    holdSprite.frames = Paths.getSparrowAtlas('noteSplashes/holdCover$color'); //should work on adding the full anim set
+		    holdSprite.animation.addByIndices('hold', 'holdCover$color', [1,2,3], "", 24, false, false, false);
+            holdSprite.animation.addByIndices('splash', 'holdCover$color', [4,5,6,7,8,9,10,11,12], "", 24, false, false, false);
 		    holdSprite.visible = false;
 		    add(holdSprite);
 
@@ -50,10 +51,18 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
         if(!note.noteSplashData.disabled){
 		    var hitSprite:FlxSprite = dirToSpr(note.noteData);
 			hitSprite.visible = true;
+
 		    if (note.isSustainNote)
 		    	hitSprite.animation.play('hold');
-		    hitSprite.animation.finishCallback = function(bru){
+            else
                 hitSprite.visible = false;
+
+		    hitSprite.animation.finishCallback = function(bru){
+
+                if(hitSprite.animation.curAnim.name == 'hold')
+                    hitSprite.animation.play('splash', true);
+                else
+                    hitSprite.visible = false;
             };
         }
 	}
