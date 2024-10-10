@@ -28,7 +28,8 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
             var color = dirToStr(s.noteData);
 
             // The sprite for the hold note animation
-            var holdSprite:FlxSprite = new FlxSprite(s.x, s.y);
+            var width = 160 * 0.7;
+            var holdSprite:FlxSprite = new FlxSprite(s.x - width * 0.95, s.y - width);
 		    holdSprite.frames = Paths.getSparrowAtlas('noteSplashes/holdCover$color');
 		    holdSprite.animation.addByPrefix('hold', 'holdCover$color', 24, false, false, false);
 		    holdSprite.visible = false;
