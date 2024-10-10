@@ -29,74 +29,8 @@ class CarrierState extends MusicBeatState
 		this.directory = directory;
 	}
 
-	static function isSoundLoaded(path:String):Bool
-	{
-		trace(path);
-		return Assets.cache.hasSound(path);
-	}
-
-	static function getSongPath()
-	{
-		return Paths.inst(PlayState.SONG.song);
-	}
-
-	static function getVocalPath()
-	{
-		return Paths.voices(PlayState.SONG.song);
-	}
-
-	static function isLibraryLoaded(library:String):Bool
-	{
-		return Assets.getLibrary(library) != null;
-	}
-
-	inline static public function loadAndSwitchState(target:FlxState, stopMusic = false)
-	{
-		MusicBeatState.switchState(getNextState(target, stopMusic));
-	}
-
-	static function getNextState(target:FlxState, stopMusic = false):FlxState
-	{
-		var directory:String = 'shared';
-		var weekDir:String = StageData.forceNextDirectory;
-		StageData.forceNextDirectory = null;
-
-		if (weekDir != null && weekDir.length > 0 && weekDir != '')
-			directory = weekDir;
-
-		Paths.setCurrentLevel(directory);
-		trace('Setting asset folder to ' + directory);
-
-		var loaded:Bool = false;
-		if (PlayState.SONG != null)
-		{
-			loaded = isSoundLoaded(getSongPath())
-				&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))
-				&& isLibraryLoaded('week_assets');
-		}
-
-		if (!loaded)
-			return new CarrierState(target, stopMusic, directory);
-		else
-			loaded = true;
-
-		if (stopMusic && FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-
-		return target;
-	}
-
-	function onLoad()
-	{
-		if (stopMusic && FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-
-		MusicBeatState.switchState(target);
-	}
-
 	override public function create()
 	{
-		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
 		camOther = new FlxCamera();
 		camLogo = new FlxCamera();
 		camOther.bgColor.alpha = 0;

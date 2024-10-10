@@ -25,8 +25,8 @@ class TransparencyWarningState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (FlxG.mouse.cursor.visible)
-			FlxG.mouse.cursor.visible = false;
+		if (FlxG.mouse.visible)
+			FlxG.mouse.visible = false;
 
 		if (!leftState)
 		{
