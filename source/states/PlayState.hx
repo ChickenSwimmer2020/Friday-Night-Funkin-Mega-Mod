@@ -598,11 +598,11 @@ class PlayState extends MusicBeatState
 		grpNoteSplashes.add(splash);
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
 
-		holdSplash = new NoteSplashHoldManager(this);
-		add(holdSplash);
-
 		opponentStrums = new FlxTypedGroup<StrumNote>();
 		playerStrums = new FlxTypedGroup<StrumNote>();
+
+		holdSplash = new NoteSplashHoldManager(this);
+		add(holdSplash);
 
 		generateSong(SONG.song);
 
