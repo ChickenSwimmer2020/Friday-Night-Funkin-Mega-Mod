@@ -18,7 +18,7 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
      * This initializes your NoteSplashHoldManager.
      * @param strumGroup The group of strums for this manager to manage.
      */
-    public function initialize(strumGroup:FlxTypedGroup<StrumNote>, targetCam:FlxCamera){
+    public function initialize(strumGroup:FlxTypedGroup<StrumNote>){
         
         strumGroup.forEachAlive((s:StrumNote) -> {
             // This is useless
@@ -32,7 +32,6 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 		    holdSprite.frames = Paths.getSparrowAtlas('noteSplashes/holdCover$color');
 		    holdSprite.animation.addByPrefix('hold', 'holdCover$color', 24, false, false, false);
 		    holdSprite.visible = false;
-            holdSprite.cameras = [targetCam];
 		    add(holdSprite);
 
             // Sets the hold sprite to its respective colorName
@@ -51,8 +50,10 @@ class NoteSplashHoldManager extends FlxTypedSpriteGroup<FlxSprite>
 		    var hitSprite:FlxSprite = dirToSpr(note.noteData);
 			hitSprite.visible = true;
 		    if (note.isSustainNote)
-		    	hitSprite.animation.play('hold', true);
-		    hitSprite.animation.finishCallback = (_) -> hitSprite.visible = false;
+		    	hitSprite.animation.play('hold');
+		    hitSprite.animation.finishCallback = function(bru){
+                hitSprite.visible = false;
+            };
         }
 	}
 }

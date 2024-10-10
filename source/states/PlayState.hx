@@ -1700,7 +1700,8 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			babyArrow.postAddedToGroup();
 		}
-        holdSplashManager.initialize(playerStrums, camHUD);
+        holdSplashManager.initialize(playerStrums);
+		holdSplashManager.camera = camHUD;
 	}
 
 	override function openSubState(SubState:FlxSubState)
