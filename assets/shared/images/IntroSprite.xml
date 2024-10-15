@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="IntroSprite.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="INTROGRAPHCHIS0000" x="1" y="1" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0001" x="1" y="1199" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0002" x="1" y="2397" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0003" x="1" y="3595" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0004" x="1" y="4793" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0005" x="1" y="5991" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0006" x="1382" y="1" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0007" x="1382" y="1199" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0008" x="1382" y="2397" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0009" x="1382" y="3595" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0010" x="1382" y="4793" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0011" x="1382" y="5991" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0012" x="2763" y="1" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0013" x="2763" y="1199" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0014" x="2763" y="2397" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0015" x="2763" y="3595" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0016" x="2763" y="3595" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0017" x="2763" y="4793" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0018" x="2763" y="5991" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0019" x="4144" y="1" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0020" x="4144" y="1199" width="1380" height="1197"/>
+	<SubTexture name="INTROGRAPHCHIS0021" x="4144" y="2397" width="1380" height="1197"/>
+</TextureAtlas>

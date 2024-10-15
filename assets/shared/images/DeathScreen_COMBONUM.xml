@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="DeathScreen_COMBONUM.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ComboNumber0000" x="1" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0001" x="322" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0002" x="643" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0003" x="964" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0004" x="1285" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0005" x="1606" y="1" width="320" height="373"/>
+	<SubTexture name="ComboNumber0006" x="1" y="375" width="320" height="373"/>
+	<SubTexture name="ComboNumber0007" x="322" y="375" width="320" height="373"/>
+	<SubTexture name="ComboNumber0008" x="643" y="375" width="320" height="373"/>
+	<SubTexture name="ComboNumber0009" x="964" y="375" width="320" height="373"/>
+</TextureAtlas>

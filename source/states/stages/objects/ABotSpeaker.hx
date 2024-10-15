@@ -10,6 +10,8 @@ class ABotSpeaker extends FlxSpriteGroup
 	final VIZ_POS_X:Array<Float> = [0, 59, 56, 66, 54, 52, 51];
 	final VIZ_POS_Y:Array<Float> = [0, -8, -3.5, -0.4, 0.5, 4.7, 7];
 
+	public var isTitleScreenVis:Bool = false;
+
 	public var bg:FlxSprite;
 	public var vizSprites:Array<FlxSprite> = [];
 	public var eyeBg:FlxSprite;

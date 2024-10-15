@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="ChickenSwimmer2020_logo.png">
+	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="CSLogo0000" x="1" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0001" x="713" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0002" x="1425" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0003" x="2137" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0004" x="2849" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0005" x="3561" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0006" x="4273" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0007" x="4985" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0008" x="5697" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0009" x="6409" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0010" x="7121" y="1" width="711" height="688"/>
+	<SubTexture name="CSLogo0011" x="1" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0012" x="713" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0013" x="1425" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0014" x="2137" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0015" x="2849" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0016" x="3561" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0017" x="4273" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0018" x="4985" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0019" x="5697" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0020" x="6409" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0021" x="7121" y="690" width="711" height="688"/>
+	<SubTexture name="CSLogo0022" x="1" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0023" x="713" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0024" x="1425" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0025" x="2137" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0026" x="2849" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0027" x="3561" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0028" x="4273" y="1379" width="711" height="688"/>
+	<SubTexture name="CSLogo0029" x="4985" y="1379" width="711" height="688"/>
+</TextureAtlas>
