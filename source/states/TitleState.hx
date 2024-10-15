@@ -117,13 +117,13 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
-		if (FlxG.save.data.flashing == null && !FlashingState.leftState)
-		{
-			FlxTransitionableState.skipNextTransIn = false;
-			FlxTransitionableState.skipNextTransOut = false;
-			MusicBeatState.switchState(new FlashingState());
-		}
-		else
+		//if (FlxG.save.data.flashing == null && !FlashingState.leftState) //BROKEN!
+		//{
+		//	FlxTransitionableState.skipNextTransIn = false;
+		//	FlxTransitionableState.skipNextTransOut = false;
+		//	MusicBeatState.switchState(new FlashingState());
+		//}
+		//else
 		{
 			if (initialized)
 				startIntro();
