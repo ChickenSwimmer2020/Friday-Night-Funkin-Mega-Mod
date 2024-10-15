@@ -141,7 +141,10 @@
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	
 	<!-- Show debug traces for hxvlc -->
-	<haxedef name="HXVLC_LOGGING" if="debug" />
+	<!--<haxedef name="HXVLC_LOGGING" if="debug" />
+        THIS LAGS VIDEO LOADING SO MUCH OML!!
+        IT TAKES SECONDS TO LOAD VIDEOS WHEN THIS IS ENABLED
+    -->
 	
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
