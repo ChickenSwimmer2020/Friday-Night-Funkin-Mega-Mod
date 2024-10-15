@@ -1,3 +1,4 @@
+#if VIDEOS_ALLOWED
 package cutscenes;
 
 import hxvlc.flixel.FlxVideoSprite;
@@ -91,3 +92,4 @@ class PsychVideo extends FlxVideoSprite {
         play();
     }
 }
+#end
