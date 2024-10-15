@@ -1,5 +1,7 @@
 package backend;
 
+import openfl.utils.Assets;
+
 import haxe.Json;
 
 typedef ModsList = {
@@ -11,7 +13,7 @@ typedef ModsList = {
 class Mods
 {
 	static public var currentModDirectory:String = '';
-	public static var ignoreModFolders:Array<String> = [
+	public static final ignoreModFolders:Array<String> = [
 		'characters',
 		'custom_events',
 		'custom_notetypes',
@@ -62,7 +64,7 @@ class Mods
 		return list;
 	}
 	
-	inline public static function mergeAllTextsNamed(path:String, defaultDirectory:String = null, allowDuplicates:Bool = false)
+	inline public static function mergeAllTextsNamed(path:String, ?defaultDirectory:String = null, allowDuplicates:Bool = false)
 	{
 		if(defaultDirectory == null) defaultDirectory = Paths.getSharedPath();
 		defaultDirectory = defaultDirectory.trim();
@@ -92,10 +94,15 @@ class Mods
 	inline public static function directoriesWithFile(path:String, fileToFind:String, mods:Bool = true)
 	{
 		var foldersToCheck:Array<String> = [];
-		#if sys
 		if(FileSystem.exists(path + fileToFind))
-		#end
 			foldersToCheck.push(path + fileToFind);
+
+		if(Paths.currentLevel != null && Paths.currentLevel != path)
+		{
+			var pth:String = Paths.getFolderPath(fileToFind, Paths.currentLevel);
+			if(FileSystem.exists(pth))
+				foldersToCheck.push(pth);
+		}
 
 		#if MODS_ALLOWED
 		if(mods)
@@ -121,21 +128,6 @@ class Mods
 		#end
 		return foldersToCheck;
 	}
-
-	inline public static function internalDirectoriesWithFile(path:String, fileToFind:String, mods:Bool = true)
-		{
-			var foldersToCheck:Array<String> = [];
-			#if sys
-			if(FileSystem.exists(path + fileToFind))
-			#end
-				foldersToCheck.push(path + fileToFind);
-
-				// Then "PsychEngine/mods/" main folder
-				var folder:String = Paths.mods(fileToFind);
-				if(FileSystem.exists(folder) && !foldersToCheck.contains(folder)) foldersToCheck.push(Paths.getSharedPath(fileToFind));
-				
-			return foldersToCheck;
-		}
 
 	public static function getPack(?folder:String = null):Dynamic
 	{

@@ -10,7 +10,6 @@ export/*
 .vscode/*
 .haxelib/
 .github/
-.vs/*
 *.code-workspace
 vs_Community.exe
 # Local history which shouldn't be shared.
@@ -24,6 +23,3 @@ vs_Community.exe
 !.vscode/extensions.json
 art/build_html.bat
 art/build_html-debug.bat
-art/Photoshop/*
-*.flp
-*.swf

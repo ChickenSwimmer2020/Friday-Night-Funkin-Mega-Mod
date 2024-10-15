@@ -1,6 +1,5 @@
 package shaders;
 
-import lime.math.ColorMatrix;
 import flixel.system.FlxAssets.FlxShader;
 import objects.Note;
 
@@ -28,7 +27,6 @@ class RGBPalette {
 		shader.b.value = [color.redFloat, color.greenFloat, color.blueFloat];
 		return color;
 	}
-
 	
 	private function set_mult(value:Float) {
 		mult = FlxMath.bound(value, 0, 1);
