@@ -14,7 +14,9 @@ using StringTools;
 // DON'T USE WINDOWS API IN GAMEINTRO!!! THE GAME WILL NOT COMPILE!!
 class GameIntro extends FlxState
 {
+    #if VIDEOS_ALLOWED
 	var video:PsychVideo;
+    #end
 
 	override function create()
 	{
@@ -31,8 +33,10 @@ class GameIntro extends FlxState
 
 	public function exitState()
 	{
+        #if VIDEOS_ALLOWED
 		if (video.bitmap != null)
 			video.destroy();
+        #end
 		FlxG.switchState(new TitleState());
 	}
 
@@ -54,7 +58,7 @@ class GameIntro extends FlxState
 		if (!OpenFlAssets.exists(filepath))
 		#end
 		{
-			FlxG.log.warn('Couldnt find video file: ' + name);
+			trace('Couldnt find video file: ' + name);
 			return;
 		}
 		else
@@ -67,7 +71,7 @@ class GameIntro extends FlxState
 			add(video);
 		}
 		#else
-		FlxG.log.warn('Platform not supported for videos!!');
+		trace('Platform not supported for videos!!');
 		#end
 	}
 }
