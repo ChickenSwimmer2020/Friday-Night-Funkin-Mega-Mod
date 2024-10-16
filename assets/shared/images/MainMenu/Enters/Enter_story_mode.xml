@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Enter_story_mode.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="story_mode yeet0000" x="1" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0001" x="1" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0002" x="1" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0003" x="1" y="4126" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0004" x="1" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0005" x="739" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0006" x="739" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0007" x="739" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0008" x="739" y="4126" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0009" x="739" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0010" x="1477" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0011" x="1477" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0012" x="1477" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0013" x="1477" y="4126" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0014" x="1477" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0015" x="1477" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0016" x="2215" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0017" x="2215" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0018" x="2215" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0019" x="2215" y="4126" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0020" x="2215" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0021" x="2953" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0022" x="2953" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0023" x="2953" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0024" x="2953" y="4126" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0025" x="2953" y="5501" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0026" x="3691" y="1" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0027" x="3691" y="1376" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0028" x="3691" y="2751" width="737" height="1374"/>
+	<SubTexture name="story_mode yeet0029" x="3691" y="4126" width="737" height="1374"/>
+</TextureAtlas>
