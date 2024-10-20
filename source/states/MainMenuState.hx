@@ -62,9 +62,6 @@ class MainMenuState extends MusicBeatState
 	var rightOption:String = null;
     var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
-
-	var magenta:FlxSprite;
-
 	override function create()
 	{
         
@@ -97,16 +94,6 @@ class MainMenuState extends MusicBeatState
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
-
-		magenta = new FlxSprite(-80).loadGraphic(Paths.image('menuDesat'));
-		magenta.antialiasing = ClientPrefs.data.antialiasing;
-		magenta.scrollFactor.set(0, yScroll);
-		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		magenta.color = 0xFFfd719b;
-		add(magenta);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -173,7 +160,22 @@ class MainMenuState extends MusicBeatState
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
 		menuItem.updateHitbox();
 
-		// settings
+        // Credits
+		offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
+		menuItem = new FlxSprite(0, 250);
+		menuItem.scale.x = 5;
+		menuItem.scale.y = 5;
+		menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[3]);
+		menuItem.animation.addByPrefix('idle', optionShit[3] + " basic", 24);
+		menuItem.animation.addByPrefix('selected', optionShit[3] + " white", 24);
+		menuItem.animation.play('idle');
+		menuItem.ID = 3;
+		menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+		menuItems.add(menuItem);
+		menuItem.antialiasing = ClientPrefs.data.antialiasing;
+		menuItem.updateHitbox();
+
+		// Settings
 		offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
 		menuItem = new FlxSprite(0, 550);
 		menuItem.scale.x = 5;
@@ -198,21 +200,6 @@ class MainMenuState extends MusicBeatState
 		// scr = (optionShit.length - 4) * 0.135;
 		// if (optionShit.length < 6) scr = 3;
 		// menuItem.scrollFactor.set(3, scr);
-		menuItem.antialiasing = ClientPrefs.data.antialiasing;
-		menuItem.updateHitbox();
-
-		// Credits
-		offset = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
-		menuItem = new FlxSprite(0, 250);
-		menuItem.scale.x = 5;
-		menuItem.scale.y = 5;
-		menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[3]);
-		menuItem.animation.addByPrefix('idle', optionShit[3] + " basic", 24);
-		menuItem.animation.addByPrefix('selected', optionShit[3] + " white", 24);
-		menuItem.animation.play('idle');
-		menuItem.ID = 3;
-		menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
-		menuItems.add(menuItem);
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
 		menuItem.updateHitbox();
 
@@ -538,9 +525,6 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.mouse.visible = false;
 
-					if (ClientPrefs.data.flashing)
-						FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
 					var item:FlxSprite;
 					var option:String;
 					switch(curColumn)
@@ -579,7 +563,7 @@ class MainMenuState extends MusicBeatState
 
 							case 'credits':
 								MusicBeatState.switchState(new CreditsState());
-							case 'options':
+							case 'settings':
 								MusicBeatState.switchState(new OptionsState());
 								OptionsState.onPlayState = false;
 								if (PlayState.SONG != null)

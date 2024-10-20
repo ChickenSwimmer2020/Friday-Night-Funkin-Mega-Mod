@@ -43,10 +43,10 @@ class TitleState extends MusicBeatState
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
 
-	var curWacky:Array<String> = [];
+	var introText:Array<String> = [];
 	var updateJoke:Array<String> = [];
 	var devJoke:Array<String> = [];
-	var brahdafack:Array<String> = [];
+	var startText:Array<String> = [];
 
 	var wackyImage:FlxSprite;
 
@@ -54,13 +54,13 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
+        AlphaCharacter.loadAlphabetData();
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			MMlogo.animation.play('shine', true);
 		}, 99999999);
 		// random int code for the 1 in 10000 chance for bf to flip off the player
-		var penis:Int;
-		penis = FlxG.random.int(1, 10000);
+		var penis = FlxG.random.int(1, 10000);
 		if (penis == 10000)
 		{
 			fuckoff = true;
@@ -81,10 +81,10 @@ class TitleState extends MusicBeatState
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.keys.preventDefaultKeys = [TAB];
 
-		curWacky = FlxG.random.getObject(getIntroTextShit());
-		updateJoke = FlxG.random.getObject(getUpdateJokeTextShit());
-		devJoke = FlxG.random.getObject(hahaFunnyDevJokeTextBitch());
-		brahdafack = FlxG.random.getObject(startmessage());
+		introText = FlxG.random.getObject(getIntroText('introTexts'));
+		updateJoke = FlxG.random.getObject(getIntroText('updateJokes'));
+		devJoke = FlxG.random.getObject(getIntroText('devJokes'));
+		startText = FlxG.random.getObject(getIntroText('startTexts'));
 
 		super.create();
 
@@ -380,51 +380,9 @@ class TitleState extends MusicBeatState
 		// credGroup.add(credTextShit);
 	}
 
-	function getIntroTextShit():Array<Array<String>>
+	function getIntroText(?assetTxt:String = 'introText'):Array<Array<String>>
 	{
-		var fullText:String = Assets.getText(Paths.txt('TitleScreen/introText'));
-		var firstArray:Array<String> = fullText.split('\n');
-		var swagGoodArray:Array<Array<String>> = [];
-
-		for (i in firstArray)
-		{
-			swagGoodArray.push(i.split('--'));
-		}
-
-		return swagGoodArray;
-	}
-
-	function getUpdateJokeTextShit():Array<Array<String>>
-	{
-		var fullText:String = Assets.getText(Paths.txt('TitleScreen/UpdateJokes'));
-		var firstArray:Array<String> = fullText.split('\n');
-		var swagGoodArray:Array<Array<String>> = [];
-
-		for (i in firstArray)
-		{
-			swagGoodArray.push(i.split('--'));
-		}
-
-		return swagGoodArray;
-	}
-
-	function hahaFunnyDevJokeTextBitch():Array<Array<String>>
-	{
-		var fullText:String = Assets.getText(Paths.txt('TitleScreen/devJokes'));
-		var firstArray:Array<String> = fullText.split('\n');
-		var swagGoodArray:Array<Array<String>> = [];
-
-		for (i in firstArray)
-		{
-			swagGoodArray.push(i.split('--'));
-		}
-
-		return swagGoodArray;
-	}
-
-	function startmessage():Array<Array<String>>
-	{
-		var fullText:String = Assets.getText(Paths.txt('TitleScreen/startLine'));
+		var fullText:String = Assets.getText(Paths.txt('TitleScreen/$assetTxt'));
 		var firstArray:Array<String> = fullText.split('\n');
 		var swagGoodArray:Array<Array<String>> = [];
 
@@ -669,9 +627,9 @@ class TitleState extends MusicBeatState
 					deleteCoolText();
 					ngSpr.visible = false;
 				case 10:
-					createCoolText([curWacky[0]]);
+					createCoolText([introText[0]]);
 				case 12:
-					addMoreText(curWacky[1]);
+					addMoreText(introText[1]);
 				case 13:
 					deleteCoolText();
 				case 14:
@@ -798,7 +756,7 @@ class TitleState extends MusicBeatState
 				case 66:
 					waitwhat = true;
 				case 67:
-					if (ClientPrefs.data.flashing && !skippedIntro)
+					if (!skippedIntro)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
@@ -806,7 +764,7 @@ class TitleState extends MusicBeatState
 					createCoolText(['Friday']);
 					DAFUQWHAT.animation.play('up');
 				case 68:
-					if (ClientPrefs.data.flashing && !skippedIntro)
+					if (!skippedIntro)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						FlxTween.tween(FlxG.camera, {zoom: 1.5}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
@@ -814,7 +772,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Night');
 					DAFUQWHAT.animation.play('up');
 				case 69:
-					if (ClientPrefs.data.flashing && !skippedIntro)
+					if (!skippedIntro)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						FlxTween.tween(FlxG.camera, {zoom: 1.75}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
@@ -822,7 +780,7 @@ class TitleState extends MusicBeatState
 					addMoreText('Funkin');
 					DAFUQWHAT.animation.play('up');
 				case 70:
-					if (ClientPrefs.data.flashing && !skippedIntro)
+					if (!skippedIntro)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						FlxTween.tween(FlxG.camera, {zoom: 2}, 0.3, {ease: FlxEase.quadOut, type: ONESHOT});
@@ -832,15 +790,15 @@ class TitleState extends MusicBeatState
 				case 71:
 					deleteCoolText();
 					createCoolText(['V5!'], 140);
-					if (ClientPrefs.data.flashing && !skippedIntro)
+					if (!skippedIntro)
 					{
 						FlxG.camera.flash(FlxColor.WHITE, 0.5);
 						FlxTween.tween(FlxG.camera, {zoom: 3}, 0.1, {ease: FlxEase.quadIn, type: ONESHOT});
 					}
 				case 72:
 					deleteCoolText();
-					createCoolText([brahdafack[0]], 140);
-					trace('startLine by: ' + brahdafack[1]);
+					createCoolText([startText[0]], 140);
+					trace('startLine by: ' + startText[1]);
 					FlxTween.tween(FlxG.camera, {zoom: 1}, 0.5, {ease: FlxEase.quintInOut, type: ONESHOT});
 					DAFUQWHAT.animation.play('up');
 				case 73:

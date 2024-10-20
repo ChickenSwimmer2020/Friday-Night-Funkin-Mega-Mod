@@ -1,5 +1,6 @@
 package objects;
 
+import openfl.Assets;
 import haxe.Json;
 
 enum Alignment

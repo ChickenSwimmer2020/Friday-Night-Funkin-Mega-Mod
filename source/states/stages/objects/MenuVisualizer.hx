@@ -73,13 +73,6 @@ class MenuVisualizer extends FlxSpriteGroup
 			vizSprites[i].animation.curAnim.curFrame = animFrame;
 			levelMax = Std.int(Math.max(levelMax, 5 - animFrame));
 		}
-
-		if(levelMax >= 4)
-		{
-			//trace(levelMax);
-			if(oldLevelMax <= levelMax && (levelMax >= 5 || speaker.anim.curFrame >= 3))
-				beatHit();
-		}
 	}
 	#end
 
