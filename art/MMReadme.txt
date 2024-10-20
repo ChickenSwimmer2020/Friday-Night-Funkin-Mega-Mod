@@ -1,0 +1,6 @@
+Yo!
+ChickenSwimmer2020 here,
+due to my limitations as a coder, some features have either hardcoded values, or hardcoded offsets. to combat this, I have added a custom file under shared/data
+simply named "AdvancedOffsets.json", this file allows you to change offsets of certain hud elements. currently, it affects...
+
+Combo Milestone

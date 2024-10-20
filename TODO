@@ -14,6 +14,7 @@
 # AFTER 1.0 PORT
 
 ## TODO:
+- Add extra offset options in the "Adust Delay and Combo" menu to replace the need for AdvancedOffsets.json.
 - Add custom audio visualizer rendering (Planned to be worked on by ZSolarDev)
 - Clean up the option menu song transitions.
 
