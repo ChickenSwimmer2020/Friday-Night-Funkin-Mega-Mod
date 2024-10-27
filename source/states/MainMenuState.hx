@@ -370,9 +370,9 @@ class MainMenuState extends MusicBeatState
 		if (leDate.getDay() == 5 && leDate.getHours() >= 18)
 			Achievements.unlock('friday_night_play');
 
-		#if MODS_ALLOWED
-		Achievements.reloadList();
-		#end
+		//#if MODS_ALLOWED
+		//Achievements.reloadList();
+		//#end
 		#end
 
 		super.create();
@@ -551,13 +551,13 @@ class MainMenuState extends MusicBeatState
 							case 'freeplay':
 								MusicBeatState.switchState(new FreeplayState());
 
-							#if MODS_ALLOWED
-							case 'mods':
-								MusicBeatState.switchState(new ModsMenuState());
-							#end
+							//#if MODS_ALLOWED
+							//case 'mods':
+							//	MusicBeatState.switchState(new ModsMenuState());
+							//#end
 
 							#if ACHIEVEMENTS_ALLOWED
-							case 'achievements':
+							case 'Awards':
 								MusicBeatState.switchState(new AchievementsMenuState());
 							#end
 

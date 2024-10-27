@@ -9,6 +9,8 @@
 - Main Menu:
     - Optimize menuItem generation into a for loop.
     - Finish getting in the states that the main menu leads to.
+- Misc:
+    - fix occasional audio desync on titlestate when loading game
 
 
 # AFTER 1.0 PORT

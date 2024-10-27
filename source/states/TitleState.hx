@@ -54,7 +54,8 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-        AlphaCharacter.loadAlphabetData();
+        AlphaCharacter.loadAlphabetData(); //thanks for fixing solar
+		
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			MMlogo.animation.play('shine', true);
