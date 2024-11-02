@@ -150,6 +150,7 @@ class PlayState extends MusicBeatState
 	public var strumLineNotes:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
 	public var opponentStrums:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
 	public var playerStrums:FlxTypedGroup<StrumNote> = new FlxTypedGroup<StrumNote>();
+    public var holdSplashManager:NoteSplashHoldManager;
 	public var grpNoteSplashes:FlxTypedGroup<NoteSplash> = new FlxTypedGroup<NoteSplash>();
 
 	public var camZooming:Bool = false;
@@ -591,6 +592,9 @@ class PlayState extends MusicBeatState
 				#end
 			}
 		#end
+
+        holdSplashManager = new NoteSplashHoldManager();
+		add(holdSplashManager);
 
 		startCallback();
 		RecalculateRating();
@@ -1539,6 +1543,8 @@ class PlayState extends MusicBeatState
 			strumLineNotes.add(babyArrow);
 			babyArrow.playerPosition();
 		}
+        holdSplashManager.initialize(playerStrums);
+		holdSplashManager.camera = camHUD;
 	}
 
 	override function openSubState(SubState:FlxSubState)
@@ -3010,6 +3016,8 @@ class PlayState extends MusicBeatState
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 
+        holdSplashManager.onNoteHit(note);
+
 		var isSus:Bool = note.isSustainNote; //GET OUT OF MY HEAD, GET OUT OF MY HEAD, GET OUT OF MY HEAD
 		var leData:Int = Math.round(Math.abs(note.noteData));
 		var leType:String = note.noteType;
@@ -3114,7 +3122,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public function spawnNoteSplashOnNote(note:Note) {
-		if(note != null) {
+		if(note != null && note.sustainLength == 0) {
 			var strum:StrumNote = playerStrums.members[note.noteData];
 			if(strum != null)
 				spawnNoteSplash(note, strum);
