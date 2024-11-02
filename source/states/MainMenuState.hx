@@ -270,12 +270,13 @@ class MainMenuState extends MusicBeatState
 		menuItem = new FlxSprite(0, 575);
 		menuItem.scale.x = 5;
 		menuItem.scale.y = 5;
-		menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[8]);
-		menuItem.animation.addByPrefix('idle', optionShit[8] + " basic", 24);
-		menuItem.animation.addByPrefix('selected', optionShit[8] + " white", 24);
-		menuItem.animation.play('idle');
+        menuItem.visible = false;
+		//menuItem.frames = Paths.getSparrowAtlas('MainMenu/menu_' + optionShit[8]);
+		//menuItem.animation.addByPrefix('idle', optionShit[8] + " basic", 24);
+		//menuItem.animation.addByPrefix('selected', optionShit[8] + " white", 24);
+		//menuItem.animation.play('idle');
 		menuItem.ID = 8;
-		menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
+		//menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
 		menuItems.add(menuItem);
 		// scr = (optionShit.length - 4) * 0.135;
 		// if (optionShit.length < 6) scr = 3;
@@ -559,6 +560,7 @@ class MainMenuState extends MusicBeatState
 								// MusicBeatState.switchState(new OverWorldState());
 								backend.WindowsAPI.showMessagePopup('Uh Oh!', 'Sorry! this feature is not yet implemented!\ntry again in the\nnext update!',
 									MSG_INFORMATION); //prevents crashes because overworld doesnt work yet
+                                MusicBeatState.switchState(new MainMenuState());
 							case 'credits':
 								MusicBeatState.switchState(new CreditsState());
 							case 'settings':
@@ -618,7 +620,8 @@ class MainMenuState extends MusicBeatState
 			case RIGHT:
 				selectedItem = rightItem;
 		}
-		selectedItem.animation.play('selected');
+        if (selectedItem.ID != 8)
+		    selectedItem.animation.play('selected');
 		selectedItem.centerOffsets();
 	}
 }

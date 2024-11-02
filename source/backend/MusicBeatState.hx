@@ -132,7 +132,7 @@ class MusicBeatState extends FlxState
 	}
 
 	public static function switchState(nextState:FlxState = null) {
-		if(nextState == null) nextState = FlxG.state;
+		if(nextState == null) resetState();
 		if(nextState == FlxG.state)
 		{
 			resetState();
