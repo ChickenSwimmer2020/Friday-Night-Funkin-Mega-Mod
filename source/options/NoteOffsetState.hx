@@ -17,11 +17,10 @@ class NoteOffsetState extends MusicBeatState
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 
-	public var TheText:String = 'W/A/S/D to move Rating\nI/J/K/L to move Combo Milestone\n▲◄▼◄ to move numbers';
+	public var TheText:String = 'W/A/S/D to move Numbers\nI/J/K/L to move Combo Milestone\n▲/◄/▼/► to move Rating';
 	public var HelpText:FlxText;
 
-	public var ControlsText:FlxText;
-	public var TheControlText:String = 'Press F1 For Controls';
+	public var camElapsedTime:Float;
 
 	var coolText:FlxText;
 	var rating:FlxSprite;
@@ -44,15 +43,6 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
-		HelpText = new FlxText(0, 0, 0, TheText, 8, true);
-		ControlsText = new FlxText(500, 0, 0, TheControlText, 8, true);
-		ControlsText.setFormat('VCR OSD Mono', 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
-		HelpText.setFormat('VCR OSD Mono', 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
-		add(HelpText);
-		HelpText.visible = false;
-		HelpText.setPosition(0, 0);
-		add(ControlsText);
-
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Delay/Combo Offset Menu", null);
 		#end
@@ -92,6 +82,12 @@ class NoteOffsetState extends MusicBeatState
 		coolText = new FlxText(0, 0, 0, '', 32);
 		coolText.screenCenter();
 		coolText.x = FlxG.width * 0.35;
+
+		HelpText = new FlxText(0, 0, 0, TheText, 8, true);
+		HelpText.setFormat('VCR OSD Mono', 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
+		HelpText.setPosition(0, 650);
+		HelpText.cameras = [camHUD];
+		add(HelpText);
 
 		rating = new FlxSprite().loadGraphic(Paths.image('sick'));
 		rating.cameras = [camHUD];
@@ -466,6 +462,8 @@ class NoteOffsetState extends MusicBeatState
 			HelpText.visible = true;
 		} else if(FlxG.keys.justPressed.F1 && HelpText.visible)
 			HelpText.visible = false;
+
+		camElapsedTime = elapsed;
 	}
 
 	var zoomTween:FlxTween;
@@ -479,7 +477,7 @@ class NoteOffsetState extends MusicBeatState
 			return;
 		}
 
-		if(curBeat % 2 == 0)
+		if(curBeat % 1 == 0)
 		{
 			boyfriend.dance();
 			gf.dance();
@@ -487,7 +485,11 @@ class NoteOffsetState extends MusicBeatState
 		
 		if(curBeat % 4 == 2)
 		{
-			FlxG.camera.zoom = 1.15;
+			var defaultCamZoom:Float = 5.05;
+			var camZoomingDecay:Float = 1;
+			var playbackRate:Float = 1;
+
+			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, Math.exp(-camElapsedTime * 3.125 * camZoomingDecay * playbackRate));
 
 			if(zoomTween != null) zoomTween.cancel();
 			zoomTween = FlxTween.tween(FlxG.camera, {zoom: 1}, 1, {ease: FlxEase.circOut, onComplete: function(twn:FlxTween)
