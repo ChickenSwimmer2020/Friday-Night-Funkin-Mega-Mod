@@ -39,9 +39,12 @@ class Note extends FlxSprite
 	//It's also used for backwards compatibility with 0.1 - 0.3.2 charts.
 	public static final defaultNoteTypes:Array<String> = [
 		'', //Always leave this one empty pls
+		'Bomb',
 		'Alt Animation',
+		'Bullet',
 		'Hey!',
 		'Hurt Note',
+		'Heal Note',
 		'GF Sing',
 		'No Animation'
 	];

@@ -89,6 +89,8 @@ class PlayState extends MusicBeatState
 	//event variables
 	private var isCameraOnForcedPos:Bool = false;
 
+	public var BopOnBeat:Bool = false;
+
 	public var boyfriendMap:Map<String, Character> = new Map<String, Character>();
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
 	public var gfMap:Map<String, Character> = new Map<String, Character>();
@@ -1461,6 +1463,7 @@ class PlayState extends MusicBeatState
 			case 'Play Sound':
 				Paths.sound(event.value1); //Precache sound
 		}
+		/////////////////
 		stagesFunc(function(stage:BaseStage) stage.eventPushedUnique(event));
 	}
 
@@ -2251,6 +2254,28 @@ class PlayState extends MusicBeatState
 			case 'Play Sound':
 				if(flValue2 == null) flValue2 = 1;
 				FlxG.sound.play(Paths.sound(value1), flValue2);
+			
+			//MEGAMOD EVENTS
+			case 'Cam Speed':
+				cameraSpeed = flValue1;
+				if(flValue1 == null) cameraSpeed = 1;
+			case 'Bop Type':
+				switch(value1.toLowerCase().trim()) {
+					case 'section' | 'sectionhit' | '0':
+						BopOnBeat = false;
+					case 'beat' | 'beathit' | '1':
+						BopOnBeat = true;
+				};
+			case 'Set Cam Decay':
+				if(flValue1 == null) flValue1 = 1;
+				camZoomingDecay = flValue1;
+			case 'Zoom Camera':
+				var camZoom:Float = Std.parseFloat(value1);
+					if(!Math.isNaN(camZoom)) {
+						defaultCamZoom = camZoom;
+						camZooming = true;
+					}
+	
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
@@ -3171,6 +3196,27 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
+		//COMBOMILESTONE!!!!!!!
+		var shouldShowComboText:Bool = false;
+		//this code is modified from base game, but the actual combo stuff is from base itself
+		if (SONG != null)
+			{
+				//remember to find out how to check if next section is not a playsection so that combo counter only appears at end of turn.
+				if(combo > 0)
+					shouldShowComboText = curBeat % 8 == 7;
+				//thanks solar!!
+				//modded to wait until after two sectrions by changing values
+					// This is the last beat of the section in 4/4 time signature.
+					// Making this dynamic with a custom section step amount is difficult, but possible.
+				//trace(combo);
+			}
+		if (shouldShowComboText)
+			{
+			  var animShit:ComboMilestone = new ComboMilestone(0, 0, combo);
+			  animShit.cameras = [camHUD];
+			  add(animShit);
+			}
+
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
@@ -3184,6 +3230,14 @@ class PlayState extends MusicBeatState
 
 		super.beatHit();
 		lastBeatHit = curBeat;
+
+		if(BopOnBeat){
+			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
+			{
+				FlxG.camera.zoom += 0.015 * camZoomingMult;
+				camHUD.zoom += 0.03 * camZoomingMult;
+			}
+		}
 
 		setOnScripts('curBeat', curBeat);
 		callOnScripts('onBeatHit');
@@ -3231,6 +3285,14 @@ class PlayState extends MusicBeatState
 			setOnScripts('gfSection', SONG.notes[curSection].gfSection);
 		}
 		super.sectionHit();
+
+		if(!BopOnBeat){
+			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.data.camZooms)
+			{
+				FlxG.camera.zoom += 0.015 * camZoomingMult;
+				camHUD.zoom += 0.03 * camZoomingMult;
+			}
+		}
 
 		setOnScripts('curSection', curSection);
 		callOnScripts('onSectionHit');

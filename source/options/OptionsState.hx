@@ -11,8 +11,9 @@ class OptionsState extends MusicBeatState
 		'Adjust Delay and Combo',
 		'Graphics',
 		'Visuals',
-		'Gameplay'
-		#if TRANSLATIONS_ALLOWED , 'Language' #end
+		'Gameplay',
+		'Language',
+		'MegaMod'
 	];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;

@@ -27,6 +27,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	public var rpcTitle:String;
 
 	public var bg:FlxSprite;
+	public var Gears:FlxSprite;
+
 	public function new()
 	{
 		super();
@@ -38,11 +40,19 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		DiscordClient.changePresence(rpcTitle, null);
 		#end
 		
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
+		bg = new FlxSprite().loadGraphic(Paths.image('OptionsMenu/Background'));
 		bg.color = 0xFFea71fd;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
+		bg.setPosition(-100, -70);
 		add(bg);
+
+		Gears = new FlxSprite(200, 500);
+		Gears.frames = Paths.getSparrowAtlas('OptionsMenu/Gears');
+		Gears.animation.addByPrefix('spin', 'optionsbg_gears', 24, true, false, false);
+		Gears.antialiasing = ClientPrefs.data.antialiasing;
+		Gears.scale.set(2,2);
+		add(Gears);
 
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();

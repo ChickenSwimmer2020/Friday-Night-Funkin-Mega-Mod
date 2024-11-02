@@ -83,7 +83,13 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Change Character', "Value 1: Character to change (Dad, BF, GF)\nValue 2: New character's name"],
 		['Change Scroll Speed', "Value 1: Scroll Speed Multiplier (1 is default)\nValue 2: Time it takes to change fully in seconds."],
 		['Set Property', "Value 1: Variable name\nValue 2: New value"],
-		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"]
+		['Play Sound', "Value 1: Sound file name\nValue 2: Volume (Default: 1), ranges from 0 to 1"],
+		//MEGAMOD EVENTS DEFINITION
+		['Zoom Camera', "Changes the camera zoom\ndefault is 1.05\nValue 1: zoom"],
+		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
+		['Set Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
+		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
+		['Digital Bg Boom', "used in Ditigal\nValue 1: 0/1 = OFF/ON\nValue 2: 0/1 Do Nothing/Bop"],
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor

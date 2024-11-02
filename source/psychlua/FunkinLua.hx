@@ -197,6 +197,10 @@ class FunkinLua {
 		set('shadersEnabled', ClientPrefs.data.shaders);
 		set('scriptName', scriptName);
 		set('currentModDirectory', Mods.currentModDirectory);
+		//megamod stuff (for song lua)
+		//set('AdditionalEffects', ClientPrefs.data.AdditionalEffects); dont use this, it can fuck a lot of things up
+		set('Overlays', ClientPrefs.data.Overlays);
+		set('Mechanics', ClientPrefs.data.GamePlayMechanics);
 
 		// Noteskin/Splash
 		set('noteSkin', ClientPrefs.data.noteSkin);

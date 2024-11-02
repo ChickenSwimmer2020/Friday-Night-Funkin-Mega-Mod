@@ -77,6 +77,11 @@ import states.TitleState;
 	public var discordRPC:Bool = true;
 	public var loadingScreen:Bool = true;
 	public var language:String = 'en-US';
+	
+	//MEGAMOD PREFS
+	public var GamePlayMechanics:Bool = true;
+	public var Overlays:Bool = true;
+	public var AdditionalEffects:Bool = true;
 }
 
 class ClientPrefs {
