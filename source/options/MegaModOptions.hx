@@ -2,29 +2,26 @@ package options;
 
 class MegaModOptions extends BaseOptionsMenu {
     public function new() {
-        super();
-        title = 'MegaMod Options';
-
+        title = Language.getPhrase('megamod_options_menu', 'MegaMod Options');
+		rpcTitle = 'MegaMod Options Menu';
 
         var option:Option = new Option('Mechanics',
 		'If checked, mechanics are enabled',
 		'GamePlayMechanics',
-		'bool'
-		);
+		BOOL);
 		addOption(option);
 
 		var option:Option = new Option('Overlays',
 		'If checked, overlays for the healthbar/timebar are enabled',
 		'Overlays',
-		'bool'
-		);
+		BOOL);
 		addOption(option);
 
 		var option:Option = new Option('Additional song data files',
 		'If Checked, additional song data files will be loaded',
 		'AdditionalEffects',
-		'bool'
-		);
+		BOOL);
 		addOption(option);
+        super();
     }
 }

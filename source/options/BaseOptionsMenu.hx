@@ -41,7 +41,6 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		#end
 		
 		bg = new FlxSprite().loadGraphic(Paths.image('OptionsMenu/Background'));
-		bg.color = 0xFFea71fd;
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.setPosition(-100, -70);
@@ -53,6 +52,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		Gears.antialiasing = ClientPrefs.data.antialiasing;
 		Gears.scale.set(2,2);
 		add(Gears);
+        Gears.animation.play('spin');
 
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();

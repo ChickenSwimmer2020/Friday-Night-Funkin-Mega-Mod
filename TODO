@@ -1,17 +1,13 @@
 # DURING 1.0 PORT
 
 ## CRITICAL:
-- Port over the options menu.
-- Port over all of the songs/assets.
-- Port over the Quad-Event system.
+- Add Gallery
+- Add Digital as a finished song
+- Add Note hold splashes
 
 ## TODO:
 - Main Menu:
     - Optimize menuItem generation into a for loop.
-    - Finish getting in the states that the main menu leads to.
-- Misc:
-    - fix occasional audio desync on titlestate when loading game
-
 
 # AFTER 1.0 PORT
 
@@ -23,14 +19,8 @@
 ## CRITICAL:
 - Finish the Intro cutscene.
 - Finish Digital assets for the gameplay preview.
+- Finish getting in the states that the main menu leads to.
 
 
 # Extra plans(Extended Scope, added after release):
 - Overworld will be a Doom-type area(Uses Raycasting)
-
-# Misc
-
-Add more if you wish.
-I'll prob make an application to load custom todo files with a special format.
-It will make task management much easier, and will make for a fun side-project.
--ZSolarDev
