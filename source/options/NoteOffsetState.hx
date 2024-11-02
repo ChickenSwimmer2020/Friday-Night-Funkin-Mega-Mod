@@ -17,8 +17,15 @@ class NoteOffsetState extends MusicBeatState
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 
+	public var TheText:String = 'W/A/S/D to move Rating\nI/J/K/L to move Combo Milestone\n▲◄▼◄ to move numbers';
+	public var HelpText:FlxText;
+
+	public var ControlsText:FlxText;
+	public var TheControlText:String = 'Press F1 For Controls';
+
 	var coolText:FlxText;
 	var rating:FlxSprite;
+	var milestone:FlxSprite;
 	var comboNums:FlxSpriteGroup;
 	var dumbTexts:FlxTypedGroup<FlxText>;
 
@@ -37,6 +44,15 @@ class NoteOffsetState extends MusicBeatState
 
 	override public function create()
 	{
+		HelpText = new FlxText(0, 0, 0, TheText, 8, true);
+		ControlsText = new FlxText(500, 0, 0, TheControlText, 8, true);
+		ControlsText.setFormat('VCR OSD Mono', 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
+		HelpText.setFormat('VCR OSD Mono', 24, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.NONE, FlxColor.TRANSPARENT, true);
+		add(HelpText);
+		HelpText.visible = false;
+		HelpText.setPosition(0, 0);
+		add(ControlsText);
+
 		#if DISCORD_ALLOWED
 		DiscordClient.changePresence("Delay/Combo Offset Menu", null);
 		#end
@@ -82,6 +98,15 @@ class NoteOffsetState extends MusicBeatState
 		rating.antialiasing = ClientPrefs.data.antialiasing;
 		rating.setGraphicSize(Std.int(rating.width * 0.7));
 		rating.updateHitbox();
+
+		milestone = new FlxSprite();
+		milestone.frames = Paths.getSparrowAtlas('comboMilestone');
+		milestone.animation.addByIndices('Static', 'NOTE COMBO animation', [17], "", 24, true, false, false);
+		milestone.animation.play('Static', true, false, 0);
+		milestone.cameras = [camHUD];
+		milestone.antialiasing = ClientPrefs.data.antialiasing;
+
+		add(milestone);
 		
 		add(rating);
 
@@ -227,7 +252,12 @@ class NoteOffsetState extends MusicBeatState
 						FlxG.keys.justPressed.A,
 						FlxG.keys.justPressed.D,
 						FlxG.keys.justPressed.W,
-						FlxG.keys.justPressed.S
+						FlxG.keys.justPressed.S,
+
+						FlxG.keys.justPressed.J,
+						FlxG.keys.justPressed.L,
+						FlxG.keys.justPressed.I,
+						FlxG.keys.justPressed.K
 					];
 				}
 				else
@@ -253,6 +283,7 @@ class NoteOffsetState extends MusicBeatState
 						{
 							switch(i)
 							{
+									//rating
 								case 0:
 									ClientPrefs.data.comboOffset[0] -= addNum;
 								case 1:
@@ -261,6 +292,7 @@ class NoteOffsetState extends MusicBeatState
 									ClientPrefs.data.comboOffset[1] += addNum;
 								case 3:
 									ClientPrefs.data.comboOffset[1] -= addNum;
+									//combo numbers
 								case 4:
 									ClientPrefs.data.comboOffset[2] -= addNum;
 								case 5:
@@ -269,6 +301,15 @@ class NoteOffsetState extends MusicBeatState
 									ClientPrefs.data.comboOffset[3] += addNum;
 								case 7:
 									ClientPrefs.data.comboOffset[3] -= addNum;
+									//combo milestone
+								case 8:
+									ClientPrefs.data.comboOffset[4] -= addNum;
+								case 9:
+									ClientPrefs.data.comboOffset[4] += addNum;
+								case 10:
+									ClientPrefs.data.comboOffset[5] -= addNum;
+								case 11:
+									ClientPrefs.data.comboOffset[5] += addNum;
 							}
 						}
 					}
@@ -419,6 +460,12 @@ class NoteOffsetState extends MusicBeatState
 
 		Conductor.songPosition = FlxG.sound.music.time;
 		super.update(elapsed);
+
+		if(FlxG.keys.justPressed.F1 && !HelpText.visible)
+		{
+			HelpText.visible = true;
+		} else if(FlxG.keys.justPressed.F1 && HelpText.visible)
+			HelpText.visible = false;
 	}
 
 	var zoomTween:FlxTween;
@@ -472,12 +519,17 @@ class NoteOffsetState extends MusicBeatState
 		comboNums.screenCenter();
 		comboNums.x = coolText.x - 90 + ClientPrefs.data.comboOffset[2];
 		comboNums.y += 80 - ClientPrefs.data.comboOffset[3];
+
+		milestone.screenCenter();
+		milestone.x = ClientPrefs.data.comboOffset[4];
+		milestone.y = ClientPrefs.data.comboOffset[5];
+
 		reloadTexts();
 	}
 
 	function createTexts()
 	{
-		for (i in 0...4)
+		for (i in 0...6)
 		{
 			var text:FlxText = new FlxText(10, 48 + (i * 30), 0, '', 24);
 			text.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -487,6 +539,14 @@ class NoteOffsetState extends MusicBeatState
 			text.cameras = [camHUD];
 
 			if(i > 1)
+			{
+				text.y += 24;
+			}
+			if(i == 4)
+			{
+				text.y += 24;
+			}
+			if(i == 5)
 			{
 				text.y += 24;
 			}
@@ -501,8 +561,12 @@ class NoteOffsetState extends MusicBeatState
 			{
 				case 0: dumbTexts.members[i].text = Language.getPhrase('combo_rating_offset', 'Rating Offset:');
 				case 1: dumbTexts.members[i].text = '[' + ClientPrefs.data.comboOffset[0] + ', ' + ClientPrefs.data.comboOffset[1] + ']';
+
 				case 2: dumbTexts.members[i].text = Language.getPhrase('combo_numbers_offset', 'Numbers Offset:');
 				case 3: dumbTexts.members[i].text = '[' + ClientPrefs.data.comboOffset[2] + ', ' + ClientPrefs.data.comboOffset[3] + ']';
+
+				case 4: dumbTexts.members[i].text = Language.getPhrase('ADD_LATER', 'Combo Milestone Offset:');
+				case 5: dumbTexts.members[i].text = '[' + ClientPrefs.data.comboOffset[4] + ', ' + ClientPrefs.data.comboOffset[5] + ']';
 			}
 		}
 	}

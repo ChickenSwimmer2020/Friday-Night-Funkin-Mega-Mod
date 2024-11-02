@@ -3220,7 +3220,7 @@ class PlayState extends MusicBeatState
 			}
 		if (shouldShowComboText)
 			{
-			  var animShit:ComboMilestone = new ComboMilestone(0, 0, combo);
+			  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
 			  animShit.cameras = [camHUD];
 			  add(animShit);
 			}
