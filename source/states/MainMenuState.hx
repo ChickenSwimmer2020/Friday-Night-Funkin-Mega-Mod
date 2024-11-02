@@ -1,5 +1,6 @@
 package states;
 
+import states.GalleryState.GalleryMenuState;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
@@ -550,17 +551,14 @@ class MainMenuState extends MusicBeatState
 								MusicBeatState.switchState(new StoryMenuState());
 							case 'freeplay':
 								MusicBeatState.switchState(new FreeplayState());
-
-							//#if MODS_ALLOWED
-							//case 'mods':
-							//	MusicBeatState.switchState(new ModsMenuState());
-							//#end
-
-							#if ACHIEVEMENTS_ALLOWED
 							case 'Awards':
 								MusicBeatState.switchState(new AchievementsMenuState());
-							#end
-
+                            case 'gallery':
+								MusicBeatState.switchState(new GalleryMenuState());
+                            case 'overworld':
+								// MusicBeatState.switchState(new OverWorldState());
+								backend.WindowsAPI.showMessagePopup('Uh Oh!', 'Sorry! this feature is not yet implemented!\ntry again in the\nnext update!',
+									MSG_INFORMATION); //prevents crashes because overworld doesnt work yet
 							case 'credits':
 								MusicBeatState.switchState(new CreditsState());
 							case 'settings':
