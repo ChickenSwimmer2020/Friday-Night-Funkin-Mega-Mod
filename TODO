@@ -11,14 +11,14 @@
 
 # AFTER 1.0 PORT
 
+## CRITICAL:
+- Finish the Intro cutscene.
+- Finish Digital assets for the gameplay preview.
+
 ## TODO:
 - Add extra offset options in the "Adust Delay and Combo" menu to replace the need for AdvancedOffsets.json.
 - Add custom audio visualizer rendering (Planned to be worked on by ZSolarDev)
 - Clean up the option menu song transitions.
-
-## CRITICAL:
-- Finish the Intro cutscene.
-- Finish Digital assets for the gameplay preview.
 
 
 # Extra plans(Extended Scope, added after release):
