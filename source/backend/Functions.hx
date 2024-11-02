@@ -21,12 +21,12 @@ class Functions
 	/**
 		easy loading of song specific data files.
 
-			@param file file name to load (dont add extension eg: [filename].lua)
-            @param dir file directory
+			@param file file name to load (dont forget the .lua extension)
+            @param dir file directory eg:[DIRECTORY]/foldername
 	**/
 	inline static public function loadExternalScriptFile(file:String, dir:String)
 	{
-        LuaState = LuaL.newstate();
-        LuaL.openlibs(LuaState);
+		var dafile = Paths.getFolderPath(file, dir);
+		new FunkinLua(dafile);
 	}
 }

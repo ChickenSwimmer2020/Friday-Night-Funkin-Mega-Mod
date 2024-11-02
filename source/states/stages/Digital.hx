@@ -59,12 +59,13 @@ class Digital extends BaseStage
 		{
 			super.update(elapsed);
 		}
+
 	override public function createPost()
 		{
 			if(ClientPrefs.data.AdditionalEffects)
 				{
-					Functions.loadExternalScriptFile('Digital', 'data/lua');
-                    trace('if debug text is printed, it works.')
+					Functions.loadExternalScriptFile('Digital.lua', 'shared/data/lua');
+                    trace('if debug text is printed, it works.');
 				}
 		}
 
