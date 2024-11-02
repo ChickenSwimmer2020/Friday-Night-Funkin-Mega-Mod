@@ -64,7 +64,7 @@ class Digital extends BaseStage
 			if(ClientPrefs.data.AdditionalEffects)
 				{
 					Functions.loadExternalScriptFile('Digital', 'data/lua');
-                    trace('if debug text is printed, it works.')
+                    trace('if debug text is printed, it works.');
 				}
 		}
 
