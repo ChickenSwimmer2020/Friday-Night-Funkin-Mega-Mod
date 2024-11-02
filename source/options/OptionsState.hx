@@ -37,6 +37,8 @@ class OptionsState extends MusicBeatState
 				MusicBeatState.switchState(new options.NoteOffsetState());
 			case 'Language':
 				openSubState(new options.LanguageSubState());
+            case 'MegaMod':
+				openSubState(new options.MegaModOptions());
 		}
 	}
 
@@ -51,7 +53,6 @@ class OptionsState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.color = 0xFFea71fd;
 		bg.updateHitbox();
 
 		bg.screenCenter();

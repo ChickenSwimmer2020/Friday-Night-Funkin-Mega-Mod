@@ -61,7 +61,7 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		#end
 
 		super();
-		insert(1, boyfriend);
+		insert(900, boyfriend); // Make sure bf is in front of the gears.
 	}
 
 	function onChangeAntiAliasing()
