@@ -1,5 +1,10 @@
 {
     "editor.stickyTabStops": true,
     "editor.tabFocusMode": false,
-    "workbench.editor.scrollToSwitchTabs": true
+    "workbench.editor.scrollToSwitchTabs": true,
+    "cSpell.words": [
+        "devel",
+        "distro",
+        "distros"
+    ]
 }
