@@ -79,10 +79,6 @@ class FreeplayState extends MusicBeatState
 		// Sans = 6
 		// Purple = 7
 
-		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
-		Glass.scale.set(1,1);
-		Glass.setPosition(JukeBox.x + 0, JukeBox.y + 0);
-
 		JukeBox = new FlxSprite(0, 0);
 		JukeBox.frames = Paths.getSparrowAtlas('JukeBox');
 		JukeBox.animation.addByIndices('0', 'JukeBox', [for (i in 0...18) i], "", 24, false, false, false);
@@ -93,6 +89,10 @@ class FreeplayState extends MusicBeatState
 		JukeBox.animation.addByIndices('5', 'JukeBox', [for (i in 99...118) i], "", 24, false, false, false);
 		JukeBox.animation.addByIndices('6', 'JukeBox', [for (i in 119...138) i], "", 24, false, false, false);
 		JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
+
+		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
+		Glass.scale.set(1,1);
+		Glass.setPosition(JukeBox.x + 0, JukeBox.y + 0);
 
 		Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
 		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
