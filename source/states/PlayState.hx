@@ -373,6 +373,7 @@ class PlayState extends MusicBeatState
 			case 'tank': new Tank();					//Week 7 - Ugh, Guns, Stress
 			case 'phillyStreets': new PhillyStreets(); 	//Weekend 1 - Darnell, Lit Up, 2Hot
 			case 'phillyBlazin': new PhillyBlazin();	//Weekend 1 - Blazin
+			case 'Digital': new Digital();				//Chicken's week - Digital
 		}
 		if(isPixelStage) introSoundsSuffix = '-pixel';
 
@@ -3203,27 +3204,28 @@ class PlayState extends MusicBeatState
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
 		}
+		if(ClientPrefs.data.showComboMilestone) {
+			var shouldShowComboText:Bool = false;
+			//this code is modified from base game, but the actual combo stuff is from base itself
+			if (SONG != null)
+				{
+					//remember to find out how to check if next section is not a playsection so that combo counter only appears at end of turn.
+					if(combo > 0)
+						shouldShowComboText = curBeat % 8 == 7;
+					//thanks solar!!
+					//modded to wait until after two sectrions by changing values
+						// This is the last beat of the section in 4/4 time signature.
+						// Making this dynamic with a custom section step amount is difficult, but possible.
+					//trace(combo);
+				}
+			if (shouldShowComboText)
+				{
+				  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
+				  animShit.cameras = [camHUD];
+				  add(animShit);
+				}
+		}
 
-		//COMBOMILESTONE!!!!!!!
-		var shouldShowComboText:Bool = false;
-		//this code is modified from base game, but the actual combo stuff is from base itself
-		if (SONG != null)
-			{
-				//remember to find out how to check if next section is not a playsection so that combo counter only appears at end of turn.
-				if(combo > 0)
-					shouldShowComboText = curBeat % 8 == 7;
-				//thanks solar!!
-				//modded to wait until after two sectrions by changing values
-					// This is the last beat of the section in 4/4 time signature.
-					// Making this dynamic with a custom section step amount is difficult, but possible.
-				//trace(combo);
-			}
-		if (shouldShowComboText)
-			{
-			  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
-			  animShit.cameras = [camHUD];
-			  add(animShit);
-			}
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);

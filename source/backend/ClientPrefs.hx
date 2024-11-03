@@ -83,6 +83,7 @@ import states.TitleState;
 	public var GamePlayMechanics:Bool = true;
 	public var Overlays:Bool = true;
 	public var AdditionalEffects:Bool = true;
+	public var showComboMilestone:Bool = true;
 }
 
 class ClientPrefs {

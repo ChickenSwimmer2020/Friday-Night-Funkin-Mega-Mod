@@ -22,6 +22,14 @@ class MegaModOptions extends BaseOptionsMenu {
 		'AdditionalEffects',
 		BOOL);
 		addOption(option);
+
+		var option:Option = new Option('Show Combo Milestone',
+		'If Checked, The combo milestone graphic from FNF will be activated',
+		'showComboMilestone',
+		BOOL);
+		addOption(option);
+
+
         super();
     }
 }
