@@ -2,163 +2,163 @@
 <TextureAtlas imagePath="JukeBox.png">
 	<!-- Created with Adobe Animate version 24.0.5.40 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="JukeBox instance 10000" x="0" y="0" width="616" height="722" pivotX="1.55" pivotY="5"/>
-	<SubTexture name="JukeBox instance 10001" x="0" y="3610" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10002" x="613" y="6498" width="609" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10003" x="1226" y="722" width="605" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10004" x="1831" y="722" width="602" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10005" x="1829" y="4332" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10006" x="2427" y="5776" width="595" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10007" x="3032" y="2166" width="591" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10008" x="3617" y="3610" width="588" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10009" x="3618" y="722" width="584" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10010" x="4202" y="722" width="581" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10011" x="5943" y="722" width="577" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10012" x="4795" y="5776" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10013" x="5374" y="7220" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10014" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10015" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10016" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10017" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10018" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10019" x="0" y="722" width="616" height="722"/>
-	<SubTexture name="JukeBox instance 10020" x="0" y="4332" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10021" x="616" y="722" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10022" x="1829" y="7220" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10023" x="1226" y="2888" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10024" x="2433" y="722" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10025" x="2427" y="4332" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10026" x="3022" y="6498" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10027" x="3023" y="5054" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10028" x="3620" y="2888" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10029" x="3619" y="0" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10030" x="4783" y="722" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10031" x="5944" y="0" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10032" x="4797" y="6498" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10033" x="5940" y="2888" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10034" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10035" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10036" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10037" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10038" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10039" x="0" y="1444" width="616" height="722"/>
-	<SubTexture name="JukeBox instance 10040" x="0" y="5054" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10041" x="616" y="1444" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10042" x="1223" y="4332" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10043" x="1226" y="3610" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10044" x="2434" y="0" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10045" x="2429" y="3610" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10046" x="3029" y="7220" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10047" x="3613" y="5054" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10048" x="4215" y="7220" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10049" x="3618" y="1444" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10050" x="4784" y="0" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10051" x="4788" y="2888" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10052" x="4801" y="7220" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10053" x="5944" y="1444" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10054" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10055" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10056" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10057" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10058" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10059" x="0" y="2166" width="616" height="722"/>
-	<SubTexture name="JukeBox instance 10060" x="0" y="5776" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10061" x="616" y="2166" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10062" x="1223" y="5054" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10063" x="1829" y="2888" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10064" x="2433" y="1444" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10065" x="2432" y="2888" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10066" x="3615" y="6498" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10067" x="3616" y="5776" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10068" x="4205" y="3610" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10069" x="3623" y="2166" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10070" x="4784" y="1444" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10071" x="4791" y="3610" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10072" x="5367" y="3610" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10073" x="5944" y="2166" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10074" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10075" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10076" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10077" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10078" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10079" x="0" y="2888" width="616" height="722"/>
-	<SubTexture name="JukeBox instance 10080" x="0" y="6498" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10081" x="616" y="2888" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10082" x="1223" y="5776" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10083" x="1830" y="1444" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10084" x="1829" y="3610" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10085" x="2427" y="5054" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10086" x="3622" y="7220" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10087" x="3615" y="4332" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10088" x="4205" y="4332" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10089" x="4201" y="1444" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10090" x="5363" y="722" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10091" x="5364" y="2888" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10092" x="5367" y="4332" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10093" x="5940" y="3610" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10094" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10095" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10096" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10097" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10098" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10099" x="0" y="7220" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10100" x="613" y="4332" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10101" x="613" y="7220" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10102" x="1229" y="0" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10103" x="1833" y="0" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10104" x="1829" y="5054" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10105" x="2428" y="6498" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10106" x="3023" y="4332" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10107" x="4203" y="5054" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10108" x="3033" y="722" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10109" x="4206" y="2166" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10110" x="5364" y="0" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10111" x="5368" y="2166" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10112" x="5368" y="5054" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10113" x="5940" y="4332" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10114" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10115" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10116" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10117" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10118" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10119" x="613" y="3610" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10120" x="613" y="5054" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10121" x="1221" y="7220" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10122" x="1226" y="1444" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10123" x="1830" y="2166" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10124" x="1829" y="5776" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10125" x="2435" y="7220" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10126" x="3025" y="3610" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10127" x="4206" y="5776" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10128" x="3034" y="0" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10129" x="4206" y="2888" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10130" x="4788" y="2166" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10131" x="4791" y="4332" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10132" x="5368" y="5776" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10133" x="5941" y="5054" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10134" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10135" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10136" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10137" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10138" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10139" x="616" y="0" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10140" x="613" y="5776" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10141" x="1222" y="6498" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10142" x="1226" y="2166" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10143" x="2431" y="2166" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10144" x="1830" y="6498" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10145" x="3022" y="5776" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10146" x="3028" y="2888" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10147" x="4208" y="6498" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10148" x="3033" y="1444" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10149" x="4202" y="0" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10150" x="5364" y="1444" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10151" x="4792" y="5054" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10152" x="5370" y="6498" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10153" x="5941" y="5776" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10154" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10155" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10156" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10157" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
-	<SubTexture name="JukeBox instance 10158" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0000" x="0" y="0" width="616" height="722" pivotX="1.55" pivotY="5"/>
+	<SubTexture name="JukeBox0001" x="0" y="3610" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0002" x="613" y="6498" width="609" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0003" x="1226" y="722" width="605" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0004" x="1831" y="722" width="602" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0005" x="1829" y="4332" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0006" x="2427" y="5776" width="595" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0007" x="3032" y="2166" width="591" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0008" x="3617" y="3610" width="588" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0009" x="3618" y="722" width="584" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0010" x="4202" y="722" width="581" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0011" x="5943" y="722" width="577" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0012" x="4795" y="5776" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0013" x="5374" y="7220" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0014" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0015" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0016" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0017" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0018" x="5943" y="6498" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0019" x="0" y="722" width="616" height="722"/>
+	<SubTexture name="JukeBox0020" x="0" y="4332" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0021" x="616" y="722" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0022" x="1829" y="7220" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0023" x="1226" y="2888" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0024" x="2433" y="722" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0025" x="2427" y="4332" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0026" x="3022" y="6498" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0027" x="3023" y="5054" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0028" x="3620" y="2888" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0029" x="3619" y="0" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0030" x="4783" y="722" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0031" x="5944" y="0" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0032" x="4797" y="6498" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0033" x="5940" y="2888" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0034" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0035" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0036" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0037" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0038" x="5944" y="7220" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0039" x="0" y="1444" width="616" height="722"/>
+	<SubTexture name="JukeBox0040" x="0" y="5054" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0041" x="616" y="1444" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0042" x="1223" y="4332" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0043" x="1226" y="3610" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0044" x="2434" y="0" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0045" x="2429" y="3610" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0046" x="3029" y="7220" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0047" x="3613" y="5054" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0048" x="4215" y="7220" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0049" x="3618" y="1444" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0050" x="4784" y="0" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0051" x="4788" y="2888" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0052" x="4801" y="7220" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0053" x="5944" y="1444" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0054" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0055" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0056" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0057" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0058" x="6510" y="2888" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0059" x="0" y="2166" width="616" height="722"/>
+	<SubTexture name="JukeBox0060" x="0" y="5776" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0061" x="616" y="2166" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0062" x="1223" y="5054" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0063" x="1829" y="2888" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0064" x="2433" y="1444" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0065" x="2432" y="2888" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0066" x="3615" y="6498" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0067" x="3616" y="5776" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0068" x="4205" y="3610" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0069" x="3623" y="2166" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0070" x="4784" y="1444" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0071" x="4791" y="3610" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0072" x="5367" y="3610" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0073" x="5944" y="2166" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0074" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0075" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0076" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0077" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0078" x="6514" y="1444" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0079" x="0" y="2888" width="616" height="722"/>
+	<SubTexture name="JukeBox0080" x="0" y="6498" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0081" x="616" y="2888" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0082" x="1223" y="5776" width="606" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0083" x="1830" y="1444" width="603" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0084" x="1829" y="3610" width="600" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0085" x="2427" y="5054" width="596" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0086" x="3622" y="7220" width="593" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0087" x="3615" y="4332" width="590" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0088" x="4205" y="4332" width="586" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0089" x="4201" y="1444" width="583" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0090" x="5363" y="722" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0091" x="5364" y="2888" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0092" x="5367" y="4332" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0093" x="5940" y="3610" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0094" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0095" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0096" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0097" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0098" x="6514" y="2166" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0099" x="0" y="7220" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0100" x="613" y="4332" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0101" x="613" y="7220" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0102" x="1229" y="0" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0103" x="1833" y="0" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0104" x="1829" y="5054" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0105" x="2428" y="6498" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0106" x="3023" y="4332" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0107" x="4203" y="5054" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0108" x="3033" y="722" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0109" x="4206" y="2166" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0110" x="5364" y="0" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0111" x="5368" y="2166" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0112" x="5368" y="5054" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0113" x="5940" y="4332" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0114" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0115" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0116" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0117" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0118" x="6520" y="0" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0119" x="613" y="3610" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0120" x="613" y="5054" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0121" x="1221" y="7220" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0122" x="1226" y="1444" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0123" x="1830" y="2166" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0124" x="1829" y="5776" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0125" x="2435" y="7220" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0126" x="3025" y="3610" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0127" x="4206" y="5776" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0128" x="3034" y="0" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0129" x="4206" y="2888" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0130" x="4788" y="2166" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0131" x="4791" y="4332" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0132" x="5368" y="5776" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0133" x="5941" y="5054" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0134" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0135" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0136" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0137" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0138" x="6520" y="722" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0139" x="616" y="0" width="613" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0140" x="613" y="5776" width="610" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0141" x="1222" y="6498" width="608" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0142" x="1226" y="2166" width="604" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0143" x="2431" y="2166" width="601" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0144" x="1830" y="6498" width="598" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0145" x="3022" y="5776" width="594" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0146" x="3028" y="2888" width="592" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0147" x="4208" y="6498" width="589" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0148" x="3033" y="1444" width="585" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0149" x="4202" y="0" width="582" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0150" x="5364" y="1444" width="580" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0151" x="4792" y="5054" width="576" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0152" x="5370" y="6498" width="573" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0153" x="5941" y="5776" width="570" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0154" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0155" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0156" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0157" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
+	<SubTexture name="JukeBox0158" x="6510" y="3610" width="569" height="722" frameX="0" frameY="0" frameWidth="616" frameHeight="722"/>
 </TextureAtlas>

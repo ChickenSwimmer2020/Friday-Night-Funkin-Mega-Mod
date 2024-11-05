@@ -91,8 +91,9 @@ class FreeplayState extends MusicBeatState
 		JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
 
 		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
-		Glass.scale.set(1,1);
+		Glass.scale.set(0.6,0.6);
 		Glass.setPosition(JukeBox.x + 0, JukeBox.y + 0);
+		Glass.antialiasing = ClientPrefs.data.antialiasing;
 
 		Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
 		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
