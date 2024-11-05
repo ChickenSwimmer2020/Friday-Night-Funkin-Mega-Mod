@@ -2,21 +2,21 @@
 <TextureAtlas imagePath="JukeBox_PANEL.png">
 	<!-- Created with Adobe Animate version 24.0.5.40 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="jukebox_DifficultyConsole0000" x="0" y="0" width="610" height="493" pivotX="4.2" pivotY="4.2"/>
-	<SubTexture name="jukebox_DifficultyConsole0001" x="610" y="0" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0002" x="1220" y="0" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0003" x="1830" y="0" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0004" x="2440" y="0" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0005" x="3050" y="0" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0006" x="0" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0007" x="610" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0008" x="1220" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0009" x="1830" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0010" x="2440" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0011" x="3050" y="493" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0012" x="0" y="986" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0013" x="610" y="986" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0014" x="1220" y="986" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0015" x="1830" y="986" width="610" height="493"/>
-	<SubTexture name="jukebox_DifficultyConsole0016" x="2440" y="986" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0000" x="3" y="3" width="610" height="493" pivotX="4.2" pivotY="4.2"/>
+	<SubTexture name="jukebox_DifficultyConsole0001" x="616" y="3" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0002" x="1229" y="3" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0003" x="1842" y="3" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0004" x="2455" y="3" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0005" x="3068" y="3" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0006" x="3" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0007" x="616" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0008" x="1229" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0009" x="1842" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0010" x="2455" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0011" x="3068" y="499" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0012" x="3" y="995" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0013" x="616" y="995" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0014" x="1229" y="995" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0015" x="1842" y="995" width="610" height="493"/>
+	<SubTexture name="jukebox_DifficultyConsole0016" x="2455" y="995" width="610" height="493"/>
 </TextureAtlas>

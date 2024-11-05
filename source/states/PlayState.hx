@@ -1,5 +1,6 @@
 package states;
 
+import backend.Functions;
 import backend.Highscore;
 import backend.StageData;
 import backend.WeekData;
@@ -72,6 +73,8 @@ class PlayState extends MusicBeatState
 {
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
+
+	public var shouldShowComboText:Bool = false;
 
 	public static var ratingStuff:Array<Dynamic> = [
 		['You Suck!', 0.2], //From 0% to 19%
@@ -1648,6 +1651,90 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+				//SUPER UNOPTIMIZED, checks combo every frame.
+					if(ClientPrefs.data.showComboMilestone) {
+						var ComboShown:Bool = false;
+						//this code is modified from base game, but the actual combo stuff is from base itself
+						if (SONG != null)
+							{
+								//AHHHHHHHHHHHHHHHHH
+								if(!ComboShown)
+									switch(combo) {
+										case 25:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 50:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 100:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 150:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 200:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 250:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 300:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 350:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 400:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 450:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 500:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 550:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 600:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 650:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 700:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 750:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 800:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 850:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 900:
+											shouldShowComboText = true;
+											ComboShown = true;
+										case 950:
+											shouldShowComboText = true;
+											ComboShown = true;
+									}
+								else if (ComboShown)
+									shouldShowComboText = false;
+							}
+						if (shouldShowComboText)
+							{
+							  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
+							  animShit.cameras = [camHUD];
+							  add(animShit);
+							  ComboShown = true;
+							  Functions.wait(5, () -> {
+								ComboShown = false;
+							  });
+							}
+					}
 		if(!inCutscene && !paused && !freezeCamera) {
 			FlxG.camera.followLerp = 0.04 * cameraSpeed * playbackRate;
 			if(!startingSong && !endingSong && boyfriend.getAnimationName().startsWith('idle')) {
@@ -3204,28 +3291,6 @@ class PlayState extends MusicBeatState
 			//trace('BEAT HIT: ' + curBeat + ', LAST HIT: ' + lastBeatHit);
 			return;
 		}
-		if(ClientPrefs.data.showComboMilestone) {
-			var shouldShowComboText:Bool = false;
-			//this code is modified from base game, but the actual combo stuff is from base itself
-			if (SONG != null)
-				{
-					//remember to find out how to check if next section is not a playsection so that combo counter only appears at end of turn.
-					if(combo > 0)
-						shouldShowComboText = curBeat % 8 == 7;
-					//thanks solar!!
-					//modded to wait until after two sectrions by changing values
-						// This is the last beat of the section in 4/4 time signature.
-						// Making this dynamic with a custom section step amount is difficult, but possible.
-					//trace(combo);
-				}
-			if (shouldShowComboText)
-				{
-				  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
-				  animShit.cameras = [camHUD];
-				  add(animShit);
-				}
-		}
-
 
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);

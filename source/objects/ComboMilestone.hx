@@ -20,7 +20,7 @@ class ComboMilestone extends FlxTypedSpriteGroup<FlxSprite>
     super(x, y);
 
     this.daCombo = daCombo;
-
+    
     effectStuff = new FlxSprite(0, 0);
     effectStuff.frames = Paths.getSparrowAtlas('comboMilestone');
     effectStuff.animation.addByPrefix('funny', 'NOTE COMBO animation', 24, false);

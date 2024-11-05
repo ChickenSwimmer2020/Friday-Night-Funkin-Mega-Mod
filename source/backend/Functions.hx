@@ -12,7 +12,7 @@ class Functions
 
 			@param onComplete what to do after function is finished
 	**/
-	inline public function wait(Time:Float, onComplete:() -> Void):FlxTimer
+	inline static public function wait(Time:Float, onComplete:() -> Void):FlxTimer
 		return new FlxTimer().start(Time, (_) ->
 		{
 			onComplete();
