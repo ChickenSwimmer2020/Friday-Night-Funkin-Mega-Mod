@@ -12,13 +12,8 @@ import flixel.FlxObject;
 import flixel.FlxSubState;
 import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
-import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
-import flixel.animation.FlxAnimationController;
-import lime.utils.Assets;
-import openfl.utils.Assets as OpenFlAssets;
 import openfl.events.KeyboardEvent;
-import haxe.Json;
 
 import cutscenes.DialogueBoxPsych;
 
@@ -32,7 +27,6 @@ import substates.GameOverSubstate;
 
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
-import openfl.filters.ShaderFilter;
 #end
 
 import objects.VideoSprite;
@@ -254,10 +248,23 @@ class PlayState extends MusicBeatState
 	public var endCallback:Void->Void = null;
 
 	public static var nextReloadAll:Bool = false;
+	//intro
+	public var CountDown:FlxSprite;
 	override public function create()
 	{
-		//trace('Playback Rate: ' + playbackRate);
 		Paths.clearStoredMemory();
+		//intro anim.
+		CountDown = new FlxSprite(-50, -250);
+		CountDown.scale.set(0.5, 0.5);
+		CountDown.frames = Paths.getSparrowAtlas('IntroSprite');
+		CountDown.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
+		CountDown.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
+		CountDown.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
+		CountDown.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
+		CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
+		CountDown.antialiasing = ClientPrefs.data.antialiasing;
+		//trace('Playback Rate: ' + playbackRate);
+		
 		if(nextReloadAll)
 		{
 			Paths.clearUnusedMemory();
@@ -483,6 +490,7 @@ class PlayState extends MusicBeatState
 		timeBar.visible = showTime;
 		uiGroup.add(timeBar);
 		uiGroup.add(timeTxt);
+		uiGroup.add(CountDown);
 
 		noteGroup.add(strumLineNotes);
 
@@ -916,27 +924,29 @@ class PlayState extends MusicBeatState
 	var finishTimer:FlxTimer = null;
 
 	// For being able to mess with the sprites on Lua
-	public var countdownReady:FlxSprite;
-	public var countdownSet:FlxSprite;
-	public var countdownGo:FlxSprite;
+	//public var countdownReady:FlxSprite;
+	//public var countdownSet:FlxSprite;
+	//public var countdownGo:FlxSprite; //fuck you.
+
 	public static var startOnTime:Float = 0;
 
 	function cacheCountdown()
 	{
-		var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-		var introImagesArray:Array<String> = switch(stageUI) {
-			case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
-			case "normal": ["ready", "set" ,"go"];
-			default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
-		}
-		introAssets.set(stageUI, introImagesArray);
-		var introAlts:Array<String> = introAssets.get(stageUI);
-		for (asset in introAlts) Paths.image(asset);
+		//var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+		//var introImagesArray:Array<String> = switch(stageUI) {
+		//	case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
+		//	case "normal": ["ready", "set" ,"go"];
+		//	default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
+		//}
+		//introAssets.set(stageUI, introImagesArray);
+		//var introAlts:Array<String> = introAssets.get(stageUI);
+		//for (asset in introAlts) Paths.image(asset);
 
 		Paths.sound('intro3' + introSoundsSuffix);
 		Paths.sound('intro2' + introSoundsSuffix);
 		Paths.sound('intro1' + introSoundsSuffix);
 		Paths.sound('introGo' + introSoundsSuffix);
+		Paths.image('IntroSprite');
 	}
 
 	public function startCountdown()
@@ -987,36 +997,41 @@ class PlayState extends MusicBeatState
 			{
 				characterBopper(tmr.loopsLeft);
 
-				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-				var introImagesArray:Array<String> = switch(stageUI) {
-					case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
-					case "normal": ["ready", "set" ,"go"];
-					default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
-				}
-				introAssets.set(stageUI, introImagesArray);
+				//var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+				//var introImagesArray:Array<String> = switch(stageUI) {
+				//	case "pixel": ['${stageUI}UI/ready-pixel', '${stageUI}UI/set-pixel', '${stageUI}UI/date-pixel'];
+				//	case "normal": ["ready", "set" ,"go"];
+				//	default: ['${stageUI}UI/ready', '${stageUI}UI/set', '${stageUI}UI/go'];
+				//}
+				//introAssets.set(stageUI, introImagesArray);
 
-				var introAlts:Array<String> = introAssets.get(stageUI);
+				//var introAlts:Array<String> = introAssets.get(stageUI);
 				var antialias:Bool = (ClientPrefs.data.antialiasing && !isPixelStage);
 				var tick:Countdown = THREE;
 
 				switch (swagCounter)
 				{
 					case 0:
+						CountDown.animation.play('time');
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
 					case 1:
-						countdownReady = createCountdownSprite(introAlts[0], antialias);
+						//countdownReady = createCountdownSprite(introAlts[0], antialias); //FUCK. OFF.
+						CountDown.animation.play('to');
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						tick = TWO;
 					case 2:
-						countdownSet = createCountdownSprite(introAlts[1], antialias);
+						CountDown.animation.play('get');
+						//countdownSet = createCountdownSprite(introAlts[1], antialias);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						tick = ONE;
 					case 3:
-						countdownGo = createCountdownSprite(introAlts[2], antialias);
+						CountDown.animation.play('funky');
+						//countdownGo = createCountdownSprite(introAlts[2], antialias);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						tick = GO;
 					case 4:
+						CountDown.animation.play('start');
 						tick = START;
 				}
 
@@ -1043,29 +1058,29 @@ class PlayState extends MusicBeatState
 		return true;
 	}
 
-	inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
-	{
-		var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
-		spr.cameras = [camHUD];
-		spr.scrollFactor.set();
-		spr.updateHitbox();
-
-		if (PlayState.isPixelStage)
-			spr.setGraphicSize(Std.int(spr.width * daPixelZoom));
-
-		spr.screenCenter();
-		spr.antialiasing = antialias;
-		insert(members.indexOf(noteGroup), spr);
-		FlxTween.tween(spr, {/*y: spr.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-			ease: FlxEase.cubeInOut,
-			onComplete: function(twn:FlxTween)
-			{
-				remove(spr);
-				spr.destroy();
-			}
-		});
-		return spr;
-	}
+	//inline private function createCountdownSprite(image:String, antialias:Bool):FlxSprite
+	//{
+	//	var spr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(image));
+	//	spr.cameras = [camHUD];
+	//	spr.scrollFactor.set();
+	//	spr.updateHitbox();
+//
+	//	if (PlayState.isPixelStage)
+	//		spr.setGraphicSize(Std.int(spr.width * daPixelZoom));
+//
+	//	spr.screenCenter();
+	//	spr.antialiasing = antialias;
+	//	insert(members.indexOf(noteGroup), spr);
+	//	FlxTween.tween(spr, {/*y: spr.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
+	//		ease: FlxEase.cubeInOut,
+	//		onComplete: function(twn:FlxTween)
+	//		{
+	//			remove(spr);
+	//			spr.destroy();
+	//		}
+	//	});
+	//	return spr;
+	//}
 
 	public function addBehindGF(obj:FlxBasic)
 	{
@@ -1152,16 +1167,20 @@ class PlayState extends MusicBeatState
 		var shits:Int = ratingsData[3].hits;
 
 		ratingFC = "";
+		if (songMisses == 0 && ratingPercent == 100) {
+			ratingFC = 'Perfect Full Combo!!';
+		}
 		if(songMisses == 0)
 		{
-			if (bads > 0 || shits > 0) ratingFC = 'FC';
-			else if (goods > 0) ratingFC = 'GFC';
-			else if (sicks > 0) ratingFC = 'SFC';
+			if (bads > 0 || shits > 0) ratingFC = 'Full Combo';
+			else if (goods > 0) ratingFC = 'good Full Combo';
+			else if (sicks > 0) ratingFC = 'Sick Full Combo';
 		}
 		else {
-			if (songMisses < 10) ratingFC = 'SDCB';
-			else ratingFC = 'Clear';
+			if (songMisses < 10) ratingFC = 'Ok';
+			else ratingFC = 'Shit.';
 		}
+
 	}
 
 	public function doScoreBop():Void {
