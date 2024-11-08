@@ -1032,6 +1032,9 @@ class PlayState extends MusicBeatState
 						tick = GO;
 					case 4:
 						CountDown.animation.play('start');
+						CountDown.animation.finishCallback = function(huh) {
+							CountDown.destroy();
+						}
 						tick = START;
 				}
 
