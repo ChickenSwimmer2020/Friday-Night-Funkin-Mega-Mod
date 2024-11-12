@@ -362,13 +362,24 @@ class TitleState extends MusicBeatState
 		CSLogo.screenCenter(X);
 		CSLogo.antialiasing = ClientPrefs.data.antialiasing;
 
-		YTLogo = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('TitleScreen/CS2020YT_logo'));
+		// OLD
+		// YTLogo = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('TitleScreen/CS2020YT_logo'));
+		// add(YTLogo);
+		// YTLogo.visible = false;
+		// YTLogo.setGraphicSize(Std.int(YTLogo.width * 0.8));
+		// YTLogo.updateHitbox();
+		// YTLogo.screenCenter(X);
+		// YTLogo.antialiasing = ClientPrefs.data.antialiasing;
+		YTLogo = new FlxSprite(0, 200);
 		add(YTLogo);
+		YTLogo.frames = Paths.getSparrowAtlas('TitleScreen/ChickenSwimmer2020YouTube_logo');
+		YTLogo.animation.addByPrefix('Apper', 'CSLogo_YT', 24, false, false, false);
 		YTLogo.visible = false;
-		YTLogo.setGraphicSize(Std.int(YTLogo.width * 0.8));
 		YTLogo.updateHitbox();
+		YTLogo.scale.set(0.5, 0.5);
 		YTLogo.screenCenter(X);
 		YTLogo.antialiasing = ClientPrefs.data.antialiasing;
+
 
 		if (initialized)
 			skipIntro();
@@ -655,6 +666,7 @@ class TitleState extends MusicBeatState
 				case 20:
 					addMoreText('subscribe?');
 					YTLogo.visible = true;
+					YTLogo.animation.play('Apper', true);
 				case 22:
 					deleteCoolText();
 					FlxTween.tween(YTLogo, {y: YTLogo.y - 200}, 0.5, {

@@ -7,8 +7,8 @@
             - Automatic text scrolling.
             - The last part with the logo will still be a cutscene.
 - Songs:
-    - Digital:
-        - Finish the song for the gameplay preview.
+    - System:
+        - Implement NOTE: Digital has been cut in favor of System.
 
 # TODO:
 - Menus:
@@ -19,8 +19,8 @@
         - Finish the enter animations.
         - Add all/Remake current sketches.
     - Options Menu:
-        - Add extra offset options in the "Adust Delay and Combo" menu to replace the need for AdvancedOffsets.json.
-        - Clean up/add song transitions.
+        - FINISHED
+        - Clean up/add song transitions. //Any way to make custom transitions with like, spritesheets?
 - Systems:
     - Audio:
         - Add custom audio visualizer rendering (Planned to be worked on by ZSolarDev.)

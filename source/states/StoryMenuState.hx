@@ -1,6 +1,5 @@
 package states;
 
-import backend.Rating;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -17,13 +16,13 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 	var rankText:FlxText;
 
-	var CurRank:String = '';
-
 	private static var lastDifficultyName:String = '';
 
 	var curDifficulty:Int = 1;
 
 	var txtWeekTitle:FlxText;
+	var txtWeekDisplay:FlxText;
+	var txtWeekDesc:FlxText;
 	var bgSprite:FlxSprite;
 
 	var PlayChar:FlxSprite = new FlxSprite(245, -65);
@@ -63,13 +62,19 @@ class StoryMenuState extends MusicBeatState
 			curWeek = 0;
 		persistentUpdate = persistentDraw = true;
 
-		scoreText = new FlxText(0, 125, 0, "SCORE: 49324858", 36);
+		scoreText = new FlxText(0, 400, 0, "SCORE: 49324858", 36);
 		scoreText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 
-		txtWeekTitle = new FlxText(75, 95, 0, "", 32);
-		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+		txtWeekTitle = new FlxText(0, 690, 0, "", 32);
+		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
 
-		rankText = new FlxText(0, 150);
+		txtWeekDisplay = new FlxText(0, 95, 0, "", 32);
+		txtWeekDisplay.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+
+		txtWeekDesc = new FlxText(0, 125, 0, "", 32);
+		txtWeekDesc.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, LEFT);
+
+		rankText = new FlxText(0, 450);
 		rankText.text = 'RANK: GREAT';
 		rankText.setFormat(Paths.font("vcr.ttf"), 32);
 		rankText.size = scoreText.size;
@@ -105,6 +110,7 @@ class StoryMenuState extends MusicBeatState
 				WeekData.setDirectoryFromWeek(weekFile);
 				var weekThing:MenuItem = new MenuItem(0, 50, WeekData.weeksList[i]);
 				weekThing.y += ((weekThing.height + 20) * num);
+				weekThing.scale.set(1, 1);
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
 
@@ -138,13 +144,13 @@ class StoryMenuState extends MusicBeatState
 		add(bgSprite);
 		difficultySelectors = new FlxGroup();
 
-		leftArrow = new FlxSprite(-15, 0);
+		leftArrow = new FlxSprite(0, 0);
 		leftArrow.antialiasing = ClientPrefs.data.antialiasing;
 		leftArrow.frames = ui_tex;
 		leftArrow.animation.addByPrefix('idle', "arrow left");
 		leftArrow.animation.addByPrefix('press', "arrow push left");
 		leftArrow.animation.play('idle');
-		difficultySelectors.add(leftArrow);
+		
 
 		Difficulty.resetList();
 		if (lastDifficultyName == '')
@@ -153,7 +159,7 @@ class StoryMenuState extends MusicBeatState
 		}
 		curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 
-		sprDifficulty = new FlxSprite(0, leftArrow.y);
+		sprDifficulty = new FlxSprite(-10, leftArrow.y);
 		sprDifficulty.scale.x = 0.9;
 		sprDifficulty.scale.y = 0.9;
 		sprDifficulty.antialiasing = ClientPrefs.data.antialiasing;
@@ -165,9 +171,6 @@ class StoryMenuState extends MusicBeatState
 		rightArrow.animation.addByPrefix('idle', 'arrow right');
 		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
 		rightArrow.animation.play('idle');
-		difficultySelectors.add(rightArrow);
-		leftArrow.visible = false;
-		rightArrow.visible = false;
 
 		// add(bgYellow);
 		add(grpWeekCharacters);
@@ -181,9 +184,13 @@ class StoryMenuState extends MusicBeatState
 		tracksSprite.scale.y = 1;
 		add(tracksSprite);
 
+		//arrows, make custom graphics since nightmare takes up a TON of space.
+		difficultySelectors.add(leftArrow);
+		difficultySelectors.add(rightArrow);
+
 		PlayChar.frames = Paths.getSparrowAtlas('PlayChar');
 		PlayChar.animation.addByPrefix('BF', 'playchar_boyfriend', 0);
-		PlayChar.animation.addByPrefix('MK', 'playchar_michiru', 0);
+		//PlayChar.animation.addByPrefix('MK', 'playchar_michiru', 0); //CUT
 		PlayChar.animation.addByPrefix('CS20', 'playchar_ChickenSwimmer2020');
 		PlayChar.antialiasing = ClientPrefs.data.antialiasing;
 		PlayChar.scale.x = 0.5;
@@ -197,9 +204,11 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xff66ff00;
 		add(txtTracklist);
-		// add(rankText);
+			//add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
+		add(txtWeekDisplay);
+		add(txtWeekDesc);
 
 		changeWeek();
 		changeDifficulty();
@@ -220,6 +229,7 @@ class StoryMenuState extends MusicBeatState
 		// trace(curDifficulty);
 		FlxG.watch.addQuick("current week", curWeek);
 		FlxG.watch.addQuick("current difficulty", curDifficulty);
+
 		if (curWeek == 0)
 		{
 			PlayChar.animation.play('BF', true);
@@ -228,11 +238,9 @@ class StoryMenuState extends MusicBeatState
 		{
 			PlayChar.animation.play('CS20', true);
 		};
-		if (curWeek == 2)
-		{
-			PlayChar.animation.play('MK', true);
-		};
+
 		// scoreText.setFormat('VCR OSD Mono', 32);
+
 		lerpScore = Math.floor(FlxMath.lerp(intendedScore, lerpScore, Math.exp(-elapsed * 30)));
 		if (Math.abs(intendedScore - lerpScore) < 10)
 			lerpScore = intendedScore;
@@ -297,6 +305,20 @@ class StoryMenuState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			movedBack = true;
 			MusicBeatState.switchState(new MainMenuState());
+		}
+
+		//difficulty offsets because of stupid centering.
+		switch(curDifficulty) {
+			case 0: //easy
+				sprDifficulty.x = 0;
+			case 1: //normal
+				sprDifficulty.x = 0;
+			case 2: //hard
+				sprDifficulty.x = 0;
+			case 3: //nightmare
+				sprDifficulty.x = -10;
+			case 4: //erect
+				sprDifficulty.x = 0;
 		}
 
 		super.update(elapsed);
@@ -396,19 +418,19 @@ class StoryMenuState extends MusicBeatState
 		if (sprDifficulty.graphic != newImage)
 		{
 			sprDifficulty.loadGraphic(newImage);
-			sprDifficulty.x = leftArrow.x + 60;
-			sprDifficulty.x += (308 - sprDifficulty.width) / 3;
+			//sprDifficulty.x = leftArrow.x + 60;
+			//sprDifficulty.x += (308 - sprDifficulty.width) / 3;
 			sprDifficulty.alpha = 0;
-			sprDifficulty.y = leftArrow.y - 15;
+			sprDifficulty.y = 0;
 
-			if (tweenDifficulty != null)
-				tweenDifficulty.cancel();
-			tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07, {
-				onComplete: function(twn:FlxTween)
-				{
-					tweenDifficulty = null;
-				}
-			});
+			//if (tweenDifficulty != null) //breaks offsets, and i dont know to fix so im just removing it.
+			//	tweenDifficulty.cancel();
+			//tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07, {
+			//	onComplete: function(twn:FlxTween)
+			//	{
+			//		tweenDifficulty = null;
+			//	}
+			//});
 		}
 		lastDifficultyName = diff;
 
@@ -431,7 +453,12 @@ class StoryMenuState extends MusicBeatState
 		WeekData.setDirectoryFromWeek(leWeek);
 
 		var leName:String = leWeek.storyName;
+		var theDisplayName:String = leWeek.story_DisplayName;
+		var daDesc:String = leWeek.story_Description;
+
 		txtWeekTitle.text = leName.toUpperCase();
+		txtWeekDisplay.text = theDisplayName.toUpperCase();
+		txtWeekDesc.text = daDesc.toUpperCase();
 
 		var bullShit:Int = 0;
 

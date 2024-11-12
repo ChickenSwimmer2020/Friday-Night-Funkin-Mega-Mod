@@ -1,0 +1,35 @@
+{
+	"songs": [
+		[
+			"tutorial", "gf",
+			[
+				0,
+				0,
+				0
+			]
+		] 
+	],
+	"hiddenUntilUnlocked": false,
+	"hideFreeplay": false,
+	"difficulties": "Easy, Normal, Hard, Nightmare",
+	"weekCharacters": 
+	[
+		"",
+		"",
+		""
+	],
+	"storyName": "Tutorial",
+	"story_DisplayName": "       Tutorial",
+	"NOTE": "there are spaces on these, specifically just to center the text. dont remove the spaces please.",
+	"story_Description": "Learn to Funk!\nChoose nightmare\nTo Learn Note Mechanics!",
+	"WeekName": "Tutorial",
+	"freeplayColor":
+	[
+		0,
+		0,
+		0
+	],
+	"hideStoryMode": false,
+	"weekBefore": "",
+	"startUnlocked": true
+}

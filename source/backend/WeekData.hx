@@ -18,6 +18,9 @@ typedef WeekFile =
 	var hideStoryMode:Bool;
 	var hideFreeplay:Bool;
 	var difficulties:String;
+	// JSON varibles (MM)
+	var story_Description:String;
+	var story_DisplayName:String;
 }
 
 class WeekData {
@@ -37,6 +40,9 @@ class WeekData {
 	public var hideStoryMode:Bool;
 	public var hideFreeplay:Bool;
 	public var difficulties:String;
+	// JSON varibles (MM)
+	public var story_Description:String;
+	public var story_DisplayName:String;
 
 	public var fileName:String;
 
@@ -51,6 +57,8 @@ class WeekData {
 			weekBackground: 'stage',
 			weekBefore: 'tutorial',
 			storyName: 'Your New Week',
+			story_DisplayName: 'Display Name (story mode exclusive)',
+			story_Description: 'DESCRIPTION',
 			weekName: 'Custom Week',
 			startUnlocked: true,
 			hiddenUntilUnlocked: false,

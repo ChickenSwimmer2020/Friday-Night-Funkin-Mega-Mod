@@ -1,7 +1,7 @@
 {
 	"songs": [
 		[
-			"Digital", "Dad",
+			"System", "Dad",
 			[
 				0,
 				0,
@@ -18,7 +18,9 @@
 		"",
 		""
 	],
-	"storyName": "text goes here",
+	"storyName": "CS20",
+	"story_DisplayName": " Vs ChickenSwimmer2020",
+	"story_Description": "Song Description Here\nline1\nline2\nline3",
 	"WeekName": "CS20",
 	"freeplayColor":
 	[
