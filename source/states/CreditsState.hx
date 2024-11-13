@@ -38,6 +38,34 @@ class CreditsState extends MusicBeatState
 		#end
 
 		var defaultList:Array<Array<String>> = [ //Name - Icon name - Description - Link - BG Color
+			['MegaMod Development Team'],
+			['ChickenSwimmer2020',	'icon-CS20',	'Director\n\"The furry that made his dream come to life\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
+			['Programmers'],
+			['ChickenSwimmer2020',	'icon-CS20',	'Main Programmer (HAXE)\n\"The furry that Coded this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
+			['ZSolarDev',	'tba',	'Programmer (HAXE)\n\""Every human has a humans human." idfk bro, I just know that c++ is boring asf\"',	'https://www.youtube.com/channel/UCHC3OOhj0-vgLesDrlNfRtw',	'#FFFFFF'],
+			[''],
+			['Testers/Debuggers'],
+			['ChickenSwimmer2020',	'icon-CS20',	'Main PlayTester/Debugger\n\"The furry that Tested this pile of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
+			['MaxxerLazz444',	'tits',	'Menus/Discord_RPC tester\n\"Hello\"',	'https://www.youtube.com/channel/UCXPSHz2JM_uvlNqfADOVR0g',	'#EFF847'],
+			['Sn0wenX',	'Sn0w',	'Tester/Debugger\n\"QUOTE TBA\"',	'https://linktr.ee/ChickenSwimmer2020',	''],
+			['TimRGYT',	'Tim',	'Tester/Debugger\n\"Also Play Vs. Magical Reflections V2!\"',	'https://linktr.ee/timredgameryt',	'A3DAF6'],
+			[''],
+			['Artists'],
+			['nem0nii',	'brookeGaySon',	'Artist\n\"Gay son or thot daughter? now you can have the best of both worlds. Hi, I\'m Brooke \"Thot Daughter\" Gayson. Vote me for president at this years election\"',	'https://www.youtube.com/@NemonII283',	'#401274'	],
+			['ChickenSwimmer2020',	'icon-CS20',	'Main Artist\n\"The furry that Drew this mess of a game\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
+			[''],
+			['Charters'],
+			['ChickenSwimmer2020',   'icon-CS20',		 'Main Charter\n\"The furry that Charted this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
+			[''],
+			['composers'],
+			['ChickenSwimmer2020',   'icon-CS20',        'Composed the menu music',          'https://linktr.ee/ChickenSwimmer2020',               '#00FF00'],
+			['ChickenSwimmer2020',   'icon-CS20',        'Composer of digital',              'https://linktr.ee/ChickenSwimmer2020',               '#00FF00'],
+			['C0MIC STARZ',          '',                 'Composed the digital erect remix', 'https://www.youtube.com/channel/UCS8QUrwt6k1pH1jvvwmNu8Q', '' ],
+			[''],
+			['Animators'],
+			['nem0nii',             'brookeGaySon',      'Animator\n\"QUOTE\""', 'https://www.youtube.com/@NemonII283', '#401274' ],
+			['ChickenSwimmer2020',  'icon-CS20',         'Main Animator\n\"The furry that Animated this mess of spaghetti code\"', 'https://linktr.ee/ChickenSwimmer2020', '#00FF00'],
+			[''],
 			["Psych Engine Team"],
 			["Shadow Mario",		"shadowmario",		"Main Programmer and Head of Psych Engine",					"https://ko-fi.com/shadowmario",	"444444"],
 			["Riveren",				"riveren",			"Main Artist/Animator of Psych Engine",						"https://x.com/riverennn",			"14967B"],
@@ -96,7 +124,16 @@ class CreditsState extends MusicBeatState
 				}
 
 				var icon:AttachedSprite = new AttachedSprite(str);
-				if(str.endsWith('-pixel')) icon.antialiasing = false;
+				if(str.endsWith('-pixel')) 
+					icon.antialiasing = false;
+
+				if (str.endsWith('-CS20')) {
+					icon.scale.set(0.2, 0.2);
+					icon.yAdd = -325;
+					icon.xAdd = optionText.width - 400;
+				}
+
+
 				icon.xAdd = optionText.width + 10;
 				icon.sprTracker = optionText;
 	

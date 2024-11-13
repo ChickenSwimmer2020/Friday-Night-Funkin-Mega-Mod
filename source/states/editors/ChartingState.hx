@@ -89,7 +89,10 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
 		['Set Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
 		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
-		['Digital Bg Boom', "used in Ditigal\nValue 1: 0/1 = OFF/ON\nValue 2: 0/1 Do Nothing/Bop"],
+		['Hype Mode', "Cool random effect\nturns on when event is ran"],
+		['Change window title', "self explanitory\nValue 1: Window name\nleave blank to reset"],
+		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1,go}"]
+		//MEGAMOD STAGE EVENTS
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor
@@ -4628,7 +4631,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		upperBox.visible = mainBox.visible = infoBox.visible = false;
 	}
 
-	function goToPlayState()
+	public function goToPlayState()
 	{
 		persistentUpdate = false;
 		FlxG.mouse.visible = false;

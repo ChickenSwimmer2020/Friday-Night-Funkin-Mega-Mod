@@ -1,5 +1,6 @@
 package states;
 
+import flixel.group.FlxGroup;
 import backend.Functions;
 import backend.Highscore;
 import backend.StageData;
@@ -85,8 +86,12 @@ class PlayState extends MusicBeatState
 
 	//event variables
 	private var isCameraOnForcedPos:Bool = false;
-
 	public var BopOnBeat:Bool = false;
+	public var HyperFunk:Bool = false;
+	public var purple:FlxSprite;
+	public var blue:FlxSprite;
+	public var green:FlxSprite;
+	public var red:FlxSprite;
 
 	public var boyfriendMap:Map<String, Character> = new Map<String, Character>();
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
@@ -264,6 +269,21 @@ class PlayState extends MusicBeatState
 		CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
 		CountDown.antialiasing = ClientPrefs.data.antialiasing;
 		//trace('Playback Rate: ' + playbackRate);
+
+		//event sprites
+		purple = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeP'));
+		blue = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeB'));
+		green = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeG'));
+		red = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeR'));
+			purple.alpha = 0;
+			blue.alpha = 0;
+			green.alpha = 0;
+			red.alpha = 0;
+		purple.cameras = [camOther];
+		blue.cameras = [camOther];
+		green.cameras = [camOther];
+		red.cameras = [camOther];
+
 		
 		if(nextReloadAll)
 		{
@@ -2391,7 +2411,8 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = camZoom;
 						camZooming = true;
 					}
-	
+			case 'Hype Mode':
+					HyperFunk = true;
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
@@ -3217,6 +3238,31 @@ class PlayState extends MusicBeatState
 
 			noteMiss(note);
 			if(!note.noteSplashData.disabled && !note.isSustainNote) spawnNoteSplashOnNote(note);
+		}
+
+		if(HyperFunk) {
+			switch(note.noteData) {
+				case 0:
+					purple.alpha = 1;
+					FlxTween.tween(purple, {alpha: 0}, 0.5, {
+						ease: FlxEase.expoOut,
+					});
+				case 1:
+					blue.alpha = 1;
+					FlxTween.tween(blue, {alpha: 0}, 0.5, {
+						ease: FlxEase.expoOut,
+					});
+				case 2:
+					green.alpha = 1;
+					FlxTween.tween(green, {alpha: 0}, 0.5, {
+						ease: FlxEase.expoOut,
+					});
+				case 3:
+					red.alpha = 1;
+					FlxTween.tween(red, {alpha: 0}, 0.5, {
+						ease: FlxEase.expoOut,
+					});
+			}
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.goodNoteHit(note));

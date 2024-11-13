@@ -1,5 +1,7 @@
 package states;
 
+import flixel.tweens.misc.NumTween;
+import flixel.tweens.motion.Motion;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -45,6 +47,9 @@ class StoryMenuState extends MusicBeatState
 	var DBBG:FlxSprite;
 
 	var loadedWeeks:Array<WeekData> = [];
+
+	public var weekThing:MenuItem;
+	public var num:Int = 0;
 
 	override function create()
 	{
@@ -98,7 +103,6 @@ class StoryMenuState extends MusicBeatState
 		DiscordClient.changePresence("Story Menu", "Choosing the week");
 		#end
 
-		var num:Int = 0;
 		for (i in 0...WeekData.weeksList.length)
 		{
 			var weekFile:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
@@ -108,13 +112,13 @@ class StoryMenuState extends MusicBeatState
 			{
 				loadedWeeks.push(weekFile);
 				WeekData.setDirectoryFromWeek(weekFile);
-				var weekThing:MenuItem = new MenuItem(0, 50, WeekData.weeksList[i]);
+				weekThing = new MenuItem(0, 50, WeekData.weeksList[i]);
 				weekThing.y += ((weekThing.height + 20) * num);
-				weekThing.scale.set(1, 1);
+				//weekThing.scale.set(0.2,0.2); //reimplement when movement gets fixed smh
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
 
-				// weekThing.updateHitbox();
+				//weekThing.updateHitbox();
 
 				// Needs an offset thingie
 				if (isLocked)
@@ -420,7 +424,7 @@ class StoryMenuState extends MusicBeatState
 			sprDifficulty.loadGraphic(newImage);
 			//sprDifficulty.x = leftArrow.x + 60;
 			//sprDifficulty.x += (308 - sprDifficulty.width) / 3;
-			sprDifficulty.alpha = 0;
+			sprDifficulty.alpha = 1;
 			sprDifficulty.y = 0;
 
 			//if (tweenDifficulty != null) //breaks offsets, and i dont know to fix so im just removing it.
@@ -465,7 +469,7 @@ class StoryMenuState extends MusicBeatState
 		var unlocked:Bool = !weekIsLocked(leWeek.fileName);
 		for (item in grpWeekText.members)
 		{
-			item.targetY = bullShit - curWeek;
+			item.targetY = bullShit - curWeek; //only works on alpha??? tf?????
 			if (item.targetY == Std.int(0) && unlocked)
 				item.alpha = 1;
 			else

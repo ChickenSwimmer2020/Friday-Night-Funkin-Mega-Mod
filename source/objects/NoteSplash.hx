@@ -8,6 +8,7 @@ import states.editors.NoteSplashEditorState;
 
 import flixel.system.FlxAssets.FlxShader;
 
+
 private typedef RGB = {
 	r:Null<Int>,
 	g:Null<Int>,
@@ -33,6 +34,8 @@ typedef NoteSplashConfig = {
 
 class NoteSplash extends FlxSprite
 {
+	private var textureLoaded:String = null;
+
 	public var rgbShader:PixelSplashShaderRef;
 	public var skin:String;
 	public var config(default, set):NoteSplashConfig;
@@ -54,6 +57,25 @@ class NoteSplash extends FlxSprite
 
 		loadSplash(splash);
 	}
+
+	public function setupNoteSplash(x:Float, y:Float, note:Int = 0, texture:String = null) {
+		setPosition(x - Note.swagWidth * 0.95, y - Note.swagWidth);
+		alpha = 0.6;
+
+		if(texture == null) {
+			texture = 'noteSplashes';
+			if(PlayState.SONG.splashSkin != null && PlayState.SONG.splashSkin.length > 0) texture = PlayState.SONG.splashSkin;
+		}
+
+		if(textureLoaded != texture) {
+			loadSplash(texture);
+		}
+		offset.set(10, 10);
+
+		var animNum:Int = FlxG.random.int(1, 2);
+		animation.play('note' + note + '-' + animNum, true);
+		if(animation.curAnim != null)animation.curAnim.frameRate = 24 + FlxG.random.int(-2, 2);
+	} //needed for modchart editor
 
 	public function loadSplash(?splash:String)
 	{

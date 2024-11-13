@@ -5,7 +5,7 @@
         - Replace cutscene text with real text.
             - Displaying the asset getting loaded as well as the percentage.
             - Automatic text scrolling.
-            - The last part with the logo will still be a cutscene.
+            - The last part with the logo will still be a cutscene. spritesheet maybe?
 - Songs:
     - System:
         - Implement NOTE: Digital has been cut in favor of System.
