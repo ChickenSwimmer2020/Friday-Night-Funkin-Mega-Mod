@@ -91,7 +91,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
 		['Hype Mode', "Cool random effect\nturns on when event is ran"],
 		['Change window title', "self explanitory\nValue 1: Window name\nleave blank to reset"],
-		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1,go}"]
+		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1, or go}"]
 		//MEGAMOD STAGE EVENTS
 	];
 	

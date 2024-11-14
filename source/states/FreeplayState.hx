@@ -24,6 +24,9 @@ class FreeplayState extends MusicBeatState
 	var Console:FlxSprite;
 	var Glass:FlxSprite;
 
+	var record:FlxSprite;
+	var curSong:Int;
+
 	var bopspeed:Int = 2; // starts at two to prevent a crash
 	var cambopspeed:Int = 4;
 
@@ -65,8 +68,11 @@ class FreeplayState extends MusicBeatState
 
 	public var LastColor:Int;
 
+	public var songLowercase:String;
+
 	override function create()
 	{
+		curSong = 0;
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -127,6 +133,13 @@ class FreeplayState extends MusicBeatState
 		bopspeed = 2; // fixes anim play speed on state reopen
 		cambopspeed = 4;
 
+		//record
+		record = new FlxSprite(JukeBox.x + 0, JukeBox.y + 0);
+		record.frames = Paths.getSparrowAtlas('freeplay_songs');
+		record.animation.addByIndices('SONG_System', 'FreeplayRecord', [for (i in 0...23) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_Tutorial', 'FreeplayRecord', [for (i in 24...47) i], "", 30, false, false, false);
+		record.antialiasing = ClientPrefs.data.antialiasing;
+
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
@@ -180,6 +193,7 @@ class FreeplayState extends MusicBeatState
 		bg.screenCenter();
 
 		add(JukeBox);
+		add(record);
 		add(Glass);
 		add(Console); // BG TRIED TO HIDE THEM, FUCK THE BG.
 
@@ -297,9 +311,22 @@ class FreeplayState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		trace(curSong);
 		FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 
 		Conductor.songPosition = FlxG.sound.music.time;
+
+		if(curSong < 0) {
+			curSong = 0;
+		}
+
+		switch(curSong) {
+			case 0:
+				record.animation.play('SONG_Tutorial');
+			case 1:
+				record.animation.play('SONG_System');
+		}
+
 		
 		switch (curDifficulty)
 		{
@@ -363,12 +390,14 @@ class FreeplayState extends MusicBeatState
 				if (controls.UI_UP_P)
 				{
 					changeSelection(-shiftMult);
+					curSong -= 1;
 					holdTime = 0;
 				}
 				if (controls.UI_DOWN_P)
 				{
 					changeSelection(shiftMult);
-					holdTime = 0;
+					curSong += 1;
+ 					holdTime = 0;
 				}
 
 				if (controls.UI_DOWN || controls.UI_UP)
@@ -507,9 +536,12 @@ class FreeplayState extends MusicBeatState
 
 				switch (poop)
 				{
-					case 'digital':
-						bopspeed = 4;
+					case 'system':
+						bopspeed = 2;
 						cambopspeed = 4;
+					case 'tutorial':
+						bopspeed = 4;
+						cambopspeed = 8;
 					default:
 						bopspeed = 2;
 						cambopspeed = 4;
@@ -532,9 +564,8 @@ class FreeplayState extends MusicBeatState
 		else if (controls.ACCEPT && !player.playingMusic)
 		{
 			persistentUpdate = false;
-			var songLowercase:String = Paths.formatToSongPath(songs[curSelected].songName);
 			var poop:String = Highscore.formatSong(songLowercase, curDifficulty);
-
+			songLowercase = Paths.formatToSongPath(songs[curSelected].songName);
 			try
 			{
 				Song.loadFromJson(poop, songLowercase);
@@ -558,7 +589,6 @@ class FreeplayState extends MusicBeatState
 				missingText.visible = true;
 				missingTextBG.visible = true;
 				FlxG.sound.play(Paths.sound('cancelMenu'));
-
 				updateTexts(elapsed);
 				super.update(elapsed);
 				return;

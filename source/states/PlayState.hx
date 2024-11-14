@@ -1,5 +1,6 @@
 package states;
 
+import lime.app.Application;
 import flixel.group.FlxGroup;
 import backend.Functions;
 import backend.Highscore;
@@ -1052,7 +1053,7 @@ class PlayState extends MusicBeatState
 					case 4:
 						CountDown.animation.play('start');
 						CountDown.animation.finishCallback = function(huh) {
-							CountDown.destroy();
+							CountDown.kill();
 						}
 						tick = START;
 				}
@@ -2411,8 +2412,36 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = camZoom;
 						camZooming = true;
 					}
-			case 'Hype Mode':
+			case 'Hype Mode': //todo: fix
 					HyperFunk = true;
+			case 'Change Window Title':
+				Application.current.window.title = value1;
+			case 'Trigger Countdown':
+				if(!CountDown.alive)
+					CountDown.revive();
+				switch(value1) {
+					case '1':
+						CountDown.animation.play('get');
+						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
+					case '2':
+						CountDown.animation.play('to');
+						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
+					case '3':
+						CountDown.animation.play('time');
+						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
+					case 'go':
+						CountDown.animation.play('funky');
+						CountDown.animation.finishCallback = function(huh) {
+							CountDown.animation.play('start');
+							FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
+
+							CountDown.animation.finishCallback = function(huh) {
+								if(CountDown.animation.curAnim.name == 'start')
+									CountDown.kill();
+							}
+						}
+
+				}
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
