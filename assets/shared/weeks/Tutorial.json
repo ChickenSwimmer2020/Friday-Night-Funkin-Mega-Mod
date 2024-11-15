@@ -25,9 +25,9 @@
 	"WeekName": "Tutorial",
 	"freeplayColor":
 	[
-		0,
-		0,
-		0
+		255,
+		255,
+		255
 	],
 	"hideStoryMode": false,
 	"weekBefore": "",

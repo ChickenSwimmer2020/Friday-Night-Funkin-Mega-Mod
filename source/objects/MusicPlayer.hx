@@ -17,6 +17,8 @@ class MusicPlayer extends FlxGroup
 
 	public var playing(get, never):Bool;
 
+	public var vocalsPaused:Bool = false;
+
 	public var playingMusic:Bool = false;
 	public var curTime:Float;
 

@@ -25,6 +25,9 @@ class FreeplayState extends MusicBeatState
 	var Glass:FlxSprite;
 
 	var record:FlxSprite;
+	var recordSpeed:Int = 30;
+	var curFrame:Int = 0;
+
 	var curSong:Int;
 
 	var bopspeed:Int = 2; // starts at two to prevent a crash
@@ -97,9 +100,10 @@ class FreeplayState extends MusicBeatState
 		JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
 
 		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
-		Glass.scale.set(0.5,0.5);
-		Glass.setPosition(JukeBox.x + 170, JukeBox.y + 0);
+		Glass.scale.set(0.4,0.405);
+		Glass.setPosition(JukeBox.x + 202, JukeBox.y + 231);
 		Glass.antialiasing = ClientPrefs.data.antialiasing;
+		Glass.updateHitbox();
 
 		Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
 		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
@@ -129,20 +133,23 @@ class FreeplayState extends MusicBeatState
 		JukeBox.setPosition(-120, 100);
 		Console.scale.set(0.35, 0.35);
 
-		JukeBox.animation.play('$RandColor'); // prevent animation bug on state load
-		bopspeed = 2; // fixes anim play speed on state reopen
-		cambopspeed = 4;
-
 		//record
-		record = new FlxSprite(JukeBox.x + 0, JukeBox.y + 0);
+		record = new FlxSprite(Glass.x + 15, Glass.y + 32);
 		record.frames = Paths.getSparrowAtlas('freeplay_songs');
-		record.animation.addByIndices('SONG_System', 'FreeplayRecord', [for (i in 0...23) i], "", 30, false, false, false);
-		record.animation.addByIndices('SONG_Tutorial', 'FreeplayRecord', [for (i in 24...47) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", recordSpeed, false, false, false);
+		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", recordSpeed, false, false, false);
 		record.antialiasing = ClientPrefs.data.antialiasing;
+		record.scale.set(0.25, 0.25);
+		record.updateHitbox();
 
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
+
+		JukeBox.animation.play('$RandColor'); // prevent animation bug on state load
+		bopspeed = 2; // fixes anim play speed on state reopen
+		cambopspeed = 4;
+		record.animation.timeScale = 0.5;
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
@@ -186,16 +193,6 @@ class FreeplayState extends MusicBeatState
 			}
 		}
 		Mods.loadTopMod();
-
-		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.antialiasing = ClientPrefs.data.antialiasing;
-		add(bg);
-		bg.screenCenter();
-
-		add(JukeBox);
-		add(record);
-		add(Glass);
-		add(Console); // BG TRIED TO HIDE THEM, FUCK THE BG.
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -253,15 +250,21 @@ class FreeplayState extends MusicBeatState
 
 		if (curSelected >= songs.length)
 			curSelected = 0;
-		bg.color = songs[curSelected].color;
-		intendedColor = bg.color;
 		lerpSelected = curSelected;
 
 		curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 
 		bottomBG = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		bottomBG.alpha = 0.6;
+		//add(animationBG);
+		add(JukeBox);
+		add(record);
+		add(Glass);
+		add(Console); // BG TRIED TO HIDE THEM, FUCK THE BG.
 		add(bottomBG);
+		
+
+
 
 		var leText:String = Language.getPhrase("freeplay_tip",
 			"Press SPACE to listen to the Song / Press CTRL to open the Gameplay Changers Menu / Press RESET to Reset your Score and Accuracy.");
@@ -311,20 +314,22 @@ class FreeplayState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		trace(curSong);
+		//trace(curSong);
+		if(record.animation.curAnim != null)
+			curFrame = record.animation.curAnim.curFrame;
+		if(record.animation.curAnim != null && record.animation.curAnim.curFrame == 22)
+			record.animation.curAnim.restart();
+
+		trace(curFrame);
 		FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 
 		Conductor.songPosition = FlxG.sound.music.time;
 
-		if(curSong < 0) {
-			curSong = 0;
-		}
-
-		switch(curSong) {
+		switch(curSelected) {
 			case 0:
-				record.animation.play('SONG_Tutorial');
+				record.animation.play('SONG_Tutorial', false, false, curFrame);
 			case 1:
-				record.animation.play('SONG_System');
+				record.animation.play('SONG_System', false, false, curFrame);
 		}
 
 		
@@ -390,13 +395,11 @@ class FreeplayState extends MusicBeatState
 				if (controls.UI_UP_P)
 				{
 					changeSelection(-shiftMult);
-					curSong -= 1;
 					holdTime = 0;
 				}
 				if (controls.UI_DOWN_P)
 				{
 					changeSelection(shiftMult);
-					curSong += 1;
  					holdTime = 0;
 				}
 
@@ -444,6 +447,7 @@ class FreeplayState extends MusicBeatState
 				player.switchPlayMusic();
 
 				JukeBox.animation.play('$RandColor'); // prevent animation bug on music switch, also fixes animation timing bug
+				record.animation.timeScale = 1; //fix record spin speed on song unload
 
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 				// FlxTween.tween(FlxG.sound.music, {volume: 1}, 1);
@@ -528,6 +532,7 @@ class FreeplayState extends MusicBeatState
 				var SongBPM:SwagSong /*BPMS*/ = /*cast haxe.Json.parse*/ Song.parseJSON(File.getContent('assets/shared/data/${songs[curSelected].songName.toLowerCase()}/${songs[curSelected].songName.toLowerCase()}.json'),
 					'You\'re Mom');
 				Conductor.bpm = SongBPM.bpm;
+				
 
 				#if debug
 				trace(Conductor.bpm);
@@ -539,12 +544,15 @@ class FreeplayState extends MusicBeatState
 					case 'system':
 						bopspeed = 2;
 						cambopspeed = 4;
+						record.animation.timeScale = 8; //hehe, record go BRRRRRRRRRRR
 					case 'tutorial':
 						bopspeed = 4;
 						cambopspeed = 8;
+						record.animation.timeScale = 8;
 					default:
 						bopspeed = 2;
 						cambopspeed = 4;
+						record.animation.timeScale = 1;
 				}
 
 				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.8);
@@ -695,14 +703,6 @@ class FreeplayState extends MusicBeatState
 		_updateSongLastDifficulty();
 		if (playSound)
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-		var newColor:Int = songs[curSelected].color;
-		if (newColor != intendedColor)
-		{
-			intendedColor = newColor;
-			FlxTween.cancelTweensOf(bg);
-			FlxTween.color(bg, 1, bg.color, intendedColor);
-		}
 
 		for (num => item in grpSongs.members)
 		{

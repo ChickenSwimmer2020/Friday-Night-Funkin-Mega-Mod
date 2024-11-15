@@ -42,7 +42,7 @@ class CreditsState extends MusicBeatState
 			['ChickenSwimmer2020',	'icon-CS20',	'Director\n\"The furry that made his dream come to life\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
 			['Programmers'],
 			['ChickenSwimmer2020',	'icon-CS20',	'Main Programmer (HAXE)\n\"The furry that Coded this mess of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
-			['ZSolarDev',	'tba',	'Programmer (HAXE)\n\""Every human has a humans human." idfk bro, I just know that c++ is boring asf\"',	'https://www.youtube.com/channel/UCHC3OOhj0-vgLesDrlNfRtw',	'#FFFFFF'],
+			['ZSolarDev',	'tba',	'Programmer (HAXE)\n\"Every human has a humans human. idfk bro, I just know that c++ is boring asf\"',	'https://www.youtube.com/channel/UCHC3OOhj0-vgLesDrlNfRtw',	'#FFFFFF'],
 			[''],
 			['Testers/Debuggers'],
 			['ChickenSwimmer2020',	'icon-CS20',	'Main PlayTester/Debugger\n\"The furry that Tested this pile of spaghetti code\"',	'https://linktr.ee/ChickenSwimmer2020',	'#00FF00'],
