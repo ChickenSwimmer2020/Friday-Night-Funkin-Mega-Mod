@@ -149,7 +149,7 @@ class FreeplayState extends MusicBeatState
 		JukeBox.animation.play('$RandColor'); // prevent animation bug on state load
 		bopspeed = 2; // fixes anim play speed on state reopen
 		cambopspeed = 4;
-		record.animation.timeScale = 0.5;
+		record.animation.timeScale = 1;
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
