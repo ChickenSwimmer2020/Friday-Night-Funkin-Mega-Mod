@@ -134,7 +134,7 @@ class FreeplayState extends MusicBeatState
 		Console.scale.set(0.35, 0.35);
 
 		//record
-		record = new FlxSprite(Glass.x + 15, Glass.y + 32);
+		record = new FlxSprite(Glass.x + 15, Glass.y + 52);
 		record.frames = Paths.getSparrowAtlas('freeplay_songs');
 		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", recordSpeed, false, false, false);
 		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", recordSpeed, false, false, false);
@@ -147,6 +147,7 @@ class FreeplayState extends MusicBeatState
 		WeekData.reloadWeekFiles(false);
 
 		JukeBox.animation.play('$RandColor'); // prevent animation bug on state load
+		Conductor.bpm = 114; //fix camera speed error
 		bopspeed = 2; // fixes anim play speed on state reopen
 		cambopspeed = 4;
 		record.animation.timeScale = 1;
@@ -339,14 +340,26 @@ class FreeplayState extends MusicBeatState
 				Console.animation.play('Static');
 			case 0:
 				Console.animation.play('Easy');
+				if(player.playingMusic) {
+					record.animation.timeScale = 8; //fix for an error with timescale
+				}
 			case 1:
 				Console.animation.play('Normal');
 			case 2:
 				Console.animation.play('Hard');
+				if(player.playingMusic) {
+					record.animation.timeScale = 8; //fix for an error with timescale
+				}
 			case 3:
 				Console.animation.play('Nightmare');
+				if(player.playingMusic) {
+					record.animation.timeScale = 8; //fix for an error with timescale
+				}
 			case 4:
 				Console.animation.play('Erect');
+				if(player.playingMusic) {
+					record.animation.timeScale = 8; //fix for an error with timescale
+				}
 		}
 		if (WeekData.weeksList.length < 1)
 			return;
@@ -604,8 +617,6 @@ class FreeplayState extends MusicBeatState
 
 			LoadingState.prepareToSong();
 			LoadingState.loadAndSwitchState(new PlayState());
-			#if !SHOW_LOADING_SCREEN FlxG.sound.music.stop(); #end
-			stopMusicPlay = true;
 
 			destroyFreeplayVocals();
 			#if (MODS_ALLOWED && DISCORD_ALLOWED)

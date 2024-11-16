@@ -1,11 +1,12 @@
 package states;
 
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
 import haxe.Json;
 import lime.utils.Assets;
 import openfl.display.BitmapData;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
-import flixel.graphics.FlxGraphic;
 import flixel.system.FlxAssets;
 import flixel.FlxState;
 
@@ -13,7 +14,6 @@ import flash.media.Sound;
 
 import backend.Song;
 import backend.StageData;
-import objects.Character;
 
 import sys.thread.Thread;
 import sys.thread.Mutex;
@@ -51,21 +51,12 @@ class LoadingState extends MusicBeatState
 	var curPercent:Float = 0;
 	var canChangeState:Bool = true;
 
-	#if PSYCH_WATERMARKS
-	var logo:FlxSprite;
-	var pessy:FlxSprite;
-	var loadingText:FlxText;
-
-	var timePassed:Float;
-	var shakeFl:Float;
-	var shakeMult:Float = 0;
-	
-	var isSpinning:Bool = false;
-	var spawnedPessy:Bool = false;
-	var pressedTimes:Int = 0;
-	#else
 	var funkay:FlxSprite;
-	#end
+	var camOther:FlxCamera;
+	var camLogo:FlxCamera;
+	var grid:FlxSprite;
+
+	var Bop:Bool = false;
 
 	override function create()
 	{
@@ -85,46 +76,30 @@ class LoadingState extends MusicBeatState
 			#end
 		}
 
-		#if PSYCH_WATERMARKS // PSYCH LOADING SCREEN
-		var bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.setGraphicSize(Std.int(FlxG.width));
-		bg.color = 0xFFD16FFF;
-		bg.updateHitbox();
-		add(bg);
-	
-		loadingText = new FlxText(520, 600, 400, Language.getPhrase('now_loading', 'Now Loading', ['...']), 32);
-		loadingText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, LEFT, OUTLINE_FAST, FlxColor.BLACK);
-		loadingText.borderSize = 2;
-		add(loadingText);
-	
-		logo = new FlxSprite(0, 0).loadGraphic(Paths.image('loading_screen/icon'));
-		logo.scale.set(0.75, 0.75);
-		logo.updateHitbox();
-		logo.antialiasing = ClientPrefs.data.antialiasing;
-		logo.screenCenter();
-		logo.x -= 50;
-		logo.y -= 40;
-		add(logo);
+		camOther = new FlxCamera();
+		camLogo = new FlxCamera();
+		camOther.bgColor.alpha = 0;
+		camLogo.bgColor.alpha = 0;
+		FlxG.cameras.add(camOther, false);
+		FlxG.cameras.add(camLogo, false);
 
-		#else // BASE GAME LOADING SCREEN
-		var bg = new FlxSprite().makeGraphic(1, 1, 0xFFCAFF4D);
-		bg.scale.set(FlxG.width, FlxG.height);
-		bg.updateHitbox();
-		bg.screenCenter();
+		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xffcaff4d);
+		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
 
-		funkay = new FlxSprite(0, 0).loadGraphic(Paths.image('funkay'));
+		grid = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x38000000, 0x0));
+		grid.velocity.set(200, 110);
+		grid.alpha = 1;
+		grid.camera = camOther;
+		add(grid);
+
+		funkay = new FlxSprite(-250, 0).loadGraphic(Paths.image('funkay'));
 		funkay.antialiasing = ClientPrefs.data.antialiasing;
-		funkay.setGraphicSize(0, FlxG.height);
-		funkay.updateHitbox();
-		add(funkay);
-		#end
+		funkay.scale.set(0.5, 0.5);
+		funkay.screenCenter();
+		funkay.camera = camLogo;
 
-		var bg:FlxSprite = new FlxSprite(0, 660).makeGraphic(1, 1, FlxColor.BLACK);
-		bg.scale.set(FlxG.width - 300, 25);
-		bg.updateHitbox();
-		bg.screenCenter(X);
-		add(bg);
+		add(funkay); // keep at bottom so it goes on top of the bg
 
 		bar = new FlxSprite(bg.x + 5, bg.y + 5).makeGraphic(1, 1, FlxColor.WHITE);
 		bar.scale.set(0, 15);
@@ -162,76 +137,32 @@ class LoadingState extends MusicBeatState
 			bar.updateHitbox();
 		}
 
-		#if PSYCH_WATERMARKS // PSYCH LOADING SCREEN
-		timePassed += elapsed;
-		shakeFl += elapsed * 3000;
-		var dots:String = '';
-		switch(Math.floor(timePassed % 1 * 3))
-		{
-			case 0:
-				dots = '.';
-			case 1:
-				dots = '..';
-			case 2:
-				dots = '...';
-		}
-		loadingText.text = Language.getPhrase('now_loading', 'Now Loading{1}', [dots]);
+		Conductor.bpm = 114;
+		Conductor.songPosition = FlxG.sound.music.time;
 
-		if(!spawnedPessy)
-		{
-			if(!transitioning && controls.ACCEPT)
-			{
-				shakeMult = 1;
-				FlxG.sound.play(Paths.sound('cancelMenu'));
-				pressedTimes++;
-			}
-			shakeMult = Math.max(0, shakeMult - elapsed * 5);
-			logo.offset.x = Math.sin(shakeFl * Math.PI / 180) * shakeMult * 100;
-
-			if(pressedTimes >= 5)
-			{
-				FlxG.camera.fade(0xAAFFFFFF, 0.5, true);
-				logo.visible = false;
-				spawnedPessy = true;
-				canChangeState = false;
-				FlxG.sound.play(Paths.sound('secret'));
-
-				pessy = new FlxSprite(700, 140);
-				pessy.frames = Paths.getSparrowAtlas('loading_screen/pessy');
-				pessy.animation.addByPrefix('run', 'run', 24, true);
-				pessy.animation.addByPrefix('spin', 'spin', 24, true);
-				pessy.antialiasing = ClientPrefs.data.antialiasing;
-				pessy.flipX = (logo.offset.x > 0);
-				pessy.x = FlxG.width + 200;
-				pessy.velocity.x = -1100;
-
-				new FlxTimer().start(0.01, function(tmr:FlxTimer) {
-					if(pessy.flipX)
-					{
-						pessy.x = -pessy.width - 200;
-						pessy.velocity.x *= -1;
-					}
-		
-					pessy.animation.play('run', true);
-					#if ACHIEVEMENTS_ALLOWED Achievements.unlock('pessy_easter_egg'); #end
-					
-					insert(members.indexOf(loadingText), pessy);
-					new FlxTimer().start(5, function(tmr:FlxTimer) canChangeState = true);
-				});
-			}
-		}
-		else if(!isSpinning && (pessy.flipX && pessy.x > FlxG.width) || (!pessy.flipX && pessy.x < -pessy.width))
-		{
-			isSpinning = true;
-			pessy.animation.play('spin', true);
-			pessy.flipX = false;
-			pessy.x = 500;
-			pessy.y = FlxG.height + 500;
-			pessy.velocity.x = 0;
-			FlxTween.tween(pessy, {y: 10}, 0.65, {ease: FlxEase.quadOut});
-		}
-		#end
+		camLogo.zoom = FlxMath.lerp(1, camLogo.zoom, 1 - (elapsed * 6));
+		camOther.zoom = FlxMath.lerp(1, camOther.zoom, 1 - (elapsed * 3));
 	}
+
+	override function beatHit()
+		{
+			super.beatHit();
+	
+			if (camLogo != null && camOther != null)
+			{
+				Bop = !Bop;
+				if (Bop)
+				{
+					camLogo.zoom = 1.1;
+					camOther.zoom = 1.07;
+				}
+				else
+				{
+					camLogo.zoom = 1.1;
+					camOther.zoom = 1.07;
+				}
+			}
+		}
 	
 	var finishedLoading:Bool = false;
 	function onLoad()
