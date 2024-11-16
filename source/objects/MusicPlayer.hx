@@ -30,6 +30,8 @@ class MusicPlayer extends FlxGroup
 	var playbackSymbols:Array<FlxText> = [];
 	var playbackTxt:FlxText;
 
+	public var songLength:Float;
+
 	var wasPlaying:Bool;
 
 	var holdPitchTime:Float = 0;
@@ -86,6 +88,8 @@ class MusicPlayer extends FlxGroup
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		songLength = FlxG.sound.music.length;
 
 		if (!playingMusic)
 		{

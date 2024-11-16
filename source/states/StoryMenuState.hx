@@ -1,7 +1,5 @@
 package states;
 
-import flixel.tweens.misc.NumTween;
-import flixel.tweens.motion.Motion;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -112,13 +110,13 @@ class StoryMenuState extends MusicBeatState
 			{
 				loadedWeeks.push(weekFile);
 				WeekData.setDirectoryFromWeek(weekFile);
-				weekThing = new MenuItem(0, 50, WeekData.weeksList[i]);
-				weekThing.y += ((weekThing.height + 20) * num);
-				//weekThing.scale.set(0.2,0.2); //reimplement when movement gets fixed smh
+				weekThing = new MenuItem(500, 0, WeekData.weeksList[i]);
+				weekThing.y += (weekThing.height + 130);
+				weekThing.scale.set(0.25,0.25); //reimplement when movement gets fixed smh
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
 
-				//weekThing.updateHitbox();
+				//weekThing.updateHitbox(); //i swear, if it was this bitch that was causing problems.
 
 				// Needs an offset thingie
 				if (isLocked)
@@ -164,12 +162,11 @@ class StoryMenuState extends MusicBeatState
 		curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 
 		sprDifficulty = new FlxSprite(-10, leftArrow.y);
-		sprDifficulty.scale.x = 0.9;
-		sprDifficulty.scale.y = 0.9;
+		sprDifficulty.scale.set(0.9,0.9);
 		sprDifficulty.antialiasing = ClientPrefs.data.antialiasing;
 		difficultySelectors.add(sprDifficulty);
 
-		rightArrow = new FlxSprite(leftArrow.x + 376, leftArrow.y);
+		rightArrow = new FlxSprite(leftArrow.x + 396, leftArrow.y);
 		rightArrow.antialiasing = ClientPrefs.data.antialiasing;
 		rightArrow.frames = ui_tex;
 		rightArrow.animation.addByPrefix('idle', 'arrow right');
@@ -179,13 +176,11 @@ class StoryMenuState extends MusicBeatState
 		// add(bgYellow);
 		add(grpWeekCharacters);
 
-		var tracksSprite:FlxSprite = new FlxSprite(-5, -35); // y was 550, remember to adjust to new sprites
+		var tracksSprite:FlxSprite = new FlxSprite(-5, -35);
 		tracksSprite.frames = Paths.getSparrowAtlas('Tracks');
 		tracksSprite.animation.addByPrefix('idle', 'menu_tracks', 24, true);
 		tracksSprite.antialiasing = ClientPrefs.data.antialiasing;
 		tracksSprite.animation.play('idle');
-		tracksSprite.scale.x = 1; // reminder to adjust these when testing new sprites
-		tracksSprite.scale.y = 1;
 		add(tracksSprite);
 
 		//arrows, make custom graphics since nightmare takes up a TON of space.
@@ -197,8 +192,7 @@ class StoryMenuState extends MusicBeatState
 		//PlayChar.animation.addByPrefix('MK', 'playchar_michiru', 0); //CUT
 		PlayChar.animation.addByPrefix('CS20', 'playchar_ChickenSwimmer2020');
 		PlayChar.antialiasing = ClientPrefs.data.antialiasing;
-		PlayChar.scale.x = 0.5;
-		PlayChar.scale.y = 0.5;
+		PlayChar.scale.set(0.5,0.5);
 		add(PlayChar);
 
 		add(difficultySelectors);
@@ -208,7 +202,7 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xff66ff00;
 		add(txtTracklist);
-			//add(rankText);
+			//add(rankText); //eventually?
 		add(scoreText);
 		add(txtWeekTitle);
 		add(txtWeekDisplay);
@@ -314,11 +308,11 @@ class StoryMenuState extends MusicBeatState
 		//difficulty offsets because of stupid centering.
 		switch(curDifficulty) {
 			case 0: //easy
-				sprDifficulty.x = 0;
+				sprDifficulty.x = 110;
 			case 1: //normal
-				sprDifficulty.x = 0;
+				sprDifficulty.x = 50;
 			case 2: //hard
-				sprDifficulty.x = 0;
+				sprDifficulty.x = 110;
 			case 3: //nightmare
 				sprDifficulty.x = -10;
 			case 4: //erect
@@ -425,16 +419,16 @@ class StoryMenuState extends MusicBeatState
 			//sprDifficulty.x = leftArrow.x + 60;
 			//sprDifficulty.x += (308 - sprDifficulty.width) / 3;
 			sprDifficulty.alpha = 1;
-			sprDifficulty.y = 0;
+			sprDifficulty.y = -15;
 
-			//if (tweenDifficulty != null) //breaks offsets, and i dont know to fix so im just removing it.
-			//	tweenDifficulty.cancel();
-			//tweenDifficulty = FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07, {
-			//	onComplete: function(twn:FlxTween)
-			//	{
-			//		tweenDifficulty = null;
-			//	}
-			//});
+			if (tweenDifficulty != null) //looks better like this actually.
+				tweenDifficulty.cancel();
+			tweenDifficulty = FlxTween.tween(sprDifficulty, {y: 0, alpha: 1}, 0.07, {
+				onComplete: function(twn:FlxTween)
+				{
+					tweenDifficulty = null;
+				}
+			});
 		}
 		lastDifficultyName = diff;
 
@@ -470,10 +464,12 @@ class StoryMenuState extends MusicBeatState
 		for (item in grpWeekText.members)
 		{
 			item.targetY = bullShit - curWeek; //only works on alpha??? tf?????
+
 			if (item.targetY == Std.int(0) && unlocked)
 				item.alpha = 1;
 			else
 				item.alpha = 0.6;
+
 			bullShit++;
 		}
 

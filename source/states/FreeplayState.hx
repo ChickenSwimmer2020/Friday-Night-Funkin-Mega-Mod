@@ -1,5 +1,6 @@
 package states;
 
+import flixel.util.FlxStringUtil;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -25,7 +26,6 @@ class FreeplayState extends MusicBeatState
 	var Glass:FlxSprite;
 
 	var record:FlxSprite;
-	var recordSpeed:Int = 30;
 	var curFrame:Int = 0;
 
 	var curSong:Int;
@@ -72,6 +72,8 @@ class FreeplayState extends MusicBeatState
 	public var LastColor:Int;
 
 	public var songLowercase:String;
+
+	public var choosenSong:String = '';
 
 	override function create()
 	{
@@ -136,8 +138,8 @@ class FreeplayState extends MusicBeatState
 		//record
 		record = new FlxSprite(Glass.x + 15, Glass.y + 52);
 		record.frames = Paths.getSparrowAtlas('freeplay_songs');
-		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", recordSpeed, false, false, false);
-		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", recordSpeed, false, false, false);
+		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", 30, false, false, false);
 		record.antialiasing = ClientPrefs.data.antialiasing;
 		record.scale.set(0.25, 0.25);
 		record.updateHitbox();
@@ -151,11 +153,6 @@ class FreeplayState extends MusicBeatState
 		bopspeed = 2; // fixes anim play speed on state reopen
 		cambopspeed = 4;
 		record.animation.timeScale = 1;
-
-		#if DISCORD_ALLOWED
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Menus", null);
-		#end
 
 		if (WeekData.weeksList.length < 1)
 		{
@@ -315,13 +312,24 @@ class FreeplayState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		#if DISCORD_ALLOWED
+		// Updating Discord Rich Presence
+		if(!player.playingMusic)
+			DiscordClient.changePresence("Freeplay", 'Choosing song: $choosenSong');
+		else
+			DiscordClient.changePresence("Freeplay", 'Listening to: $choosenSong', null, true, null, 'icon');
+		#end
+
 		//trace(curSong);
 		if(record.animation.curAnim != null)
 			curFrame = record.animation.curAnim.curFrame;
 		if(record.animation.curAnim != null && record.animation.curAnim.curFrame == 22)
 			record.animation.curAnim.restart();
 
-		trace(curFrame);
+		#if DEBUG
+			trace(curFrame);
+		#end
+
 		FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 
 		Conductor.songPosition = FlxG.sound.music.time;
@@ -329,8 +337,10 @@ class FreeplayState extends MusicBeatState
 		switch(curSelected) {
 			case 0:
 				record.animation.play('SONG_Tutorial', false, false, curFrame);
+				choosenSong = 'Tutorial';
 			case 1:
 				record.animation.play('SONG_System', false, false, curFrame);
+				choosenSong = 'System';
 		}
 
 		
