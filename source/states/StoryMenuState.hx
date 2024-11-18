@@ -51,11 +51,6 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
-		if (!ClientPrefs.data.cacheAssets)
-		{
-			Paths.clearUnusedMemory();
-		}
-
 		DBBG = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
 		// add(DBBG);
 

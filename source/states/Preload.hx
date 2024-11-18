@@ -1,0 +1,260 @@
+package states;
+
+import flixel.ui.FlxBar;
+import backend.Functions;
+import sys.thread.Thread;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
+
+class Preload extends MusicBeatState
+{
+	var LoadText:FlxText;
+	var Color:FlxSprite;
+	var BG:FlxBackdrop;
+	var _BG:FlxBackdrop; // second set of squares.
+
+	var Bar:FlxBar;
+
+	override public function create()
+	{
+		Color = new FlxSprite().makeGraphic(1920, 1080, FlxColor.LIME, false);
+
+		LoadText = new FlxText(0, 0, 0, "CACHING ASSETS", 8, false);
+		LoadText.setFormat(null, 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
+
+		BG = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x00000000, 0x6B000000));
+		BG.velocity.set(100, 100);
+
+		_BG = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x6B000000, 0x00000000));
+		_BG.velocity.set(-100, -100);
+
+		//Bar = new FlxBar(0, 450, LEFT_TO_RIGHT, 100, 10, null, "", 0, 100, true);
+
+		add(Color);
+		add(BG);
+		add(_BG);
+		add(LoadText);
+		LoadText.screenCenter(XY);
+
+		Cache();
+		Functions.wait(15, () ->
+		{
+			MusicBeatState.switchState(new TitleState());
+		});
+		super.create();
+	}
+
+	override public function update(elapsed:Float)
+	{
+
+		super.update(elapsed);
+	}
+
+	public function Cache()
+	{
+		// loose images.
+		Thread.create(() ->
+		{
+			Paths.image('VizMenu');
+			Paths.image('Tracks');
+			Paths.image('timeBar');
+			Paths.image('stagefront');
+			Paths.image('stagecurtains');
+			Paths.image('stageback');
+			Paths.image('stage_light');
+			Paths.image('speech_bubble');
+			Paths.image('sick');
+			Paths.image('shit');
+			Paths.image('PulgeBS');
+			Paths.image('PlayChar');
+			Paths.image('num0');
+			Paths.image('num1');
+			Paths.image('num2');
+			Paths.image('num3');
+			Paths.image('num4');
+			Paths.image('num5');
+			Paths.image('num6');
+			Paths.image('num7');
+			Paths.image('num8');
+			Paths.image('num9');
+			Paths.image('menuDesat');
+			Paths.image('JukeBox_PANEL');
+			Paths.image('jukebox_OVERLAY');
+			Paths.image('JukeBox');
+			Paths.image('IntroSprite');
+			Paths.image('HypeR');
+			Paths.image('HypeP');
+			Paths.image('HypeG');
+			Paths.image('HypeB');
+			Paths.image('healthBar');
+			Paths.image('good');
+			Paths.image('funkay');
+			Paths.image('freeplay_songs');
+			Paths.image('DeathScreen_Wrapper');
+			Paths.image('DeathScreen_RATINGS');
+			Paths.image('DeathScreen_RATINGNUM');
+			Paths.image('DeathScreen_DIFFICULTIES');
+			Paths.image('DeathScreen_COMBONUM');
+			Paths.image('controllertype');
+			Paths.image('comboMilestoneNumbers');
+			Paths.image('comboMilestone');
+			Paths.image('combo');
+			Paths.image('cinematics_topbar');
+			Paths.image('cinematics_bottombar');
+			Paths.image('checkboxanim');
+			Paths.image('campaign_menu_UI_assets');
+			Paths.image('bad');
+			Paths.image('alphabet_playstation');
+			Paths.image('alphabet');
+		});
+
+		// TitleScreen
+		Thread.create(() ->
+		{
+			Paths.image('TitleScreen/bfBopTitle');
+			Paths.xml('TitleScreen/bfBopTitle');
+			Paths.image('TitleScreen/bgcool');
+			Paths.xml('TitleScreen/bgcool');
+			Paths.image('TitleScreen/ChickenSwimmer2020_logo');
+			Paths.xml('TitleScreen/ChickenSwimmer2020_logo');
+			Paths.image('TitleScreen/ChickenSwimmer2020YouTube_logo');
+			Paths.xml('TitleScreen/ChickenSwimmer2020YouTube_logo');
+			#if DEBUG
+			Paths.image('TitleScreen/DeveloperMode');
+			Paths.xml('TitleScreen/DeveloperMode');
+			#end
+			Paths.image('TitleScreen/logoBumpin');
+			Paths.xml('TitleScreen/logoBumpin');
+
+			Paths.image('TitleScreen/MenuBGbitR');
+
+			Paths.image('TitleScreen/MMlogo');
+			Paths.xml('TitleScreen/MMlogo');
+
+			Paths.image('TitleScreen/newgrounds_logo');
+
+			Paths.image('TitleScreen/titleEnter');
+			Paths.xml('TitleScreen/titleEnter');
+
+			Paths.image('TitleScreen/TitleTextBG');
+			Paths.xml('TitleScreen/TitleTextBG');
+
+			Paths.image('TitleScreen/VersionNum');
+			Paths.xml('TitleScreen/VersionNum');
+
+			Paths.image('TitleScreen/SquaresBG');
+		});
+
+		// Main Menu
+		Thread.create(() ->
+		{
+			Paths.image('MainMenu/menu_awards');
+			Paths.xml('MainMenu/menu_awards');
+
+			Paths.image('MainMenu/menu_credits');
+			Paths.xml('MainMenu/menu_credits');
+
+			Paths.image('MainMenu/menu_discord');
+			Paths.xml('MainMenu/menu_discord');
+
+			Paths.image('MainMenu/menu_freeplay');
+			Paths.xml('MainMenu/menu_freeplay');
+
+			Paths.image('MainMenu/menu_gallery');
+			Paths.xml('MainMenu/menu_gallery');
+
+			Paths.image('MainMenu/menu_settings');
+			Paths.xml('MainMenu/menu_settings');
+
+			Paths.image('MainMenu/menu_story_mode');
+			Paths.xml('MainMenu/menu_story_mode');
+
+			Paths.image('MainMenu/menu_youtube');
+			Paths.xml('MainMenu/menu_youtube');
+
+			Paths.image('MainMenu/menuBG');
+		});
+		// sketches
+		Thread.create(() ->
+		{
+			Paths.image('MainMenu/Sketches/Sketchy0');
+			Paths.xml('MainMenu/Sketches/Sketchy0');
+
+			Paths.image('MainMenu/Sketches/Sketchy1');
+			Paths.xml('MainMenu/Sketches/Sketchy1');
+
+			Paths.image('MainMenu/Sketches/Sketchy2');
+			Paths.xml('MainMenu/Sketches/Sketchy2');
+		});
+		// enters
+		Thread.create(() ->
+		{
+			Paths.image('MainMenu/Enters/Enter_awards');
+			Paths.xml('MainMenu/Enters/Enter_awards');
+
+			Paths.image('MainMenu/Enters/Enter_settings');
+			Paths.xml('MainMenu/Enters/Enter_settings');
+
+			Paths.image('MainMenu/Enters/Enter_story_mode');
+			Paths.xml('MainMenu/Enters/Enter_story_mode');
+		});
+
+		// Story Menu
+		Thread.create(() ->
+		{
+			Paths.image('storymenu/Chicken');
+			Paths.image('storymenu/Tutorial');
+		});
+
+		// Options Menu
+		Thread.create(() ->
+		{
+			Paths.image('OptionsMenu/Background');
+			Paths.image('OptionsMenu/Gears');
+			Paths.xml('OptionsMenu/Gears');
+		});
+
+		// icons
+		Thread.create(() -> {
+			Paths.image('icons/icon-bf');
+			Paths.image('icons/icon-gf');
+			Paths.image('icons/icon-face');
+			Paths.image('icons/icon-dad');
+		});
+
+		// characters
+		Thread.create(() -> {
+			Paths.image('characters/BOYFRIEND');
+				Paths.xml('characters/BOYFRIEND');
+			Paths.image('characters/BOYFRIEND_DEAD');
+				Paths.xml('characters/BOYFRIEND_DEAD');
+			Paths.image('characters/GF_assets');
+				Paths.xml('characters/GF_assets');
+		});
+
+		// loose data.
+		Thread.create(() ->
+		{
+			Paths.xml('VizMenu');
+			Paths.xml('Tracks');
+			Paths.xml('speech_bubble');
+			Paths.xml('PulgeBS');
+			Paths.xml('PlayChar');
+			Paths.xml('JukeBox_PANEL');
+			Paths.xml('JukeBox');
+			Paths.xml('IntroSprite');
+			Paths.xml('freeplay_songs');
+			Paths.xml('DeathScreen_RATINGS');
+			Paths.xml('DeathScreen_RATINGNUM');
+			Paths.xml('DeathScreen_DIFFICULTIES');
+			Paths.xml('DeathScreen_COMBONUM');
+			Paths.xml('comboMilestoneNumbers');
+			Paths.xml('comboMilestone');
+			Paths.xml('checkboxanim');
+			Paths.xml('campaign_menu_UI_assets');
+			Paths.xml('alphabet_playstation');
+			Paths.xml('alphabet');
+			Paths.json('alphabet');
+		});
+	}
+}

@@ -261,7 +261,6 @@ class PlayState extends MusicBeatState
 	public var CountDown:FlxSprite;
 	override public function create()
 	{
-		Paths.clearStoredMemory();
 		//intro anim.
 		CountDown = new FlxSprite(-50, -250);
 		CountDown.scale.set(0.5, 0.5);
@@ -291,7 +290,6 @@ class PlayState extends MusicBeatState
 		
 		if(nextReloadAll)
 		{
-			Paths.clearUnusedMemory();
 			Language.reloadPhrases();
 		}
 		nextReloadAll = false;
@@ -657,11 +655,8 @@ class PlayState extends MusicBeatState
 		splash.alpha = 0.000001; //cant make it invisible or it won't allow precaching
 
 		super.create();
-		Paths.clearUnusedMemory();
-
 		cacheCountdown();
 		cachePopUpScore();
-		cacheDeathScreen();
 
 		if(eventNotes.length < 1) checkEventNote();
 	}
@@ -2616,17 +2611,6 @@ class PlayState extends MusicBeatState
 			Paths.image(uiPrefix + 'num' + i + uiPostfix);
 	}
 
-	private function cacheDeathScreen()
-	{
-		//better to make this on a seperate thread since its fucking slow.
-		Thread.create(() -> {
-			Paths.image('DeathScreen_Wrapper');
-			Paths.image('DeathScreen_RATINGS');
-			Paths.image('DeathScreen_DIFFICULTIES');
-			Paths.image('DeathScreen_COMBONUM');
-		});
-	}
-
 	private function popUpScore(note:Note = null):Void
 	{
 		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.data.ratingOffset);
@@ -3179,10 +3163,10 @@ class PlayState extends MusicBeatState
 													ComboShown = true;
 											}
 										if(ComboShown) 
-											Functions.wait(0.001, () -> {
+											Functions.wait(0.00000000000000000001, () -> {
 												shouldShowComboText = false;
 
-													Functions.wait(1, () -> {
+													Functions.wait(5, () -> {
 															ComboShown = false;
 													});
 											});

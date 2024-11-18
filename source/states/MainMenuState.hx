@@ -1,5 +1,7 @@
 package states;
 
+import sys.thread.Thread;
+import backend.Functions;
 import states.GalleryState.GalleryMenuState;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
@@ -66,9 +68,20 @@ class MainMenuState extends MusicBeatState
 	var rightOption:String = null;
     var leftItem:FlxSprite;
 	var rightItem:FlxSprite;
+
+	public var bg:FlxSprite;
+	public var updateVersion:FlxText;
 	override function create()
-	{
-        
+	{	
+		//precache the enter anims, again.
+		Thread.create(()->{
+			Paths.image('MainMenu/Enters/enter_awards');
+			Paths.image('MainMenu/Enters/enter_settings');
+			Paths.image('MainMenu/Enters/enter_story_mode');
+				Paths.xml('MainMenu/Enters/enter_awards');
+				Paths.xml('MainMenu/Enters/enter_settings');
+				Paths.xml('MainMenu/Enters/enter_story_mode');
+		});
         gameVersionInformation = tjson.TJSON.parse(Paths.getTextFromFile('data/Version.json'));
 		UltimateVersion = ' ' + gameVersionInformation.Ultimate;
 		psychEngineVersion = gameVersionInformation.EngVer;
@@ -90,7 +103,7 @@ class MainMenuState extends MusicBeatState
 		persistentUpdate = persistentDraw = true;
 
 		var yScroll:Float = Math.max(0.25 - (0.05 * (choosables.length - 4)), 0.1);
-		var bg = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
+		bg = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.scrollFactor.set(0, yScroll);
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
@@ -120,12 +133,12 @@ class MainMenuState extends MusicBeatState
 		// [
 		// sketch 0 = the game logo but sketchified
 		// sketch 1 = bf idle
-		// sketch 2 = gf bopping (use beathit for this)
+		// sketch 2 = gf bopping
 		// sketch 3 = bf watching tv
 		// sketch 4 = gf and bf cuddling
 		// sketch 5 = gf playing minecraft
 		// sketch 6 = bf playing doom(1993)
-		// sketch 7 = CRT with audio visualiser (nonfunctional, possibly updatable in future update)
+		// sketch 7 = CRT with audio visualiser (reminder to make work properly!)
 		// sketch 8 = bf eating pringles
 		// sketch 9 = bf and gf
 		// sketch 10 = boombox with a sign saying that bf and gf were off screen having sex [add bed creaking SFX in bg]
@@ -142,15 +155,9 @@ class MainMenuState extends MusicBeatState
 		// ]
 		sketch = new FlxSprite(0, 0);
 		sketch.frames = Paths.getSparrowAtlas('MainMenu/Sketches/Sketchy$randInt');
-		if(randInt != 10 || randInt != 2)
-			sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
-		else if (randInt == 10 || randInt == 2) {
-			sketch.animation.addByIndices('left', 'xml prefix', [for (i in 0...14) i], "", 24, false);
-			sketch.animation.addByIndices('right', 'xml prefix', [for (i in 14...29) i], "", 24, false);
-			sketchIsBopper = true;
-		}
+		sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
 			
-		//sketch.animation.play('idle');
+		sketch.animation.play('idle');
 		sketch.antialiasing = ClientPrefs.data.antialiasing;
 		// used for sketchy 0
 		sketch.scale.x = 1;
@@ -184,13 +191,13 @@ class MainMenuState extends MusicBeatState
         for (versionID in 0...4)
         {
             var str = versionLayoutMap.get(versionLayout[versionID]);
-            var versionTxt = new FlxText(12, 4 + (20 * versionID), 0, str, 12);
+            var versionTxt = new FlxText(0, 0 + (20 * versionID), 0, str, 12);
             versionTxt.scrollFactor.set();
-		    versionTxt.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		    versionTxt.setFormat(/*"VCR OSD Mono"*/null, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		    add(versionTxt);
         }
 
-		var updateVersion = new FlxText(750, FlxG.height - 40, VersionUpdateName, 12, true);
+		updateVersion = new FlxText(750, FlxG.height - 40, VersionUpdateName, 12, true);
 		updateVersion.scrollFactor.set();
 		updateVersion.setFormat("Cave Story Regular", 44, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		updateVersion.antialiasing = false;
@@ -209,27 +216,6 @@ class MainMenuState extends MusicBeatState
 
 		super.create();
 	}
-    
-    override public function beatHit()
-    {
-
-        super.beatHit();
-
-		if(!sketchIsBopper) {
-			sketch.animation.play('idle', true);
-		}
-		if(sketchIsBopper) {
-			bopL = !bopL;
-			if(bopL) {
-				sketch.animation.play('left', true);
-				trace('left');
-			}
-			else {
-				sketch.animation.play('right', true);
-				trace('right');
-			}
-		}
-    }
 
     function generateMenuItems()
     {
@@ -258,6 +244,12 @@ class MainMenuState extends MusicBeatState
             menuItem.antialiasing = ClientPrefs.data.antialiasing;
             menuItem.updateHitbox();
             menuItems.add(menuItem);
+
+			if (itemID == 4) menuItem.y += 100;
+			if (itemID == 5) menuItem.y += 100;
+			if (itemID == 6) menuItem.y += 100;
+			if (itemID == 7) menuItem.y += 100;
+
             if (itemID == 8) menuItem.visible = false;
         }
     }
@@ -277,6 +269,18 @@ class MainMenuState extends MusicBeatState
 		return menuItem;
 	}
 
+	inline function createMenuEnter(name:String, X:Float, Y:Float):FlxSprite
+	{
+		var Enter:FlxSprite = new FlxSprite(X, Y);
+		Enter.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_$name');
+		Enter.animation.addByPrefix('Yeet', '$name yeet', 24, true);
+		Enter.animation.play('Yeet');
+		Enter.updateHitbox();
+		add(Enter);
+
+		return Enter;
+	}
+
 	var selectedSomethin:Bool = false;
 
 	var timeNotMoving:Float = 0;
@@ -284,6 +288,11 @@ class MainMenuState extends MusicBeatState
 	{
 		if (FlxG.sound.music.volume < 0.8)
 			FlxG.sound.music.volume = Math.min(FlxG.sound.music.volume + 0.5 * elapsed, 0.8);
+
+		sketch.animation.finishCallback = function(UwU)
+		{
+			sketch.animation.curAnim.restart();
+		}
 
 		if (!selectedSomethin)
 		{
@@ -407,6 +416,34 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.mouse.visible = false;
 
+					var howLong:Float;
+					howLong = 1;
+
+					bg.alpha = 0.15;
+					updateVersion.visible = false;
+
+					switch(curSelected)
+					{
+						case 0: //story mode
+							createMenuEnter('story_mode', 540, 500);
+							howLong = 0.75;
+						case 1: //freeplay
+							trace('implement: Freeplay');
+						case 2: //gallery
+							trace('implement: Gallery');
+						case 3: //credits
+						trace('implement: credits');
+						case 4: //settings
+							createMenuEnter('settings', 0, 0);
+							howLong = 0.90;
+						case 5: //awards
+							createMenuEnter('awards', 0, 0);
+							howLong = 0.90;
+						//we skip over 6 and 7 because those are for the youtube and discord, we dont need intro anims for those.
+						case 8:
+							trace('implement: Overworld');
+					}
+
 					var item:FlxSprite;
 					var option:String;
 					switch(curColumn)
@@ -424,7 +461,8 @@ class MainMenuState extends MusicBeatState
 							item = rightItem;
 					}
 
-					FlxFlicker.flicker(item, 1, 0.06, false, false, function(flick:FlxFlicker)
+					//FlxFlicker.flicker(item, 0.0001, 0.06, false, false, function(flick:FlxFlicker)
+					Functions.wait(howLong, () -> 
 					{
 						switch (option)
 						{
@@ -432,7 +470,7 @@ class MainMenuState extends MusicBeatState
 								MusicBeatState.switchState(new StoryMenuState());
 							case 'freeplay':
 								MusicBeatState.switchState(new FreeplayState());
-							case 'Awards':
+							case 'awards':
 								MusicBeatState.switchState(new AchievementsMenuState());
                             case 'gallery':
 								MusicBeatState.switchState(new GalleryMenuState());
@@ -471,6 +509,13 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = true;
 				FlxG.mouse.visible = false;
 				MusicBeatState.switchState(new MasterEditorMenu());
+			}
+			if (controls.justPressed('debug_2'))
+			{
+				selectedSomethin = true;
+				FlxG.mouse.visible = false;
+				FlxG.save.data.CacheEverything = null;
+				MusicBeatState.resetState();
 			}
 			#end
 		}

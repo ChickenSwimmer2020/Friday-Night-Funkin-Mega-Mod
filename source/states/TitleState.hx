@@ -73,11 +73,6 @@ class TitleState extends MusicBeatState
 			willhey = true;
 		}
 
-		//if (!ClientPrefs.data.Cache)
-		//{
-		//	Paths.clearStoredMemory();
-		//}
-
 		FlxG.fixedTimestep = false;
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.keys.preventDefaultKeys = [TAB];
@@ -385,10 +380,6 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 			initialized = true;
-		//if (!ClientPrefs.data.Cache)
-		//{
-		//	Paths.clearUnusedMemory();
-		//}
 		// credGroup.add(credTextShit);
 	}
 

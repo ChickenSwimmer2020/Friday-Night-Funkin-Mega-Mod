@@ -484,7 +484,7 @@ class NoteOffsetState extends MusicBeatState
 		
 		if(curBeat % 4 == 2)
 		{
-			var defaultCamZoom:Float = 5.05;
+			var defaultCamZoom:Float = 1.01;
 			var camZoomingDecay:Float = 1;
 			var playbackRate:Float = 1;
 
@@ -583,6 +583,7 @@ class NoteOffsetState extends MusicBeatState
 		rating.visible = onComboMenu;
 		comboNums.visible = onComboMenu;
 		dumbTexts.visible = onComboMenu;
+		milestone.visible = onComboMenu;
 		
 		timeBar.visible = !onComboMenu;
 		timeTxt.visible = !onComboMenu;
