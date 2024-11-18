@@ -3,7 +3,6 @@ package debug;
 import flixel.FlxG;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
-import openfl.system.System;
 
 /**
 	The FPS class provides an easy-to-use monitor to display

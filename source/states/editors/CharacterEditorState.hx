@@ -8,7 +8,6 @@ import flixel.util.FlxDestroyUtil;
 import openfl.net.FileReference;
 import openfl.events.Event;
 import openfl.events.IOErrorEvent;
-import openfl.utils.Assets;
 
 import objects.Character;
 import objects.HealthIcon;

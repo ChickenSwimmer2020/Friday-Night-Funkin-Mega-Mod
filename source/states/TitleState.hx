@@ -415,8 +415,11 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (TweenComplete)
+		if (TweenComplete) {
 			FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
+			FlxG.camera.angle = FlxMath.lerp(0, FlxG.camera.angle, 1 - (elapsed * 3));
+		}
+			
 		FlxG.watch.addQuick("Current Beat", sickBeats);
 		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
 		if (FlxG.sound.music != null)
@@ -575,7 +578,8 @@ class TitleState extends MusicBeatState
 				logoBl.animation.play('bumpleft');
 				if (TweenComplete)
 				{
-					FlxG.camera.zoom = 1.01;
+					FlxG.camera.zoom = 1.05;
+					FlxG.camera.angle = -0.35;
 				}
 			}
 			else
@@ -583,7 +587,8 @@ class TitleState extends MusicBeatState
 				logoBl.animation.play('bumpright');
 				if (TweenComplete)
 				{
-					FlxG.camera.zoom = 1.01;
+					FlxG.camera.zoom = 1.05;
+					FlxG.camera.angle = 0.35;
 				}
 			}
 		}

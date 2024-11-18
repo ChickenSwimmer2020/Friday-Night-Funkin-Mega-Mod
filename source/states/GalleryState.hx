@@ -16,13 +16,8 @@ import flixel.FlxSprite;
 import flixel.text.FlxText;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
-import flixel.addons.display.FlxBackdrop;
 import flixel.addons.display.FlxRuntimeShader;
 import sys.io.File;
-import openfl.filters.ShaderFilter;
-import haxe.Json;
-
-import openfl.display.BitmapData;
 
 class GalleryMenuState extends MusicBeatState
 {

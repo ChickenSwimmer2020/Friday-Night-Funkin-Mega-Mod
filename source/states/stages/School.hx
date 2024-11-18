@@ -4,8 +4,6 @@ import states.stages.objects.*;
 import substates.GameOverSubstate;
 import cutscenes.DialogueBox;
 
-import openfl.utils.Assets as OpenFlAssets;
-
 class School extends BaseStage
 {
 	var bgGirls:BackgroundGirls;

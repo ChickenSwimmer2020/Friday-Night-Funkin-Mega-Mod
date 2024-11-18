@@ -1,5 +1,6 @@
 package states;
 
+import sys.thread.Thread;
 import lime.app.Application;
 import flixel.group.FlxGroup;
 import backend.Functions;
@@ -36,7 +37,6 @@ import objects.VideoSprite;
 import objects.Note.EventNote;
 import objects.*;
 import states.stages.*;
-import states.stages.objects.*;
 
 #if LUA_ALLOWED
 import psychlua.*;
@@ -134,6 +134,9 @@ class PlayState extends MusicBeatState
 	public static var storyDifficulty:Int = 1;
 
 	public var spawnTime:Float = 2000;
+
+	public static var DeathSongState:String;
+	public static var DeathDiffState:String;
 
 	public var inst:FlxSound;
 	public var vocals:FlxSound;
@@ -357,7 +360,7 @@ class PlayState extends MusicBeatState
 		curStage = SONG.stage;
 
 		var stageData:StageFile = StageData.getStageFile(curStage);
-		defaultCamZoom = stageData.defaultZoom;
+		//defaultCamZoom = stageData.defaultZoom; //right, forgot about this bitch.
 
 		stageUI = "normal";
 		if (stageData.stageUI != null && stageData.stageUI.trim().length > 0)
@@ -658,6 +661,7 @@ class PlayState extends MusicBeatState
 
 		cacheCountdown();
 		cachePopUpScore();
+		cacheDeathScreen();
 
 		if(eventNotes.length < 1) checkEventNote();
 	}
@@ -2009,6 +2013,9 @@ class PlayState extends MusicBeatState
 				canResync = false;
 				canPause = false;
 
+				DeathSongState = curSong;
+				DeathDiffState = Difficulty.getString();
+
 				persistentUpdate = false;
 				persistentDraw = false;
 				FlxTimer.globalManager.clear();
@@ -2607,6 +2614,17 @@ class PlayState extends MusicBeatState
 			Paths.image(uiPrefix + rating.image + uiPostfix);
 		for (i in 0...10)
 			Paths.image(uiPrefix + 'num' + i + uiPostfix);
+	}
+
+	private function cacheDeathScreen()
+	{
+		//better to make this on a seperate thread since its fucking slow.
+		Thread.create(() -> {
+			Paths.image('DeathScreen_Wrapper');
+			Paths.image('DeathScreen_RATINGS');
+			Paths.image('DeathScreen_DIFFICULTIES');
+			Paths.image('DeathScreen_COMBONUM');
+		});
 	}
 
 	private function popUpScore(note:Note = null):Void

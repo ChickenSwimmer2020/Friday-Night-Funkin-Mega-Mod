@@ -1,6 +1,5 @@
 package states;
 
-import flixel.util.FlxStringUtil;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;

@@ -1,9 +1,5 @@
 package backend;
 
-import lime.utils.Assets;
-import openfl.utils.Assets as OpenFlAssets;
-import haxe.Json;
-
 typedef WeekFile =
 {
 	// JSON variables

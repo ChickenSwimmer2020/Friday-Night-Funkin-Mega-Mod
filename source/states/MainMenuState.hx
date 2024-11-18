@@ -1,7 +1,6 @@
 package states;
 
 import states.GalleryState.GalleryMenuState;
-import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import states.editors.MasterEditorMenu;
@@ -28,6 +27,9 @@ class MainMenuState extends MusicBeatState
 	public static var psychEngineVersion:String;
 	public static var GameVersion:String;
 	public static var VersionUpdateName:String;
+
+	var bopL:Bool = false;
+	var sketchIsBopper:Bool = false;
 
 	public static var curSelected:Int = 0;
 	public static var curColumn:MainMenuColumn = CENTER;
@@ -140,8 +142,15 @@ class MainMenuState extends MusicBeatState
 		// ]
 		sketch = new FlxSprite(0, 0);
 		sketch.frames = Paths.getSparrowAtlas('MainMenu/Sketches/Sketchy$randInt');
-		sketch.animation.addByPrefix('idle', 'xml prefix', 24, (randInt != 10));
-		sketch.animation.play('idle');
+		if(randInt != 10 || randInt != 2)
+			sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
+		else if (randInt == 10 || randInt == 2) {
+			sketch.animation.addByIndices('left', 'xml prefix', [for (i in 0...14) i], "", 24, false);
+			sketch.animation.addByIndices('right', 'xml prefix', [for (i in 14...29) i], "", 24, false);
+			sketchIsBopper = true;
+		}
+			
+		//sketch.animation.play('idle');
 		sketch.antialiasing = ClientPrefs.data.antialiasing;
 		// used for sketchy 0
 		sketch.scale.x = 1;
@@ -194,16 +203,32 @@ class MainMenuState extends MusicBeatState
 		if (leDate.getDay() == 5 && leDate.getHours() >= 18)
 			Achievements.unlock('friday_night_play');
 
+		Conductor.bpm = 114;
+
+		trace(randInt);
+
 		super.create();
 	}
     
     override public function beatHit()
     {
+
         super.beatHit();
-        /*
-        I need idleLeft and idleRight anims
-        if (randInt == 10 || randInt == 2) sketch.animation.play('idle', true);
-        */
+
+		if(!sketchIsBopper) {
+			sketch.animation.play('idle', true);
+		}
+		if(sketchIsBopper) {
+			bopL = !bopL;
+			if(bopL) {
+				sketch.animation.play('left', true);
+				trace('left');
+			}
+			else {
+				sketch.animation.play('right', true);
+				trace('right');
+			}
+		}
     }
 
     function generateMenuItems()

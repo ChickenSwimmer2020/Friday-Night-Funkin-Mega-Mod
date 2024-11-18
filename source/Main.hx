@@ -6,16 +6,11 @@ import android.content.Context;
 
 import debug.FPSCounter;
 
-import flixel.graphics.FlxGraphic;
 import flixel.FlxGame;
-import flixel.FlxState;
-import haxe.io.Path;
-import openfl.Assets;
 import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import lime.app.Application;
 import states.TitleState;
 
 #if linux
