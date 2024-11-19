@@ -52,7 +52,7 @@ class Preload extends MusicBeatState
 
 	public function Cache()
 	{
-		// loose images.
+		// images
 		Thread.create(() ->
 		{
 			Paths.image('VizMenu');
@@ -106,133 +106,49 @@ class Preload extends MusicBeatState
 			Paths.image('bad');
 			Paths.image('alphabet_playstation');
 			Paths.image('alphabet');
-		});
-
-		// TitleScreen
-		Thread.create(() ->
-		{
+			// TitleScreen
 			Paths.image('TitleScreen/bfBopTitle');
-			Paths.xml('TitleScreen/bfBopTitle');
 			Paths.image('TitleScreen/bgcool');
-			Paths.xml('TitleScreen/bgcool');
 			Paths.image('TitleScreen/ChickenSwimmer2020_logo');
-			Paths.xml('TitleScreen/ChickenSwimmer2020_logo');
 			Paths.image('TitleScreen/ChickenSwimmer2020YouTube_logo');
-			Paths.xml('TitleScreen/ChickenSwimmer2020YouTube_logo');
-			#if DEBUG
-			Paths.image('TitleScreen/DeveloperMode');
-			Paths.xml('TitleScreen/DeveloperMode');
-			#end
 			Paths.image('TitleScreen/logoBumpin');
-			Paths.xml('TitleScreen/logoBumpin');
-
+			#if DEBUG
+				Paths.image('TitleScreen/DeveloperMode');
+			#end
 			Paths.image('TitleScreen/MenuBGbitR');
-
 			Paths.image('TitleScreen/MMlogo');
-			Paths.xml('TitleScreen/MMlogo');
-
 			Paths.image('TitleScreen/newgrounds_logo');
-
 			Paths.image('TitleScreen/titleEnter');
-			Paths.xml('TitleScreen/titleEnter');
-
 			Paths.image('TitleScreen/TitleTextBG');
-			Paths.xml('TitleScreen/TitleTextBG');
-
 			Paths.image('TitleScreen/VersionNum');
-			Paths.xml('TitleScreen/VersionNum');
-
 			Paths.image('TitleScreen/SquaresBG');
-		});
-
-		// Main Menu
-		Thread.create(() ->
-		{
-			Paths.image('MainMenu/menu_awards');
-			Paths.xml('MainMenu/menu_awards');
-
-			Paths.image('MainMenu/menu_credits');
-			Paths.xml('MainMenu/menu_credits');
-
-			Paths.image('MainMenu/menu_discord');
-			Paths.xml('MainMenu/menu_discord');
-
-			Paths.image('MainMenu/menu_freeplay');
-			Paths.xml('MainMenu/menu_freeplay');
-
-			Paths.image('MainMenu/menu_gallery');
-			Paths.xml('MainMenu/menu_gallery');
-
-			Paths.image('MainMenu/menu_settings');
-			Paths.xml('MainMenu/menu_settings');
-
-			Paths.image('MainMenu/menu_story_mode');
-			Paths.xml('MainMenu/menu_story_mode');
-
-			Paths.image('MainMenu/menu_youtube');
-			Paths.xml('MainMenu/menu_youtube');
-
+			// MainMenu
 			Paths.image('MainMenu/menuBG');
-		});
-		// sketches
-		Thread.create(() ->
-		{
+			Paths.image('MainMenu/menu_youtube');
+			Paths.image('MainMenu/menu_story_mode');
+			Paths.image('MainMenu/menu_settings');
+			Paths.image('MainMenu/menu_freeplay');
+			Paths.image('MainMenu/menu_discord');
+			Paths.image('MainMenu/menu_credits');
+			Paths.image('MainMenu/menu_gallery');
+			Paths.image('MainMenu/menu_awards');
+			// MainMenu_Sketches
 			Paths.image('MainMenu/Sketches/Sketchy0');
-			Paths.xml('MainMenu/Sketches/Sketchy0');
-
 			Paths.image('MainMenu/Sketches/Sketchy1');
-			Paths.xml('MainMenu/Sketches/Sketchy1');
-
 			Paths.image('MainMenu/Sketches/Sketchy2');
-			Paths.xml('MainMenu/Sketches/Sketchy2');
-		});
-		// enters
-		Thread.create(() ->
-		{
+			// MainMenu_Enters
 			Paths.image('MainMenu/Enters/Enter_awards');
-			Paths.xml('MainMenu/Enters/Enter_awards');
-
 			Paths.image('MainMenu/Enters/Enter_settings');
-			Paths.xml('MainMenu/Enters/Enter_settings');
-
 			Paths.image('MainMenu/Enters/Enter_story_mode');
-			Paths.xml('MainMenu/Enters/Enter_story_mode');
-		});
-
-		// Story Menu
-		Thread.create(() ->
-		{
+			// OptionsMenu
+			Paths.image('OptionsMenu/Background');
+			Paths.image('OptionsMenu/Gears');
+			// StoryMenu
 			Paths.image('storymenu/Chicken');
 			Paths.image('storymenu/Tutorial');
 		});
 
-		// Options Menu
-		Thread.create(() ->
-		{
-			Paths.image('OptionsMenu/Background');
-			Paths.image('OptionsMenu/Gears');
-			Paths.xml('OptionsMenu/Gears');
-		});
-
-		// icons
-		Thread.create(() -> {
-			Paths.image('icons/icon-bf');
-			Paths.image('icons/icon-gf');
-			Paths.image('icons/icon-face');
-			Paths.image('icons/icon-dad');
-		});
-
-		// characters
-		Thread.create(() -> {
-			Paths.image('characters/BOYFRIEND');
-				Paths.xml('characters/BOYFRIEND');
-			Paths.image('characters/BOYFRIEND_DEAD');
-				Paths.xml('characters/BOYFRIEND_DEAD');
-			Paths.image('characters/GF_assets');
-				Paths.xml('characters/GF_assets');
-		});
-
-		// loose data.
+		// data
 		Thread.create(() ->
 		{
 			Paths.xml('VizMenu');
@@ -255,6 +171,38 @@ class Preload extends MusicBeatState
 			Paths.xml('alphabet_playstation');
 			Paths.xml('alphabet');
 			Paths.json('alphabet');
+			//TitleScreen
+			Paths.xml('TitleScreen/bfBopTitle');
+			Paths.xml('TitleScreen/bgcool');
+			Paths.xml('TitleScreen/ChickenSwimmer2020_logo');
+			Paths.xml('TitleScreen/ChickenSwimmer2020YouTube_logo');
+			#if DEBUG
+				Paths.xml('TitleScreen/DeveloperMode');
+			#end
+			Paths.xml('TitleScreen/logoBumpin');
+			Paths.xml('TitleScreen/MMlogo');
+			Paths.xml('TitleScreen/titleEnter');
+			Paths.xml('TitleScreen/TitleTextBG');
+			Paths.xml('TitleScreen/VersionNum');
+			// MainMenu
+			Paths.xml('MainMenu/menu_awards');
+			Paths.xml('MainMenu/menu_credits');
+			Paths.xml('MainMenu/menu_discord');
+			Paths.xml('MainMenu/menu_freeplay');
+			Paths.xml('MainMenu/menu_gallery');
+			Paths.xml('MainMenu/menu_settings');
+			Paths.xml('MainMenu/menu_story_mode');
+			Paths.xml('MainMenu/menu_youtube');
+			// MainMenu_Sketches
+			Paths.xml('MainMenu/Sketches/Sketchy0');
+			Paths.xml('MainMenu/Sketches/Sketchy1');
+			Paths.xml('MainMenu/Sketches/Sketchy2');
+			// MainMenu_Enters
+			Paths.xml('MainMenu/Enters/Enter_awards');
+			Paths.xml('MainMenu/Enters/Enter_settings');
+			Paths.xml('MainMenu/Enters/Enter_story_mode');
+			// OptionsMenu
+			Paths.xml('OptionsMenu/Gears');
 		});
 	}
 }

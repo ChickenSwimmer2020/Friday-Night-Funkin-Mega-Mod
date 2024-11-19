@@ -66,6 +66,8 @@ class Main extends Sprite
 		Sys.setCwd(lime.system.System.applicationStorageDirectory);
 		#end
 
+		FlxTransitionableState.skipNextTransIn = true;
+
 		if (stage != null)
 		{
 			init();

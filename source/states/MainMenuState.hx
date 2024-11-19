@@ -1,5 +1,6 @@
 package states;
 
+import flixel.group.FlxGroup;
 import sys.thread.Thread;
 import backend.Functions;
 import states.GalleryState.GalleryMenuState;
@@ -38,11 +39,12 @@ class MainMenuState extends MusicBeatState
 	var allowMouse:Bool = false; //Turn this off to block mouse movement in menus
 
 	public var menuItems:FlxTypedGroup<FlxSprite>;
-	public var EntVarStory:FlxSprite;
-	public var EntVarSettings:FlxSprite;
-	public var EntVarAwards:FlxSprite;
     var randInt = FlxG.random.int(0, 2); // reminder to change back from (0, 2) to (0, 20)
     var sketch:FlxSprite;
+
+	var howLong:Float;
+
+	public var verInfTxt:FlxGroup;
 
     var versionLayoutMap:Map<String, String>;
     var versionLayout:Array<String> = [
@@ -74,14 +76,13 @@ class MainMenuState extends MusicBeatState
 	override function create()
 	{	
 		//precache the enter anims, again.
-		Thread.create(()->{
-			Paths.image('MainMenu/Enters/enter_awards');
-			Paths.image('MainMenu/Enters/enter_settings');
-			Paths.image('MainMenu/Enters/enter_story_mode');
-				Paths.xml('MainMenu/Enters/enter_awards');
-				Paths.xml('MainMenu/Enters/enter_settings');
-				Paths.xml('MainMenu/Enters/enter_story_mode');
-		});
+		//fuck it, im using the function i created but modify it slightly so it works the way i want it too.
+			cacheMenuEnter('story_mode');
+			cacheMenuEnter('awards');
+			cacheMenuEnter('settings');
+
+
+
         gameVersionInformation = tjson.TJSON.parse(Paths.getTextFromFile('data/Version.json'));
 		UltimateVersion = ' ' + gameVersionInformation.Ultimate;
 		psychEngineVersion = gameVersionInformation.EngVer;
@@ -114,17 +115,6 @@ class MainMenuState extends MusicBeatState
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
-
-        // enter animation
-		EntVarStory = new FlxSprite(0, 100);
-		EntVarStory.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_' + choosables[0]);
-		EntVarStory.animation.addByPrefix('enterpressed', 'story_mode yeet', 24);
-		EntVarStory.animation.addByIndices('Freeze', 'story_mode yeet', [0], "", 24, true);
-		EntVarStory.screenCenter(X);
-		EntVarStory.animation.play('Freeze');
-		EntVarStory.visible = false;
-		EntVarStory.antialiasing = ClientPrefs.data.antialiasing;
-		add(EntVarStory);
 
         generateMenuItems();
 
@@ -187,14 +177,17 @@ class MainMenuState extends MusicBeatState
 			sketch.scale.y = 1;
 		};
 
+		verInfTxt = new FlxGroup();
+		add(verInfTxt);
+
         // Version Information
         for (versionID in 0...4)
         {
             var str = versionLayoutMap.get(versionLayout[versionID]);
-            var versionTxt = new FlxText(0, 0 + (20 * versionID), 0, str, 12);
+           	var versionTxt = new FlxText(0, 0 + (20 * versionID), 0, str, 12);
             versionTxt.scrollFactor.set();
 		    versionTxt.setFormat(/*"VCR OSD Mono"*/null, 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		    add(versionTxt);
+		    verInfTxt.add(versionTxt);
         }
 
 		updateVersion = new FlxText(750, FlxG.height - 40, VersionUpdateName, 12, true);
@@ -269,16 +262,33 @@ class MainMenuState extends MusicBeatState
 		return menuItem;
 	}
 
-	inline function createMenuEnter(name:String, X:Float, Y:Float):FlxSprite
+	inline function createMenuEnter(name:String, X:Float, Y:Float, Scale:Float, WaitTime:Float):FlxSprite
 	{
 		var Enter:FlxSprite = new FlxSprite(X, Y);
 		Enter.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_$name');
 		Enter.animation.addByPrefix('Yeet', '$name yeet', 24, true);
 		Enter.animation.play('Yeet');
+		Enter.scale.set(Scale, Scale);
 		Enter.updateHitbox();
+		Enter.antialiasing = ClientPrefs.data.antialiasing;
 		add(Enter);
 
+		howLong = WaitTime; //kinda important.
+
 		return Enter;
+	}
+
+	inline function cacheMenuEnter(name:String):FlxSprite
+	{
+		var CacheableEnter:FlxSprite = new FlxSprite(0, 0);
+		CacheableEnter.frames = Paths.getSparrowAtlas('MainMenu/Enters/Enter_$name');
+		CacheableEnter.animation.addByPrefix('Yeet', '$name yeet', 24, true);
+		CacheableEnter.animation.play('Yeet');
+		CacheableEnter.updateHitbox();
+		add(CacheableEnter);
+		CacheableEnter.alpha = 0.001; //we need to keep this because it cant cache into memory if its not visible, odd feature of haxe.
+
+		return CacheableEnter;
 	}
 
 	var selectedSomethin:Bool = false;
@@ -416,17 +426,15 @@ class MainMenuState extends MusicBeatState
 					selectedSomethin = true;
 					FlxG.mouse.visible = false;
 
-					var howLong:Float;
-					howLong = 1;
-
 					bg.alpha = 0.15;
 					updateVersion.visible = false;
+					sketch.visible = false;
+					verInfTxt.visible = false;
 
 					switch(curSelected)
 					{
 						case 0: //story mode
-							createMenuEnter('story_mode', 540, 500);
-							howLong = 0.75;
+							createMenuEnter('story_mode', 0, 0, 1, 0.75);
 						case 1: //freeplay
 							trace('implement: Freeplay');
 						case 2: //gallery
@@ -434,11 +442,9 @@ class MainMenuState extends MusicBeatState
 						case 3: //credits
 						trace('implement: credits');
 						case 4: //settings
-							createMenuEnter('settings', 0, 0);
-							howLong = 0.90;
+							createMenuEnter('settings', 0, 0, 1, 0.90);
 						case 5: //awards
-							createMenuEnter('awards', 0, 0);
-							howLong = 0.90;
+							createMenuEnter('awards', 250, 0, 0.75, 0.5);
 						//we skip over 6 and 7 because those are for the youtube and discord, we dont need intro anims for those.
 						case 8:
 							trace('implement: Overworld');
@@ -495,10 +501,10 @@ class MainMenuState extends MusicBeatState
 					
 					for (memb in menuItems)
 					{
-						if(memb == item)
-							continue;
+						//if(memb == item) //everything goes invis, we dont need this.
+						//	continue;
 
-						FlxTween.tween(memb, {alpha: 0}, 0.4, {ease: FlxEase.quadOut});
+						FlxTween.tween(memb, {alpha: 0}, 0.1, {ease: FlxEase.quadOut});
 					}
 				}
 				else CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');

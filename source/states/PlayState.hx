@@ -1689,9 +1689,97 @@ class PlayState extends MusicBeatState
 	var canPause:Bool = true;
 	var freezeCamera:Bool = false;
 	var allowDebugKeys:Bool = #if debug true #else false #end;
+	var ComboShown:Bool = false;
 
 	override public function update(elapsed:Float)
 	{
+
+		if(ClientPrefs.data.showComboMilestone) {
+			//this code is modified from base game, but the actual combo stuff is from base itself
+			if (SONG != null)
+				{
+					//AHHHHHHHHHHHHHHHHH
+					if(!ComboShown && !shouldShowComboText) {
+						switch(combo) {
+							case 25:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 50:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 100:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 150:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 200:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 250:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 300:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 350:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 400:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 450:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 500:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 550:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 600:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 650:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 700:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 750:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 800:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 850:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 900:
+								shouldShowComboText = true;
+								ComboShown = true;
+							case 950:
+								shouldShowComboText = true;
+								ComboShown = true;
+						}
+					if(ComboShown) 
+						Functions.wait(0.00000000000000000001, () -> {
+							shouldShowComboText = false;
+
+								Functions.wait(1, () -> {
+										ComboShown = false;
+								});
+						});
+					}
+				}
+			if (shouldShowComboText)
+				{
+				  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
+				  animShit.cameras = [camHUD];
+				  add(animShit);
+				  ComboShown = true;
+				}
+		}
 
 		if(!inCutscene && !paused && !freezeCamera) {
 			FlxG.camera.followLerp = 0.04 * cameraSpeed * playbackRate;
@@ -3091,97 +3179,6 @@ class PlayState extends MusicBeatState
 
 	public function goodNoteHit(note:Note):Void
 	{
-						//HOPEFULLY fixed??
-						if(!note.isSustainNote) {
-							if(ClientPrefs.data.showComboMilestone) {
-								var ComboShown:Bool = false;
-								//this code is modified from base game, but the actual combo stuff is from base itself
-								if (SONG != null)
-									{
-										//AHHHHHHHHHHHHHHHHH
-										if(!ComboShown) {
-											switch(combo) {
-												case 25:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 50:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 100:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 150:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 200:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 250:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 300:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 350:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 400:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 450:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 500:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 550:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 600:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 650:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 700:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 750:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 800:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 850:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 900:
-													shouldShowComboText = true;
-													ComboShown = true;
-												case 950:
-													shouldShowComboText = true;
-													ComboShown = true;
-											}
-										if(ComboShown) 
-											Functions.wait(0.00000000000000000001, () -> {
-												shouldShowComboText = false;
-
-													Functions.wait(5, () -> {
-															ComboShown = false;
-													});
-											});
-										}
-									}
-								if (shouldShowComboText)
-									{
-									  var animShit:ComboMilestone = new ComboMilestone(ClientPrefs.data.comboOffset[4], ClientPrefs.data.comboOffset[5], combo);
-									  animShit.cameras = [camHUD];
-									  add(animShit);
-									  ComboShown = true;
-									}
-							}
-						}
-
 		if(note.wasGoodHit) return;
 		if(cpuControlled && note.ignoreNote) return;
 

@@ -1,6 +1,5 @@
 package states;
 
-import sys.thread.Thread;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -89,66 +88,54 @@ class FreeplayState extends MusicBeatState
 		// Sans = 6
 		// Purple = 7
 
-		Thread.create(() -> {
+		JukeBox = new FlxSprite(0, 0);
+		//we handle the asset loading in other CPU threads so save hopefully on the speed of the state loading
+		JukeBox.frames = Paths.getSparrowAtlas('JukeBox');
+		JukeBox.animation.addByIndices('0', 'JukeBox', [for (i in 0...18) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('1', 'JukeBox', [for (i in 19...38) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('2', 'JukeBox', [for (i in 39...58) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('3', 'JukeBox', [for (i in 59...78) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('4', 'JukeBox', [for (i in 79...98) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('5', 'JukeBox', [for (i in 99...118) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('6', 'JukeBox', [for (i in 119...138) i], "", 24, false, false, false);
+		JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
 
-			JukeBox = new FlxSprite(0, 0);
-			JukeBox.frames = Paths.getSparrowAtlas('JukeBox');
-			JukeBox.animation.addByIndices('0', 'JukeBox', [for (i in 0...18) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('1', 'JukeBox', [for (i in 19...38) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('2', 'JukeBox', [for (i in 39...58) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('3', 'JukeBox', [for (i in 59...78) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('4', 'JukeBox', [for (i in 79...98) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('5', 'JukeBox', [for (i in 99...118) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('6', 'JukeBox', [for (i in 119...138) i], "", 24, false, false, false);
-			JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
+		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
+		Glass.scale.set(0.4,0.405);
+		Glass.setPosition(JukeBox.x + 202, JukeBox.y + 231);
+		Glass.antialiasing = ClientPrefs.data.antialiasing;
+		Glass.updateHitbox();
 
-			Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
-			Glass.scale.set(0.4,0.405);
-			Glass.setPosition(JukeBox.x + 202, JukeBox.y + 231);
-			Glass.antialiasing = ClientPrefs.data.antialiasing;
-			Glass.updateHitbox();
+		Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
+		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
+		Console.animation.addByIndices('Easy', 'jukebox_DifficultyConsole', [0], "", 24, false, false, false);
+		Console.animation.addByIndices('Easy_TransitionToNormal', 'jukebox_DifficultyConsole', [1, 2], "", 24, false, false, false);
+		Console.animation.addByIndices('Normal', 'jukebox_DifficultyConsole', [3], "", 24, false, false, false);
+		Console.animation.addByIndices('Normal_TransitionToHard', 'jukebox_DifficultyConsole', [4, 5], "", 24, false, false, false);
+		Console.animation.addByIndices('Hard', 'jukebox_DifficultyConsole', [6], "", 24, false, false, false);
+		Console.animation.addByIndices('Hard_TransitionToNightmare', 'jukebox_DifficultyConsole', [7, 8], "", 24, false, false, false);
+		Console.animation.addByIndices('Nightmare', 'jukebox_DifficultyConsole', [9], "", 24, false, false, false);
+		Console.animation.addByIndices('Nightmare_TransitionToErect', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
+		Console.animation.addByIndices('Erect', 'jukebox_DifficultyConsole', [12], "", 24, false, false, false);
+		Console.animation.addByIndices('Erect_TransitionToEasy', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
+		Console.animation.addByIndices('Static', 'jukebox_DifficultyConsole', [13, 14], "", 24, false, false, false);
+		Console.antialiasing = ClientPrefs.data.antialiasing;
 
-			Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
-			Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
+		JukeBox.antialiasing = ClientPrefs.data.antialiasing;
 
-		
-			Console.animation.addByIndices('Easy', 'jukebox_DifficultyConsole', [0], "", 24, false, false, false);
-			Console.animation.addByIndices('Easy_TransitionToNormal', 'jukebox_DifficultyConsole', [1, 2], "", 24, false, false, false);
-	
-			Console.animation.addByIndices('Normal', 'jukebox_DifficultyConsole', [3], "", 24, false, false, false);
-			Console.animation.addByIndices('Normal_TransitionToHard', 'jukebox_DifficultyConsole', [4, 5], "", 24, false, false, false);
-	
-			Console.animation.addByIndices('Hard', 'jukebox_DifficultyConsole', [6], "", 24, false, false, false);
-			Console.animation.addByIndices('Hard_TransitionToNightmare', 'jukebox_DifficultyConsole', [7, 8], "", 24, false, false, false);
-	
-			Console.animation.addByIndices('Nightmare', 'jukebox_DifficultyConsole', [9], "", 24, false, false, false);
-			Console.animation.addByIndices('Nightmare_TransitionToErect', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
-	
-			Console.animation.addByIndices('Erect', 'jukebox_DifficultyConsole', [12], "", 24, false, false, false);
-			Console.animation.addByIndices('Erect_TransitionToEasy', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
-	
-			Console.animation.addByIndices('Static', 'jukebox_DifficultyConsole', [13, 14], "", 24, false, false, false);
-		
+		JukeBox.scale.set(0.9, 0.9);
+		JukeBox.setPosition(-120, 100);
+		Console.scale.set(0.35, 0.35);
 
+		//record
+		record = new FlxSprite(Glass.x + 15, Glass.y + 52);
+		record.frames = Paths.getSparrowAtlas('freeplay_songs');
+		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", 30, false, false, false);
+		record.scale.set(0.25, 0.25);
+		record.updateHitbox();
+		record.antialiasing = ClientPrefs.data.antialiasing;
 
-			Console.antialiasing = ClientPrefs.data.antialiasing;
-
-			JukeBox.antialiasing = ClientPrefs.data.antialiasing;
-
-			JukeBox.scale.set(0.9, 0.9);
-			JukeBox.setPosition(-120, 100);
-			Console.scale.set(0.35, 0.35);
-
-			//record
-			record = new FlxSprite(Glass.x + 15, Glass.y + 52);
-			record.frames = Paths.getSparrowAtlas('freeplay_songs');
-			record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", 30, false, false, false);
-			record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", 30, false, false, false);
-			record.antialiasing = ClientPrefs.data.antialiasing;
-			record.scale.set(0.25, 0.25);
-			record.updateHitbox();
-			
-		});
 
 		persistentUpdate = true;
 		PlayState.isStoryMode = false;
@@ -229,7 +216,7 @@ class FreeplayState extends MusicBeatState
 		WeekData.setDirectoryFromWeek();
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
+		scoreText.setFormat(null, 32, FlxColor.WHITE, RIGHT);
 
 		scoreBG = new FlxSprite(scoreText.x - 6, 0).makeGraphic(1, 66, 0xFF000000);
 		scoreBG.alpha = 0.6;
@@ -247,7 +234,7 @@ class FreeplayState extends MusicBeatState
 		add(missingTextBG);
 
 		missingText = new FlxText(50, 0, FlxG.width - 100, '', 24);
-		missingText.setFormat(Paths.font("vcr.ttf"), 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		missingText.setFormat(null, 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		missingText.scrollFactor.set();
 		missingText.visible = false;
 		add(missingText);
@@ -275,7 +262,7 @@ class FreeplayState extends MusicBeatState
 		bottomString = leText;
 		var size:Int = 16;
 		bottomText = new FlxText(bottomBG.x, bottomBG.y + 4, FlxG.width, leText, size);
-		bottomText.setFormat(Paths.font("vcr.ttf"), size, FlxColor.WHITE, CENTER);
+		bottomText.setFormat(null, size, FlxColor.WHITE, CENTER);
 		bottomText.scrollFactor.set();
 		add(bottomText);
 
