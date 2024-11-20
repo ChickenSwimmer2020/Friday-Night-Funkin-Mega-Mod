@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="Tracks.png">
-	<!-- Created with Adobe Animate version 24.0.4.28 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="menu_tracks0000" x="2" y="2" width="458" height="759"/>
-	<SubTexture name="menu_tracks0001" x="462" y="2" width="458" height="759"/>
-</TextureAtlas>

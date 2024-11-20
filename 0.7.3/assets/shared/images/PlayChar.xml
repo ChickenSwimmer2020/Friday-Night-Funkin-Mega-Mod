@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="PlayChar.png">
-	<!-- Created with Adobe Animate version 24.0.4.28 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="playchar_ChickenSwimmer20200000" x="2" y="2" width="826" height="256"/>
-	<SubTexture name="playchar_boyfriend0000" x="2" y="260" width="826" height="256"/>
-</TextureAtlas>

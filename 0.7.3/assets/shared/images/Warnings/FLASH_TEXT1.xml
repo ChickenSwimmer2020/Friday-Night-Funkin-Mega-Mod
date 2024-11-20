@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="FLASH_TEXT1.png">
-	<!-- Created with Adobe Animate version 24.0.5.40 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="flashwarning_textOne0000" x="1" y="1" width="703" height="582" pivotX="0" pivotY="40.5"/>
-	<SubTexture name="flashwarning_textOne0001" x="1" y="1" width="703" height="582"/>
-	<SubTexture name="flashwarning_textOne0002" x="705" y="1" width="703" height="582"/>
-	<SubTexture name="flashwarning_textOne0003" x="705" y="1" width="703" height="582"/>
-</TextureAtlas>

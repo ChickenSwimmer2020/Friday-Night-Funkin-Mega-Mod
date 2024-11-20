@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="FURRY_TEXT1.png">
-	<!-- Created with Adobe Animate version 24.0.4.28 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="furrywarning_textOne0000" x="1" y="1" width="986" height="528"/>
-	<SubTexture name="furrywarning_textOne0001" x="1" y="1" width="986" height="528"/>
-	<SubTexture name="furrywarning_textOne0002" x="988" y="1" width="986" height="528"/>
-	<SubTexture name="furrywarning_textOne0003" x="988" y="1" width="986" height="528"/>
-</TextureAtlas>

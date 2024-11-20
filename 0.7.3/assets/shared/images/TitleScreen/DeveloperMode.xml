@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="DeveloperMode.png">
-	<!-- Created with Adobe Animate version 24.0.5.40 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="menu_debug0000" x="1" y="1" width="343" height="164"/>
-	<SubTexture name="menu_debug0001" x="1" y="1" width="343" height="164"/>
-	<SubTexture name="menu_debug0002" x="1" y="166" width="343" height="164"/>
-	<SubTexture name="menu_debug0003" x="1" y="166" width="343" height="164"/>
-</TextureAtlas>

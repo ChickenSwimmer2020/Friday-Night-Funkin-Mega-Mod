@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="LoadIcon.png">
-	<!-- Created with Adobe Animate version 24.0.5.40 -->
-	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Loading Icon0000" x="1" y="1" width="80" height="79"/>
-	<SubTexture name="Loading Icon0001" x="1" y="1" width="80" height="79"/>
-	<SubTexture name="Loading Icon0002" x="82" y="1" width="80" height="79"/>
-	<SubTexture name="Loading Icon0003" x="82" y="1" width="80" height="79"/>
-</TextureAtlas>
