@@ -66,6 +66,14 @@ import crowplexus.iris.Iris;
 **/
 class PlayState extends MusicBeatState
 {
+	//camera bs
+	public var camera_ANGLEBOP:Bool = false;
+
+
+
+
+	public var CameraFuckedAngle:Float = 0;
+
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
 
@@ -212,6 +220,8 @@ class PlayState extends MusicBeatState
 	public static var deathCounter:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
+
+	public var CameraWasFucked:Bool = false;
 
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
@@ -576,6 +586,8 @@ class PlayState extends MusicBeatState
         for (spr in spriteArray){
             spr.cameras = [camOther];
             spr.alpha = 0;
+			spr.scale.set(0.5, 0.5);
+			spr.screenCenter(XY);
             add(spr);
         }
         for (i in 0...4)
@@ -1695,6 +1707,8 @@ class PlayState extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 
+		FlxG.camera.angle = FlxMath.lerp(0, FlxG.camera.angle, 1 - (elapsed * 12)); //make sure camera returns to original angle stuff.
+
 		if(ClientPrefs.data.showComboMilestone) {
 			//this code is modified from base game, but the actual combo stuff is from base itself
 			if (SONG != null)
@@ -2449,6 +2463,8 @@ class PlayState extends MusicBeatState
 						}
 
 				}
+			case 'Camera TomFuckery':
+				CameraTomFuckery(value1, flValue2);
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));
@@ -3273,7 +3289,7 @@ class PlayState extends MusicBeatState
 			}
 
 			noteMiss(note);
-			if(!note.noteSplashData.disabled && !note.isSustainNote) spawnNoteSplashOnNote(note);
+			if(!note.noteSplashData.disabled) spawnNoteSplashOnNote(note);
 		}
 
 		if(HyperFunk) {
@@ -3301,7 +3317,7 @@ class PlayState extends MusicBeatState
 	}
 
 	public function spawnNoteSplashOnNote(note:Note) {
-		if(note != null && note.sustainLength == 0) {
+		if(note != null /*&& note.sustainLength == 0*/) {
 			var strum:StrumNote = playerStrums.members[note.noteData];
 			if(strum != null)
 				spawnNoteSplash(note, strum);
@@ -3407,6 +3423,17 @@ class PlayState extends MusicBeatState
 
 		setOnScripts('curBeat', curBeat);
 		callOnScripts('onBeatHit');
+
+		if(CameraWasFucked)
+			{
+				if(camera_ANGLEBOP)
+					{
+						if(curBeat % 2 == 0)
+							FlxG.camera.angle = -CameraFuckedAngle;
+						else
+							FlxG.camera.angle = CameraFuckedAngle;
+					}
+			}
 	}
 
 	public function characterBopper(beat:Int):Void
@@ -3823,6 +3850,26 @@ class PlayState extends MusicBeatState
 		return false;
 	}
 	#end
+
+
+	inline public function CameraTomFuckery(type:String, intensity:Float):Void
+	{
+		var FuckeryType:String = type;
+		CameraFuckedAngle = intensity;
+
+		switch(FuckeryType)
+		{
+			case 'Angle Bop':
+				CameraWasFucked = true;
+				camera_ANGLEBOP = true;
+			default:
+				#if DEBUG
+					trace('Camera type wasnt selected, disabling...')
+				#end
+				CameraWasFucked = false;
+
+		}
+	}
 }
 
 private class HyperFunkSprite extends FlxSprite {
