@@ -88,10 +88,7 @@ class PlayState extends MusicBeatState
 	private var isCameraOnForcedPos:Bool = false;
 	public var BopOnBeat:Bool = false;
 	public var HyperFunk:Bool = false;
-	public var purple:FlxSprite;
-	public var blue:FlxSprite;
-	public var green:FlxSprite;
-	public var red:FlxSprite;
+    public var hyperFunkSprites:Map<Int, HyperFunkSprite> = new Map();
 
 	public var boyfriendMap:Map<String, Character> = new Map<String, Character>();
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
@@ -266,29 +263,14 @@ class PlayState extends MusicBeatState
 		CountDown = new FlxSprite(-50, -250);
 		CountDown.scale.set(0.5, 0.5);
 		CountDown.frames = Paths.getSparrowAtlas('IntroSprite');
-		CountDown.animation.addByIndices('time',	'INTROGRAPHCHIS', [0, 1, 2, 3], "", 24, false);
-		CountDown.animation.addByIndices('to', 	'INTROGRAPHCHIS', [4, 5, 6, 7], "", 24, false);
-		CountDown.animation.addByIndices('get', 	'INTROGRAPHCHIS', [8, 9, 10, 11], "", 24, false);
-		CountDown.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15], "", 24, false);
+		CountDown.animation.addByIndices('time',  'INTROGRAPHCHIS', [0, 1, 2, 3],             "", 24, false);
+		CountDown.animation.addByIndices('to', 	  'INTROGRAPHCHIS', [4, 5, 6, 7],             "", 24, false);
+		CountDown.animation.addByIndices('get',   'INTROGRAPHCHIS', [8, 9, 10, 11],           "", 24, false);
+		CountDown.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15],         "", 24, false);
 		CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
 		CountDown.antialiasing = ClientPrefs.data.antialiasing;
 		//trace('Playback Rate: ' + playbackRate);
 
-		//event sprites
-		purple = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeP'));
-		blue = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeB'));
-		green = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeG'));
-		red = new FlxSprite(0, 0).loadGraphic(Paths.image('HypeR'));
-			purple.alpha = 0;
-			blue.alpha = 0;
-			green.alpha = 0;
-			red.alpha = 0;
-		purple.cameras = [camOther];
-		blue.cameras = [camOther];
-		green.cameras = [camOther];
-		red.cameras = [camOther];
-
-		
 		if(nextReloadAll)
 		{
 			Language.reloadPhrases();
@@ -586,6 +568,18 @@ class PlayState extends MusicBeatState
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
+
+        //Hyper Mode sprites
+        var spriteArray = [];
+        for (name in ['HypeP', 'HypeB', 'HypeG',  'HypeR'])
+            spriteArray.push(cast(new HyperFunkSprite(0, 0).loadGraphic(Paths.image(name)), HyperFunkSprite));
+        for (spr in spriteArray){
+            spr.cameras = [camOther];
+            spr.alpha = 0;
+            add(spr);
+        }
+        for (i in 0...4)
+            hyperFunkSprites.set(i, spriteArray[i]);
 
 		startingSong = true;
 
@@ -2425,8 +2419,8 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = camZoom;
 						camZooming = true;
 					}
-			case 'Hype Mode': //todo: fix
-					HyperFunk = true;
+			case 'Hype Mode':
+				HyperFunk = value1.toLowerCase().trim() == 'true' ? true : false;
 			case 'Change Window Title':
 				Application.current.window.title = value1;
 			case 'Trigger Countdown':
@@ -3283,28 +3277,15 @@ class PlayState extends MusicBeatState
 		}
 
 		if(HyperFunk) {
-			switch(note.noteData) {
-				case 0:
-					purple.alpha = 1;
-					FlxTween.tween(purple, {alpha: 0}, 0.5, {
-						ease: FlxEase.expoOut,
-					});
-				case 1:
-					blue.alpha = 1;
-					FlxTween.tween(blue, {alpha: 0}, 0.5, {
-						ease: FlxEase.expoOut,
-					});
-				case 2:
-					green.alpha = 1;
-					FlxTween.tween(green, {alpha: 0}, 0.5, {
-						ease: FlxEase.expoOut,
-					});
-				case 3:
-					red.alpha = 1;
-					FlxTween.tween(red, {alpha: 0}, 0.5, {
-						ease: FlxEase.expoOut,
-					});
-			}
+            var spr = hyperFunkSprites.get(note.noteData);
+            if (spr.tween != null)
+                spr.tween.cancel();
+
+            spr.alpha = 1;
+            spr.tween = FlxTween.tween(spr, {alpha: 0}, 0.5, {
+                ease: FlxEase.circIn,
+            });
+            spr.tween.start();
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.goodNoteHit(note));
@@ -3842,4 +3823,8 @@ class PlayState extends MusicBeatState
 		return false;
 	}
 	#end
+}
+
+private class HyperFunkSprite extends FlxSprite {
+    public var tween:FlxTween;
 }
