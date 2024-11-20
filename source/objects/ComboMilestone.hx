@@ -23,13 +23,18 @@ class ComboMilestone extends FlxTypedSpriteGroup<FlxSprite>
     
     effectStuff = new FlxSprite(0, 0);
     effectStuff.frames = Paths.getSparrowAtlas('comboMilestone');
-    effectStuff.animation.addByPrefix('funny', 'NOTE COMBO animation', 24, false);
-    effectStuff.animation.addByPrefix('ByeBye', 'NOTE COMBO leaving', 24, false);
+    //effectStuff.animation.addByPrefix('funny', 'NOTE COMBO animation', 24, false);
+    //effectStuff.animation.addByPrefix('ByeBye', 'NOTE COMBO leaving', 24, false);
+    effectStuff.animation.addByIndices('funny', 'NOTE COMBO animation', [for(i in 0...18) i], "", 24, false, false, false);
+    effectStuff.animation.addByIndices('ByeBye', 'NOTE COMBO animation', [19, 20, 21], "", 24, false, false, false);
     effectStuff.animation.play('funny');
     effectStuff.animation.finishCallback = function(nameThing) {
       kill();
     };
     effectStuff.setGraphicSize(Std.int(effectStuff.width * 0.7));
+    effectStuff.antialiasing = ClientPrefs.data.antialiasing;
+    effectStuff.scale.set(1.01,1.01);
+    effectStuff.updateHitbox();
     add(effectStuff);
 
     grpNumbers = new FlxTypedGroup<ComboMilestoneNumber>();
@@ -79,6 +84,7 @@ class ComboMilestone extends FlxTypedSpriteGroup<FlxSprite>
       var comboNumber:ComboMilestoneNumber = new ComboMilestoneNumber(450 - (100 * loopNum), 20 + 14 * loopNum, daCombo % 10);
       comboNumber.setGraphicSize(Std.int(comboNumber.width * 0.7));
       grpNumbers.add(comboNumber);
+      comboNumber.antialiasing = ClientPrefs.data.antialiasing;
       add(comboNumber);
 
       loopNum += 1;

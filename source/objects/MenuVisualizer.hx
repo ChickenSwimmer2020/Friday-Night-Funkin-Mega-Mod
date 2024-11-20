@@ -1,8 +1,6 @@
-package states.stages.objects;
+package objects;
 
-#if funkin.vis
 import funkin.vis.dsp.SpectralAnalyzer;
-#end
 
 class MenuVisualizer extends FlxSpriteGroup
 {

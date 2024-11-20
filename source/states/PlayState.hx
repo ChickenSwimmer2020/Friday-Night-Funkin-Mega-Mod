@@ -1,6 +1,5 @@
 package states;
 
-import sys.thread.Thread;
 import lime.app.Application;
 import flixel.group.FlxGroup;
 import backend.Functions;
@@ -191,6 +190,8 @@ class PlayState extends MusicBeatState
 	public var practiceMode:Bool = false;
 	public var pressMissDamage:Float = 0.05;
 
+	public var instOnly:Bool = false;
+
 	public var botplaySine:Float = 0;
 	public var botplayTxt:FlxText;
 
@@ -320,6 +321,7 @@ class PlayState extends MusicBeatState
 		practiceMode = ClientPrefs.getGameplaySetting('practice');
 		cpuControlled = ClientPrefs.getGameplaySetting('botplay');
 		guitarHeroSustains = ClientPrefs.data.guitarHeroSustains;
+		instOnly = ClientPrefs.getGameplaySetting('VocalsToggle');
 
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = initPsychCamera();
@@ -572,7 +574,7 @@ class PlayState extends MusicBeatState
 		updateScore(false);
 		uiGroup.add(scoreTxt);
 
-		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("Botplay").toUpperCase(), 32);
+		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("NON LEGIT\nGAMEPLAY").toUpperCase(), 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
@@ -1235,7 +1237,8 @@ class PlayState extends MusicBeatState
 		{
 			vocals.time = time - Conductor.offset;
 			#if FLX_PITCH vocals.pitch = playbackRate; #end
-			vocals.play();
+			if(!instOnly)
+				vocals.play();
 		}
 		else vocals.pause();
 
@@ -1243,7 +1246,8 @@ class PlayState extends MusicBeatState
 		{
 			opponentVocals.time = time - Conductor.offset;
 			#if FLX_PITCH opponentVocals.pitch = playbackRate; #end
-			opponentVocals.play();
+			if(!instOnly)
+				opponentVocals.play();
 		}
 		else opponentVocals.pause();
 		Conductor.songPosition = time;
@@ -1266,8 +1270,10 @@ class PlayState extends MusicBeatState
 		FlxG.sound.playMusic(inst._sound, 1, false);
 		#if FLX_PITCH FlxG.sound.music.pitch = playbackRate; #end
 		FlxG.sound.music.onComplete = finishSong.bind();
-		vocals.play();
-		opponentVocals.play();
+		if(!instOnly) {
+			vocals.play();
+			opponentVocals.play();
+		}
 
 		setSongTime(Math.max(0, startOnTime - 500) + Conductor.offset);
 		startOnTime = 0;
@@ -1677,7 +1683,8 @@ class PlayState extends MusicBeatState
 			{
 				voc.time = FlxG.sound.music.time;
 				#if FLX_PITCH voc.pitch = playbackRate; #end
-				voc.play();
+				if(!instOnly)
+					voc.play();
 			}
 			else voc.pause();
 		}

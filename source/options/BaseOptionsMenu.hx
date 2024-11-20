@@ -1,5 +1,6 @@
 package options;
 
+import flixel.system.debug.watch.Tracker;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
@@ -52,6 +53,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		Gears.scale.set(2,2);
 		add(Gears);
         Gears.animation.play('spin');
+		FlxG.debugger.track(Gears);
 
 		// avoids lagspikes while scrolling through menus!
 		grpOptions = new FlxTypedGroup<Alphabet>();

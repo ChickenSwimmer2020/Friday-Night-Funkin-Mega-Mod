@@ -95,9 +95,7 @@
 	<haxelib name="flxanimate"/>
     <haxelib name="grig.audio"/>
 	<haxelib name="funkin.vis"/>
-
-	<!--DO NOT REMOVE. REQUIRED FOR MODCHART EDITOR-->
-	<haxelib name="flixel-ui"/>
+	<haxelib name="thx.core"/>
 
     <!--MegaMod haxelibs-->
     <haxelib name="parallaxlt"/>

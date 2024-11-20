@@ -135,6 +135,12 @@ class Paths
 	inline static public function lua(key:String, ?folder:String)
 		return getPath('$key.lua', TEXT, folder, true);
 
+	//had to steal because the atlas sprite was bitching :/
+    public static function exists(path:String, ?type:openfl.utils.AssetType):Bool
+	{
+	  	return openfl.utils.Assets.exists(path, type);
+	}
+
 	static public function video(key:String)
 	{
 		#if MODS_ALLOWED

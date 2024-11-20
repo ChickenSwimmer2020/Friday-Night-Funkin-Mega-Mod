@@ -1,6 +1,6 @@
 package states;
 
-import states.stages.objects.MenuVisualizer;
+import objects.MenuVisualizer;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 import backend.Highscore;

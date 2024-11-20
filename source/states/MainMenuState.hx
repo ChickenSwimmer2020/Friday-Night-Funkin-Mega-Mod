@@ -161,21 +161,21 @@ class MainMenuState extends MusicBeatState
 			sketch.y = 50;
 			sketch.scale.x = 0.9;
 			sketch.scale.y = 0.9;
-		};
+		}
 		if (randInt == 1)
 		{
 			sketch.x = 550;
 			sketch.y = 100;
 			sketch.scale.x = 1;
 			sketch.scale.y = 1;
-		};
+		}
 		if (randInt == 2)
 		{
 			sketch.x = 300;
 			sketch.y = 0;
 			sketch.scale.x = 1;
 			sketch.scale.y = 1;
-		};
+		}
 
 		verInfTxt = new FlxGroup();
 		add(verInfTxt);
