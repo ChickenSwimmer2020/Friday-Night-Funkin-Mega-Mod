@@ -29,6 +29,8 @@
     <define name="TRANSLATIONS_ALLOWED" />
     <define name="SHOW_LOADING_SCREEN" />
 
+	<define name="DEBUG" if="debug" />
+
     <define name="DISCORD_ALLOWED" />
 
 	<!-- ____________________________ Window Settings ___________________________ -->
@@ -107,6 +109,9 @@
 	<!-- Enables a terminal log prompt on debug builds -->
 	<haxelib name="hxcpp-debug-server" if="debug"/>
 	<define name="x86_BUILD" if="32bits" />
+
+	<!--oh boy... its so big. so much memory...-->
+	<haxedef name="HXCPP_BIG_BLOCKS" />
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

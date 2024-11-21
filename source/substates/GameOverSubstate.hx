@@ -193,7 +193,12 @@ class GameOverSubstate extends MusicBeatSubstate
 		{
 			TextBGSlideIn(1);
 			boyfriend.playAnim('deathLoop');
-			PulseBG.animation.play('bgp_l', true, true, 0);
+			PulseBG.animation.play('bgp_l', true, false, 0);
+			PulseBG.animation.finishCallback = function(UwU)
+				{
+					if(!isEnding)
+						PulseBG.animation.play('bgp_l', true, false, 0);
+				}
 			justPlayedLoop = true;
 		}
 

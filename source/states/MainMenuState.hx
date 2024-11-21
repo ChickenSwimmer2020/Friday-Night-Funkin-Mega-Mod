@@ -1,13 +1,15 @@
 package states;
 
 import flixel.group.FlxGroup;
-import sys.thread.Thread;
 import backend.Functions;
 import states.GalleryState.GalleryMenuState;
-import flixel.effects.FlxFlicker;
 import lime.app.Application;
-import states.editors.MasterEditorMenu;
+	#if DEBUG
+		import states.editors.MasterEditorMenu;
+	#end
 import options.OptionsState;
+
+using flixel.util.FlxSpriteUtil;
 
 typedef VersionInfo =
 {
@@ -98,20 +100,24 @@ class MainMenuState extends MusicBeatState
 
 		#if DISCORD_ALLOWED
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Main Menu", '   ');
+		DiscordClient.changePresence("Main Menu", null);
 		#end
 
 		persistentUpdate = persistentDraw = true;
 
-		var yScroll:Float = Math.max(0.25 - (0.05 * (choosables.length - 4)), 0.1);
 		bg = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
-		bg.scrollFactor.set(0, yScroll);
-		bg.setGraphicSize(Std.int(bg.width * 1.175));
+		//bg.setGraphicSize(Std.int(bg.width * 1));
+		bg.scale.set(0.62, 0.62);
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
+
+		var bg_dablack = new FlxSprite(0, 0).makeGraphic(1280, 720, FlxColor.TRANSPARENT);
+		bg_dablack.drawPolygon([new FlxPoint(0, 0), new FlxPoint(1280, 0), new FlxPoint(1280, 100), new FlxPoint(295, 152), new FlxPoint(176, 481), new FlxPoint(380, 651), new FlxPoint(1280, 651), new FlxPoint(1280, 720), new FlxPoint(0, 720), new FlxPoint(0, 0)], FlxColor.BLACK, {pixelHinting: true}, {smoothing: true});
+		bg_dablack.antialiasing = ClientPrefs.data.antialiasing;
+		add(bg_dablack);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);

@@ -3864,7 +3864,7 @@ class PlayState extends MusicBeatState
 				camera_ANGLEBOP = true;
 			default:
 				#if DEBUG
-					trace('Camera type wasnt selected, disabling...')
+					trace('Camera type wasnt selected, disabling...');
 				#end
 				CameraWasFucked = false;
 
