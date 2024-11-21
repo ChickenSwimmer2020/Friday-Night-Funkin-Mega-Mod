@@ -48,6 +48,10 @@ import psychlua.HScript;
 import crowplexus.iris.Iris;
 #end
 
+enum CameraBopType {
+    ANGLE;
+}
+
 /**
  * This is where all the Gameplay stuff happens and is managed
  *
@@ -67,11 +71,7 @@ import crowplexus.iris.Iris;
 class PlayState extends MusicBeatState
 {
 	//camera bs
-	public var camera_ANGLEBOP:Bool = false;
-
-
-
-
+	public var cameraBops:Array<CameraBopType> = [];
 	public var CameraFuckedAngle:Float = 0;
 
 	public static var STRUM_X = 42;
@@ -3424,16 +3424,13 @@ class PlayState extends MusicBeatState
 		setOnScripts('curBeat', curBeat);
 		callOnScripts('onBeatHit');
 
-		if(CameraWasFucked)
-			{
-				if(camera_ANGLEBOP)
-					{
-						if(curBeat % 2 == 0)
-							FlxG.camera.angle = -CameraFuckedAngle;
-						else
-							FlxG.camera.angle = CameraFuckedAngle;
-					}
-			}
+		if(CameraWasFucked){
+            var evaluatedBopTypes = new Map<CameraBopType, Int>();
+            for (type in cameraBops)
+                evaluatedBopTypes.set(type, 0);
+				if(evaluatedBopTypes.get(ANGLE) != null)
+					FlxG.camera.angle = if(curBeat % 2 == 0) -CameraFuckedAngle else FlxG.camera.angle = CameraFuckedAngle;
+        }
 	}
 
 	public function characterBopper(beat:Int):Void
@@ -3852,20 +3849,25 @@ class PlayState extends MusicBeatState
 	#end
 
 
-	inline public function CameraTomFuckery(type:String, intensity:Float):Void
+	public function CameraTomFuckery(type:String, intensity:Float):Void
 	{
-		var FuckeryType:String = type;
-		CameraFuckedAngle = intensity;
-
+		var FuckeryType:String = type.toLowerCase().trim();
+		
+        var evaluatedBopTypes = new Map<CameraBopType, Int>();
+            for (type in cameraBops)
+                evaluatedBopTypes.set(type, 0);
 		switch(FuckeryType)
 		{
-			case 'Angle Bop':
+			case 'angle bop':
+                CameraFuckedAngle = intensity;
 				CameraWasFucked = true;
-				camera_ANGLEBOP = true;
+                if (evaluatedBopTypes.get(ANGLE) == null)
+				    cameraBops.push(ANGLE);
 			default:
-				#if DEBUG
-					trace('Camera type wasnt selected, disabling...')
+				#if debug
+					trace('Camera type wasnt selected, disabling...');
 				#end
+                cameraBops.clear();
 				CameraWasFucked = false;
 
 		}
