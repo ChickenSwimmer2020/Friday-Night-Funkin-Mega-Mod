@@ -24,7 +24,7 @@ class Functions
 			@param file file name to load (dont forget the .lua extension)
             @param dir file directory eg:[DIRECTORY]/foldername
 	**/
-	inline static public function loadExternalScriptFile(file:String, dir:String)
+	static public function loadExternalScriptFile(file:String, dir:String)
 	{
 		var dafile = Paths.getFolderPath(file, dir);
 		new FunkinLua(dafile);
