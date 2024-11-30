@@ -4,9 +4,9 @@ import flixel.group.FlxGroup;
 import backend.Functions;
 import states.GalleryState.GalleryMenuState;
 import lime.app.Application;
-	#if DEBUG
-		import states.editors.MasterEditorMenu;
-	#end
+#if debug
+	import states.editors.MasterEditorMenu;
+#end
 import options.OptionsState;
 
 using flixel.util.FlxSpriteUtil;

@@ -37,6 +37,7 @@ class FreeplayState extends MusicBeatState
 	private static var curSelected:Int = 0;
 
 	var lerpSelected:Float = 0;
+    var oldDifficulty:Int = -1;
 	var curDifficulty:Int = -1;
 
 	private static var lastDifficultyName:String = Difficulty.getDefault();
@@ -77,7 +78,7 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		curSong = 0;
-
+        curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 
 		// Pink = 0
 		// Red = 1
@@ -110,15 +111,22 @@ class FreeplayState extends MusicBeatState
 		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
 		Console.animation.addByIndices('Easy', 'jukebox_DifficultyConsole', [0], "", 24, false, false, false);
 		Console.animation.addByIndices('Easy_TransitionToNormal', 'jukebox_DifficultyConsole', [1, 2], "", 24, false, false, false);
+        Console.animation.addByIndices('Normal_TransitionToEasy', 'jukebox_DifficultyConsole', [2, 1], "", 24, false, false, false);
 		Console.animation.addByIndices('Normal', 'jukebox_DifficultyConsole', [3], "", 24, false, false, false);
 		Console.animation.addByIndices('Normal_TransitionToHard', 'jukebox_DifficultyConsole', [4, 5], "", 24, false, false, false);
+        Console.animation.addByIndices('Hard_TransitionToNormal', 'jukebox_DifficultyConsole', [5, 4], "", 24, false, false, false);
 		Console.animation.addByIndices('Hard', 'jukebox_DifficultyConsole', [6], "", 24, false, false, false);
 		Console.animation.addByIndices('Hard_TransitionToNightmare', 'jukebox_DifficultyConsole', [7, 8], "", 24, false, false, false);
+        Console.animation.addByIndices('Nightmare_TransitionToHard', 'jukebox_DifficultyConsole', [8, 7], "", 24, false, false, false);
 		Console.animation.addByIndices('Nightmare', 'jukebox_DifficultyConsole', [9], "", 24, false, false, false);
 		Console.animation.addByIndices('Nightmare_TransitionToErect', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
+        Console.animation.addByIndices('Erect_TransitionToNightmare', 'jukebox_DifficultyConsole', [11, 10], "", 24, false, false, false);
 		Console.animation.addByIndices('Erect', 'jukebox_DifficultyConsole', [12], "", 24, false, false, false);
-		Console.animation.addByIndices('Erect_TransitionToEasy', 'jukebox_DifficultyConsole', [10, 11], "", 24, false, false, false);
-		Console.animation.addByIndices('Static', 'jukebox_DifficultyConsole', [13, 14], "", 24, false, false, false);
+		Console.animation.addByIndices('Erect_TransitionToEasy', 'jukebox_DifficultyConsole', [13, 14], "", 24, false, false, false);
+        Console.animation.addByIndices('Easy_TransitionToErect', 'jukebox_DifficultyConsole', [14, 13], "", 24, false, false, false);
+        // TODO: Implement
+		Console.animation.addByIndices('Static', 'jukebox_DifficultyConsole', [15, 16], "", 24, true, false, false); // For locked difficulties
+        Console.animation.play(difficultyToString(curDifficulty));
 		Console.antialiasing = ClientPrefs.data.antialiasing;
 
 		JukeBox.antialiasing = ClientPrefs.data.antialiasing;
@@ -243,8 +251,6 @@ class FreeplayState extends MusicBeatState
 			curSelected = 0;
 		lerpSelected = curSelected;
 
-		curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
-
 		bottomBG = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		bottomBG.alpha = 0.6;
 		//add(animationBG);
@@ -303,6 +309,10 @@ class FreeplayState extends MusicBeatState
 
 	var stopMusicPlay:Bool = false;
 
+    
+    inline function difficultyToString(diff:Int)
+        return diff == -1 ? 'Static' : diff == 0 ? 'Easy' : diff == 1 ? 'Normal' : diff == 2 ? 'Hard' : diff == 3 ? 'Nightmare' : diff == 4 ? 'Erect' : 'Unknown';
+
 	override function update(elapsed:Float)
 	{
 		#if DISCORD_ALLOWED
@@ -318,10 +328,6 @@ class FreeplayState extends MusicBeatState
 			curFrame = record.animation.curAnim.curFrame;
 		if(record.animation.curAnim != null && record.animation.curAnim.curFrame == 22)
 			record.animation.curAnim.restart();
-
-		#if DEBUG
-			trace(curFrame);
-		#end
 
 		FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 
@@ -339,33 +345,15 @@ class FreeplayState extends MusicBeatState
 		}
 
 		
-		switch (curDifficulty)
-		{
-			case -1:
-				Console.animation.play('Static');
-			case 0:
-				Console.animation.play('Easy');
-				if(player.playingMusic) {
-					record.animation.timeScale = 8; //fix for an error with timescale
-				}
-			case 1:
-				Console.animation.play('Normal');
-			case 2:
-				Console.animation.play('Hard');
-				if(player.playingMusic) {
-					record.animation.timeScale = 8; //fix for an error with timescale
-				}
-			case 3:
-				Console.animation.play('Nightmare');
-				if(player.playingMusic) {
-					record.animation.timeScale = 8; //fix for an error with timescale
-				}
-			case 4:
-				Console.animation.play('Erect');
-				if(player.playingMusic) {
-					record.animation.timeScale = 8; //fix for an error with timescale
-				}
-		}
+        if (Console.animation.curAnim != null){
+            if (Console.animation.curAnim.finished && curDifficulty != -1)
+                Console.animation.play(difficultyToString(curDifficulty));
+        }else if (curDifficulty == -1)
+            Console.animation.play(difficultyToString(curDifficulty));
+
+        if(player.playingMusic)
+            record.animation.timeScale = 8; //fix for an error with timescale
+
 		if (WeekData.weeksList.length < 1)
 			return;
 
@@ -692,6 +680,7 @@ class FreeplayState extends MusicBeatState
 		if (player.playingMusic)
 			return;
 
+        oldDifficulty = curDifficulty;
 		curDifficulty = FlxMath.wrap(curDifficulty + change, 0, Difficulty.list.length - 1);
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
@@ -708,13 +697,23 @@ class FreeplayState extends MusicBeatState
 		positionHighscore();
 		missingText.visible = false;
 		missingTextBG.visible = false;
+
+        runConsoleTransitionAnim();
 	}
+
+    function runConsoleTransitionAnim()
+    {
+        var animName = '${difficultyToString(oldDifficulty)}_TransitionTo${difficultyToString(curDifficulty)}';
+        if (oldDifficulty != -1 && oldDifficulty != curDifficulty && Console.animation.exists(animName))
+            Console.animation.play(animName);
+    }
 
 	function changeSelection(change:Int = 0, playSound:Bool = true)
 	{
 		if (player.playingMusic)
 			return;
 
+        oldDifficulty = curDifficulty;
 		curSelected = FlxMath.wrap(curSelected + change, 0, songs.length - 1);
 		_updateSongLastDifficulty();
 		if (playSound)
@@ -749,6 +748,7 @@ class FreeplayState extends MusicBeatState
 
 		changeDiff();
 		_updateSongLastDifficulty();
+        runConsoleTransitionAnim();
 	}
 
 	inline private function _updateSongLastDifficulty()
