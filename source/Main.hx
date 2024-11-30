@@ -36,15 +36,7 @@ import backend.Highscore;
 
 class Main extends Sprite
 {
-	var game = {
-		width: 1280, // WINDOW width
-		height: 720, // WINDOW height
-		initialState: Preload, // initial game state
-		zoom: -1.0, // game state bounds
-		framerate: 60, // default framerate
-		skipSplash: true, // if the default flixel splash screen should be skipped
-		startFullscreen: false // if the game should start at fullscreen mode
-	};
+	var game:FlxGame = new FlxGame(1280, 720, Preload, 60, 60, false, false);
 
 	public static var fpsVar:FPSCounter;
 
@@ -96,15 +88,6 @@ class Main extends Sprite
 		var stageWidth:Int = Lib.current.stage.stageWidth;
 		var stageHeight:Int = Lib.current.stage.stageHeight;
 
-		if (game.zoom == -1.0)
-		{
-			var ratioX:Float = stageWidth / game.width;
-			var ratioY:Float = stageHeight / game.height;
-			game.zoom = Math.min(ratioX, ratioY);
-			game.width = Math.ceil(stageWidth / game.zoom);
-			game.height = Math.ceil(stageHeight / game.zoom);
-		}
-
 		#if LUA_ALLOWED
 		Mods.pushGlobalMods();
 		#end
@@ -118,7 +101,13 @@ class Main extends Sprite
 		Controls.instance = new Controls();
 		ClientPrefs.loadDefaultKeys();
 		#if ACHIEVEMENTS_ALLOWED Achievements.load(); #end
-		addChild(new FlxGame(game.width, game.height, game.initialState, #if (flixel < "5.0.0") game.zoom, #end game.framerate, game.framerate, game.skipSplash, game.startFullscreen));
+
+		@:privateAccess
+			game._customSoundTray = objects.FunkinSoundTray;
+
+		addChild(game);
+
+
 
 		#if !mobile
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);

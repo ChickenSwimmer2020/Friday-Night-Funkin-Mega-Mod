@@ -266,18 +266,26 @@ class PlayState extends MusicBeatState
 
 	public static var nextReloadAll:Bool = false;
 	//intro
-	public var CountDown:FlxSprite;
+	public var CountDown:FlxAnimate;
 	override public function create()
 	{
 		//intro anim.
-		CountDown = new FlxSprite(-50, -250);
+		//CountDown = new FlxSprite(-50, -250);
+		//CountDown.frames = Paths.getSparrowAtlas('IntroSprite');
+		//CountDown.animation.addByIndices('time',  'INTROGRAPHCHIS', [0, 1, 2, 3],             "", 24, false);
+		//CountDown.animation.addByIndices('to', 	  'INTROGRAPHCHIS', [4, 5, 6, 7],             "", 24, false);
+		//CountDown.animation.addByIndices('get',   'INTROGRAPHCHIS', [8, 9, 10, 11],           "", 24, false);
+		//CountDown.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15],         "", 24, false);
+		//CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
+		CountDown = new FlxAnimate(-50, -250);
+		Paths.loadAnimateAtlas(CountDown, 'IntroSprite');
+		CountDown.anim.addBySymbolIndices('Three', 'INTRO_Three', [0,1,2,3], 24, false);
+		CountDown.anim.addBySymbolIndices('Two', 'INTRO_Two', [4,5,6,7], 24, false);
+		CountDown.anim.addBySymbolIndices('One', 'INTRO_One', [8,9,10,11], 24, false);
+		CountDown.anim.addBySymbolIndices('Go', 'INTRO_Go', [12,13,14,15,16], 24, false);
+		CountDown.anim.addBySymbolIndices('Start', 'INTRO_Start', [17,18,19,20,21,22], 24, false);
 		CountDown.scale.set(0.5, 0.5);
-		CountDown.frames = Paths.getSparrowAtlas('IntroSprite');
-		CountDown.animation.addByIndices('time',  'INTROGRAPHCHIS', [0, 1, 2, 3],             "", 24, false);
-		CountDown.animation.addByIndices('to', 	  'INTROGRAPHCHIS', [4, 5, 6, 7],             "", 24, false);
-		CountDown.animation.addByIndices('get',   'INTROGRAPHCHIS', [8, 9, 10, 11],           "", 24, false);
-		CountDown.animation.addByIndices('funky', 'INTROGRAPHCHIS', [12, 13, 14, 15],         "", 24, false);
-		CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
+		CountDown.screenCenter();
 		CountDown.antialiasing = ClientPrefs.data.antialiasing;
 		//trace('Playback Rate: ' + playbackRate);
 
@@ -975,7 +983,7 @@ class PlayState extends MusicBeatState
 		Paths.sound('intro2' + introSoundsSuffix);
 		Paths.sound('intro1' + introSoundsSuffix);
 		Paths.sound('introGo' + introSoundsSuffix);
-		Paths.image('IntroSprite');
+		//Paths.image('IntroSprite');
 	}
 
 	public function startCountdown()
@@ -1041,29 +1049,24 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
-						CountDown.animation.play('time');
+						CountDown.anim.play('Three', true);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
 					case 1:
-						//countdownReady = createCountdownSprite(introAlts[0], antialias); //FUCK. OFF.
-						CountDown.animation.play('to');
+						CountDown.anim.play('Two', true);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 						tick = TWO;
 					case 2:
-						CountDown.animation.play('get');
-						//countdownSet = createCountdownSprite(introAlts[1], antialias);
+						CountDown.anim.play('One', true);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 						tick = ONE;
 					case 3:
-						CountDown.animation.play('funky');
-						//countdownGo = createCountdownSprite(introAlts[2], antialias);
+						CountDown.anim.play('Go', true);
 						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						tick = GO;
 					case 4:
-						CountDown.animation.play('start');
-						CountDown.animation.finishCallback = function(huh) {
-							CountDown.kill();
-						}
+						CountDown.anim.play('Start', true);
+						CountDown.anim.onComplete.add( CountDown.destroy );
 						tick = START;
 				}
 
