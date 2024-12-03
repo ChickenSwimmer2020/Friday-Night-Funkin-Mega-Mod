@@ -96,7 +96,7 @@ class PlayState extends MusicBeatState
 	private var isCameraOnForcedPos:Bool = false;
 	public var BopOnBeat:Bool = false;
 	public var HyperFunk:Bool = false;
-    public var hyperFunkSprites:Map<Int, HyperFunkSprite> = new Map();
+    public var hyperFunkSprite:HyperFunkSprite;
 
 	public var boyfriendMap:Map<String, Character> = new Map<String, Character>();
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
@@ -588,19 +588,13 @@ class PlayState extends MusicBeatState
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
 
-        //Hyper Mode sprites
-        var spriteArray = [];
-        for (name in ['HypeP', 'HypeB', 'HypeG',  'HypeR'])
-            spriteArray.push(cast(new HyperFunkSprite(0, 0).loadGraphic(Paths.image(name)), HyperFunkSprite));
-        for (spr in spriteArray){
-            spr.cameras = [camOther];
-            spr.alpha = 0;
-			spr.scale.set(0.5, 0.5);
-			spr.screenCenter(XY);
-            add(spr);
-        }
-        for (i in 0...4)
-            hyperFunkSprites.set(i, spriteArray[i]);
+        //Hyper Mode sprite
+        hyperFunkSprite = cast(new HyperFunkSprite(0, 0).loadGraphic(Paths.image('Hype')), HyperFunkSprite);
+        hyperFunkSprite.cameras = [camOther];
+        hyperFunkSprite.alpha = 0;
+		hyperFunkSprite.setGraphicSize(FlxG.width, FlxG.height);
+		hyperFunkSprite.screenCenter(XY);
+        add(hyperFunkSprite);
 
 		startingSong = true;
 
@@ -3298,15 +3292,17 @@ class PlayState extends MusicBeatState
 		}
 
 		if(HyperFunk) {
-            var spr = hyperFunkSprites.get(note.noteData);
-            if (spr.tween != null)
-                spr.tween.cancel();
+            inline function colorFromNoteData(n:Int):Int
+                return n == 0 ? 0xFFA02C99 : n == 1 ? 0xFF00C9FC : n == 2 ? 0xFF1AF200 : n == 3 ? 0xFFF80027 : 0xFFFFFFFF;
+            hyperFunkSprite.color = colorFromNoteData(note.noteData);
+            if (hyperFunkSprite.tween != null)
+                hyperFunkSprite.tween.cancel();
 
-            spr.alpha = 1;
-            spr.tween = FlxTween.tween(spr, {alpha: 0}, 0.5, {
+            hyperFunkSprite.alpha = 1;
+            hyperFunkSprite.tween = FlxTween.tween(hyperFunkSprite, {alpha: 0}, 0.5, {
                 ease: FlxEase.circIn,
             });
-            spr.tween.start();
+            hyperFunkSprite.tween.start();
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.goodNoteHit(note));

@@ -55,57 +55,10 @@ class Preload extends MusicBeatState
 		// images
 		Thread.create(() ->
 		{
-			Paths.image('VizMenu');
-			Paths.image('Tracks');
-			Paths.image('timeBar');
-			Paths.image('stagefront');
-			Paths.image('stagecurtains');
-			Paths.image('stageback');
-			Paths.image('stage_light');
-			Paths.image('speech_bubble');
-			Paths.image('sick');
-			Paths.image('shit');
-			Paths.image('PulgeBS');
-			Paths.image('PlayChar');
-			Paths.image('num0');
-			Paths.image('num1');
-			Paths.image('num2');
-			Paths.image('num3');
-			Paths.image('num4');
-			Paths.image('num5');
-			Paths.image('num6');
-			Paths.image('num7');
-			Paths.image('num8');
-			Paths.image('num9');
-			Paths.image('menuDesat');
-			Paths.image('JukeBox_PANEL');
-			Paths.image('jukebox_OVERLAY');
-			Paths.image('JukeBox');
-			Paths.image('IntroSprite');
-			Paths.image('HypeR');
-			Paths.image('HypeP');
-			Paths.image('HypeG');
-			Paths.image('HypeB');
-			Paths.image('healthBar');
-			Paths.image('good');
-			Paths.image('funkay');
-			Paths.image('freeplay_songs');
-			Paths.image('DeathScreen_Wrapper');
-			Paths.image('DeathScreen_RATINGS');
-			Paths.image('DeathScreen_RATINGNUM');
-			Paths.image('DeathScreen_DIFFICULTIES');
-			Paths.image('DeathScreen_COMBONUM');
-			Paths.image('controllertype');
-			Paths.image('comboMilestoneNumbers');
-			Paths.image('comboMilestone');
-			Paths.image('combo');
-			Paths.image('cinematics_topbar');
-			Paths.image('cinematics_bottombar');
-			Paths.image('checkboxanim');
-			Paths.image('campaign_menu_UI_assets');
-			Paths.image('bad');
-			Paths.image('alphabet_playstation');
-			Paths.image('alphabet');
+            var images = FileSystem.readDirectory('assets/shared/images');
+            for (image in images)
+                if (image.endsWith('.png'))
+                    Paths.image(image.substring(1, image.length - 4));
 			// TitleScreen
 			Paths.image('TitleScreen/bfBopTitle');
 			Paths.image('TitleScreen/bgcool');
