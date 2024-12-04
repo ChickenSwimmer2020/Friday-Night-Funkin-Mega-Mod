@@ -365,9 +365,9 @@ class Character extends FlxSprite
 				danced = !danced;
 
 				if (danced)
-					playAnim('danceRight' + idleSuffix);
+					playAnim('danceRight' + idleSuffix, true);
 				else
-					playAnim('danceLeft' + idleSuffix);
+					playAnim('danceLeft' + idleSuffix, true);
 			}
 			else if(hasAnimation('idle' + idleSuffix))
 				playAnim('idle' + idleSuffix);

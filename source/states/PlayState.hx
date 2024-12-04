@@ -279,13 +279,13 @@ class PlayState extends MusicBeatState
 		//CountDown.animation.addByIndices('start', 'INTROGRAPHCHIS', [16, 17, 18, 19, 20, 21], "", 24, false);
 		CountDown = new FlxAnimate(-50, -250);
 		Paths.loadAnimateAtlas(CountDown, 'IntroSprite');
-		CountDown.anim.addBySymbolIndices('Three', 'INTRO_Three', [0,1,2,3], 24, false);
-		CountDown.anim.addBySymbolIndices('Two', 'INTRO_Two', [4,5,6,7], 24, false);
-		CountDown.anim.addBySymbolIndices('One', 'INTRO_One', [8,9,10,11], 24, false);
-		CountDown.anim.addBySymbolIndices('Go', 'INTRO_Go', [12,13,14,15,16], 24, false);
-		CountDown.anim.addBySymbolIndices('Start', 'INTRO_Start', [17,18,19,20,21,22], 24, false);
-		CountDown.scale.set(0.5, 0.5);
-		CountDown.screenCenter();
+		CountDown.anim.addBySymbolIndices('Three', 'INTROGRAPHCHIS', [0,1,2,3], 24, false);
+		CountDown.anim.addBySymbolIndices('Two', 'INTROGRAPHCHIS', [4,5,6,7], 24, false);
+		CountDown.anim.addBySymbolIndices('One', 'INTROGRAPHCHIS', [8,9,10,11], 24, false);
+		CountDown.anim.addBySymbolIndices('Go', 'INTROGRAPHCHIS', [12,13,14,15,16], 24, false);
+		CountDown.anim.addBySymbolIndices('Start', 'INTROGRAPHCHIS', [17,18,19,20,21,22], 24, false);
+		CountDown.scale.set(0.75, 0.75);
+		CountDown.visible = false;
 		CountDown.antialiasing = ClientPrefs.data.antialiasing;
 		//trace('Playback Rate: ' + playbackRate);
 
@@ -370,7 +370,7 @@ class PlayState extends MusicBeatState
 
 		BF_X = stageData.boyfriend[0];
 		BF_Y = stageData.boyfriend[1];
-		GF_X = stageData.girlfriend[0] - 100;
+		GF_X = stageData.girlfriend[0];
 		GF_Y = stageData.girlfriend[1];
 		DAD_X = stageData.opponent[0];
 		DAD_Y = stageData.opponent[1];
@@ -465,11 +465,11 @@ class PlayState extends MusicBeatState
 			}
 		#end
 			
-		var camPos:FlxPoint = FlxPoint.get(girlfriendCameraOffset[0], girlfriendCameraOffset[1]);
-		if(gf != null)
+		var camPos:FlxPoint = FlxPoint.get(boyfriendCameraOffset[0], boyfriendCameraOffset[1]);
+		if(boyfriend != null)
 		{
-			camPos.x += gf.getGraphicMidpoint().x + gf.cameraPosition[0];
-			camPos.y += gf.getGraphicMidpoint().y + gf.cameraPosition[1];
+			camPos.x += boyfriend.getGraphicMidpoint().x + boyfriend.cameraPosition[0];
+			camPos.y += boyfriend.getGraphicMidpoint().y + boyfriend.cameraPosition[1];
 		}
 
 		if(dad.curCharacter.startsWith('gf')) {
@@ -844,7 +844,7 @@ class PlayState extends MusicBeatState
 
 	function startCharacterPos(char:Character, ?gfCheck:Bool = false) {
 		if(gfCheck && char.curCharacter.startsWith('gf')) { //IF DAD IS GIRLFRIEND, HE GOES TO HER POSITION
-			char.setPosition(GF_X, GF_Y + 550);
+			char.setPosition(GF_X, GF_Y + 1050);
 			char.scale.set(0.75,0.75);
 			char.scrollFactor.set(0.95, 0.95);
 			char.danceEveryNumBeats = 2;
@@ -1043,6 +1043,8 @@ class PlayState extends MusicBeatState
 				switch (swagCounter)
 				{
 					case 0:
+						CountDown.screenCenter();
+						CountDown.visible = true;
 						CountDown.anim.play('Three', true);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 						tick = THREE;
@@ -1275,6 +1277,10 @@ class PlayState extends MusicBeatState
 		FlxG.sound.playMusic(inst._sound, 1, false);
 		#if FLX_PITCH FlxG.sound.music.pitch = playbackRate; #end
 		FlxG.sound.music.onComplete = finishSong.bind();
+
+		FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, Math.exp(-FlxG.elapsed * 3.125 * camZoomingDecay * playbackRate));
+		camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, Math.exp(-FlxG.elapsed * 3.125 * camZoomingDecay * playbackRate));
+
 		if(!instOnly) {
 			vocals.play();
 			opponentVocals.play();
@@ -1705,6 +1711,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		
 
 		FlxG.camera.angle = FlxMath.lerp(0, FlxG.camera.angle, 1 - (elapsed * 12)); //make sure camera returns to original angle stuff.
 

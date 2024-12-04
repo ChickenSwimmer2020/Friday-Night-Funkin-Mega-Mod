@@ -58,7 +58,7 @@ class Preload extends MusicBeatState
             var images = FileSystem.readDirectory('assets/shared/images');
             for (image in images)
                 if (image.endsWith('.png'))
-                    Paths.image(image.substring(1, image.length - 4));
+                    Paths.image(image.substring(0, image.length - 4));
 			// TitleScreen
 			Paths.image('TitleScreen/bfBopTitle');
 			Paths.image('TitleScreen/bgcool');
