@@ -86,9 +86,10 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		//MEGAMOD EVENTS DEFINITION
 		['Zoom Camera', "Changes the camera zoom\ndefault is 1.05\nValue 1: zoom"],
 		['Cam Speed', "self explanitory, isnt it?\nValue 1: speed\nleave blank for default"],
-		['Set Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
+		['Cam Decay', "Sets the camera decay value\nValue 1: Decay Value\n(default 1, 2 for base game)"],
+		['Cam Mult', "Change the camera bop multiplier\nValue 1: mult Value\nBE CAREFUL WITH THIS."],
 		['Bop Type', "Changes bop mode,\nValue 1: Mode\n(set to section for base zoom type)\n(set to beat for beathit zoom)"],
-		['Hype Mode', "Cool random effect\nturns on when event is ran"],
+		['Hype Mode', "Cool random effect\nValue 1: enable?(True || False)"],
 		['Change window title', "self explanitory\nValue 1: Window name\nleave blank to reset"],
 		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1, or go}"],
 		['Camera TomFuckery', "you can do a LOT of stuff now!\nValue 1: Function || Camera\nValue 2: Angle Value"]

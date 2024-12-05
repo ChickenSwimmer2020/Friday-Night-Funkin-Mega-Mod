@@ -269,6 +269,18 @@ class PlayState extends MusicBeatState
 	public var CountDown:FlxAnimate;
 	override public function create()
 	{
+		if(SONG.skipCountDown != null) {
+			if(SONG.skipCountDown)
+				skipCountdown = true;
+			else
+				skipCountdown = false;
+		}
+		if(SONG.skipArrowTween != null) {
+			if(SONG.skipArrowTween)
+				skipArrowStartTween = true;
+			else
+				skipArrowStartTween = false;
+		}
 		//intro anim.
 		//CountDown = new FlxSprite(-50, -250);
 		//CountDown.frames = Paths.getSparrowAtlas('IntroSprite');
@@ -2420,9 +2432,6 @@ class PlayState extends MusicBeatState
 				FlxG.sound.play(Paths.sound(value1), flValue2);
 			
 			//MEGAMOD EVENTS
-			case 'Cam Speed':
-				cameraSpeed = flValue1;
-				if(flValue1 == null) cameraSpeed = 1;
 			case 'Bop Type':
 				switch(value1.toLowerCase().trim()) {
 					case 'section' | 'sectionhit' | '0':
@@ -2430,9 +2439,15 @@ class PlayState extends MusicBeatState
 					case 'beat' | 'beathit' | '1':
 						BopOnBeat = true;
 				};
-			case 'Set Cam Decay':
+			case 'Cam Speed':
+				cameraSpeed = flValue1;
+				if(flValue1 == null) cameraSpeed = 1;
+			case 'Cam Decay':
 				if(flValue1 == null) flValue1 = 1;
 				camZoomingDecay = flValue1;
+			case 'Cam Mult':
+				if(flValue1 == null) flValue1 == 1;
+				camZoomingMult = flValue1;
 			case 'Zoom Camera':
 				var camZoom:Float = Std.parseFloat(value1);
 					if(!Math.isNaN(camZoom)) {
@@ -2448,22 +2463,21 @@ class PlayState extends MusicBeatState
 					CountDown.revive();
 				switch(value1) {
 					case '1':
-						CountDown.animation.play('get');
+						CountDown.anim.play('One', true);
 						FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
 					case '2':
-						CountDown.animation.play('to');
+						CountDown.anim.play('Two', true);
 						FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
 					case '3':
-						CountDown.animation.play('time');
+						CountDown.anim.play('Three', true);
 						FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
 					case 'go':
-						CountDown.animation.play('funky');
+						CountDown.anim.play('Go', true);
+						FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
 						CountDown.animation.finishCallback = function(huh) {
-							CountDown.animation.play('start');
-							FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
-
+							CountDown.anim.play('Start', true);
 							CountDown.animation.finishCallback = function(huh) {
-								if(CountDown.animation.curAnim.name == 'start')
+								if(CountDown.animation.curAnim.name == 'Start')
 									CountDown.kill();
 							}
 						}
