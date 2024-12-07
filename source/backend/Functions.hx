@@ -1,5 +1,6 @@
 package backend;
 
+import openfl.Assets;
 import psychlua.FunkinLua;
 
 class Functions
@@ -21,12 +22,8 @@ class Functions
 	/**
 		easy loading of song specific data files.
 
-			@param file file name to load (dont forget the .lua extension)
-            @param dir file directory eg:[DIRECTORY]/foldername
+			@param file File name
 	**/
-	static public function loadExternalScriptFile(file:String, dir:String)
-	{
-		var dafile = Paths.getFolderPath(file, dir);
-		new FunkinLua(dafile);
-	}
+	static public function loadExternalScriptFile(file:String)
+		return new FunkinLua(Paths.getSharedPath('lua/${file}.lua'));
 }

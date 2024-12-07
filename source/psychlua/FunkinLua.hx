@@ -57,9 +57,13 @@ class FunkinLua {
 		if(game != null) game.luaArray.push(this);
 
 		var myFolder:Array<String> = this.scriptName.split('/');
+		var InternalFolder:Array<String> = this.scriptName.split('/'); //so we can load files that arent in the mods folder
+		
 		#if MODS_ALLOWED
 		if(myFolder[0] + '/' == Paths.mods() && (Mods.currentModDirectory == myFolder[1] || Mods.getGlobalMods().contains(myFolder[1]))) //is inside mods folder
 			this.modFolder = myFolder[1];
+		#else //so it actually looks in the lua folder since mods arent enabled.
+			this.modFolder = InternalFolder[0];
 		#end
 
 		// Lua shit

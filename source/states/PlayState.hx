@@ -2485,6 +2485,12 @@ class PlayState extends MusicBeatState
 				}
 			case 'Camera TomFuckery':
 				CameraTomFuckery(value1, flValue2);
+
+			#if debug
+			case 'Test File Loading':
+				if(value1 == '') value1 = 'Error';
+				Functions.loadExternalScriptFile(value1);
+			#end
 		}
 
 		stagesFunc(function(stage:BaseStage) stage.eventCalled(eventName, value1, value2, flValue1, flValue2, strumTime));

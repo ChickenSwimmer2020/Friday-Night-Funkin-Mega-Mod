@@ -81,7 +81,7 @@
 	</section>
 
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
-    <assets path='art/MMReadme.txt' rename='Readme.txt' />
+    <assets path='art/MMReadme.txt' rename='Actually ReadMe.txt' />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 

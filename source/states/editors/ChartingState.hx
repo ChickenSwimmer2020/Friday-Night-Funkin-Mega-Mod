@@ -92,8 +92,13 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Hype Mode', "Cool random effect\nValue 1: enable?(True || False)"],
 		['Change window title', "self explanitory\nValue 1: Window name\nleave blank to reset"],
 		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1, or go}"],
-		['Camera TomFuckery', "you can do a LOT of stuff now!\nValue 1: Function || Camera\nValue 2: Angle Value"]
+		['Camera TomFuckery', "you can do a LOT of stuff now!\nValue 1: Function || Camera\nValue 2: Angle Value"],
 		//MEGAMOD STAGE EVENTS
+
+		//TESTING EVENTS --debug only.
+		#if debug
+		['Test File Loading', "Test the lua file loading.\nValue 1: file to load.\njust enter filename, DO NOT ADD EXTENSION OR DIRECTORY"]
+		#end
 	];
 	
 	public static var keysArray:Array<FlxKey> = [ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT]; //Used for Vortex Editor
