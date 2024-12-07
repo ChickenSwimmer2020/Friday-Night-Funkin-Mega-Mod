@@ -32,6 +32,7 @@ class LoadingState extends MusicBeatState
 
 	function new(target:FlxState, stopMusic:Bool)
 	{
+		Paths.clearStoredMemory(); //reduce memory usage, find out how to preload the other assets.
 		this.target = target;
 		this.stopMusic = stopMusic;
 		

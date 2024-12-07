@@ -50,6 +50,7 @@ import crowplexus.iris.Iris;
 
 enum CameraBopType {
     ANGLE;
+	SLOWSHIFT;
 }
 
 /**
@@ -73,6 +74,7 @@ class PlayState extends MusicBeatState
 	//camera bs
 	public var cameraBops:Array<CameraBopType> = [];
 	public var CameraFuckedAngle:Float = 0;
+	public var CameraWasFucked:Bool = false; //angle bop
 
 	public static var STRUM_X = 42;
 	public static var STRUM_X_MIDDLESCROLL = -278;
@@ -220,8 +222,6 @@ class PlayState extends MusicBeatState
 	public static var deathCounter:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
-
-	public var CameraWasFucked:Bool = false;
 
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
@@ -2654,7 +2654,8 @@ class PlayState extends MusicBeatState
 					#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
 					canResync = false;
-					MusicBeatState.switchState(new StoryMenuState());
+					//MusicBeatState.switchState(new StoryMenuState()); //No! we use our cool menu precacher now!
+					MusicBeatState.switchState(new MenuCacher(new StoryMenuState(), 'LOADING STORY MENU...\nPLEASE WAIT'));
 
 					// if ()
 					if(!ClientPrefs.getGameplaySetting('practice') && !ClientPrefs.getGameplaySetting('botplay')) {
@@ -2692,7 +2693,8 @@ class PlayState extends MusicBeatState
 				#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 
 				canResync = false;
-				MusicBeatState.switchState(new FreeplayState());
+				//MusicBeatState.switchState(new FreeplayState());
+				MusicBeatState.switchState(new MenuCacher(new FreeplayState(), 'LOADING FREEPLAY MENU...\nPLEASE WAIT'));
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
