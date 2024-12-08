@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="JukeBox_PANEL.png">
-	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- Created with Adobe Animate version 24.0.6.54 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="jukebox_DifficultyConsole0000" x="3" y="3" width="610" height="493" pivotX="4.2" pivotY="4.2"/>
 	<SubTexture name="jukebox_DifficultyConsole0001" x="616" y="3" width="610" height="493"/>
