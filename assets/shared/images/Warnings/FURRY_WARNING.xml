@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="FURRY_WARNING.png">
+	<!-- Created with Adobe Animate version 24.0.4.28 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="WARNING_furry0000" x="1" y="1" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0001" x="1" y="1" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0002" x="263" y="1" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0003" x="525" y="1" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0004" x="1" y="229" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0005" x="263" y="229" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0006" x="525" y="229" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0007" x="1" y="457" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0008" x="263" y="457" width="261" height="227"/>
+	<SubTexture name="WARNING_furry0009" x="525" y="457" width="261" height="227"/>
+</TextureAtlas>

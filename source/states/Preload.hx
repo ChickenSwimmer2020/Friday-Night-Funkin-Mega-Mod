@@ -37,9 +37,9 @@ class Preload extends MusicBeatState
 		LoadText.screenCenter(XY);
 
 		Cache();
-		Functions.wait(15, () ->
+		Functions.wait(5, () ->
 		{
-			MusicBeatState.switchState(new TitleState());
+			MusicBeatState.switchState(new Warnings());
 		});
 		super.create();
 	}

@@ -53,9 +53,7 @@ class TitleState extends MusicBeatState
 	public static var updateVersion:String = '';
 
 	override public function create():Void
-	{
-        AlphaCharacter.loadAlphabetData(); //thanks for fixing solar
-		
+	{	
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			MMlogo.animation.play('shine', true);
