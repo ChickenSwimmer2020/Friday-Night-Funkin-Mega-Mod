@@ -48,6 +48,8 @@ import psychlua.HScript;
 import crowplexus.iris.Iris;
 #end
 
+using flixel.util.FlxSpriteUtil;
+
 enum CameraBopType {
     ANGLE;
 	SLOWSHIFT;
@@ -69,6 +71,7 @@ enum CameraBopType {
  * "function eventEarlyTrigger" - Used for making your event start a few MILLISECONDS earlier
  * "function triggerEvent" - Called when the song hits your event's timestamp, this is probably what you were looking for
 **/
+
 class PlayState extends MusicBeatState
 {
 	//camera bs
@@ -205,6 +208,7 @@ class PlayState extends MusicBeatState
 	public var iconP1:HealthIcon;
 	public var iconP2:HealthIcon;
 	public var camHUD:FlxCamera;
+	public var camHUD2:FlxCamera; // for the hud items that need less zoom
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
@@ -215,6 +219,13 @@ class PlayState extends MusicBeatState
 	public var scoreTxt:FlxText;
 	var timeTxt:FlxText;
 	var scoreTxtTween:FlxTween;
+	var scoreTxtTween2:FlxTween;
+
+	public var HUD_container:FlxSprite; //this is the transparent square that holds the main hud lines and gradients
+	//public var HUD_healthbar:FlxSprite;
+	//public var HUD_healthcracks:FlxSprite;
+	//public var HUD_healthcracks_glow:FlxSprite;
+	//public var HUD_playerRender:FlxSprite;
 
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
@@ -226,6 +237,7 @@ class PlayState extends MusicBeatState
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
 	private var singAnimations:Array<String> = ['singLEFT', 'singDOWN', 'singUP', 'singRIGHT'];
+	public var HeadsUpDisplayGraidentColors:Array<String> = ['GREEN', 'YELLOW', 'RED', 'PURPLE', 'PINK']; //used for gradient behind character sketch on the new cool hud.
 
 	public var inCutscene:Bool = false;
 	public var skipCountdown:Bool = false;
@@ -269,6 +281,8 @@ class PlayState extends MusicBeatState
 	public var CountDown:FlxAnimate;
 	override public function create()
 	{
+		FlxG.stage.quality = openfl.display.StageQuality.BEST; //should help with the hud rendering, and maybe make graphics look better??
+
 		if(SONG.skipCountDown != null) {
 			if(SONG.skipCountDown)
 				skipCountdown = true;
@@ -338,11 +352,14 @@ class PlayState extends MusicBeatState
 		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = initPsychCamera();
 		camHUD = new FlxCamera();
+		camHUD2 = new FlxCamera();
 		camOther = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
+		camHUD2.bgColor.alpha = 0;
 		camOther.bgColor.alpha = 0;
 
 		FlxG.cameras.add(camHUD, false);
+		FlxG.cameras.add(camHUD2, false);
 		FlxG.cameras.add(camOther, false);
 
 		persistentUpdate = true;
@@ -502,10 +519,12 @@ class PlayState extends MusicBeatState
 		#end
 
 		uiGroup = new FlxSpriteGroup();
+		HUDGroup = new FlxSpriteGroup();
 		comboGroup = new FlxSpriteGroup();
 		noteGroup = new FlxTypedGroup<FlxBasic>();
 		add(comboGroup);
 		add(uiGroup);
+		add(HUDGroup);
 		add(noteGroup);
 
 		Conductor.songPosition = -Conductor.crochet * 5 + Conductor.offset;
@@ -524,6 +543,19 @@ class PlayState extends MusicBeatState
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
+
+		//create the really cool left part of the HUD
+		var dablackbox:FlxSprite = new FlxSprite(0, 500).makeGraphic(150, 250, FlxColor.BLACK);
+		dablackbox.alpha = 0.25;
+		HUDGroup.add(dablackbox);
+
+		HUD_container = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT);
+										//higher value = lower line spot
+										//width: 1280 height: 720 //THIS IS A REMINDER TO CS2020
+		HUD_container.drawPolygon([new FlxPoint(700, 720), new FlxPoint(750, 620)], FlxColor.TRANSPARENT, {pixelHinting: true, thickness: 5}, {smoothing: true});
+		HUD_container.scrollFactor.set();
+		HUDGroup.add(HUD_container);
+
 		uiGroup.add(timeBar);
 		uiGroup.add(timeTxt);
 		uiGroup.add(CountDown);
@@ -579,13 +611,13 @@ class PlayState extends MusicBeatState
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
 
-		scoreTxt = new FlxText(0, healthBar.y + 40, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt = new FlxText(0, 370, 0, "", 20);
+		scoreTxt.setFormat(null, 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
 		updateScore(false);
-		uiGroup.add(scoreTxt);
+		HUDGroup.add(scoreTxt);
 
 		botplayTxt = new FlxText(400, healthBar.y - 90, FlxG.width - 800, Language.getPhrase("NON LEGIT\nGAMEPLAY").toUpperCase(), 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -597,12 +629,13 @@ class PlayState extends MusicBeatState
 			botplayTxt.y = healthBar.y + 70;
 
 		uiGroup.cameras = [camHUD];
+		HUDGroup.cameras = [camHUD2];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
 
         //Hyper Mode sprite
         hyperFunkSprite = cast(new HyperFunkSprite(0, 0).loadGraphic(Paths.image('Hype')), HyperFunkSprite);
-        hyperFunkSprite.cameras = [camOther];
+        hyperFunkSprite.cameras = [camHUD2];
         hyperFunkSprite.alpha = 0;
 		hyperFunkSprite.setGraphicSize(FlxG.width, FlxG.height);
 		hyperFunkSprite.screenCenter(XY);
@@ -1181,7 +1214,7 @@ class PlayState extends MusicBeatState
 			return;
 
 		updateScoreText();
-		if (!miss && !cpuControlled)
+		if (!miss /*&& !cpuControlled*/)
 			doScoreBop();
 
 		callOnScripts('onUpdateScore', [miss]);
@@ -1193,25 +1226,26 @@ class PlayState extends MusicBeatState
 		if(totalPlayed != 0)
 		{
 			var percent:Float = CoolUtil.floorDecimal(ratingPercent * 100, 2);
-			str += ' (${percent}%) - ' + Language.getPhrase(ratingFC);
+			str += '\n(${percent}%)\n' + Language.getPhrase(ratingFC);
 		}
 
 		var tempScore:String;
-		if(!instakillOnMiss) tempScore = Language.getPhrase('score_text', 'Score: {1} | Misses: {2} | Rating: {3}', [songScore, songMisses, str]);
-		else tempScore = Language.getPhrase('score_text_instakill', 'Score: {1} | Rating: {2}', [songScore, str]);
+		if(!instakillOnMiss) tempScore = Language.getPhrase('score_text', 'Score: {1}\nMisses: {2}\nRating: {3}', [songScore, songMisses, str]);
+		else tempScore = Language.getPhrase('score_text_instakill', 'Score: {1}\nRating: {2}', [songScore, str]);
 		scoreTxt.text = tempScore;
 	}
 
 	public dynamic function fullComboFunction()
 	{
-		var sicks:Int = ratingsData[0].hits;
-		var goods:Int = ratingsData[1].hits;
-		var bads:Int = ratingsData[2].hits;
-		var shits:Int = ratingsData[3].hits;
+		var perfects:Int = ratingsData[0].hits;
+		var sicks:Int = ratingsData[1].hits;
+		var goods:Int = ratingsData[2].hits;
+		var bads:Int = ratingsData[3].hits;
+		var shits:Int = ratingsData[4].hits;
 
 		ratingFC = "";
 		if (songMisses == 0 && ratingPercent == 100) {
-			ratingFC = 'Perfect Full Combo!!';
+			ratingFC = 'Perfect Full Combo!';
 		}
 		if(songMisses == 0)
 		{
@@ -1220,8 +1254,10 @@ class PlayState extends MusicBeatState
 			else if (sicks > 0) ratingFC = 'Sick Full Combo';
 		}
 		else {
-			if (songMisses < 10) ratingFC = 'Ok';
-			else ratingFC = 'Shit.';
+			if (songMisses < 10) ratingFC = 'Bad.';
+			if (songMisses < 20) ratingFC = 'Get Gud.';
+			if (songMisses < 30) ratingFC = 'dude, just restart the song.';
+			else ratingFC = 'Ok.';
 		}
 
 	}
@@ -1232,12 +1268,21 @@ class PlayState extends MusicBeatState
 
 		if(scoreTxtTween != null)
 			scoreTxtTween.cancel();
+		if(scoreTxtTween2 != null)
+			scoreTxtTween2.cancel();
 
-		scoreTxt.scale.x = 1.075;
-		scoreTxt.scale.y = 1.075;
+		scoreTxt.scale.set(1.075,1.075);
+		scoreTxt.setPosition(10, 370);
+		
 		scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
 			onComplete: function(twn:FlxTween) {
 				scoreTxtTween = null;
+			}
+		});
+
+		scoreTxtTween2 = FlxTween.tween(scoreTxt, {x: 0}, 0.2, {
+			onComplete: function(twn:FlxTween) {
+				scoreTxtTween2 = null;
 			}
 		});
 	}
@@ -1289,9 +1334,6 @@ class PlayState extends MusicBeatState
 		FlxG.sound.playMusic(inst._sound, 1, false);
 		#if FLX_PITCH FlxG.sound.music.pitch = playbackRate; #end
 		FlxG.sound.music.onComplete = finishSong.bind();
-
-		FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, Math.exp(-FlxG.elapsed * 3.125 * camZoomingDecay * playbackRate));
-		camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, Math.exp(-FlxG.elapsed * 3.125 * camZoomingDecay * playbackRate));
 
 		if(!instOnly) {
 			vocals.play();
@@ -1733,68 +1775,20 @@ class PlayState extends MusicBeatState
 				{
 					//AHHHHHHHHHHHHHHHHH
 					if(!ComboShown && !shouldShowComboText) {
-						switch(combo) {
-							case 25:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 50:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 100:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 150:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 200:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 250:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 300:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 350:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 400:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 450:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 500:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 550:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 600:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 650:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 700:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 750:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 800:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 850:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 900:
-								shouldShowComboText = true;
-								ComboShown = true;
-							case 950:
-								shouldShowComboText = true;
-								ComboShown = true;
+						//THANKS MR SINISH! (Mr sinish is my IT teacher --ChickenSwimmer2020)
+						if(combo == 25) { //do the first one because the other code only checks in intervals of 50
+							shouldShowComboText = true;
+							ComboShown = true;
 						}
+						if(combo % 50 == 0 && combo != 0) {
+							if(combo > 950) {
+								shouldShowComboText = true;
+								ComboShown = true;
+							} else {
+								shouldShowComboText = true;
+								ComboShown = true;
+							}
+						};
 					if(ComboShown) 
 						Functions.wait(0.00000000000000000001, () -> {
 							shouldShowComboText = false;
@@ -1898,6 +1892,7 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, Math.exp(-elapsed * 3.125 * camZoomingDecay * playbackRate));
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, Math.exp(-elapsed * 3.125 * camZoomingDecay * playbackRate));
+			camHUD2.zoom = FlxMath.lerp(1, camHUD2.zoom, Math.exp(-elapsed * 1.125 * 8 * playbackRate));
 		}
 
 		FlxG.watch.addQuick("secShit", curSection);
@@ -2236,6 +2231,7 @@ class PlayState extends MusicBeatState
 
 					FlxG.camera.zoom += flValue1;
 					camHUD.zoom += flValue2;
+					//camHUD2.zoom += flValue2;
 				}
 
 			case 'Play Animation':
@@ -2725,6 +2721,8 @@ class PlayState extends MusicBeatState
 	public var comboGroup:FlxSpriteGroup;
 	// Stores HUD Objects in a Group
 	public var uiGroup:FlxSpriteGroup;
+	// Stores the HUD objects we dont want to move as much EX: combo panel, score text, ect.
+	public var HUDGroup:FlxSpriteGroup;
 	// Stores Note Objects in a Group
 	public var noteGroup:FlxTypedGroup<FlxBasic>;
 
@@ -2776,7 +2774,7 @@ class PlayState extends MusicBeatState
 		if(daRating.noteSplash && !note.noteSplashData.disabled)
 			spawnNoteSplashOnNote(note);
 
-		if(!practiceMode && !cpuControlled) {
+		if(!practiceMode /*&& !cpuControlled*/) {
 			songScore += score;
 			if(!note.ratingDisabled)
 			{
@@ -3448,6 +3446,7 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
+				camHUD2.zoom += 0.01 * camZoomingMult;
 			}
 		}
 
@@ -3491,6 +3490,7 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
+				camHUD2.zoom += 0.01 * camZoomingMult;
 			}
 
 			if (SONG.notes[curSection].changeBPM)
@@ -3511,6 +3511,7 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
+				camHUD2.zoom += 0.01 * camZoomingMult;
 			}
 		}
 

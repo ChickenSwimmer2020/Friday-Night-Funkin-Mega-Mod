@@ -71,9 +71,10 @@ import states.TitleState;
 	//									rating  num  mile
 	public var comboOffset:Array<Int> = [0, 0, 0, 0, 0, 0];
 	public var ratingOffset:Int = 0;
-	public var sickWindow:Int = 45;
-	public var goodWindow:Int = 90;
-	public var badWindow:Int = 135;
+	public var perfectWindow:Int = 45;
+	public var sickWindow:Int = 90;
+	public var goodWindow:Int = 135;
+	public var badWindow:Int = 225;
 	public var safeFrames:Float = 10;
 	public var guitarHeroSustains:Bool = true;
 	public var discordRPC:Bool = true;

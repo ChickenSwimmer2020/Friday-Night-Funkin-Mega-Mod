@@ -36,7 +36,7 @@ import backend.Highscore;
 
 class Main extends Sprite
 {
-	var game:FlxGame = new FlxGame(1280, 720, Preload, 60, 60, false, false);
+	var game:FlxGame = new FlxGame(1280, 720, /*#if _SHOWPRELOADER*/ Preload /*#else Warnings #end*/, 60, 60, false, false);
 
 	public static var fpsVar:FPSCounter;
 

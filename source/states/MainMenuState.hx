@@ -1,5 +1,8 @@
 package states;
 
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.display.FlxBackdrop;
+import flixel.FlxObject;
 import flixel.group.FlxGroup;
 import backend.Functions;
 import states.GalleryState.GalleryMenuState;
@@ -75,6 +78,9 @@ class MainMenuState extends MusicBeatState
 
 	public var bg:FlxSprite;
 	public var updateVersion:FlxText;
+	var camFollow:FlxObject;
+	var bg_squares:FlxBackdrop;
+	var bg_dablack:FlxSprite;
 	override function create()
 	{	
 		//precache the enter anims, again.
@@ -105,18 +111,29 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite(-80).loadGraphic(Paths.image('MainMenu/menuBG'));
+
+		var yScroll:Float = 0.25;
+		bg = new FlxSprite(-80, 50).loadGraphic(Paths.image('MainMenu/menuBG'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		//bg.setGraphicSize(Std.int(bg.width * 1));
-		bg.scale.set(0.62, 0.62);
+		bg.scale.set(0.62, 0.65);
+		bg.scrollFactor.set(0, yScroll);
 		bg.updateHitbox();
 		bg.screenCenter();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
 
-		var bg_dablack = new FlxSprite(0, 0).makeGraphic(1280, 720, FlxColor.TRANSPARENT);
+		camFollow = new FlxObject(0, 0, 1, 1); //for the background scroll on menu item choice
+		add(camFollow);
+
+		bg_squares = new FlxBackdrop(FlxGridOverlay.createGrid(100, 100, 200, 200, true, 0x63FFFFFF, 0x00FFFFFF));
+		bg_squares.velocity.set(-50, 50);
+		add(bg_squares);
+
+		bg_dablack = new FlxSprite(0, 0).makeGraphic(1280, 720, FlxColor.TRANSPARENT);
 		bg_dablack.drawPolygon([new FlxPoint(0, 0), new FlxPoint(1280, 0), new FlxPoint(1280, 100), new FlxPoint(295, 152), new FlxPoint(176, 481), new FlxPoint(380, 651), new FlxPoint(1280, 651), new FlxPoint(1280, 720), new FlxPoint(0, 720), new FlxPoint(0, 0)], FlxColor.BLACK, {pixelHinting: true}, {smoothing: true});
 		bg_dablack.antialiasing = ClientPrefs.data.antialiasing;
+		bg_dablack.scrollFactor.set();
 		add(bg_dablack);
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
@@ -158,6 +175,7 @@ class MainMenuState extends MusicBeatState
 		// used for sketchy 0
 		sketch.scale.x = 1;
 		sketch.scale.y = 1;
+		sketch.scrollFactor.set(0, 0.1);
 		add(sketch);
 
 		// offsets
@@ -211,6 +229,7 @@ class MainMenuState extends MusicBeatState
 		trace(randInt);
 
 		super.create();
+		FlxG.camera.follow(camFollow, null, 0.15); //might need to do more scrollfactor removal...
 	}
 
     function generateMenuItems()
@@ -239,6 +258,7 @@ class MainMenuState extends MusicBeatState
             menuItem.setGraphicSize(Std.int(menuItem.width * 0.70));
             menuItem.antialiasing = ClientPrefs.data.antialiasing;
             menuItem.updateHitbox();
+			menuItem.scrollFactor.set();
             menuItems.add(menuItem);
 
 			if (itemID == 4) menuItem.y += 100;
@@ -258,6 +278,7 @@ class MainMenuState extends MusicBeatState
 		menuItem.animation.addByPrefix('selected', '$name selected', 24, true);
 		menuItem.animation.play('idle');
 		menuItem.updateHitbox();
+		menuItem.scrollFactor.set();
 		
 		menuItem.antialiasing = ClientPrefs.data.antialiasing;
 		menuItem.scrollFactor.set();
@@ -274,6 +295,7 @@ class MainMenuState extends MusicBeatState
 		Enter.scale.set(Scale, Scale);
 		Enter.updateHitbox();
 		Enter.antialiasing = ClientPrefs.data.antialiasing;
+		Enter.scrollFactor.set();
 		add(Enter);
 
 		howLong = WaitTime; //kinda important.
@@ -430,6 +452,7 @@ class MainMenuState extends MusicBeatState
 					FlxG.mouse.visible = false;
 
 					bg.alpha = 0.15;
+					bg_squares.visible = false;
 					updateVersion.visible = false;
 					sketch.visible = false;
 					verInfTxt.visible = false;
@@ -557,5 +580,6 @@ class MainMenuState extends MusicBeatState
         if (selectedItem.ID != 8)
 		    selectedItem.animation.play('selected');
 		selectedItem.centerOffsets();
+		camFollow.y = selectedItem.getGraphicMidpoint().y;
 	}
 }

@@ -58,13 +58,23 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeHitsoundVolume;
 
 		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
+			'Changes how late/early you have to hit for a "Perfect!!"\nHigher values mean you have to hit later.',
 			'ratingOffset',
 			INT);
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 20;
 		option.minValue = -30;
 		option.maxValue = 30;
+		addOption(option);
+
+		var option:Option = new Option('Perfect!! Hit Window',
+		'Changes the amount of time you have\nfor hitting a "Perfect!!" in milliseconds.',
+		'perfectWindow',
+		INT);
+		option.displayFormat = '%vms';
+		option.scrollSpeed = 15;
+		option.minValue = 15;
+		option.maxValue = 45;
 		addOption(option);
 
 		var option:Option = new Option('Sick! Hit Window',
@@ -74,7 +84,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 15;
 		option.minValue = 15;
-		option.maxValue = 45;
+		option.maxValue = 90;
 		addOption(option);
 
 		var option:Option = new Option('Good Hit Window',
@@ -84,7 +94,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 30;
 		option.minValue = 15;
-		option.maxValue = 90;
+		option.maxValue = 135;
 		addOption(option);
 
 		var option:Option = new Option('Bad Hit Window',
@@ -94,7 +104,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.displayFormat = '%vms';
 		option.scrollSpeed = 60;
 		option.minValue = 15;
-		option.maxValue = 135;
+		option.maxValue = 225;
 		addOption(option);
 
 		var option:Option = new Option('Safe Frames',

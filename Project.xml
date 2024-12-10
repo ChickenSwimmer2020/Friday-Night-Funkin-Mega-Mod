@@ -33,6 +33,11 @@
 
     <define name="DISCORD_ALLOWED" />
 
+	<!-- _____________________________ CUSTOM FLAGS _____________________________ -->
+
+	<!--<haxeflag name="-preloader" value="_SHOWPRELOADER"/>-->
+
+
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
