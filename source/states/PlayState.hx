@@ -552,8 +552,12 @@ class PlayState extends MusicBeatState
 		HUD_container = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT);
 										//higher value = lower line spot
 										//width: 1280 height: 720 //THIS IS A REMINDER TO CS2020
-		HUD_container.drawPolygon([new FlxPoint(700, 720), new FlxPoint(750, 620)], FlxColor.TRANSPARENT, {pixelHinting: true, thickness: 5}, {smoothing: true});
+		HUD_container.drawPolygon([new FlxPoint(700, 720), new FlxPoint(720, 680), new FlxPoint(900, 680), new FlxPoint(950, 650), new FlxPoint(1100, 650), new FlxPoint(1100, 550), new FlxPoint(1280, 500)], FlxColor.TRANSPARENT, {pixelHinting: false, thickness: 5}, {smoothing: true});
 		HUD_container.scrollFactor.set();
+
+
+
+
 		HUDGroup.add(HUD_container);
 
 		uiGroup.add(timeBar);
