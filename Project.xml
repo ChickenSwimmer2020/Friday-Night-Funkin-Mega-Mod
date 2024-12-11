@@ -116,7 +116,7 @@
 	<define name="x86_BUILD" if="32bits" />
 
 	<!--oh boy... its so big. so much memory...-->
-	<haxedef name="HXCPP_BIG_BLOCKS" />
+	<haxedef name="HXCPP_GC_BIG_BLOCKS" />
 	
 	<!-- ______________________________ Haxedefines _____________________________ -->
 

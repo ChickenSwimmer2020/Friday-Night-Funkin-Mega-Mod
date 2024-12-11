@@ -3323,9 +3323,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if(HyperFunk) {
-            inline function colorFromNoteData(n:Int):Int
-                return n == 0 ? 0xFFA02C99 : n == 1 ? 0xFF00C9FC : n == 2 ? 0xFF1AF200 : n == 3 ? 0xFFF80027 : 0xFFFFFFFF;
-            hyperFunkSprite.color = colorFromNoteData(note.noteData);
+            hyperFunkSprite.color = ClientPrefs.data.arrowRGB[note.noteData][0];
             if (hyperFunkSprite.tween != null)
                 hyperFunkSprite.tween.cancel();
 

@@ -1,10 +1,15 @@
 package states;
 
+import backend.utils.Cache;
 import flixel.ui.FlxBar;
-import backend.Functions;
 import sys.thread.Thread;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
+
+enum PreloadType {
+    IMAGE;
+    XML;
+}
 
 class Preload extends MusicBeatState
 {
@@ -14,6 +19,9 @@ class Preload extends MusicBeatState
 	var _BG:FlxBackdrop; // second set of squares.
 
 	var Bar:FlxBar;
+    var prog = 0;
+    var maxProg:Float = 0;
+    var cache:Cache = new Cache();
 
 	override public function create()
 	{
@@ -29,63 +37,39 @@ class Preload extends MusicBeatState
 		_BG.velocity.set(-100, -100);
 
 		//Bar = new FlxBar(0, 450, LEFT_TO_RIGHT, 100, 10, null, "", 0, 100, true);
+        Bar = new FlxBar(0, FlxG.height * 0.9, FlxBarFillDirection.HORIZONTAL_INSIDE_OUT, 601, 35, null, '', 0, 1, true);
+		Bar.scale.x = 2;
+		Bar.scale.y = 1.2;
+		Bar.screenCenter(X);
+		Bar.scrollFactor.set();
+		Bar.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, true, FlxColor.WHITE);
+		
 
 		add(Color);
 		add(BG);
 		add(_BG);
 		add(LoadText);
+        add(Bar);
 		LoadText.screenCenter(XY);
 
-		Cache();
-		Functions.wait(1, () ->
-		{
-			MusicBeatState.switchState(new Warnings());
-		});
+        Thread.create(() ->{ cache.cacheMenuAssets(); });
 		super.create();
 	}
 
+    var doneFrames = 0;
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
-	}
-
-	public function Cache()
-	{
-		// MainMenu
-		Thread.create(() ->
-		{
-            var MainMenu = FileSystem.readDirectory('assets/shared/images/MainMenu/');
-            for (image in MainMenu)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			var Sketchy = FileSystem.readDirectory('assets/shared/images/MainMenu/Sketches/');
-            for (image in Sketchy)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			var Coolio = FileSystem.readDirectory('assets/shared/images/MainMenu/Enters/');
-            for (image in Coolio)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			Paths.cacheBitmap('images/VizMenu.png');
-		});
-		// FreePlay
-		Thread.create(() ->
-		{
-			//have to do manually since they dont have their own folder.
-			Paths.cacheBitmap('images/freeplay_songs.png');
-			Paths.cacheBitmap('images/JukeBox.png');
-			Paths.cacheBitmap('images/jukebox_OVERLAY.png');
-			Paths.cacheBitmap('images/JukeBox_PANEL.png');
-		});
-		// Story Menu
-		Thread.create(() ->
-		{
-			var StoryMenu = FileSystem.readDirectory('assets/shared/images/storymenu');
-			for (image in StoryMenu)
-				if (image.endsWith('.png'))
-					Paths.image(image.substring(0, image.length - 4));
-			Paths.cacheBitmap('images/PlayChar.png');
-			Paths.cacheBitmap('images/Tracks.png');
-		});
+        prog = cache.prog;
+        maxProg = cache.targetProg;
+        if (maxProg > 0)
+            Bar.setRange(0, maxProg);
+        Bar.value = prog;
+        if (prog == maxProg) 
+        {
+            doneFrames++;
+            if (doneFrames >= 30) MusicBeatState.switchState(new TitleState());
+        }else
+            doneFrames = 0;
 	}
 }

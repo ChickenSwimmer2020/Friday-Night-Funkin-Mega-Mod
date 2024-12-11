@@ -1,9 +1,8 @@
 package;
 
-import lime.app.Application;
-#if android
-import android.content.Context;
-#end
+import states.Warnings;
+#if sys import lime.app.Application; #end
+#if android import android.content.Context; #end
 
 import debug.FPSCounter;
 
@@ -14,9 +13,7 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import states.Preload;
 
-#if linux
-import lime.graphics.Image;
-#end
+#if linux import lime.graphics.Image; #end
 
 //crash handler stuff
 #if CRASH_HANDLER
@@ -36,9 +33,11 @@ import backend.Highscore;
 
 class Main extends Sprite
 {
-	var game:FlxGame = new FlxGame(1280, 720, /*#if _SHOWPRELOADER*/ Preload /*#else Warnings #end*/, 60, 60, false, false);
+	var game:FlxGame = new FlxGame(1280, 720, Preload, 60, 60, false, false);
+    #if sys static var application:Application; #end
 
 	public static var fpsVar:FPSCounter;
+    public static var onExits:Array<(code:Int) -> Void> = [];
 
 	// You can pretty much ignore everything from here on - your code should go in your states.
 
@@ -106,8 +105,11 @@ class Main extends Sprite
 			game._customSoundTray = objects.FunkinSoundTray;
 
 		addChild(game);
+        
 
 
+
+        #if sys application = Application.current; #end
 
 		#if !mobile
 		fpsVar = new FPSCounter(10, 3, 0xFFFFFF);
@@ -155,9 +157,17 @@ class Main extends Sprite
 		});
 	}
 
-	static function resetSpriteCache(sprite:Sprite):Void {
+    public static function reloadOnExitCallbacks()
+    {
+        #if sys
+            application.onExit.removeAll();
+            for (callback in onExits) application.onExit.add(callback);
+        #end
+    }
+
+	public static function resetSpriteCache(sprite:Sprite):Void {
 		@:privateAccess {
-		        sprite.__cacheBitmap = null;
+		    sprite.__cacheBitmap = null;
 			sprite.__cacheBitmapData = null;
 		}
 	}

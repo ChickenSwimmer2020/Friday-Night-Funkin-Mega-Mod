@@ -4,7 +4,7 @@ class FunkinArray {
     /**
      * This will clear all objects in `a`.
      * 
-     * Modifies `a` array in place and returns it.
+     * This operation modifies `a` Array in place.
      * 
      * If `a` is null, an empty array will be returned.
      * @param a Array you would like to clear.
