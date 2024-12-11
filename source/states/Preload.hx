@@ -6,11 +6,6 @@ import sys.thread.Thread;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
 
-enum PreloadType {
-    IMAGE;
-    XML;
-}
-
 class Preload extends MusicBeatState
 {
 	var LoadText:FlxText;
