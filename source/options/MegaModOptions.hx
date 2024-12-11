@@ -29,6 +29,12 @@ class MegaModOptions extends BaseOptionsMenu {
 		BOOL);
 		addOption(option);
 
+		var option:Option = new Option('Warnings',
+		'If Checked, The Warnings screens will show after the preloader is finished',
+		'warnings',
+		BOOL);
+		addOption(option);
+
 
         super();
     }

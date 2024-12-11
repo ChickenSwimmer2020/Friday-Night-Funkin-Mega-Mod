@@ -1,5 +1,6 @@
 package states;
 
+import flixel.FlxObject;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -17,6 +18,9 @@ class StoryMenuState extends MusicBeatState
 	var rankText:FlxText;
 
 	private static var lastDifficultyName:String = '';
+
+	public var WeeksCam:FlxCamera;
+	public var WeeksCamFollow:FlxObject;
 
 	var curDifficulty:Int = 1;
 
@@ -52,7 +56,14 @@ class StoryMenuState extends MusicBeatState
 	override function create()
 	{
 		DBBG = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
-		// add(DBBG);
+		add(DBBG);
+
+		WeeksCam = new FlxCamera();
+		WeeksCam.bgColor = 0x00000000;
+		FlxG.cameras.add(WeeksCam, false);
+
+		WeeksCamFollow = new FlxObject(0, 0, 1, 1);
+		add(WeeksCamFollow);
 
 		PlayState.isStoryMode = true;
 		WeekData.reloadWeekFiles(true);
@@ -105,8 +116,8 @@ class StoryMenuState extends MusicBeatState
 			{
 				loadedWeeks.push(weekFile);
 				WeekData.setDirectoryFromWeek(weekFile);
-				weekThing = new MenuItem(500, 0, WeekData.weeksList[i]);
-				weekThing.y += (weekThing.height + 130);
+				weekThing = new MenuItem(-500, 0, WeekData.weeksList[i]);
+				weekThing.y += (weekThing.height + 200);
 				weekThing.scale.set(0.25,0.25); //reimplement when movement gets fixed smh
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
@@ -203,10 +214,28 @@ class StoryMenuState extends MusicBeatState
 		add(txtWeekDisplay);
 		add(txtWeekDesc);
 
+		scoreText.scrollFactor.set();
+		txtWeekDesc.scrollFactor.set();
+		txtWeekDisplay.scrollFactor.set();
+		txtWeekTitle.scrollFactor.set();
+		txtTracklist.scrollFactor.set();
+		leftArrow.scrollFactor.set();
+		rightArrow.scrollFactor.set();
+		PlayChar.scrollFactor.set();
+		tracksSprite.scrollFactor.set();
+		sprDifficulty.scrollFactor.set();
+
+		weekThing.scrollFactor.set(0, 1); //so that the weeks actually scroll properly
+		weekThing.cameras = [WeeksCam]; //put the week selector on the camera for Y offsets
+		WeeksCamFollow.screenCenter(X); //move to middle so we can offset the weeks selector properly
+		WeeksCam.setPosition(0, 0); //provides offsets to our week selector movement
+
 		changeWeek();
 		changeDifficulty();
 
 		super.create();
+
+		WeeksCam.follow(WeeksCamFollow, null, 0.15); //so the weeks move properly
 	}
 
 	override function closeSubState()
@@ -321,6 +350,7 @@ class StoryMenuState extends MusicBeatState
 			lock.y = grpWeekText.members[lock.ID].y;
 			lock.visible = (lock.y > FlxG.height / 2);
 		});
+		WeeksCamFollow.y = weekThing.getGraphicMidpoint().y + (curWeek * 100); //so we can track which week needs to be at the top!!! //will this work?
 	}
 
 	var movedBack:Bool = false;
@@ -468,7 +498,7 @@ class StoryMenuState extends MusicBeatState
 			bullShit++;
 		}
 
-		bgSprite.visible = true;
+		bgSprite.visible = false;
 		var assetName:String = leWeek.weekBackground;
 		if (assetName == null || assetName.length < 1)
 		{

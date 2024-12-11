@@ -60,7 +60,7 @@ class Cache {
      * 
      * Removes literally *every single asset* that is currently cached.
      * This is an unsafe operation, and should only be used when reloading the games assets.
-     */
+     */ //wouldnt it make sense if we used this when the game unloaded playstate in favor of loading all the menu assets again? --ChickenSwimmer2020
     public static function clearCache()
     {
         // A vigorous cleaning is in order.

@@ -93,6 +93,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		['Change window title', "self explanitory\nValue 1: Window name\nleave blank to reset"],
 		['Trigger Countdown', "Trigger the countdown graphics and sfx\nValue 1: intro number\n{must be 3,2,1, or go}"],
 		['Camera TomFuckery', "you can do a LOT of stuff now!\nValue 1: Function || Camera\nValue 2: Angle Value"],
+		['Apply Camera Shader', "simple, apply a shader to a camera\nValue 1: Shader To Apply, values (if any)\nformat:[SHADER, VALUE1, VALUE2, ETC.]\nshader list:\n(WiggleEffect, RainShader, RadialChromaticAbberation, Pixalate, Overlay, ColorSwap, Bloom, BlendMode, Binary)\nValue 2: Camera To Apply Shader To\ncamera list:\n(camGAME, camHUD, camHUD2, camOther)"],
 		//MEGAMOD STAGE EVENTS
 
 		//TESTING EVENTS --debug only.

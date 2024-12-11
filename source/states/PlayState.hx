@@ -1,5 +1,12 @@
 package states;
 
+import shaders.ColorSwap.ColorSwapShader;
+import shaders.OverlayShader;
+import shaders.PixalateShader;
+import shaders.RadialChromaticAbberation;
+import shaders.RainShader;
+import flixel.system.FlxAssets.FlxShader;
+import shaders.WiggleEffect;
 import lime.app.Application;
 import flixel.group.FlxGroup;
 import backend.Functions;
@@ -2485,6 +2492,41 @@ class PlayState extends MusicBeatState
 				}
 			case 'Camera TomFuckery':
 				CameraTomFuckery(value1, flValue2);
+			case 'Apply Camera Shader': //TODO: get this working
+				if(value1 == '') value1 = ''; //shader choice
+				if(value2 == '') value2 = ''; //camera choice
+				var Shader:FlxShader;
+				var CameraToApplyTo:FlxCamera;
+				var ShaderAppliedToCamera:Bool = false;
+				switch(value1) {
+					case 'WiggleEffect':
+						Shader = new WiggleShader();
+					case 'RainShader':
+						Shader = new RainShader();
+					case 'RadialChromaticAbberation':
+						Shader = new RadialChromaticAbberation();
+					case 'Pixalate':
+						Shader = new PixalateShader();
+					case 'OverlayShader':
+						Shader = new OverlayShader();
+					case 'ColorSwap':
+						Shader = new ColorSwapShader();
+					case '':
+					default:
+						Shader = null;
+				}
+				switch(value2) { //get the camera to apply to
+					case 'camGAME': //should work?
+						CameraToApplyTo = camGame;
+					case 'camHUD':
+						CameraToApplyTo = camHUD;
+					case 'camHUD2':
+						CameraToApplyTo = camHUD2;
+					case 'camOther':
+						CameraToApplyTo = camOther;
+					default:
+						CameraToApplyTo = null;
+				}
 
 			#if debug
 			case 'Test File Loading':

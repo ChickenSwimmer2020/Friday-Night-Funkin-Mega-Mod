@@ -1,5 +1,7 @@
 package states;
 
+import states.Warnings;
+import flixel.FlxState;
 import backend.utils.Cache;
 import flixel.ui.FlxBar;
 import sys.thread.Thread;
@@ -17,6 +19,8 @@ class Preload extends MusicBeatState
     var prog = 0;
     var maxProg:Float = 0;
     var cache:Cache = new Cache();
+
+	public var StateToLoad:Null<flixel.FlxState>; //so we can choose if we need to load the warnings, or titlestate.
 
 	override public function create()
 	{
@@ -48,6 +52,7 @@ class Preload extends MusicBeatState
 		LoadText.screenCenter(XY);
 
         Thread.create(() ->{ cache.cacheMenuAssets(); });
+		Thread.create(() ->{ AlphaCharacter.loadAlphabetData(); }); //do this here 1: to not stutter, two. so no matter what state we load, we dont crash
 		super.create();
 	}
 
@@ -55,6 +60,11 @@ class Preload extends MusicBeatState
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+		if(FlxG.save.data.warnings) { //should work in theory? //would have used ClientPrefs, but loading preferences causes a big graphics bug, so we use FlxG.save instead
+			StateToLoad = new Warnings();
+		}else{
+			StateToLoad = new TitleState();
+		}
         prog = cache.prog;
         maxProg = cache.targetProg;
         if (maxProg > 0)
@@ -63,7 +73,7 @@ class Preload extends MusicBeatState
         if (prog == maxProg) 
         {
             doneFrames++;
-            if (doneFrames >= 30) MusicBeatState.switchState(new TitleState());
+        if (doneFrames >= 30) MusicBeatState.switchState(StateToLoad);
         }else
             doneFrames = 0;
 	}
