@@ -1,4 +1,5 @@
 # Friday Night Funkin': Mega Mod
+# MAIN BRANCH IS 1.0 NOT MASTER
 
 Welcome to the official page for the FNF':MM! this GitHub page is well, to put it simply. store my source so i don't lose any to random crashes. but! this also means that you, might be able to play it! if you can build my mess of spaghetti code that is. so, i will be adding a list below to allow you to get all required plugins, so that if you really want to build my mod, you can! with all that said, enjoy my mess of spaghetti!
 
