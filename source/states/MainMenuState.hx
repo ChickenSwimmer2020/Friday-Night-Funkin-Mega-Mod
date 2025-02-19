@@ -66,7 +66,6 @@ class MainMenuState extends MusicBeatState
 		'credits',
 		'settings',
 		'awards',
-		'discord',
 		'youtube',
 		'overworld'
 	];
@@ -88,6 +87,7 @@ class MainMenuState extends MusicBeatState
 			cacheMenuEnter('story_mode');
 			cacheMenuEnter('awards');
 			cacheMenuEnter('settings');
+			cacheMenuEnter('freeplay');
 
 
 
@@ -264,9 +264,8 @@ class MainMenuState extends MusicBeatState
 			if (itemID == 4) menuItem.y += 100;
 			if (itemID == 5) menuItem.y += 100;
 			if (itemID == 6) menuItem.y += 100;
-			if (itemID == 7) menuItem.y += 100;
 
-            if (itemID == 8) menuItem.visible = false;
+            if (itemID == 7) menuItem.visible = false;
         }
     }
 
@@ -462,17 +461,17 @@ class MainMenuState extends MusicBeatState
 						case 0: //story mode
 							createMenuEnter('story_mode', 0, 0, 1, 0.75);
 						case 1: //freeplay
-							trace('implement: Freeplay');
+							createMenuEnter('freeplay', 150, 300, 1, 1.5);
 						case 2: //gallery
 							trace('implement: Gallery');
 						case 3: //credits
 						trace('implement: credits');
 						case 4: //settings
-							createMenuEnter('settings', 0, 0, 1, 0.90);
+							createMenuEnter('settings', 150, 0, 1, 0.90);
 						case 5: //awards
 							createMenuEnter('awards', 250, 0, 0.75, 0.5);
-						//we skip over 6 and 7 because those are for the youtube and discord, we dont need intro anims for those.
-						case 8:
+						//we skip over 6 because that is for youtube and we dont need anims for that
+						case 7:
 							trace('implement: Overworld');
 					}
 
@@ -522,6 +521,8 @@ class MainMenuState extends MusicBeatState
 									PlayState.SONG.splashSkin = null;
 									PlayState.stageUI = 'normal';
 								}
+							case 'youtube':
+								CoolUtil.browserLoad('https://www.youtube.com/@ChickenSwimmer2020');
 						}
 					});
 					
