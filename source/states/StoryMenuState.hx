@@ -208,7 +208,7 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xff66ff00;
 		add(txtTracklist);
-			//add(rankText); //eventually?
+		add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 		add(txtWeekDisplay);
@@ -225,10 +225,10 @@ class StoryMenuState extends MusicBeatState
 		tracksSprite.scrollFactor.set();
 		sprDifficulty.scrollFactor.set();
 
+			//can we add offsets from the x scrollfactor?
 		weekThing.scrollFactor.set(0, 1); //so that the weeks actually scroll properly
-		weekThing.cameras = [WeeksCam]; //put the week selector on the camera for Y offsets
-		WeeksCamFollow.screenCenter(X); //move to middle so we can offset the weeks selector properly
-		WeeksCam.setPosition(0, 0); //provides offsets to our week selector movement
+		//weekThing.cameras = [WeeksCam]; //put the week selector on the camera for Y offsets
+		//WeeksCamFollow.screenCenter(X); //move to middle so we can offset the weeks selector properly //is this breaking?!
 
 		changeWeek();
 		changeDifficulty();
@@ -267,7 +267,10 @@ class StoryMenuState extends MusicBeatState
 		if (Math.abs(intendedScore - lerpScore) < 10)
 			lerpScore = intendedScore;
 
+		var songRank = Highscore.getRating(loadedWeeks[curWeek].fileName, curDifficulty);
+
 		scoreText.text = "WEEK SCORE:" + lerpScore;
+		rankText.text = "Rank: " + songRank;
 
 		// FlxG.watch.addQuick('font', scoreText.font);
 
@@ -350,7 +353,8 @@ class StoryMenuState extends MusicBeatState
 			lock.y = grpWeekText.members[lock.ID].y;
 			lock.visible = (lock.y > FlxG.height / 2);
 		});
-		WeeksCamFollow.y = weekThing.getGraphicMidpoint().y + (curWeek * 100); //so we can track which week needs to be at the top!!! //will this work?
+		//would setting the y value of a sprite to its midpoint even work?
+		//weekThing.y = weekThing.getGraphicMidpoint().y + curWeek * 10; //so we can track which week needs to be at the top!!! //will this work?
 	}
 
 	var movedBack:Bool = false;
@@ -524,6 +528,7 @@ class StoryMenuState extends MusicBeatState
 		{
 			curDifficulty = newPos;
 		}
+		weekThing.y = bullShit;
 		updateText();
 	}
 

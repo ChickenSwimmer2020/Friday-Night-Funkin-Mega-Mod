@@ -1,7 +1,8 @@
 package states;
 
+import flixel.FlxState;
+import backend.utils.Cache;
 import flixel.ui.FlxBar;
-import backend.Functions;
 import sys.thread.Thread;
 import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.display.FlxBackdrop;
@@ -14,16 +15,31 @@ class MenuCacher extends MusicBeatState
 	var _BG:FlxBackdrop; // second set of squares.
 
 	var Bar:FlxBar;
+    var prog = 0;
+    var maxProg:Float = 0;
+    var cache:Cache = new Cache();
 
-	var MsgTxt:String = 'CACHING MENU ASSETS';
+	public var ActualLoadState:Null<flixel.FlxState>;
+	public var LoadString:String;
 
-	public function new(WhereToLoadTo:Null<flixel.FlxState>, ?message:String)
+	public function new(StateToLoad:Null<flixel.FlxState>, Message:String) //you forgot to replace the menucacher, solar.
 	{
 		super();
-
 		Color = new FlxSprite().makeGraphic(1920, 1080, FlxColor.LIME, false);
 
-		LoadText = new FlxText(0, 0, 0, MsgTxt, 8, false);
+		if(StateToLoad == null) {
+			ActualLoadState = new TitleState(); //avoid a crash if possible
+		} else {
+			ActualLoadState = StateToLoad; //so we can choose what state to load afterwards
+		}
+
+		if(Message == null) {
+			LoadString = "CACHING MENUS...\nPLEASE WAIT";
+		} else {
+			LoadString = Message;
+		}
+
+		LoadText = new FlxText(0, 0, 0, LoadString, 8, false);
 		LoadText.setFormat(null, 24, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, true);
 
 		BG = new FlxBackdrop(FlxGridOverlay.createGrid(80, 80, 160, 160, true, 0x00000000, 0x6B000000));
@@ -33,70 +49,38 @@ class MenuCacher extends MusicBeatState
 		_BG.velocity.set(-100, -100);
 
 		//Bar = new FlxBar(0, 450, LEFT_TO_RIGHT, 100, 10, null, "", 0, 100, true);
+        Bar = new FlxBar(0, FlxG.height * 0.9, FlxBarFillDirection.HORIZONTAL_INSIDE_OUT, 601, 35, null, '', 0, 1, true);
+		Bar.scale.x = 2;
+		Bar.scale.y = 1.2;
+		Bar.screenCenter(X);
+		Bar.scrollFactor.set();
+		Bar.createFilledBar(FlxColor.TRANSPARENT, FlxColor.WHITE, true, FlxColor.WHITE);
+		
 
 		add(Color);
 		add(BG);
 		add(_BG);
 		add(LoadText);
+        add(Bar);
 		LoadText.screenCenter(XY);
 
-		Cache();
-		Functions.wait(5, () ->
-		{
-			if(WhereToLoadTo == null) {
-				MusicBeatState.switchState(new TitleState()); //prevent a crash by having a fallback state to load to
-				#if debug
-					trace('ERROR LOADING STATE\nLOADING FALLBACK...');
-				#end
-			}
-			else
-				MusicBeatState.switchState(WhereToLoadTo);
-		});
+        Thread.create(() ->{ cache.cacheMenuAssets(); });
 	}
 
+    var doneFrames = 0;
 	override public function update(elapsed:Float)
 	{
-
 		super.update(elapsed);
-	}
-
-	public function Cache()
-	{
-		// MainMenu
-		Thread.create(() ->
-		{
-            var MainMenu = FileSystem.readDirectory('assets/shared/images/MainMenu');
-            for (image in MainMenu)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			var Sketchy = FileSystem.readDirectory('assets/shared/images/MainMenu/Sketches');
-            for (image in Sketchy)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			var Coolio = FileSystem.readDirectory('assets/shared/images/MainMenu/Enters');
-            for (image in Coolio)
-                if (image.endsWith('.png'))
-                    Paths.image(image.substring(0, image.length - 4));
-			Paths.cacheBitmap('VizMenu');
-		});
-		// FreePlay
-		Thread.create(() ->
-		{
-			//have to do manually since they dont have their own folder.
-			Paths.cacheBitmap('freeplay_songs');
-			Paths.cacheBitmap('JukeBox');
-			Paths.cacheBitmap('jukebox_OVERLAY');
-			Paths.cacheBitmap('JukeBox_PANEL');
-		});
-		// Story Menu
-		Thread.create(() ->
-		{
-			var StoryMenu = FileSystem.readDirectory('assets/shared/images/storymenu');
-			for (image in StoryMenu)
-				if (image.endsWith('.png'))
-					Paths.image(image.substring(0, image.length - 4));
-			Paths.cacheBitmap('PlayChar');
-			Paths.cacheBitmap('Tracks');
-		});
+        prog = cache.prog;
+        maxProg = cache.targetProg;
+        if (maxProg > 0)
+            Bar.setRange(0, maxProg);
+        Bar.value = prog;
+        if (prog == maxProg) 
+        {
+            doneFrames++;
+        if (doneFrames >= 30) MusicBeatState.switchState(ActualLoadState);
+        }else
+            doneFrames = 0;
 	}
 }
