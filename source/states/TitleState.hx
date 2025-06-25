@@ -53,7 +53,7 @@ class TitleState extends MusicBeatState
 	public static var updateVersion:String = '';
 
 	override public function create():Void
-	{	
+	{
 		new FlxTimer().start(2, function(tmr:FlxTimer)
 		{
 			MMlogo.animation.play('shine', true);
@@ -110,13 +110,13 @@ class TitleState extends MusicBeatState
 		}
 
 		FlxG.mouse.visible = false;
-		//if (FlxG.save.data.flashing == null && !FlashingState.leftState) //BROKEN!
-		//{
+		// if (FlxG.save.data.flashing == null && !FlashingState.leftState) //BROKEN!
+		// {
 		//	FlxTransitionableState.skipNextTransIn = false;
 		//	FlxTransitionableState.skipNextTransOut = false;
 		//	MusicBeatState.switchState(new FlashingState());
-		//}
-		//else
+		// }
+		// else
 		{
 			if (initialized)
 				startIntro();
@@ -226,7 +226,7 @@ class TitleState extends MusicBeatState
 		Vis = new MenuVisualizer(0, 295);
 		FlxG.debugger.track(Vis);
 
-		//VersionNumber = new FlxSprite(BGboom.x + 800, BGboom.y);
+		// VersionNumber = new FlxSprite(BGboom.x + 800, BGboom.y);
 		VersionNumber = new FlxSprite(MMlogo.x, MMlogo.y);
 		VersionNumber.scale.set(0.2, 0.2);
 		VersionNumber.frames = Paths.getSparrowAtlas('TitleScreen/VersionNum');
@@ -373,7 +373,6 @@ class TitleState extends MusicBeatState
 		YTLogo.screenCenter(X);
 		YTLogo.antialiasing = ClientPrefs.data.antialiasing;
 
-
 		if (initialized)
 			skipIntro();
 		else
@@ -404,11 +403,12 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (TweenComplete) {
+		if (TweenComplete)
+		{
 			FlxG.camera.zoom = FlxMath.lerp(1, FlxG.camera.zoom, 1 - (elapsed * 6));
 			FlxG.camera.angle = FlxMath.lerp(0, FlxG.camera.angle, 1 - (elapsed * 3));
 		}
-			
+
 		FlxG.watch.addQuick("Current Beat", sickBeats);
 		FlxG.watch.addQuick('Song Position', Conductor.songPosition);
 		if (FlxG.sound.music != null)
@@ -461,7 +461,7 @@ class TitleState extends MusicBeatState
 					hey = true;
 					fuckoff = false;
 					bfBop.animation.play('hey');
-					bfBop.y -= 25; //50
+					bfBop.y -= 25; // 50
 				}
 				else if (fuckoff && !willhey)
 				{
@@ -839,7 +839,7 @@ class TitleState extends MusicBeatState
 				},
 			});
 			@:privateAccess
-				Vis.set_snd(FlxG.sound.music);
+			Vis.set_snd(FlxG.sound.music);
 			#if desktop
 			// Updating Discord Rich Presence
 			DiscordClient.changePresence("Title", "Title Screen");

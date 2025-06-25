@@ -1,5 +1,7 @@
 package states;
 
+import flixel.math.FlxRandom;
+import shaders.RGBPalette;
 import backend.WeekData;
 import backend.Highscore;
 import backend.Song;
@@ -11,6 +13,10 @@ import flixel.math.FlxMath;
 import flixel.util.FlxDestroyUtil;
 import haxe.Json;
 
+
+import shaders.RGBPalette;
+import shaders.RGBPalette.RGBShaderReference;
+
 typedef BPMS =
 {
 	bpm:Float
@@ -20,7 +26,8 @@ class FreeplayState extends MusicBeatState
 {
 	var songs:Array<SongMetadata> = [];
 
-	var JukeBox:FlxSprite;
+	var JB:FlxSprite;
+	var JBC:FlxSprite;
 	var Console:FlxSprite;
 	var Glass:FlxSprite;
 
@@ -56,7 +63,6 @@ class FreeplayState extends MusicBeatState
 	private var iconArray:Array<HealthIcon> = [];
 
 	var bg:FlxSprite;
-	var intendedColor:Int;
 
 	var missingTextBG:FlxSprite;
 	var missingText:FlxText;
@@ -67,16 +73,16 @@ class FreeplayState extends MusicBeatState
 
 	var player:MusicPlayer;
 
-	public var RandColor:Int = 0;
-
-	public var LastColor:Int;
-
 	public var songLowercase:String;
 
 	public var choosenSong:String = '';
 
+
+	public var JBShader:RGBShaderReference;
+	var pallet:RGBPalette = new RGBPalette();
+
 	override function create()
-	{
+	{	
 		curSong = 0;
         curDifficulty = Math.round(Math.max(0, Difficulty.defaultList.indexOf(lastDifficultyName)));
 
@@ -89,25 +95,15 @@ class FreeplayState extends MusicBeatState
 		// Sans = 6
 		// Purple = 7
 
-		JukeBox = new FlxSprite(0, 0);
-		//we handle the asset loading in other CPU threads so save hopefully on the speed of the state loading
-		JukeBox.frames = Paths.getSparrowAtlas('JukeBox');
-		JukeBox.animation.addByIndices('0', 'JukeBox', [for (i in 0...18) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('1', 'JukeBox', [for (i in 19...38) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('2', 'JukeBox', [for (i in 39...58) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('3', 'JukeBox', [for (i in 59...78) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('4', 'JukeBox', [for (i in 79...98) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('5', 'JukeBox', [for (i in 99...118) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('6', 'JukeBox', [for (i in 119...138) i], "", 24, false, false, false);
-		JukeBox.animation.addByIndices('7', 'JukeBox', [for (i in 139...158) i], "", 24, false, false, false);
+		JB = new FlxSprite(0, 0).loadGraphic(Paths.image('JB_C'));
 
 		Glass = new FlxSprite(0, 0).loadGraphic(Paths.image('jukebox_OVERLAY'));
 		Glass.scale.set(0.4,0.405);
-		Glass.setPosition(JukeBox.x + 202, JukeBox.y + 231);
+		Glass.setPosition(JB.x + 198, JB.y + 227);
 		Glass.antialiasing = ClientPrefs.data.antialiasing;
 		Glass.updateHitbox();
 
-		Console = new FlxSprite(JukeBox.x + 0, JukeBox.y + 250);
+		Console = new FlxSprite(JB.x + 0, JB.y + 250);
 		Console.frames = Paths.getSparrowAtlas('JukeBox_PANEL');
 		Console.animation.addByIndices('Easy', 'jukebox_DifficultyConsole', [0], "", 24, false, false, false);
 		Console.animation.addByIndices('Easy_TransitionToNormal', 'jukebox_DifficultyConsole', [1, 2], "", 24, false, false, false);
@@ -129,10 +125,10 @@ class FreeplayState extends MusicBeatState
         Console.animation.play(difficultyToString(curDifficulty));
 		Console.antialiasing = ClientPrefs.data.antialiasing;
 
-		JukeBox.antialiasing = ClientPrefs.data.antialiasing;
+		JB.antialiasing = ClientPrefs.data.antialiasing;
 
-		JukeBox.scale.set(0.9, 0.9);
-		JukeBox.setPosition(-120, 100);
+		JB.scale.set(0.9, 0.9);
+		JB.setPosition(-120, 100);
 		Console.scale.set(0.35, 0.35);
 
 		//record
@@ -149,11 +145,24 @@ class FreeplayState extends MusicBeatState
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
 
-		JukeBox.animation.play('$RandColor'); // prevent animation bug on state load
 		Conductor.bpm = 114; //fix camera speed error
 		bopspeed = 2; // fixes anim play speed on state reopen
 		cambopspeed = 4;
 		record.animation.timeScale = 1;
+
+
+		var JBO:FlxSprite = new FlxSprite(JB.x - 2, JB.y - 2).loadGraphic(Paths.image('JB_O'));
+		JBO.scale.set(JB.scale.x, JB.scale.y);
+
+		JBC = new FlxSprite(JB.x + 132, JB.y + 28);
+		JBC.frames = Paths.getSparrowAtlas('JB_G');
+		JBC.animation.addByPrefix('JB_G', 'jukebox_colors_glow', 24, false, false, false);
+
+		pallet.r = colors[0];
+		pallet.g = colors[0];
+		pallet.b = colors[0];
+
+		JBShader = new RGBShaderReference(JBC, pallet);
 
 		if (WeekData.weeksList.length < 1)
 		{
@@ -254,7 +263,9 @@ class FreeplayState extends MusicBeatState
 		bottomBG = new FlxSprite(0, FlxG.height - 26).makeGraphic(FlxG.width, 26, 0xFF000000);
 		bottomBG.alpha = 0.6;
 		//add(animationBG);
-		add(JukeBox);
+		add(JB);
+		add(JBC);
+		add(JBO);
 		add(record);
 		add(Glass);
 		add(Console); // BG TRIED TO HIDE THEM, FUCK THE BG.
@@ -452,7 +463,6 @@ class FreeplayState extends MusicBeatState
 				player.playingMusic = false;
 				player.switchPlayMusic();
 
-				JukeBox.animation.play('$RandColor'); // prevent animation bug on music switch, also fixes animation timing bug
 				record.animation.timeScale = 1; //fix record spin speed on song unload
 
 				FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
@@ -627,21 +637,37 @@ class FreeplayState extends MusicBeatState
 		super.update(elapsed);
 	}
 
+	var random:FlxRandom = new FlxRandom();
+	var curCol:Int = 0;
+	var lastCol:Int = 0;
+
+	var colors:Array<Int> = [
+		0xFFFFFFFF, // White
+		0xFFFFB9F6, // Pink
+		0xFFFF0000, // Red
+		0xFF88FFFF, // Teal
+		0xFF66A7A7, // Aqua
+		0xFF00FF00, // Green
+		0xFF00FFFF, // Cyan
+		0xFFFFF99E, // Sans
+		0xFF800080  // Purple
+	];
+
 	override function beatHit()
 	{
 		super.beatHit();
 		if (curBeat % bopspeed == 0)
 		{
-			LastColor = RandColor;
+			while (curCol == lastCol)
+				curCol = random.int(0, 7);
 
-			while(RandColor == LastColor) {
-				RandColor = FlxG.random.int(0, 7);
-			}
+			pallet.r = colors[curCol];
+			pallet.g = colors[curCol];
+			pallet.b = colors[curCol];
+			
+			JBC.animation.play('JB_G', true, false);
 
-			JukeBox.animation.play('$RandColor', true);
-		}
-		if (curBeat % cambopspeed == 0)
-		{
+			lastCol = curCol;
 			FlxG.camera.zoom = 1.02;
 		}
 	}

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="JB_G.png">
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="jukebox_colors_glow instance 10000" x="0" y="0" width="454" height="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10001" x="0" y="654" width="448" height="654" frameX="-3" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10002" x="0" y="1308" width="440" height="654" frameX="-7" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10003" x="440" y="1308" width="432" height="654" frameX="-11" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10004" x="448" y="654" width="426" height="654" frameX="-14" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10005" x="872" y="1308" width="418" height="654" frameX="-18" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10006" x="454" y="0" width="412" height="654" frameX="-21" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10007" x="866" y="0" width="404" height="654" frameX="-25" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10008" x="874" y="654" width="398" height="654" frameX="-28" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10009" x="1270" y="0" width="390" height="654" frameX="-32" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10010" x="1272" y="654" width="384" height="654" frameX="-35" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10011" x="1656" y="654" width="376" height="654" frameX="-39" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10012" x="1660" y="0" width="368" height="654" frameX="-43" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10013" x="1290" y="1308" width="362" height="654" frameX="-46" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10014" x="1652" y="1308" width="358" height="654" frameX="-48" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10015" x="1652" y="1308" width="358" height="654" frameX="-48" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10016" x="1652" y="1308" width="358" height="654" frameX="-48" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10017" x="1652" y="1308" width="358" height="654" frameX="-48" frameY="0" frameWidth="454" frameHeight="654"/>
+	<SubTexture name="jukebox_colors_glow instance 10018" x="1652" y="1308" width="358" height="654" frameX="-48" frameY="0" frameWidth="454" frameHeight="654"/>
+</TextureAtlas>

@@ -53,6 +53,10 @@ class StoryMenuState extends MusicBeatState
 	public var weekThing:MenuItem;
 	public var num:Int = 0;
 
+
+	public var WEEKIMAGES:FlxSpriteGroup = new FlxSpriteGroup(100, 400);
+	var WEEKIMAGESTARGETY:Float = 0;
+
 	override function create()
 	{
 		DBBG = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, 0xFFFFFFFF);
@@ -107,7 +111,14 @@ class StoryMenuState extends MusicBeatState
 		DiscordClient.changePresence("Story Menu", "Choosing the week");
 		#end
 
-		for (i in 0...WeekData.weeksList.length)
+		var imagenames:Array<String> = [
+			'Tutorial',
+			'Chicken'
+		];
+
+		
+
+		for (i in 0...WeekData.weeksList.length) //so, these dont actually do anything. seperate system.
 		{
 			var weekFile:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
 			var isLocked:Bool = weekIsLocked(WeekData.weeksList[i]);
@@ -117,12 +128,24 @@ class StoryMenuState extends MusicBeatState
 				loadedWeeks.push(weekFile);
 				WeekData.setDirectoryFromWeek(weekFile);
 				weekThing = new MenuItem(-500, 0, WeekData.weeksList[i]);
-				weekThing.y += (weekThing.height + 200);
 				weekThing.scale.set(0.25,0.25); //reimplement when movement gets fixed smh
+				weekThing.updateHitbox();
+				weekThing.y += (weekThing.height + 200);
+
 				weekThing.targetY = num;
 				grpWeekText.add(weekThing);
 
-				//weekThing.updateHitbox(); //i swear, if it was this bitch that was causing problems.
+				weekThing.updateHitbox(); //i swear, if it was this bitch that was causing problems.
+
+
+				var img:FlxSprite = new FlxSprite(0, 0).loadGraphic('assets/shared/images/storymenu/${imagenames[i]}.png');
+				img.scale.set(0.25,0.25); //reimplement when movement gets fixed smh
+				img.updateHitbox();
+				img.y = 90 * i; //shouldnt mess up?
+				img.ID = i;
+				WEEKIMAGES.add(img);
+
+
 
 				// Needs an offset thingie
 				if (isLocked)
@@ -139,6 +162,9 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
+
+
+
 		WeekData.setDirectoryFromWeek(loadedWeeks[0]);
 		var charArray:Array<String> = loadedWeeks[0].weekCharacters;
 		for (char in 0...3)
@@ -148,6 +174,7 @@ class StoryMenuState extends MusicBeatState
 			grpWeekCharacters.add(weekCharacterThing);
 		}
 
+		add(WEEKIMAGES);
 		add(grpWeekText);
 		add(bgSprite);
 		difficultySelectors = new FlxGroup();
@@ -245,21 +272,28 @@ class StoryMenuState extends MusicBeatState
 		super.closeSubState();
 	}
 
+	var bullShit:Int = 0;
+
 	override function update(elapsed:Float)
 	{
+		WEEKIMAGES.y = FlxMath.lerp(WEEKIMAGES.y, WEEKIMAGESTARGETY, Math.exp(-elapsed * 30));
+
 		// trace(curWeek);
 		// trace(curDifficulty);
 		FlxG.watch.addQuick("current week", curWeek);
 		FlxG.watch.addQuick("current difficulty", curDifficulty);
 
-		if (curWeek == 0)
-		{
-			PlayChar.animation.play('BF', true);
-		};
-		if (curWeek == 1)
-		{
-			PlayChar.animation.play('CS20', true);
-		};
+		switch(curWeek){
+			case 0:
+				WEEKIMAGESTARGETY = 400;
+				PlayChar.animation.play('BF', true);
+			case 1:
+				WEEKIMAGESTARGETY = 300;
+				PlayChar.animation.play('CS20', true);
+			default:
+				WEEKIMAGESTARGETY = 0;
+				trace('AHHHHHHHHHHHH');
+		}
 
 		// scoreText.setFormat('VCR OSD Mono', 32);
 
@@ -487,7 +521,7 @@ class StoryMenuState extends MusicBeatState
 		txtWeekDisplay.text = theDisplayName.toUpperCase();
 		txtWeekDesc.text = daDesc.toUpperCase();
 
-		var bullShit:Int = 0;
+		
 
 		var unlocked:Bool = !weekIsLocked(leWeek.fileName);
 		for (item in grpWeekText.members)
@@ -501,6 +535,8 @@ class StoryMenuState extends MusicBeatState
 
 			bullShit++;
 		}
+
+		for(i in 0...WEEKIMAGES.members.length) WEEKIMAGES.members[i].ID == curWeek ? WEEKIMAGES.members[i].alpha = 1 : WEEKIMAGES.members[i].alpha = 0.6; //affects week alphas, very simple.
 
 		bgSprite.visible = false;
 		var assetName:String = leWeek.weekBackground;
@@ -528,7 +564,9 @@ class StoryMenuState extends MusicBeatState
 		{
 			curDifficulty = newPos;
 		}
+
 		weekThing.y = bullShit;
+		
 		updateText();
 	}
 
