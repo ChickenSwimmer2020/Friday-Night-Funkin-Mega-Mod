@@ -579,7 +579,7 @@ class PlayState extends MusicBeatState
 			timeTxt.y += 3;
 		}
 
-		generateSong();
+		generateSong(Difficulty.getString());
 
 		noteGroup.add(grpNoteSplashes);
 
@@ -1379,7 +1379,7 @@ class PlayState extends MusicBeatState
 	private var eventsPushed:Array<String> = [];
 	private var totalColumns: Int = 4;
 
-	private function generateSong():Void
+	private function generateSong(?difficulty:String):Void
 	{
 		// FlxG.log.add(ChartParser.parse());
 		songSpeed = PlayState.SONG.speed;
@@ -1403,11 +1403,21 @@ class PlayState extends MusicBeatState
 		{
 			if (songData.needsVoices)
 			{
-				var playerVocals = Paths.voices(songData.song, (boyfriend.vocalsFile == null || boyfriend.vocalsFile.length < 1) ? 'Player' : boyfriend.vocalsFile);
-				vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(songData.song));
-				
-				var oppVocals = Paths.voices(songData.song, (dad.vocalsFile == null || dad.vocalsFile.length < 1) ? 'Opponent' : dad.vocalsFile);
-				if(oppVocals != null && oppVocals.length > 0) opponentVocals.loadEmbedded(oppVocals);
+				if(difficulty != null){
+					if(difficulty == 'Precursor'){
+						var playerVocals = Paths.voices(songData.song, (boyfriend.vocalsFile == null || boyfriend.vocalsFile.length < 1) ? 'Player-OG' : '${boyfriend.vocalsFile}-OG');
+						vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(songData.song));
+						
+						var oppVocals = Paths.voices(songData.song, (dad.vocalsFile == null || dad.vocalsFile.length < 1) ? 'Opponent-OG' : '${dad.vocalsFile}-OG');
+						if(oppVocals != null && oppVocals.length > 0) opponentVocals.loadEmbedded(oppVocals);
+					}
+				}else{ //load default vocals if no difficulty is specified.
+					var playerVocals = Paths.voices(songData.song, (boyfriend.vocalsFile == null || boyfriend.vocalsFile.length < 1) ? 'Player' : boyfriend.vocalsFile);
+					vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(songData.song));
+					
+					var oppVocals = Paths.voices(songData.song, (dad.vocalsFile == null || dad.vocalsFile.length < 1) ? 'Opponent' : dad.vocalsFile);
+					if(oppVocals != null && oppVocals.length > 0) opponentVocals.loadEmbedded(oppVocals);
+				}
 			}
 		}
 		catch (e:Dynamic) {}
@@ -1422,7 +1432,11 @@ class PlayState extends MusicBeatState
 		inst = new FlxSound();
 		try
 		{
-			inst.loadEmbedded(Paths.inst(songData.song));
+			if(difficulty != null)
+				if(difficulty == 'Precursor')
+					inst.loadEmbedded(Paths.inst('${songData.song}', '-OG'));
+			else
+				inst.loadEmbedded(Paths.inst(songData.song));
 		}
 		catch (e:Dynamic) {}
 		FlxG.sound.list.add(inst);

@@ -156,8 +156,8 @@ class Paths
 	inline static public function music(key:String, ?modsAllowed:Bool = true):Sound
 		return returnSound('music/$key', modsAllowed);
 
-	inline static public function inst(song:String, ?modsAllowed:Bool = true):Sound
-		return returnSound('${formatToSongPath(song)}/Inst', 'songs', modsAllowed);
+	inline static public function inst(song:String, ?postFix:String = '', ?modsAllowed:Bool = true):Sound
+		return returnSound('${formatToSongPath(song)}/Inst${postFix}', 'songs', modsAllowed);
 
 	inline static public function voices(song:String, postfix:String = null, ?modsAllowed:Bool = true):Sound
 	{

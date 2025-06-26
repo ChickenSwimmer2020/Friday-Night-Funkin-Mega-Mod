@@ -120,7 +120,7 @@ class FreeplayState extends MusicBeatState
         Console.animation.addByIndices('Erect_TransitionToNightmare', 'jukebox_DifficultyConsole', [11, 10], "", 24, false, false, false);
 		Console.animation.addByIndices('Erect', 'jukebox_DifficultyConsole', [12], "", 24, false, false, false);
 		Console.animation.addByIndices('Erect_TransitionToEasy', 'jukebox_DifficultyConsole', [13, 14], "", 24, false, false, false);
-        Console.animation.addByIndices('Easy_TransitionToErect', 'jukebox_DifficultyConsole', [14, 13], "", 24, false, false, false);
+        Console.animation.addByIndices('Easy_TransitionToErect', 'jukebox_DifficultyConsole', [14, 13], "", 24, false, false, false); //TODO: change this to a spritemap AND implement transitions for Precursor difficulty
         // TODO: Implement
 		Console.animation.addByIndices('Static', 'jukebox_DifficultyConsole', [15, 16], "", 24, true, false, false); // For locked difficulties
         Console.animation.play(difficultyToString(curDifficulty));
@@ -332,7 +332,7 @@ class FreeplayState extends MusicBeatState
 
     
     inline function difficultyToString(diff:Int)
-        return diff == -1 ? 'Static' : diff == 0 ? 'Easy' : diff == 1 ? 'Normal' : diff == 2 ? 'Hard' : diff == 3 ? 'Nightmare' : diff == 4 ? 'Erect' : 'Unknown';
+        return diff == -1 ? 'Static' : diff == 0 ? 'Easy' : diff == 1 ? 'Normal' : diff == 2 ? 'Hard' : diff == 3 ? 'Nightmare' : diff == 4 ? 'Erect' : diff == 5 ? 'Precursor' : 'Unknown';
 
 	override function update(elapsed:Float)
 	{
@@ -507,7 +507,7 @@ class FreeplayState extends MusicBeatState
 					try
 					{
 						var playerVocals:String = getVocalFromCharacter(PlayState.SONG.player1);
-						var loadedVocals = Paths.voices(PlayState.SONG.song, (playerVocals != null && playerVocals.length > 0) ? playerVocals : 'Player');
+						var loadedVocals = Paths.voices(PlayState.SONG.song, (playerVocals != null && playerVocals.length > 0) ? playerVocals : (curDifficulty == 5) ? 'Player-OG' : 'Player');
 						if (loadedVocals == null)
 							loadedVocals = Paths.voices(PlayState.SONG.song);
 
@@ -533,7 +533,7 @@ class FreeplayState extends MusicBeatState
 					{
 						// trace('please work...');
 						var oppVocals:String = getVocalFromCharacter(PlayState.SONG.player2);
-						var loadedVocals = Paths.voices(PlayState.SONG.song, (oppVocals != null && oppVocals.length > 0) ? oppVocals : 'Opponent');
+						var loadedVocals = Paths.voices(PlayState.SONG.song, (oppVocals != null && oppVocals.length > 0) ? oppVocals : (curDifficulty == 5) ? 'Opponent-OG' : 'Opponent');
 
 						if (loadedVocals != null && loadedVocals.length > 0)
 						{
@@ -581,7 +581,11 @@ class FreeplayState extends MusicBeatState
 						record.animation.timeScale = 1;
 				}
 
-				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.8);
+				if(curDifficulty == 5) //should be the Precursor difficulty
+					FlxG.sound.playMusic(Paths.inst('${PlayState.SONG.song}', '-OG'), 0.8);
+				else
+					FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0.8);
+
 				FlxG.sound.music.pause();
 				instPlaying = curSelected;
 

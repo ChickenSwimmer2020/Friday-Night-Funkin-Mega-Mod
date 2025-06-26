@@ -7,7 +7,8 @@ class Difficulty
 		'Normal',
 		'Hard',
 		'Nightmare',
-		'Erect'
+		'Erect',
+		'Precursor'
 	];
 	private static final defaultDifficulty:String = 'Normal'; //The chart that has no postfix and starting difficulty on Freeplay/Story Mode
 
