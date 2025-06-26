@@ -65,6 +65,8 @@ class CreditsState extends MusicBeatState
 			['Animators'],
 			['nem0nii',             'brookeGaySon',      'Animator\n\"QUOTE\""', 'https://www.youtube.com/@NemonII283', '#401274' ],
 			['ChickenSwimmer2020',  'icon-CS20',         'Main Animator\n\"The furry that Animated this mess of spaghetti code\"', 'https://linktr.ee/ChickenSwimmer2020', '#00FF00'],
+			['Ideas'],
+			['PogoWolf',             'PogoWolf',      'Idea for the bubbles on the jukebox in freeplay\n\"Bubblzz\"', 'https://www.deviantart.com/pogowolf', '#332884' ],
 			[''],
 			["Psych Engine Team"],
 			["Shadow Mario",		"shadowmario",		"Main Programmer and Head of Psych Engine",					"https://ko-fi.com/shadowmario",	"444444"],

@@ -28,6 +28,7 @@ class FreeplayState extends MusicBeatState
 
 	var JB:FlxSprite;
 	var JBC:FlxSprite;
+	var JBB:FlxSprite;
 	var Console:FlxSprite;
 	var Glass:FlxSprite;
 
@@ -158,6 +159,14 @@ class FreeplayState extends MusicBeatState
 		JBC.frames = Paths.getSparrowAtlas('JB_G');
 		JBC.animation.addByPrefix('JB_G', 'jukebox_colors_glow', 24, false, false, false);
 
+		JBB = new FlxSprite(JBC.x + 50, JBC.y + 18);
+		JBB.frames = Paths.getSparrowAtlas('JB_B');
+		JBB.animation.addByPrefix('flow', 'JukeBox_BUBBLES', 24, true, false, false); //TODO: find way to make bubbles spritesheet small, AND fix sprite animation loop.
+		JBB.animation.play('flow');
+		JBB.animation.timeScale = 0.8;
+
+		
+
 		pallet.r = colors[0];
 		pallet.g = colors[0];
 		pallet.b = colors[0];
@@ -265,6 +274,7 @@ class FreeplayState extends MusicBeatState
 		//add(animationBG);
 		add(JB);
 		add(JBC);
+		add(JBB);
 		add(JBO);
 		add(record);
 		add(Glass);
@@ -659,7 +669,7 @@ class FreeplayState extends MusicBeatState
 		if (curBeat % bopspeed == 0)
 		{
 			while (curCol == lastCol)
-				curCol = random.int(0, 7);
+				curCol = random.int(0, colors.length -1);
 
 			pallet.r = colors[curCol];
 			pallet.g = colors[curCol];
