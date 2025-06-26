@@ -11,7 +11,6 @@ import openfl.Lib;
 import openfl.display.Sprite;
 import openfl.events.Event;
 import openfl.display.StageScaleMode;
-import states.Preload;
 
 #if linux import lime.graphics.Image; #end
 
@@ -33,7 +32,7 @@ import backend.Highscore;
 
 class Main extends Sprite
 {
-	var game:FlxGame = new FlxGame(1280, 720, Preload, 60, 60, false, false);
+	var game:FlxGame = new FlxGame(1280, 720, Warnings, 60, 60, false, false);
     #if sys static var application:Application; #end
 
 	public static var fpsVar:FPSCounter;

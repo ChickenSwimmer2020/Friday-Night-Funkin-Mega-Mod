@@ -168,25 +168,19 @@ class MainMenuState extends MusicBeatState
 		// ]
 		sketch = new FlxSprite(0, 0);
 		sketch.frames = Paths.getSparrowAtlas('MainMenu/Sketches/Sketchy$randInt');
-		sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
-			
-		sketch.animation.play('idle');
-		sketch.antialiasing = ClientPrefs.data.antialiasing;
-		// used for sketchy 0
-		sketch.scale.x = 1;
-		sketch.scale.y = 1;
-		sketch.scrollFactor.set(0, 0.1);
-		add(sketch);
+		
 
 		// offsets
         switch (randInt)
         {
             case 0:
+				sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
                 sketch.x = 400;
                 sketch.y = 50;
                 sketch.scale.x = 0.9;
                 sketch.scale.y = 0.9;
             case 1:
+				sketch.animation.addByPrefix('idle', 'xml prefix', 24, false);
                 sketch.x = 550;
                 sketch.y = 100;
                 sketch.scale.x = 1;
@@ -197,6 +191,14 @@ class MainMenuState extends MusicBeatState
                 sketch.scale.x = 1;
                 sketch.scale.y = 1;
         }
+
+		sketch.animation.play('idle');
+		sketch.antialiasing = ClientPrefs.data.antialiasing;
+		// used for sketchy 0
+		sketch.scale.x = 1;
+		sketch.scale.y = 1;
+		sketch.scrollFactor.set(0, 0.1);
+		add(sketch);
 
 		verInfTxt = new FlxGroup();
 		add(verInfTxt);
@@ -465,7 +467,7 @@ class MainMenuState extends MusicBeatState
 						case 2: //gallery
 							trace('implement: Gallery');
 						case 3: //credits
-						trace('implement: credits');
+							trace('implement: credits');
 						case 4: //settings
 							createMenuEnter('settings', 150, 0, 1, 0.90);
 						case 5: //awards

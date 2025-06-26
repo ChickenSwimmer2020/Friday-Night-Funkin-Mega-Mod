@@ -54,7 +54,7 @@ class StoryMenuState extends MusicBeatState
 	public var num:Int = 0;
 
 
-	public var WEEKIMAGES:FlxSpriteGroup = new FlxSpriteGroup(100, 400);
+	public var WEEKIMAGES:FlxSpriteGroup = new FlxSpriteGroup(0, 400);
 	var WEEKIMAGESTARGETY:Float = 0;
 
 	override function create()
@@ -139,9 +139,9 @@ class StoryMenuState extends MusicBeatState
 
 
 				var img:FlxSprite = new FlxSprite(0, 0).loadGraphic('assets/shared/images/storymenu/${imagenames[i]}.png');
-				img.scale.set(0.25,0.25); //reimplement when movement gets fixed smh
+				img.scale.set(0.251,0.3); //reimplement when movement gets fixed smh
 				img.updateHitbox();
-				img.y = 90 * i; //shouldnt mess up?
+				img.y = 100 * i; //shouldnt mess up?
 				img.ID = i;
 				WEEKIMAGES.add(img);
 
@@ -276,7 +276,7 @@ class StoryMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		WEEKIMAGES.y = FlxMath.lerp(WEEKIMAGES.y, WEEKIMAGESTARGETY, Math.exp(-elapsed * 30));
+		WEEKIMAGES.y = FlxMath.lerp(WEEKIMAGES.y, WEEKIMAGESTARGETY, Math.exp(-elapsed * 3.125 * 1 * 1));
 
 		// trace(curWeek);
 		// trace(curDifficulty);
@@ -285,10 +285,10 @@ class StoryMenuState extends MusicBeatState
 
 		switch(curWeek){
 			case 0:
-				WEEKIMAGESTARGETY = 400;
+				WEEKIMAGESTARGETY = 468;
 				PlayChar.animation.play('BF', true);
 			case 1:
-				WEEKIMAGESTARGETY = 300;
+				WEEKIMAGESTARGETY = 360; //-108
 				PlayChar.animation.play('CS20', true);
 			default:
 				WEEKIMAGESTARGETY = 0;

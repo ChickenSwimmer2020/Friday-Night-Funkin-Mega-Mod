@@ -28,6 +28,8 @@ class Warnings extends MusicBeatState
 
 	override public function create()
 	{
+		AlphaCharacter.loadAlphabetData(); //probably should do this, considering it'll crash if we dont.
+
 		_FURRYWARNING = new FlxSpriteGroup();
         _FLASHWARNING = new FlxSpriteGroup(1500, 0, 0);
         CreateFurryWarning();

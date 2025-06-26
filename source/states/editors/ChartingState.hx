@@ -64,6 +64,8 @@ enum abstract WaveformTarget(String)
 
 class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychUIEvent
 {
+	public var diff:String = '';
+
 	public static final defaultEvents:Array<Array<String>> =
 	[
 		['', "Nothing. Yep, that's right."], //Always leave this one empty pls
@@ -480,6 +482,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		gameOverCharDropDown.list = gameOverCharacters;
 
 		stageDropDown.list = loadFileList('stages/', 'data/stageList.txt');
+		difficultyDropDown.list = ['Easy', 'Normal', 'Hard', 'Nightmare', 'Erect', 'Precursor'];
 		onChartLoaded();
 
 		var tipText:FlxText = new FlxText(FlxG.width - 210, FlxG.height - 30, 200, 'Press F1 for Help', 20);
@@ -1769,7 +1772,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		Conductor.bpm = PlayState.SONG.bpm;
 	}
 
-	function loadMusic(?killAudio:Bool = false)
+	function loadMusic(?killAudio:Bool = false, ?difficulty:String = '')
 	{
 		setSongPlaying(false);
 		var time:Float = Conductor.songPosition;
@@ -1797,7 +1800,10 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 		try
 		{
-			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0);
+			if(difficulty == 'Precursor')
+				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song, '-OG'), 0);
+			else
+				FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 0);
 			FlxG.sound.music.pause();
 			FlxG.sound.music.time = time;
 			FlxG.sound.music.onComplete = (function() songFinished = true);
@@ -1814,21 +1820,40 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		{
 			try
 			{
-				var playerVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP1 == null || characterData.vocalsP1.length < 1) ? 'Player' : characterData.vocalsP1);
-				vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(PlayState.SONG.song));
-				vocals.volume = 0;
-				vocals.play();
-				vocals.pause();
-				vocals.time = time;
-				
-				var oppVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP2 == null || characterData.vocalsP2.length < 1) ? 'Opponent' : characterData.vocalsP2);
-				if(oppVocals != null && oppVocals.length > 0)
-				{
-					opponentVocals.loadEmbedded(oppVocals);
-					opponentVocals.volume = 0;
-					opponentVocals.play();
-					opponentVocals.pause();
-					opponentVocals.time = time;
+				if(difficulty == 'Precursor'){
+					var playerVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP1 == null || characterData.vocalsP1.length < 1) ? 'Player-OG' : '${characterData.vocalsP1}-OG');
+					vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(PlayState.SONG.song));
+					vocals.volume = 0;
+					vocals.play();
+					vocals.pause();
+					vocals.time = time;
+					
+					var oppVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP2 == null || characterData.vocalsP2.length < 1) ? 'Opponent-OG' : '${characterData.vocalsP2}-OG');
+					if(oppVocals != null && oppVocals.length > 0)
+					{
+						opponentVocals.loadEmbedded(oppVocals);
+						opponentVocals.volume = 0;
+						opponentVocals.play();
+						opponentVocals.pause();
+						opponentVocals.time = time;
+					}
+				}else{
+					var playerVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP1 == null || characterData.vocalsP1.length < 1) ? 'Player' : characterData.vocalsP1);
+					vocals.loadEmbedded(playerVocals != null ? playerVocals : Paths.voices(PlayState.SONG.song));
+					vocals.volume = 0;
+					vocals.play();
+					vocals.pause();
+					vocals.time = time;
+					
+					var oppVocals:Sound = Paths.voices(PlayState.SONG.song, (characterData.vocalsP2 == null || characterData.vocalsP2.length < 1) ? 'Opponent' : characterData.vocalsP2);
+					if(oppVocals != null && oppVocals.length > 0)
+					{
+						opponentVocals.loadEmbedded(oppVocals);
+						opponentVocals.volume = 0;
+						opponentVocals.play();
+						opponentVocals.pause();
+						opponentVocals.time = time;
+					}
 				}
 			}
 			catch (e:Dynamic) {}
@@ -3153,6 +3178,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 	var audioOffsetStepper:PsychUINumericStepper;
 
 	var stageDropDown:PsychUIDropDownMenu;
+	var difficultyDropDown:PsychUIDropDownMenu;
 	var playerDropDown:PsychUIDropDownMenu;
 	var opponentDropDown:PsychUIDropDownMenu;
 	var girlfriendDropDown:PsychUIDropDownMenu;
@@ -3218,6 +3244,13 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 			StageData.loadDirectory(PlayState.SONG);
 			trace('selected $stage');
 		});
+
+		difficultyDropDown = new PsychUIDropDownMenu(objX + 140, objY + 40, [''], function(id:Int, difficulty:String)
+		{
+			diff = difficulty;
+			loadMusic(diff);
+			trace('selected $difficulty');
+		});
 		
 		opponentDropDown = new PsychUIDropDownMenu(objX, objY + 40, [''], function(id:Int, character:String)
 		{
@@ -3243,10 +3276,12 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 
 		//dropdowns
 		tab_group.add(new FlxText(stageDropDown.x, stageDropDown.y - 15, 80, 'Stage:'));
+		tab_group.add(new FlxText(difficultyDropDown.x, difficultyDropDown.y - 15, 80, 'Difficulty:'));
 		tab_group.add(new FlxText(playerDropDown.x, playerDropDown.y - 15, 80, 'Player:'));
 		tab_group.add(new FlxText(opponentDropDown.x, opponentDropDown.y - 15, 80, 'Opponent:'));
 		tab_group.add(new FlxText(girlfriendDropDown.x, girlfriendDropDown.y - 15, 80, 'Girlfriend:'));
 		tab_group.add(stageDropDown);
+		tab_group.add(difficultyDropDown);
 		tab_group.add(girlfriendDropDown);
 		tab_group.add(opponentDropDown);
 		tab_group.add(playerDropDown);

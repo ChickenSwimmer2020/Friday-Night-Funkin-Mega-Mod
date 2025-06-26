@@ -2710,7 +2710,7 @@ class PlayState extends MusicBeatState
 
 					canResync = false;
 					//MusicBeatState.switchState(new StoryMenuState()); //No! we use our cool menu precacher now!
-					MusicBeatState.switchState(new MenuCacher(new StoryMenuState(), 'LOADING STORY MENU...\nPLEASE WAIT'));
+					MusicBeatState.switchState(new StoryMenuState());
 
 					// if ()
 					if(!ClientPrefs.getGameplaySetting('practice') && !ClientPrefs.getGameplaySetting('botplay')) {
@@ -2749,7 +2749,7 @@ class PlayState extends MusicBeatState
 
 				canResync = false;
 				//MusicBeatState.switchState(new FreeplayState());
-				MusicBeatState.switchState(new MenuCacher(new FreeplayState(), 'LOADING FREEPLAY MENU...\nPLEASE WAIT'));
+				MusicBeatState.switchState(new FreeplayState());
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				changedDifficulty = false;
 			}
