@@ -1,53 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="freeplay_songs.png">
-	<!-- Created with Adobe Animate version 24.0.5.40 -->
+	<!-- Created with Adobe Animate version 23.0.0.407 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="therealerecordwithmask0000" x="3" y="3" width="624" height="486" pivotX="-217.2" pivotY="-302.05"/>
-	<SubTexture name="therealerecordwithmask0001" x="630" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0002" x="1257" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0003" x="1884" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0004" x="2511" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0005" x="3138" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0006" x="3" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0007" x="3" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0008" x="3" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0009" x="3" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0010" x="3" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0011" x="3" y="2937" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0012" x="3" y="3426" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0013" x="630" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0014" x="1257" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0015" x="1884" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0016" x="2511" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0017" x="3138" y="492" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0018" x="630" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0019" x="630" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0020" x="630" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0021" x="630" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0022" x="630" y="2937" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0023" x="3" y="3" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0024" x="630" y="3426" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0025" x="1257" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0026" x="1884" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0027" x="2511" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0028" x="3138" y="981" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0029" x="1257" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0030" x="1884" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0031" x="2511" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0032" x="3138" y="1470" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0033" x="1257" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0034" x="1257" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0035" x="1257" y="2937" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0036" x="1257" y="3426" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0037" x="1884" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0038" x="2511" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0039" x="3138" y="1959" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0040" x="1884" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0041" x="1884" y="2937" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0042" x="1884" y="3426" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0043" x="2511" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0044" x="3138" y="2448" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0045" x="2511" y="2937" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0046" x="2511" y="3426" width="624" height="486"/>
-	<SubTexture name="therealerecordwithmask0047" x="630" y="3426" width="624" height="486"/>
+	<SubTexture name="therealerecordwithmask0000" x="6851" y="486" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0001" x="0" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0002" x="1244" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0003" x="7464" y="1456" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0004" x="622" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0005" x="7473" y="486" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0006" x="1244" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0007" x="1244" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0008" x="4970" y="1941" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0009" x="5592" y="2425" width="620" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0010" x="0" y="972" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0011" x="5592" y="1941" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0012" x="622" y="972" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0013" x="1867" y="486" width="623" height="485" frameX="0" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0014" x="1866" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0015" x="1244" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0016" x="2488" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0017" x="3110" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0018" x="1866" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0019" x="3732" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0020" x="0" y="1942" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0021" x="2488" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0022" x="2490" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0023" x="6851" y="486" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0024" x="4354" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0025" x="3110" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0026" x="3113" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0027" x="621" y="1942" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0028" x="3732" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0029" x="4976" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0030" x="1865" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0031" x="5598" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0032" x="6214" y="1941" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0033" x="6212" y="2425" width="620" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0034" x="6220" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0035" x="6836" y="1941" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0036" x="6842" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0037" x="3736" y="486" width="623" height="485" frameX="0" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0038" x="7464" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0039" x="4354" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0040" x="1244" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0041" x="0" y="1457" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0042" x="4976" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0043" x="622" y="1457" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0044" x="2486" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0045" x="5598" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0046" x="4359" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0047" x="4354" y="971" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0048" x="1866" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0049" x="6220" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0050" x="4982" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0051" x="3107" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0052" x="6842" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0053" x="2488" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0054" x="3728" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0055" x="3110" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0056" x="7458" y="1941" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0057" x="6832" y="2425" width="620" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0058" x="3732" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0059" x="4970" y="2425" width="622" height="484" frameX="-1" frameY="-2" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0060" x="4354" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0061" x="5605" y="486" width="623" height="485" frameX="0" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0062" x="4976" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0063" x="7464" y="0" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0064" x="5598" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0065" x="6220" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0066" x="0" y="486" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0067" x="6842" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0068" x="4349" y="1941" width="621" height="485" frameX="-2" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0069" x="622" y="486" width="622" height="486" frameX="-1" frameY="0" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0070" x="6228" y="486" width="623" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
+	<SubTexture name="therealerecordwithmask0071" x="1866" y="1456" width="622" height="485" frameX="-1" frameY="-1" frameWidth="624" frameHeight="486"/>
 </TextureAtlas>

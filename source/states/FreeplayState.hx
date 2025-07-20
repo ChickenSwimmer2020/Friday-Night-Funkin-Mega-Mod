@@ -135,8 +135,9 @@ class FreeplayState extends MusicBeatState
 		//record
 		record = new FlxSprite(Glass.x + 15, Glass.y + 52);
 		record.frames = Paths.getSparrowAtlas('freeplay_songs');
-		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 0...23) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_SystemPRE', 'therealerecordwithmask', [for (i in 0...23) i], "", 30, false, false, false);
 		record.animation.addByIndices('SONG_Tutorial', 'therealerecordwithmask', [for (i in 24...47) i], "", 30, false, false, false);
+		record.animation.addByIndices('SONG_System', 'therealerecordwithmask', [for (i in 48...71) i], "", 30, false, false, false);
 		record.scale.set(0.25, 0.25);
 		record.updateHitbox();
 		record.antialiasing = ClientPrefs.data.antialiasing;
@@ -360,7 +361,7 @@ class FreeplayState extends MusicBeatState
 				choosenSong = 'Tutorial';
 				songLowercase = 'tutorial'; //bandaid fix
 			case 1:
-				record.animation.play('SONG_System', false, false, curFrame);
+				record.animation.play(difficultyToString(curDifficulty) == 'Precursor' ? 'SONG_SystemPRE' : 'SONG_System', false, false, curFrame);
 				choosenSong = 'System';
 				songLowercase = 'system';
 		}
